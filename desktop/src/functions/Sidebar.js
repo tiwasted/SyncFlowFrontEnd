@@ -22,6 +22,7 @@ const SideBar = () => {
           {/* <li className="nav-item"><Link to="/employees" activeclassname="active"><IconSettings className='icon'/>Сотрудники</Link></li> */}
           <li className="nav-item"><Link to="/employees" activeclassname="active"><IconSettings className='icon'/>Сотрудники</Link></li>
           <li className='nav-item'><Link to="/settings" activeclassname="active"><IconSettings className='icon'/>Настройки</Link></li>
+          
         </ul>
       </nav>
     </aside>
