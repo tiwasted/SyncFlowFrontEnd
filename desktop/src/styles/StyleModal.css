@@ -1,0 +1,92 @@
+/* StyleModal.css */
+
+:root {
+    --modal-background-color: #fff;
+    --overlay-color: rgba(0, 0, 0, 0.5);
+    --primary-color: #007bff;
+    --hover-primary-color: #0056b3;
+    --text-color: #333;
+    --border-radius: 15px;
+    --border-color: #ccc;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+};
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--modal-background-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 500px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease-out;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: var(--primary-color);
+}
+
+.modal-h2 {
+    margin-top: 0;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.modal-form-group {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.modal-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.modal-form-group :focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.modal-submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-submit-button:hover {
+    background-color: var(--hover-primary-color);
+};

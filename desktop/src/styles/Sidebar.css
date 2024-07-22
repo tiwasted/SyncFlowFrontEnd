@@ -1,0 +1,93 @@
+/* Sidebar.css */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  margin-right: 20px;
+  background: linear-gradient(145deg, #F0F9FF 0%, #E6F4EA 100%); 
+  color: #333; 
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.logo {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF; 
+  color: #333; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.logo-link {
+  text-decoration: none;
+  color: #333; 
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 3;
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.nav-item {
+  margin: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #333; 
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  
+}
+
+.nav-item a:hover, .nav-item a.active {
+  background-color: #4CAF50;
+  color: #FFFFFF;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+  
+.nav-item a:focus {
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
+}
+
+.nav-item:not(:last-child) {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+.icon {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  fill: #4CAF50; 
+}
