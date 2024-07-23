@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useOrders } from '../functions/OrderContext';
 
 const AddOrder = () => {
-  const [serviceName, setServiceName] = useState('');
+  const [nameOfOrder, setOrderName] = useState('');
   const [price, setPrice] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
@@ -22,7 +22,7 @@ const AddOrder = () => {
     try {
       const token = localStorage.getItem('accessToken');
       const formData = new FormData();
-      formData.append('order_name', serviceName);
+      formData.append('order_name', nameOfOrder);
       formData.append('price', price);
       formData.append('order_date', date);
       formData.append('order_time', time);
@@ -60,11 +60,11 @@ const AddOrder = () => {
         <h2 className='add-h2'>Добавить заказ</h2>
         <form onSubmit={handleFormSubmit}>
           <div className="add-form-group">
-            <label className='add-label'>Услуга:</label>
+            <label className='add-label'>Наименование заказа:</label>
             <input 
               type="text" 
-              value={serviceName} 
-              onChange={(e) => setServiceName(e.target.value)} 
+              value={nameOfOrder} 
+              onChange={(e) => setOrderName(e.target.value)} 
             />
           </div>
           <div className="add-form-group">
