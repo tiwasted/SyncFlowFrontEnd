@@ -1,44 +1,28 @@
-// // OrdersList.js
-// import React from 'react';
-
-// const OrdersList = () => {
-//   const orders = [];
-
-//   return (
-//     <React.Fragment>
-//       <ul>
-//         {orders.map((order, index) => (
-//           <li key={index}>{order}</li>
-//         ))}
-//       </ul>
-//     </React.Fragment>
-//   );
-// };
-
-// export default OrdersList;
-
-
-
-
 // OrderList.js
 import React from 'react';
-import { useOrders } from '../functions/OrderContext';
+import { Link } from 'react-router-dom';
 
-const OrderList = () => {
-  const { orders } = useOrders();
+const OrderList = ({ orders }) => {
+  if (!orders || orders.length === 0) {
+    return <p>Заказы не найдены</p>;
+  }
 
   return (
     <div>
       {orders.map((order) => (
-        <div key={order.id}>
+        <div key={order.id} className="order-item">
           <h4>{order.service_name}</h4>
-          <p>{order.price}</p>
-          <p>{order.date}</p>
-          <p>{order.time}</p>
-          <p>{order.address}</p>
-          <p>{order.name_of_client}</p>
-          <p>{order.phone_number}</p>
-          <p>{order.description}</p>
+          <p>{`Наименование ${order.order_name}`}</p>
+          <p>{`Цена: ${order.price}`}</p>
+          <p>{`Дата: ${order.order_date}`}</p>
+          <p>{`Время: ${order.order_time}`}</p>
+          <p>{`Адрес: ${order.address}`}</p>
+          <p>{`Имя клиента: ${order.name_client}`}</p>
+          <p>{`Номер клиента: ${order.phone_number_client}`}</p>
+          <p>{`Описание: ${order.description}`}</p>
+          <Link to={`/edit-order/${order.id}`}>
+            <button className='general-btns'>Редактировать</button>
+          </Link>
         </div>
       ))}
     </div>

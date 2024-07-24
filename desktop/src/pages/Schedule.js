@@ -3,8 +3,9 @@ import React from 'react';
 import Calendar from '../functions/Calendar';
 
 const Schedule = () => {
+
   return (
-    <React.Fragment className="schedule-container">
+    <div className="schedule-container">
       <div className="schedule-content">
         <h2 className='h2-schedule'>Расписание</h2>
         <div className="order-list-container">
@@ -15,7 +16,7 @@ const Schedule = () => {
           <Calendar />
         </div>
       </div> 
-    </React.Fragment>
+    </div>
   );
 };
 

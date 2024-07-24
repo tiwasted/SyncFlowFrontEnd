@@ -53,39 +53,42 @@ const Employees = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
+      console.log('Fetched employees:', response.data); // Выводим список сотрудников
       setEmployees(response.data);
     } catch (error) {
       console.error('Error fetching employees', error);
     }
   };
 
-//   const deleteEmployee = async (id) => {
-//     try {
-//       await axiosInstance.delete(`http://127.0.0.1:8000/employees/<int:pk>/delete/`, {
-//         headers: {
-//           'Authorization': `Bearer ${localStorage.getItem('token')}`
-//         }
-//       });
-//       setEmployees(employees.filter(emp => emp.id !== id));
-//     } catch (error) {
-//       console.error('Error deleting employee', error);
-//     }
-//   };
+  // const deleteEmployee = async (id) => {
+  //   try {
+  //     await axiosInstance.delete(`http://127.0.0.1:8000/employees/<int:pk>/delete/`, {
+  //       headers: {
+  //         'Authorization': `Bearer ${localStorage.getItem('token')}`
+  //       }
+  //     });
+  //     setEmployees(employees.filter(emp => emp.id !== id));
+  //   } catch (error) {
+  //     console.error('Error deleting employee', error);
+  //   }
+  // };
+  
 
-const deleteEmployee = async (id) => {
+  const deleteEmployee = async (id) => {
     try {
+      // Используем правильный путь с подставленным идентификатором сотрудника
       await axiosInstance.delete(`http://127.0.0.1:8000/employees/${id}/delete/`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
+      
+      // Обновляем список сотрудников, удаляя сотрудника с заданным идентификатором
       setEmployees(employees.filter(emp => emp.id !== id));
     } catch (error) {
       console.error('Error deleting employee', error);
     }
   };
-  
-
   
 
   const handleAddEmployee = async (newEmployee) => {
@@ -120,7 +123,9 @@ const deleteEmployee = async (id) => {
             Имя: {employee.first_name} <br />
             Фамилия: {employee.last_name} <br />
             Телефон: {employee.phone} <br />
-            <button onClick={() => deleteEmployee(employee.id)}>Удалить</button>
+            <button onClick={() => {
+              console.log('Deleting employee with id:', employee.id); // Добавьте отладочный вывод
+            deleteEmployee(employee.id)}}>Удалить</button>
           </li>
         ))}
       </ul>
