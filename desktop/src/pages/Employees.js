@@ -60,20 +60,6 @@ const Employees = () => {
     }
   };
 
-  // const deleteEmployee = async (id) => {
-  //   try {
-  //     await axiosInstance.delete(`http://127.0.0.1:8000/employees/<int:pk>/delete/`, {
-  //       headers: {
-  //         'Authorization': `Bearer ${localStorage.getItem('token')}`
-  //       }
-  //     });
-  //     setEmployees(employees.filter(emp => emp.id !== id));
-  //   } catch (error) {
-  //     console.error('Error deleting employee', error);
-  //   }
-  // };
-  
-
   const deleteEmployee = async (id) => {
     try {
       if (!id) {

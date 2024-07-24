@@ -1,0 +1,25 @@
+.logo {
+    height: 32px;
+    background: #001529;
+    margin: 16px;
+}
+
+.header-title {
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 30px;
+}
+
+.ant-layout-sider {
+    background: #001529;
+}
+
+.ant-menu-item {
+    font-size: 16px;
+}
+
+.ant-layout-content {
+    background: #fff;
+    border-radius: 8px;
+}

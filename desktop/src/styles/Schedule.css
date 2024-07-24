@@ -1,29 +1,42 @@
-/* .schedule-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  } */
-  
-  .schedule-content {
-    background-color: #f8f8f8;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
+.schedule-container {
+  padding: 24px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.schedule-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.order-list-container {
+  flex: 1;
+  background-color: #f0f2f5;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  width: 400px;
+}
+
+.calendar-container {
+  /* flex: 1; */
+  /* background-color: #f0f2f5; */
+  /* border-radius: 8px; */
+  padding: 16px;
+  width: 300px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
 .h2-schedule {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .order-list-container, .calendar-container {
-    margin-top: 20px;
-  }
-  
-  .h3-schedule {
-    color: #555;
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.h3-schedule {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
