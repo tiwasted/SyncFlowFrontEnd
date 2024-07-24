@@ -76,6 +76,10 @@ const Employees = () => {
 
   const deleteEmployee = async (id) => {
     try {
+      if (!id) {
+        console.error('Invalid employee id');
+        return;
+      }
       // Используем правильный путь с подставленным идентификатором сотрудника
       await axiosInstance.delete(`http://127.0.0.1:8000/employees/${id}/delete/`, {
         headers: {
