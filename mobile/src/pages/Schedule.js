@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import api from '../services/authToken';
 import Calendar from '../components/Calendar';
@@ -11,6 +12,7 @@ const Schedule = () => {
     return new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
   });
   const [tasks, setTasks] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // console.log('Дата у клиента:', date);
@@ -31,7 +33,11 @@ const Schedule = () => {
         });
         setTasks(response.data);
       } catch (error) {
-        console.error('Ошибка при получении задач:', error);
+        // if (error.response && error.response.status === 401) {
+          // navigate('/login');
+        // } else {
+          console.error('Ошибка при получении задач:', error);
+        // }
       }
     };
 

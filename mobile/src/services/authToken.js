@@ -54,6 +54,7 @@ api.interceptors.response.use(
             // Если не удалось обновить токен, перенаправляем на страницу входа
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
+            window.location.href = '/login'
             // Здесь можно добавить редирект на страницу входа
             return Promise.reject(refreshError);
         }

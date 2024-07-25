@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { login } from '../services/auth';
+import { login as apiLogin } from '../services/auth';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LoginForm.css';
+import { useAuth } from '../services/AuthContext';
 
-const LoginForm = ({ onLogin, isAuthenticated }) => {
-    const [formData, setFormData] = useState({
-    phone: '',
-    password: '',
-    });
+const LoginForm = () => {
+    const [formData, setFormData] = useState({ phone: '', password: '', });
     const navigate = useNavigate();
+    const { login } = useAuth();
 
-const handleChange = (event) => {
+const handleChange = async (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
 };
@@ -18,12 +17,13 @@ const handleChange = (event) => {
 const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-const token = await login(formData.phone, formData.password); // Вызов функции для входа из auth.js
+    console.log('Отправлямые данные:', formData);
+    const token = await apiLogin(formData.phone, formData.password); // Вызов функции для входа из auth.js
     console.log('Успешный вход. Токен:', token);
-    onLogin(token); // Уведомляем App об успешной аутентификации
+    login(token)
     navigate('/schedule', { replace: true });
     } catch (error) {
-    console.error('Ошибка входа:', error);
+    console.error('Ошибка входа:', error.response ? error.response.data : error.message);
       // Обработка ошибок при входе
     }
 };
