@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import Task from './Task';
+import '../styles/TaskList.css'
 
-const Task = ({ task }) => {
-  return (
-    <div className="task">
-      <p>{task.title}</p>
-    </div>
-  );
-};
+const TaskList = ({ tasks, onComplete, onCancel }) => {
+  const taskListRef = useRef(null);
 
-const TaskList = ({ tasks }) => {
+  useEffect(() => {
+    if (taskListRef.current) {
+      taskListRef.current.scrollTop = taskListRef.current.scrollHeight;
+    }
+  }, [tasks]); // Прокрутка срабатывает при изменении задач
+
   return (
-    <div className="tasks">
-      {tasks.map((task) => (
-        <Task key={task.id} task={task} />
-      ))}
+    <div className="tasks" ref={taskListRef}>
+      {tasks.length > 0 ? (
+        tasks.map((task) => (
+          <Task key={task.id} task={task} onComplete={onComplete} onCancel={onCancel} />
+        ))
+      ) : (
+        <p>Нет задач для отображения</p>
+      )}
     </div>
   );
 };
