@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useOrders } from '../functions/OrderContext';
+import { useOrders } from './OrderContext';
 
 const EditOrder = () => {
   const { id } = useParams();

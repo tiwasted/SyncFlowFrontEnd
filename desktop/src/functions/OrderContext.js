@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/tokenService';
 
 const OrderContext = createContext();
 
@@ -11,11 +11,7 @@ export const OrderProvider = ({ children }) => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const token = localStorage.getItem('accessToken');
-        const response = await axios.get('http://localhost:8000/orders/b2c-orders/', {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
+        const response = await api.get('http://localhost:8000/orders/b2c-orders/', {
         });
         setOrders(response.data); // Устанавливаем полученные данные
       } catch (error) {

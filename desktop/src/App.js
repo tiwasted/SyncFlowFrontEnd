@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SidebarProvider } from './functions/SidebarContext';
 import { AuthProvider } from './context/AuthContext';
 import { OrderProvider } from './functions/OrderContext';
@@ -9,9 +9,9 @@ import Login from './functions/Login';
 import Dashboard from './pages/Dashboard';
 import Schedule from './pages/Schedule';
 import Employees from './pages/Employees';
-import AddOrder from './pages/AddOrder';
+import AddOrder from './components/AddOrder';
 import HistoryOfOrders from './pages/HistoryOfOrders';
-import SettingsPage from './functions/SettingsPage';
+import SettingsPage from './pages/SettingsPage';
 import EditOrder from './functions/EditOrder';
 import AppLayout from './layout/AppLayout';
 import './styles/App.css';
@@ -27,8 +27,8 @@ import './styles/Calendar.css';
 import './styles/AppLayout.css';
 
 const AppContent = () => {
-  const location = useLocation();
-  const showSidebar = location.pathname !== '/login';
+  // const location = useLocation();
+  // const showSidebar = location.pathname !== '/login';
 
   return (
     <div className="app-container">
@@ -44,7 +44,7 @@ const AppContent = () => {
                 <Route path="/add-order" element={<AddOrder />} />
                 <Route path="/history-of-orders" element={<HistoryOfOrders />} />
                 <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/edit-order/:id" element={<EditOrder />} /> {/* Новый маршрут для редактирования заказа */}
+                <Route path="/edit-order/:id" element={<EditOrder />} />
               </Route>
             </Routes>
         </AppLayout>

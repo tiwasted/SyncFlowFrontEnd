@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Calendar from '../functions/Calendar';
+import api from '../services/tokenService';
 // import '../styles/Schedule.css';
 
 const Schedule = () => {
@@ -16,23 +16,10 @@ const Schedule = () => {
       const formattedDate = date.toISOString().split('T')[0]; // Форматируем дату в YYYY-MM-DD
       console.log('Отправляемая дата:', formattedDate);
       try {
-        const token = localStorage.getItem('accessToken');
-        const response = await axios.get(`http://localhost:8000/orders/schedule/`, {
-          headers: { 'Authorization': `Bearer ${token}` },
+        const response = await api.get(`/orders/schedule/`, {
           params: { date: formattedDate }
         });
         setOrders(response.data);
-        // const [b2cResponse, b2bResponse] = await Promise.all([
-          // axios.get(`http://localhost:8000/orders/b2c-orders/`, {
-            // headers: { 'Authorization': `Bearer ${token}` },
-            // params: { date: formattedDate }
-          // }),
-          // axios.get(`http://localhost:8000/orders/b2b-orders/`, {
-            // headers: { 'Authorization': `Bearer ${token}` },
-            // params: { date: formattedDate }
-          // })
-        // ]);
-        // setOrders([...b2cResponse.data, ...b2bResponse.data]); // Объединяем оба списка
       } catch (error) {
         console.error("Ошибка при получении заказов", error);
         setOrders([]);

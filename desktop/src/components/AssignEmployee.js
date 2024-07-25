@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useOrders } from '../functions/OrderContext';
+import api from '../services/tokenService';
 
 const AssignEmployee = ({ orderId }) => {
     const [employeeId, setEmployeeId] = useState('');
@@ -10,11 +10,7 @@ const AssignEmployee = ({ orderId }) => {
     useEffect(() => {
         const fetchEmployees = async () => {
         try {
-            const token = localStorage.getItem('accessToken');
-            const response = await axios.get('http://127.0.0.1:8000/employees/employees/', {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
+            const response = await api.get('/employees/employees/', {
             });
             setEmployees(response.data);
         } catch (error) {
@@ -27,15 +23,9 @@ const AssignEmployee = ({ orderId }) => {
 
     const handleAssign = async () => {
         try {
-        const token = localStorage.getItem('accessToken');
-        const response = await axios.post(
+        const response = await api.post(
             `http://localhost:8000/orders/b2c-orders/${orderId}/assign_employee/`,
             { employee_id: employeeId },
-            {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-            }
         );
 
         const updatedOrder = response.data;

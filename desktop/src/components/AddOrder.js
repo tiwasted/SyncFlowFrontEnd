@@ -1,8 +1,8 @@
 // AddOrder.js
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useOrders } from '../functions/OrderContext';
+import api from '../services/tokenService';
 
 const AddOrder = () => {
   const [nameOfOrder, setOrderName] = useState('');
@@ -20,7 +20,6 @@ const AddOrder = () => {
 
   const handleSaveOrder = async () => {
     try {
-      const token = localStorage.getItem('accessToken');
       const formData = new FormData();
       formData.append('order_name', nameOfOrder);
       formData.append('price', price);
@@ -31,11 +30,7 @@ const AddOrder = () => {
       formData.append('phone_number_client', phoneNumber);
       formData.append('description', description);
 
-      const response = await axios.post('http://localhost:8000/orders/b2c-orders/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${token}`,
-        },
+      const response = await api.post('http://localhost:8000/orders/b2c-orders/', formData, {
       });
 
       setOrders((prevOrders) => [...prevOrders, response.data]);
