@@ -13,7 +13,7 @@ import AddOrder from './pages/AddOrder';
 import HistoryOfOrders from './pages/HistoryOfOrders';
 import SettingsPage from './functions/SettingsPage';
 import EditOrder from './functions/EditOrder';
-import AppLayout from './Layout/AppLayout';
+import AppLayout from './layout/AppLayout';
 import './styles/App.css';
 import './styles/StyleModal.css';
 import './styles/AddOrderAndService.css';
