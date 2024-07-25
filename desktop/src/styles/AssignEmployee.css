@@ -1,0 +1,47 @@
+.assign-employee {
+    display: flex; /* Для выравнивания элементов в одну строку */
+    align-items: center; /* Выравнивание по центру по вертикали */
+    gap: 10px; /* Расстояние между элементами */
+    margin-top: 20px; /* Отступ сверху */
+    font-family: Arial, sans-serif; /* Удобочитаемый шрифт */
+}
+
+.assign-employee select {
+    padding: 10px; /* Внутренние отступы */
+    border: 1px solid #ddd; /* Тонкая граница */
+    border-radius: 4px; /* Скругленные углы */
+    font-size: 1.1em; /* Увеличенный размер текста */
+    background-color: #f9f9f9; /* Светлый фон */
+    color: #333; /* Темный цвет текста */
+}
+
+.assign-employee button {
+    background-color: #007bff; /* Синий фон кнопки */
+    color: white; /* Белый цвет текста */
+    border: none; /* Без границ */
+    border-radius: 4px; /* Скругленные углы */
+    padding: 10px 20px; /* Внутренние отступы */
+    cursor: pointer; /* Курсор руки */
+    font-size: 1em; /* Размер текста кнопки */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+}
+
+.assign-employee button:hover {
+    background-color: #0056b3; /* Более темный синий при наведении */
+}
+
+@media (max-width: 768px) {
+    .assign-employee {
+        flex-direction: column; /* Выравнивание элементов в колонку на мобильных устройствах */
+        align-items: stretch; /* Растяжение элементов по ширине */
+    }
+
+    .assign-employee select {
+        width: 100%; /* Ширина на всю ширину контейнера */
+        margin-bottom: 10px; /* Отступ снизу */
+    }
+
+    .assign-employee button {
+        width: 100%; /* Ширина на всю ширину контейнера */
+    }
+}

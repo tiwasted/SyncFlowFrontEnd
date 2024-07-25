@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useOrders } from '../functions/OrderContext';
 import api from '../services/tokenService';
+import '../styles/AssignEmployee.css'
 
 const AssignEmployee = ({ orderId }) => {
     const [employeeId, setEmployeeId] = useState('');
@@ -42,19 +43,20 @@ const AssignEmployee = ({ orderId }) => {
     };
 
     return (
-        <div>
-        <select 
-            value={employeeId} 
-            onChange={(e) => setEmployeeId(e.target.value)}
-        >
-            <option value="">Выберите сотрудника</option>
-            {employees.map((employee) => (
-            <option key={employee.id} value={employee.id}>
-                {employee.first_name} {employee.last_name}
-            </option>
-            ))}
-        </select>
-        <button onClick={handleAssign}>Назначить сотрудника</button>
+        <div className="assign-employee">
+            <select 
+                className="employee-select"
+                value={employeeId} 
+                onChange={(e) => setEmployeeId(e.target.value)}
+            >
+                <option value="">Выберите сотрудника</option>
+                {employees.map((employee) => (
+                    <option key={employee.id} value={employee.id}>
+                        {employee.first_name} {employee.last_name}
+                    </option>
+                ))}
+            </select>
+            <button className="assign-button" onClick={handleAssign}>Назначить сотрудника</button>
         </div>
     );
 };
