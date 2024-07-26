@@ -1,0 +1,77 @@
+.add-order-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.add-form-group {
+    margin-bottom: 15px;
+}
+
+.add-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.add-label-date,
+.add-label-time {
+    display: inline-block;
+    width: 100px; /* Ширина для отдельной метки даты/времени */
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.add-input-date,
+.add-input-time {
+    width: calc(100% - 110px);
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.add-textarea {
+    width: 100%;
+    height: 100px; /* Высота для текстового поля описания */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.add-btns {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Зеленый цвет */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-error-message,
+.add-success-message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.add-error-message {
+    background-color: #f44336; /* Красный цвет для сообщения об ошибке */
+    color: white;
+}
+
+.add-success-message {
+    background-color: #28a745; /* Зеленый цвет для сообщения об успехе */
+    color: white;
+}
+
+.add-form-group input {
+    width: 200px;
+    height: 30px;
+}

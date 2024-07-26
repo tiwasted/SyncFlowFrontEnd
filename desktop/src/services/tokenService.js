@@ -19,7 +19,7 @@ const refreshToken = async () => {
     localStorage.setItem('token', newToken);
     return newToken;
   } catch (error) {
-    console.error('Error refreshing token', error);
+    console.error('Ошибка refresh токена:', error);
     return null;
   }
 };
@@ -55,4 +55,3 @@ axiosInstance.interceptors.response.use(
 );
 
 export default axiosInstance;
-

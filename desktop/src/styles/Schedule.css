@@ -1,5 +1,5 @@
 .schedule-container {
-  padding: 24px;
+  padding: 20px;
   background-color: #fff;
   min-height: 100vh;
 }
@@ -18,25 +18,43 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: auto;
   width: 400px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-.calendar-container {
-  /* flex: 1; */
-  /* background-color: #f0f2f5; */
-  /* border-radius: 8px; */
-  padding: 16px;
+/* .calendar-container {
+  flex: 1;
+  background-color: #f0f2f5;
+  border-radius: 8px;
+  padding: 10px;
   width: 300px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-}
-
-.h2-schedule {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
-}
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
 
 .h3-schedule {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 12px;
+  text-align: center;
+  margin-bottom: 20px;
 }
+
+.order-list-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.order-list-container li {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.order-list-container li:last-child {
+  border-bottom: none;
+}
+
+.order-list-container h4 {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+

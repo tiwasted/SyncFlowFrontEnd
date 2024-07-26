@@ -1,0 +1,66 @@
+.order-history {
+  padding: 20px;
+}
+
+.order-history__title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.order-history__list {
+  list-style: none;
+  padding: 0;
+}
+
+.order-history__item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 15px;
+}
+
+.order-history__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.order-history__item-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.order-history__item-status {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+/* ... ваши существующие стили ... */
+
+/* Новые или обновленные стили */
+.order-history__item-body {
+  margin-top: 10px;
+}
+
+.order-history__item-status {
+  /* Добавьте цвета для разных статусов */
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+/* Пример стилей для разных статусов */
+.order-history__item-status--new {
+  background-color: #87CEFA; /* Голубой для новых заказов */
+}
+
+.order-history__item-status--in-progress {
+  background-color: #FFFF00; /* Желтый для заказов в процессе */
+}
+
+.order-history__item-status--completed {
+  background-color: #90EE90; /* Зеленый для завершенных заказов */
+}

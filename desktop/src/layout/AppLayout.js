@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { MenuFoldOutlined, MenuUnfoldOutlined, UploadOutlined, AreaChartOutlined, UsergroupAddOutlined, CalendarOutlined, HistoryOutlined, SettingOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UploadOutlined, AreaChartOutlined, UsergroupAddOutlined, CalendarOutlined, HistoryOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
@@ -11,7 +11,12 @@ const AppLayout = ({ children }) => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
-    // const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('access_token');
+        navigate('/login')
+    }
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
@@ -65,17 +70,27 @@ const AppLayout = ({ children }) => {
                 justifyContent: 'space-between',
             }}
             >
-            <Button
-                type="text"
-                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                onClick={() => setCollapsed(!collapsed)}
-                style={{
-                fontSize: '16px',
-                width: 64,
-                height: 64,
-                }}
-            />
-            <div className="header-title">StaffHub</div>
+                <Button
+                    type="text"
+                    icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                    onClick={() => setCollapsed(!collapsed)}
+                    style={{
+                    fontSize: '16px',
+                    width: 64,
+                    height: 64,
+                    }}
+                />
+                <div className="header-title">StaffHub</div>
+                <Button
+                            type="primary"
+                            icon={<LogoutOutlined />}
+                            onClick={handleLogout}
+                            style={{
+                                marginRight: '16px',
+                            }}
+                        >
+                            Выйти
+                </Button>
             </Header>
             <Content
             style={{

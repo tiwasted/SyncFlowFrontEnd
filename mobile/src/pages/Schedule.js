@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import api from '../services/authToken';
+// import axios from 'axios';
+import api from '../services/tokenService';
 import Calendar from '../components/Calendar';
 import TaskList from '../components/TaskList';
 import '../styles/Schedule.css';
@@ -21,7 +21,7 @@ const Schedule = () => {
         // Форматируем дату в строку YYYY-MM-DD
         const selectedDate = date.toISOString().split('T')[0];
         
-        // console.log('Отправляемая дата:', selectedDate); // Для отладки
+        console.log('Отправляемая дата:', selectedDate); // Для отладки
 
         const token = localStorage.getItem('jwt_token');
 
@@ -33,21 +33,21 @@ const Schedule = () => {
         });
         setTasks(response.data);
       } catch (error) {
-        // if (error.response && error.response.status === 401) {
-          // navigate('/login');
-        // } else {
+        if (error.response && error.response.status === 401) {
+          navigate('/login');
+        } else {
           console.error('Ошибка при получении задач:', error);
-        // }
+        }
       }
     };
 
     fetchTasks();
-  }, [date]);
+  }, [date, navigate]);
 
   const handleComplete = async (task) => {
     try {
       const endpoint = task.order_type === 'B2B' ? 'b2b-orders' : 'b2c-orders';
-      await axios.post(`/orders/${endpoint}/${task.id}/complete_order/`);
+      await api.post(`/orders/${endpoint}/${task.id}/complete_order/`);
       setTasks((prevTasks) => prevTasks.map((t) => (t.id === task.id ? { ...t, status: 'completed' } : t)));
     } catch (error) {
       console.error('Ошибка при завершении задачи:', error);
@@ -56,12 +56,72 @@ const Schedule = () => {
 
   const handleCancel = async (task) => {
     try {
+
+      console.log('Начало выполнения handleCancel');
+      const token = localStorage.getItem('access_token');
+      console.log('Токен перед отправкой запроса:', token);
+
       const endpoint = task.order_type === 'B2B' ? 'b2b-orders' : 'b2c-orders';
-      await axios.post(`/orders/${endpoint}/${task.id}/cancel_order/`);
+      const url = `/orders/${endpoint}/${task.id}/cancel_order/`;
+      console.log('URL запроса:', url);
+
+      const response = await api.post(url, {});
+      console.log('Ответ получен:', response);
+
       setTasks((prevTasks) => prevTasks.map((t) => (t.id === task.id ? { ...t, status: 'canceled' } : t)));
+      console.log('Состояние задач обновлено');
     } catch (error) {
       console.error('Ошибка при отмене задачи:', error);
-    }
+      if (error.response) {
+        console.error('Данные ответа:', error.response.data);
+        console.error('Статус ответа:', error.response.status);
+        console.error('Заголовки ответа:', error.response.headers);
+      } else if (error.request) {
+        console.error('Запрос был сделан, но ответ не получен:', error.request);
+      } else {
+        console.error('Ошибка при настройке запроса:', error.message);
+      }
+      console.error('Конфигурация запроса:', error.config);
+  }
+
+    //   const token = localStorage.getItem('access_token'); // Или другой способ получения токена
+    //   console.log('Токен:', token)
+
+    //   if (!token) {
+    //     console.error('Токен не найден');
+    //     navigate('/login')
+    //     return;
+    //   }
+
+    //   const endpoint = task.order_type === 'B2B' ? 'b2b-orders' : 'b2c-orders';
+
+    //   console.log('Отправляемый запрос:', {
+    //     url: `/orders/${endpoint}/${task.id}/cancel_order/`,
+    //     headers: { 'Authorization': `Bearer ${token}` }
+    //   });
+      
+    //   console.log('Отправка запроса на отмену заказа');
+    //   const response = await api.post(`/orders/${endpoint}/${task.id}/cancel_order/`, {}, {
+    //     headers: { 'Authorization': `Bearer ${token}` }
+    //   });
+  
+    //   console.log('Ответ сервера:', response.data);
+
+    //   // const config = {
+    //   //   headers: {
+    //   //     Authorization: `Bearer ${token}`
+    //   //   }
+    //   // };
+    //   // await api.post(`/orders/${endpoint}/${task.id}/cancel_order/`, {}, config);
+
+    //   setTasks((prevTasks) => prevTasks.map((t) => (t.id === task.id ? { ...t, status: 'canceled' } : t)));
+    // } catch (error) {
+    //   console.error('Ошибка при отмене задачи:', error);
+    //   if (error.response && error.response.status === 401) {
+    //     console.error('Ошибка аутентификации. Перенаправление на страницу входа.');
+    //     navigate('/login');
+    //   }
+    // }
   };
 
   return (

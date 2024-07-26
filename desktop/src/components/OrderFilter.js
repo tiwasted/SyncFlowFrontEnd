@@ -23,17 +23,33 @@ const OrderFilterForm = ({ onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="status" placeholder="Status" value={filters.status} onChange={handleChange} />
-            <input type="date" name="order_date" placeholder="Order Date" value={filters.order_date} onChange={handleChange} />
-            <input type="time" name="order_time" placeholder="Order Time" value={filters.order_time} onChange={handleChange} />
-            <input type="text" name="company_name" placeholder="Company Name" value={filters.company_name} onChange={handleChange} />
-            <input type="text" name="address" placeholder="Address" value={filters.address} onChange={handleChange} />
-            <input type="text" name="phone_number_client" placeholder="Phone Number" value={filters.phone_number_client} onChange={handleChange} />
-            <input type="text" name="name_client" placeholder="Client Name" value={filters.name_client} onChange={handleChange} />
-            <input type="number" name="price" placeholder="Price" value={filters.price} onChange={handleChange} />
-            <button type="submit">Search</button>
-        </form>
+        <div>
+            <form className="order-filter-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="status">Статус:</label>
+                    <select
+                            id="status"
+                            name="status"
+                            value={filters.status}
+                            onChange={handleChange}
+                            className="form-control"
+                            >
+                            <option value="">Все</option>
+                            <option value="completed">Выполнено</option>
+                            <option value="cancelled">Отменено</option>
+                    </select>
+                    <input type="date" name="order_date" placeholder="Дата заказа" value={filters.order_date} onChange={handleChange} className="form-control" />
+                    <input type="time" name="order_time" placeholder="Время заказа" value={filters.order_time} onChange={handleChange} className="form-control" />
+                    <input type="text" name="company_name" placeholder="Компания" value={filters.company_name} onChange={handleChange} className="form-control" />
+                    <input type="text" name="address" placeholder="Адрес" value={filters.address} onChange={handleChange} className="form-control" />
+                    <input type="text" name="phone_number_client" placeholder="Номер телефона" value={filters.phone_number_client} onChange={handleChange} className="form-control" />
+                    <input type="text" name="name_client" placeholder="Имя клиента" value={filters.name_client} onChange={handleChange} className="form-control" />
+                    <input type="number" name="price" placeholder="Цена" value={filters.price} onChange={handleChange} className="form-control" />
+            </div>
+                <button type="submit" className="btn btn-primary">Поиск</button>
+            </form>
+            
+        </div>
     );
 };
 

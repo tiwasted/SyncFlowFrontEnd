@@ -59,11 +59,94 @@
 
 // export default HistoryOfOrders;
 
+// import React, { useState, useEffect, useCallback } from 'react';
+// import { useParams } from 'react-router-dom';
+// import api from '../services/tokenService';
+// import OrderFilterForm from '../components/OrderFilter';
+
+// const STATUS_TRANSLATION = {
+//     completed: 'Выполнен',
+//     cancelled: 'Отменен',
+// };
+
+// const HistoryOfOrders = () => {
+//     const { orderType } = useParams();
+//     const [orders, setOrders] = useState([]);
+//     const [filters, setFilters] = useState({});
+//     const [loading, setLoading] = useState(false);
+//     const [error, setError] = useState(null);
+
+//     const fetchOrders = useCallback(async (filters) => {
+//         setLoading(true);
+//         setError(null);
+//         try {
+//             const url = orderType === 'b2b' ? '/order-history/b2b-history/' : '/order-history/b2c-history/';
+//             const response = await api.get(url, { params: filters });
+//             setOrders(response.data);
+//         } catch (err) {
+//             setError('Ошибка загрузки заказов');
+//             console.error('Error fetching orders:', err);
+//         } finally {
+//             setLoading(false);
+//         }
+//     }, [orderType]);
+
+//     const handleFilterSubmit = (filters) => {
+//         setFilters(filters);
+//         fetchOrders(filters);
+//     };
+
+//     useEffect(() => {
+//         if (Object.keys(filters).length) {
+//             fetchOrders(filters);
+//         }
+//     }, [filters, fetchOrders]);
+
+//     return (
+//             <div className="order-history">
+//                 <h1 className="order-history__title">{orderType === 'b2b' ? 'История B2B заказов' : 'История B2C заказов'}</h1>
+//                 <OrderFilterForm onSubmit={handleFilterSubmit} />
+//                 {loading && <p className="order-history__loading">Загрузка...</p>}
+//                 {error && <p className="order-history__error">{error}</p>}
+//                 <ul className="order-history__list">
+//                     {orders.map(order => (
+//                     <li key={order.id} className="order-history__item">
+//                         <div className="order-history__item-header">
+//                             <h2 className="order-history__item-title">Наименование: {order.order_name}</h2>
+//                             Статус: {STATUS_TRANSLATION[order.status] || order.status}
+//                         </div>
+//                         <div className="order-history__item-body">
+//                         {/* <p>Компания: {order.company_name}</p> */}
+//                         <p>Дата заказа: {order.order_date}</p>
+//                         <p>Время заказа: {order.order_time}</p>
+//                         <p>Цена: {order.price}</p>
+//                         <p>Адрес: {order.address}</p>
+
+//                         {order.assigned_employee && (
+//                             <div>
+//                             <p>Сотрудник: {order.assigned_employee.first_name} {order.assigned_employee.last_name}</p>
+//                             <p>Телефон: {order.assigned_employee.phone}</p>
+//                             </div>
+//                         )}
+//                         </div>
+//                     </li>
+//                     ))}
+//                 </ul>
+//             </div>
+//         );
+// };
+
+// export default HistoryOfOrders;
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import api from '../services/tokenService'
-import OrderFilterForm from '../components/OrderFilter'; // Импортируйте ваш компонент формы фильтрации
+import api from '../services/tokenService';
+import OrderFilterForm from '../components/OrderFilter';
+
+const STATUS_TRANSLATION = {
+    completed: 'Выполнен',
+    cancelled: 'Отменен', // Обновлено для соответствия данным с сервера
+};
 
 const HistoryOfOrders = () => {
     const { orderType } = useParams();
@@ -72,29 +155,26 @@ const HistoryOfOrders = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // Функция для отправки фильтров и получения данных
     const fetchOrders = useCallback(async (filters) => {
-      setLoading(true);
-      setError(null);
-      try {
-          const url = orderType === 'b2b' ? '/order-history/b2b-history/' : '/order-history/b2c-history/';
-          const response = await api.get(url, { params: filters });
-          setOrders(response.data);
-      } catch (err) {
-          setError('Ошибка загрузки заказов');
-          console.error('Error fetching orders:', err);
-      } finally {
-          setLoading(false);
-      }
-  }, [orderType]);
+        setLoading(true);
+        setError(null);
+        try {
+            const url = orderType === 'b2b' ? '/order-history/b2b-history/' : '/order-history/b2c-history/';
+            const response = await api.get(url, { params: filters });
+            setOrders(response.data);
+        } catch (err) {
+            setError('Ошибка загрузки заказов');
+            console.error('Error fetching orders:', err);
+        } finally {
+            setLoading(false);
+        }
+    }, [orderType]);
 
-    // Обработчик отправки фильтров
     const handleFilterSubmit = (filters) => {
         setFilters(filters);
         fetchOrders(filters);
     };
 
-    // Используйте эффект для загрузки данных при изменении фильтров
     useEffect(() => {
         if (Object.keys(filters).length) {
             fetchOrders(filters);
@@ -102,23 +182,35 @@ const HistoryOfOrders = () => {
     }, [filters, fetchOrders]);
 
     return (
-        <div>
-            <h1>{orderType === 'b2b' ? 'История B2B заказов' : 'История B2C заказов'}</h1>
+        <div className="order-history">
+            <h1 className="order-history__title">
+                {orderType === 'b2b' ? 'История B2B заказов' : 'История B2C заказов'}
+            </h1>
             <OrderFilterForm onSubmit={handleFilterSubmit} />
-            {loading && <p>Загрузка...</p>}
-            {error && <p>{error}</p>}
-            <ul>
+            {loading && <p className="order-history__loading">Загрузка...</p>}
+            {error && <p className="order-history__error">{error}</p>}
+            <ul className="order-history__list">
                 {orders.map(order => (
-                    <li key={order.id}>
-                        <p>Наименование: {order.order_name}</p>
-                        <p>Компания: {order.company_name}</p>
-                        <p>Дата заказа: {order.order_date}</p>
-                        <p>Время заказа: {order.order_time}</p>
-                        <p>Цена: {order.price}</p>
-                        <p>Адрес: {order.address}</p>
-                        <p>Статус заказа: {order.status}</p>
-                        <p>Сотрудник: {order.assigned_employee}</p>
-                        {/* Добавьте другие детали заказа по необходимости */}
+                    <li key={order.id} className="order-history__item">
+                        <div className="order-history__item-header">
+                            <h2 className="order-history__item-title">Наименование: {order.order_name}</h2>
+                            <span className="order-history__item-status">
+                                Статус: {STATUS_TRANSLATION[order.status] || order.status}
+                            </span>
+                        </div>
+                        <div className="order-history__item-body">
+                            <p>Дата заказа: {order.order_date}</p>
+                            <p>Время заказа: {order.order_time}</p>
+                            <p>Цена: {order.price}</p>
+                            <p>Адрес: {order.address}</p>
+                            <p>Отчет: {order.report || 'Нет отчета'}</p>
+                            {order.assigned_employee && (
+                                <div>
+                                    <p>Сотрудник: {order.assigned_employee.first_name} {order.assigned_employee.last_name}</p>
+                                    <p>Телефон: {order.assigned_employee.phone}</p>
+                                </div>
+                            )}
+                        </div>
                     </li>
                 ))}
             </ul>
