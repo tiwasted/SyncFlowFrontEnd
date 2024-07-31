@@ -48,7 +48,7 @@ const Schedule = () => {
       <h2 className='h2-schedule'>Расписание на день</h2>
       <div className="schedule-content">
         <div className="order-list-container">
-          <h3 className='h3-schedule'></h3>
+          <h3 className='h3-schedule'>Н3</h3>
           <ul>
             {orders.length > 0 ? (
               orders.map(order => (

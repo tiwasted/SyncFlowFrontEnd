@@ -25,7 +25,7 @@ const OrderFilterForm = ({ onSubmit }) => {
     return (
         <div>
             <form className="order-filter-form" onSubmit={handleSubmit}>
-            <div className="form-group">
+            <div className="order-filter-form-group">
                 <label htmlFor="status">Статус:</label>
                     <select
                             id="status"

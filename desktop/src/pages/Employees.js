@@ -103,7 +103,7 @@ const Employees = () => {
   return (
     <div>
       <h1>Сотрудники</h1>
-      <button onClick={() => setIsModalOpen(true)}>
+      <button className='general-btns' onClick={() => setIsModalOpen(true)}>
         Добавить сотрудника
       </button>
       <h2>Список сотрудников</h2>

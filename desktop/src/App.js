@@ -16,18 +16,17 @@ import AppLayout from './layout/AppLayout';
 
 import './styles/App.css';
 import './styles/StyleModal.css';
-import './styles/AddOrderAndService.css';
 import './styles/ButtonStyles.css';
 import './styles/Sidebar.css';
 import './styles/HistoryOfOrders.css';
 import './styles/Schedule.css';
 import './styles/ServicesStyles.css';
-import './styles/AddOrderAndService.css';
 import './styles/Calendar.css';
 import './styles/AppLayout.css';
 import './styles/OrderFilter.css';
 import './styles/Calendar.css';
 import './styles/AddOrder.css';
+import './styles/AddEmployeeModal.css'
 
 const AppContent = () => {
   const location = useLocation();
