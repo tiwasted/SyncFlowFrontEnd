@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Calendar from '../functions/Calendar';
 import api from '../services/tokenService';
 import jwtDecode from 'jwt-decode';
-// import '../styles/Schedule.css';
 
 const Schedule = () => {
   const [date, setDate] = useState(() => {
@@ -45,24 +44,25 @@ const Schedule = () => {
 
   return (
     <div className="schedule-container">
-      <h2 className='h2-schedule'>Расписание на день</h2>
+      {/* <h2 className='h2-schedule'>Расписание на день</h2> */}
+      <h1 className=''>Расписание на день</h1>
       <div className="schedule-content">
         <div className="order-list-container">
-          <h3 className='h3-schedule'>Н3</h3>
+          {/* <h3 className='h3-schedule'></h3> */}
           <ul>
             {orders.length > 0 ? (
               orders.map(order => (
                 <li key={order.id}>
                   <h4>{order.order_name}</h4>
-                  <p>{`Дата: ${order.order_date}`}</p>
-                  <p>{`Время: ${order.order_time}`}</p>
-                  <p>{`Цена: ${order.price}`}</p>
-                  <p>{`Адрес: ${order.address}`}</p>
-                  <p>{`Имя клиента: ${order.name_client}`}</p>
-                  <p>{`Номер клиента: ${order.phone_number_client}`}</p>
-                  <p>{`Описание: ${order.description}`}</p>
-                  <p>{`Статус: ${order.status === 'in waiting' ? 'В ожидании' : order.status}`}</p>
-                  <p>{`Сотрудник: ${order.assigned_employee ? `${order.assigned_employee.first_name} ${order.assigned_employee.last_name}` : 'Не назначен'}`}</p>
+                  <p> <b>Дата: </b> {`${order.order_date}`}</p>
+                  <p> <b>Время: </b> {`${order.order_time}`}</p>
+                  <p> <b>Цена: </b> {`${order.price}`}</p>
+                  <p> <b>Адрес: </b> {`${order.address}`}</p>
+                  <p> <b>Имя клиента: </b> {`${order.name_client}`}</p>
+                  <p> <b>Номер клиента: </b> {`${order.phone_number_client}`}</p>
+                  <p> <b>Описание: </b> {`${order.description}`}</p>
+                  <p> <b>Статус: </b> {`${order.status === 'in waiting' ? 'В ожидании' : order.status}`}</p>
+                  <p> <b>Сотрудник: </b> {`${order.assigned_employee ? `${order.assigned_employee.first_name} ${order.assigned_employee.last_name}` : 'Не назначен'}`}</p>
                 </li>
               ))
             ) : (

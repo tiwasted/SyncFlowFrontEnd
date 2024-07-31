@@ -13,7 +13,7 @@ const Dashboard = () => {
     <React.Fragment>
       <div className="orders">
         <div className='order-header'>
-          <h2>Список заказов</h2>
+          <h1>Список заказов</h1>
           <Link to="/add-order">
             <button className='general-btns'>Добавить заказ</button>
           </Link>

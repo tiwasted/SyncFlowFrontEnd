@@ -16,7 +16,7 @@ const OrderList = ({ orders }) => {
       {orders.map((order) => (
         <div key={order.id} className="order-item">
             <h4>{order.service_name}</h4>
-            <p>{`Наименование: ${order.order_name}`}</p>
+            <p> <b>Наименование: </b> {`${order.order_name}`}</p>
             <p>{`Цена: ${order.price}`}</p>
             <p>{`Дата: ${order.order_date}`}</p>
             <p>{`Время: ${order.order_time}`}</p>
@@ -27,6 +27,7 @@ const OrderList = ({ orders }) => {
             <p>{`Статус: ${order.status === 'in processing' ? 'В обработке' : order.status}`}</p>
           <Link to={`/edit-order/${order.id}`}>
             <button className='general-btns'>Редактировать</button>
+            <button className='delete-btns'>Удалить</button>
           </Link>
             <AssignEmployee orderId={order.id} />
         </div>

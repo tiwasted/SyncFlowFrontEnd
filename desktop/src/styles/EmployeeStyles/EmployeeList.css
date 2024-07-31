@@ -1,0 +1,31 @@
+/* Общий контейнер для списка */
+.employeeList {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* Заголовок списка */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Список сотрудников */
+.employeeList ul {
+    list-style: none;
+    padding: 10px;
+}
+
+/* Каждый элемент списка (сотрудник) */
+.employee-list {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.content-item p {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: medium;
+}

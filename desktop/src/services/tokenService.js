@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
 // Функция для обновления токена
 const refreshToken = async () => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/api/token/refresh/', {
+    const response = await axios.post('http://127.0.0.1:8000/users/api/token/refresh/', {
       refresh: localStorage.getItem('refreshToken')
     });
     const newToken = response.data.access;

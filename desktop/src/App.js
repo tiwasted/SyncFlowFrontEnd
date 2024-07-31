@@ -15,6 +15,7 @@ import EditOrder from './functions/EditOrder';
 import AppLayout from './layout/AppLayout';
 
 import './styles/App.css';
+import './styles/ContentStyles.css';
 import './styles/StyleModal.css';
 import './styles/ButtonStyles.css';
 import './styles/Sidebar.css';
@@ -26,7 +27,9 @@ import './styles/AppLayout.css';
 import './styles/OrderFilter.css';
 import './styles/Calendar.css';
 import './styles/AddOrder.css';
-import './styles/AddEmployeeModal.css'
+import './styles/employeesPage/EmployeesPage.css';
+import './styles/employeesPage/EmployeeList.css';
+import './styles/employeesPage/AddEmployeeModal.css';
 
 const AppContent = () => {
   const location = useLocation();

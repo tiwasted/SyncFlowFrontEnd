@@ -1,0 +1,55 @@
+/* ButtonStyles.css */
+.general-btns{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.general-btns:hover {
+    background-color: #0056b3;
+}
+
+.general-btns[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+.general-btns[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.delete-btns {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.delete-btns:hover {
+    background-color: #c20f2a;
+}
+
+.dalete-btns[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+.delete-btns[type="submit"]:hover {
+    background-color: #45a049;
+}

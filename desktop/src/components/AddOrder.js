@@ -58,7 +58,7 @@ const AddOrder = () => {
             <label className='add-label'>Наименование заказа:</label>
             <input 
               type="text" 
-              value={nameOfOrder} 
+              value={nameOfOrder}
               onChange={(e) => setOrderName(e.target.value)} 
             />
           </div>
@@ -66,7 +66,7 @@ const AddOrder = () => {
             <label className='add-label'>Цена:</label>
             <input 
               type="text" 
-              value={price} 
+              value={price}
               onChange={(e) => setPrice(e.target.value)} 
             />
           </div>
@@ -75,7 +75,7 @@ const AddOrder = () => {
             <input 
               className='add-input-date' 
               type="date" 
-              value={date} 
+              value={date}
               onChange={(e) => setDate(e.target.value)} 
             />
           </div>
@@ -84,7 +84,7 @@ const AddOrder = () => {
             <input 
               className='add-input-time' 
               type="time" 
-              value={time} 
+              value={time}
               onChange={(e) => setTime(e.target.value)} 
             />
           </div>
@@ -92,7 +92,7 @@ const AddOrder = () => {
             <label className='add-label'>Адрес:</label>
             <input 
               type="text" 
-              value={address} 
+              value={address}
               onChange={(e) => setAddress(e.target.value)} 
             />
           </div>
@@ -100,7 +100,7 @@ const AddOrder = () => {
             <label className='add-label'>Имя клиента:</label>
             <input 
               type="text" 
-              value={nameOfClient} 
+              value={nameOfClient}
               onChange={(e) => setNameOfClient(e.target.value)} 
             />
           </div>
@@ -120,7 +120,8 @@ const AddOrder = () => {
               onChange={(e) => setDescription(e.target.value)} 
             />
           </div>
-          <button className='add-btns' type="submit">Сохранить</button>
+          <button className='general-btns' type="submit">Сохранить</button>
+          <button onClick={() => navigate(-1)}>Назад</button>
         </form>
         {error && <p className="add-error-message">{error}</p>}
         {orderSaved && <div className="add-success-message">Заказ успешно добавлен</div>}

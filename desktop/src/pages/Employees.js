@@ -1,7 +1,7 @@
-// components/Employees.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddEmployeeModal from '../components/AddEmployeeModal';
+import EmployeeList from '../components/EmployeeList';
 
 // Функция для обновления токена
 const refreshToken = async () => {
@@ -102,23 +102,13 @@ const Employees = () => {
 
   return (
     <div>
-      <h1>Сотрудники</h1>
-      <button className='general-btns' onClick={() => setIsModalOpen(true)}>
-        Добавить сотрудника
-      </button>
-      <h2>Список сотрудников</h2>
-      <ul>
-        {employees.map(employee => (
-          <li key={employee.id}>
-            Имя: {employee.first_name} <br />
-            Фамилия: {employee.last_name} <br />
-            Телефон: {employee.phone} <br />
-            <button onClick={() => {
-              console.log('Deleting employee with id:', employee.id); // Добавьте отладочный вывод
-            deleteEmployee(employee.id)}}>Удалить</button>
-          </li>
-        ))}
-      </ul>
+      <div className='employeeContent'>
+          {/* <h1>Сотрудники</h1> */}
+          <button className='general-btns' onClick={() => setIsModalOpen(true)}>
+            Добавить сотрудника
+          </button>
+      </div>
+      <EmployeeList employees={employees} onDelete={deleteEmployee} />
       <AddEmployeeModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
