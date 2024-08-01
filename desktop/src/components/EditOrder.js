@@ -1,8 +1,8 @@
 // EditOrder.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useOrders } from './OrderContext';
+import api from '../services/tokenService';
 
 const EditOrder = () => {
   const { id } = useParams();
@@ -22,11 +22,11 @@ const EditOrder = () => {
       // Если заказ не найден, получить его с сервера
       const fetchOrder = async () => {
         try {
-          const token = localStorage.getItem('accessToken');
-          const response = await axios.get(`http://localhost:8000/orders/b2c-orders/${id}`, {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-            },
+          // const token = localStorage.getItem('accessToken');
+          const response = await api.get(`http://localhost:8000/orders/b2c-orders/${id}`, {
+            // headers: {
+            //   'Authorization': `Bearer ${token}`,
+            // },
           });
           setOrder(response.data);
           setIsLoading(false);
@@ -49,11 +49,11 @@ const EditOrder = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('accessToken');
-      await axios.put(`http://localhost:8000/orders/b2c-orders/${id}/`, order, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
+      // const token = localStorage.getItem('accessToken');
+      await api.put(`http://localhost:8000/orders/b2c-orders/${id}/`, order, {
+        // headers: {
+        //   'Authorization': `Bearer ${token}`,
+        // },
       });
 
       // Обновление локального состояния заказов
@@ -156,7 +156,9 @@ const EditOrder = () => {
           <label
           name="status"
           value={order.status}
-          ></label>
+          onChange={handleInputChange}
+          > Стутус: <option value="in_processing">In Processing</option>
+          </label>
         </div>
         <button type="submit" className='general-btns'>Сохранить изменения</button>
         <button onClick={() => navigate(-1)}>Назад</button>

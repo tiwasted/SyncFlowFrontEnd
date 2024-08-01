@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Calendar from '../functions/Calendar';
+import Calendar from '../components/Calendar';
 import api from '../services/tokenService';
 import jwtDecode from 'jwt-decode';
 

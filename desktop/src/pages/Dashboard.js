@@ -1,8 +1,8 @@
 // Dashboard.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import OrderList from '../functions/OrderList';
-import { useOrders } from '../functions/OrderContext';
+import OrderList from '../components/OrderList';
+import { useOrders } from '../components/OrderContext';
 import '../styles/Dashboard.module.css'
 
 const Dashboard = () => {
@@ -15,7 +15,7 @@ const Dashboard = () => {
         <div className='order-header'>
           <h1>Список заказов</h1>
           <Link to="/add-order">
-            <button className='general-btns'>Добавить заказ</button>
+            <button className='general-btns'>Создать заказ</button>
           </Link>
         </div>
         <div className='order-content'>

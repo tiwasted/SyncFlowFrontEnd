@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { useSidebarVisibility } from './SidebarContext';
+import { useSidebarVisibility } from '../functions/SidebarContext';
 import styles from '../styles/Login.module.css';
 
 const Login = () => {

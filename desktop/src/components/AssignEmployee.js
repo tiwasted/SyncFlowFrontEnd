@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useOrders } from '../functions/OrderContext';
+import { useOrders } from '../components/OrderContext';
 import api from '../services/tokenService';
-import '../styles/AssignEmployee.css'
 
 const AssignEmployee = ({ orderId }) => {
     const [employeeId, setEmployeeId] = useState('');
@@ -32,7 +31,7 @@ const AssignEmployee = ({ orderId }) => {
         const updatedOrder = response.data;
         setOrders((prevOrders) => 
             prevOrders.map((order) => 
-            order.id === updatedOrder.id ? updatedOrder : order
+                order.id === updatedOrder.id ? updatedOrder : order
             )
         );
 

@@ -1,7 +1,7 @@
 // AddOrder.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useOrders } from '../functions/OrderContext';
+import { useOrders } from '../components/OrderContext';
 import api from '../services/tokenService';
 
 const AddOrder = () => {

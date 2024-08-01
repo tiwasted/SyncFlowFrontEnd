@@ -45,7 +45,7 @@ const AppLayout = ({ children }) => {
                 {
                 key: '4',
                 icon: <UploadOutlined />,
-                label: <Link to="/">B2B</Link>,
+                label: <Link to="/b2b-clients">B2B</Link>,
                 },
                 {
                 key: '5',
