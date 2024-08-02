@@ -6,25 +6,36 @@ const OrderContext = createContext();
 export const useOrders = () => useContext(OrderContext);
 
 export const OrderProvider = ({ children }) => {
-  const [orders, setOrders] = useState([]); // Убедитесь, что orders инициализирован как пустой массив
+  const [b2cOrders, setB2cOrders] = useState([]);
+  const [b2bOrders, setB2bOrders] = useState([]);
 
   useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchB2cOrders = async () => {
       try {
-        const response = await api.get('http://localhost:8000/orders/b2c-orders/', {
-        });
-        setOrders(response.data); // Устанавливаем полученные данные
+        const response = await api.get('http://localhost:8000/orders/b2c-orders/');
+        setB2cOrders(response.data);
       } catch (error) {
-        console.error("Ошибка при получении заказов", error);
-        setOrders([]); // Устанавливаем пустой массив в случае ошибки
+        console.error("Ошибка при получении B2C заказов", error);
+        setB2cOrders([]);
       }
     };
 
-    fetchOrders();
+    const fetchB2bOrders = async () => {
+      try {
+        const response = await api.get('http://localhost:8000/orders/b2b-orders/');
+        setB2bOrders(response.data);
+      } catch (error) {
+        console.error("Ошибка при получении B2B заказов", error);
+        setB2bOrders([]);
+      }
+    };
+
+    fetchB2cOrders();
+    fetchB2bOrders();
   }, []);
 
   return (
-    <OrderContext.Provider value={{ orders, setOrders }}>
+    <OrderContext.Provider value={{ b2cOrders, b2bOrders, setB2cOrders, setB2bOrders }}>
       {children}
     </OrderContext.Provider>
   );

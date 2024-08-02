@@ -2,18 +2,21 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { SidebarProvider } from './functions/SidebarContext';
 import { AuthProvider } from './context/AuthContext';
-import { OrderProvider } from './components/OrderContext';
 import ProtectedRoute from './context/ProtectedRoute';
-import Login from './components/Login';
+import AppLayout from './layout/AppLayout';
+
 import Dashboard from './pages/Dashboard';
 import Schedule from './pages/Schedule';
 import Employees from './pages/Employees';
 import B2Bclient from './pages/B2Bclients';
-import AddOrder from './components/AddOrder';
 import HistoryOfOrders from './pages/HistoryOfOrders';
 import SettingsPage from './pages/SettingsPage';
+
+import { OrderProvider } from './components/OrderContext';
+import Login from './components/Login';
+import AddOrder from './components/AddOrder';
+import AddOrderB2B from './components/AddOrderB2B';
 import EditOrder from './components/EditOrder';
-import AppLayout from './layout/AppLayout';
 
 import './styles/App.css';
 import './styles/AppLayout.css';
@@ -52,6 +55,7 @@ const AppContent = () => {
                   <Route path="/schedule" element={<Schedule />} />
                   <Route path="/employees" element={<Employees />} />
                   <Route path="/add-order" element={<AddOrder />} />
+                  <Route path="/add-order-b2b" element={<AddOrderB2B />} />
                   <Route path="/history-of-orders" element={<HistoryOfOrders />} />
                   <Route path="/settings" element={<SettingsPage />} />
                   <Route path="/edit-order/:id" element={<EditOrder />} />

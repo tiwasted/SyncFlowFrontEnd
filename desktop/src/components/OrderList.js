@@ -38,7 +38,7 @@ const OrderList = ({ orders, setOrders }) => {
             <p>{`Имя клиента: ${order.name_client}`}</p>
             <p>{`Номер клиента: ${order.phone_number_client}`}</p>
             <p>{`Описание: ${order.description}`}</p>
-            <p>{`Статус: ${order.status === 'in_processing' ? 'В обработке' : order.status}`}</p>
+            <p>{`Статус: ${order.status === 'in processing' ? 'В обработке' : order.status}`}</p>
           <Link to={`/edit-order/${order.id}`}>
             <button className='general-btns'>Редактировать</button>
           </Link>

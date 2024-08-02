@@ -14,11 +14,11 @@
 }
 
 .logo {
-  height: 80px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FFFFFF; 
+  /* background: #FFFFFF; */
   color: #333; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
