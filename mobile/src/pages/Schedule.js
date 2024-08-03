@@ -83,46 +83,7 @@ const Schedule = () => {
       }
       console.error('Конфигурация запроса:', error.config);
   }
-
-    //   const token = localStorage.getItem('access_token'); // Или другой способ получения токена
-    //   console.log('Токен:', token)
-
-    //   if (!token) {
-    //     console.error('Токен не найден');
-    //     navigate('/login')
-    //     return;
-    //   }
-
-    //   const endpoint = task.order_type === 'B2B' ? 'b2b-orders' : 'b2c-orders';
-
-    //   console.log('Отправляемый запрос:', {
-    //     url: `/orders/${endpoint}/${task.id}/cancel_order/`,
-    //     headers: { 'Authorization': `Bearer ${token}` }
-    //   });
-      
-    //   console.log('Отправка запроса на отмену заказа');
-    //   const response = await api.post(`/orders/${endpoint}/${task.id}/cancel_order/`, {}, {
-    //     headers: { 'Authorization': `Bearer ${token}` }
-    //   });
-  
-    //   console.log('Ответ сервера:', response.data);
-
-    //   // const config = {
-    //   //   headers: {
-    //   //     Authorization: `Bearer ${token}`
-    //   //   }
-    //   // };
-    //   // await api.post(`/orders/${endpoint}/${task.id}/cancel_order/`, {}, config);
-
-    //   setTasks((prevTasks) => prevTasks.map((t) => (t.id === task.id ? { ...t, status: 'canceled' } : t)));
-    // } catch (error) {
-    //   console.error('Ошибка при отмене задачи:', error);
-    //   if (error.response && error.response.status === 401) {
-    //     console.error('Ошибка аутентификации. Перенаправление на страницу входа.');
-    //     navigate('/login');
-    //   }
-    // }
-  };
+};
 
   return (
     <div className="schedule-container">

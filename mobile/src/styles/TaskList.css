@@ -1,10 +1,13 @@
 .tasks {
-    max-height: 400px;
+    height: 700px;
     overflow-y: auto;
-    padding-right: 10px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* min-height: 50vh; */
+    overflow: hidden;
 }
 
-.tasks::-webkit-scrollbar {
+/* .tasks::-webkit-scrollbar {
     width: 8px;
 }
 
@@ -15,4 +18,4 @@
 
 .tasks::-webkit-scrollbar-thumb:hover {
     background-color: #555;
-}
+} */

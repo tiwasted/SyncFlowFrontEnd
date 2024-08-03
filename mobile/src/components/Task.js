@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import api from '../services/tokenService';
 import '../styles/Task.css';
+import '../styles/Buttons.css';
+import '../styles/ReportForm.css';
 
 Modal.setAppElement('#root');
 
@@ -17,17 +19,27 @@ const ReportForm = ({ isOpen, onRequestClose, task, onSubmit }) => {
     };
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={onRequestClose}>
-            <h3>Отчет для {task?.order_name}</h3>
-            <form onSubmit={handleSubmit}>
-                <textarea
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    required
-                />
-                <button type="submit">Отправить отчет</button>
-            </form>
-            <button onClick={onRequestClose}>Отмена</button>
+        <Modal 
+        isOpen={isOpen} 
+        onRequestClose={onRequestClose}
+        className="custom-modal"
+        overlayClassName="custom-overlay"
+        >
+            <div className="modal-content">
+                <div className="modal-header">
+                    <h3>Отчет для {task?.order_name}</h3>
+                    <span className="close" onClick={onRequestClose}>&times;</span>
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <textarea
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        required
+                    />
+                    <button className='report-button' type="submit">Отправить отчет</button>
+                </form>
+                <button className="cancel-btn" onClick={onRequestClose}>Отмена</button>
+            </div>
         </Modal>
     );
 };
@@ -101,8 +113,8 @@ const Task = ({ task, onUpdate }) => {
             <div className='task-buttons'>
                 {task.status !== 'completed' && task.status !== 'canceled' && (
                     <>
-                        <button onClick={() => handleAction('complete')}>Завершить</button>
-                        <button onClick={() => handleAction('cancel')}>Отменить</button>
+                        <button className='delete-btns' onClick={() => handleAction('cancel')}>Отменить</button>
+                        <button className='general-btns' onClick={() => handleAction('complete')}>Завершить</button>
                     </>
                 )}
             </div>
