@@ -1,39 +1,88 @@
 .order-filter-form {
-    display: flex;;
+    display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+    background-color: #f8f9fa; /* светлый фон для контраста */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* легкая тень */
 }
 
-.form-group {
-    margin-bottom: 10px;
+.order-filter-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* пространство между элементами */
 }
 
 .form-control {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    border: 1px solid #d1d1d1; /* легкий серый цвет для границы */
+    border-radius: 6px;
     box-sizing: border-box;
-    margin-bottom: 5px;
+    transition: border-color 0.2s;
+    position: relative; /* для позиционирования стрелки */
 }
 
-.btn {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+.form-control:focus {
+    border-color: #80bdff; /* изменение цвета границы при фокусе */
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.order-filter-btn {
+    align-self: center;
+    padding: 10px 20px;              /* Внутренние отступы кнопок */
+    font-size: 16px;                 /* Размер шрифта кнопок */
+    font-weight: bold;               /* Толщина шрифта */
+    color: #fff;                     /* Цвет текста кнопок */
+    background-color: #007bff;       /* Цвет фона кнопок */
+    border: none;                    /* Убираем границу */
+    border-radius: 5px;              /* Скругление углов кнопок */
+    cursor: pointer;                 /* Изменение курсора при наведении */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+}
+
+.order-filter-btn:hover {
+    background-color: #0056b3; /* более темный зеленый при наведении */
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333; /* темный цвет для текста */
+}
+
+.form-control-select-wrapper {
+    position: relative;
 }
 
 .form-control-select {
-    appearance: none;
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    padding-right: 30px;
+    width: 100%;
+    padding-right: 40px; /* увеличиваем отступ для стрелки */
+    position: relative;
+    background: transparent; /* убираем стандартный фон */
+    appearance: none; /* убираем стандартные стрелки */
+    border: 1px solid #d1d1d1; /* легкий серый цвет для границы */
+    border-radius: 6px;
 }
 
+.form-control-select-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateY(-50%);
+    transition: background-image 0.2s;
+    pointer-events: none; /* игнорировать события мыши на иконке */
+}
+
+.form-control-select-wrapper.active .form-control-select-icon {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23444' stroke-width='2' d='M7 14l5-5 5 5'/%3E%3C/svg%3E");
+}
+
+.form-control-select-icon.default {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23444' stroke-width='2' d='M7 10l5 5 5-5'/%3E%3C/svg%3E");
+}

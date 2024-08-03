@@ -27,7 +27,6 @@ import './styles/CommonStyles/ContentStyles.css';
 import './styles/Sidebar.css';
 import './styles/HistoryOfOrders.css';
 import './styles/Schedule.css';
-import './styles/ServicesStyles.css';
 import './styles/Calendar.css';
 
 import './styles/OrderStyles/OrderList.css';
