@@ -15,7 +15,7 @@ const Dashboard = () => {
         <div className='order-header'>
           <h1>Список заказов</h1>
           <Link to="/add-order">
-            <button className='general-btns'>Создать заказ</button>
+            <button className='general-btns create-order-btn'>Создать заказ</button>
           </Link>
         </div>
         <div className='order-content'>
