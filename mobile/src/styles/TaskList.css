@@ -1,10 +1,11 @@
 .tasks {
-    height: 700px;
+    max-height: 10000px;
     overflow-y: auto;
     /* display: flex; */
     /* flex-direction: column; */
     /* min-height: 50vh; */
     overflow: hidden;
+    margin-bottom: 40px;
 }
 
 /* .tasks::-webkit-scrollbar {

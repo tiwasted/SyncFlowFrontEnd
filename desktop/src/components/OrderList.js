@@ -42,7 +42,7 @@ const OrderList = ({ orders, setOrders }) => {
           <Link to={`/edit-order/${order.id}`}>
             <button className='general-btns'>Редактировать</button>
           </Link>
-          <button className='delete-btns' onClick={() => handleDelete(order.id)}>Удалить</button>
+          <button className='general-btns delete-btn' onClick={() => handleDelete(order.id)}>Удалить</button>
             <AssignEmployee orderId={order.id} onEmployeeAssigned={handleEmployeeAssigned} />
         </div>
       ))}

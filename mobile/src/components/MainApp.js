@@ -6,6 +6,7 @@ import Navbar from './BottomNavBar';
 import LoginForm from './LoginForm';
 import Schedule from '../pages/Schedule';
 import Profile from '../pages/Profile';
+import "../styles/App.css";
 
 const MainApp = () => {
     const { isAuthenticated, isLoading } = useAuth();

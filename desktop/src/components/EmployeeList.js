@@ -12,7 +12,7 @@ const EmployeeList = ({ employees, onEdit, onDelete }) => {
                     <p>Телефон: {employee.phone}</p> <br />
                     <button className='general-btns' onClick={() => {
                     onEdit(employee.id)}}>Редактировать</button>
-                    <button className='delete-btns' onClick={() => {
+                    <button className='general-btns delete-btn' onClick={() => {
                     onDelete(employee.id)}}>Удалить</button>
                 </div>
                 ))}

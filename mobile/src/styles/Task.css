@@ -1,17 +1,35 @@
 .task {
-    height: 400px;
+    height: 420px;
     overflow-y: auto;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 16px;
     padding: 20px;
     margin-bottom: 15px;
     background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень для объема */
+}
+
+.task ul {
+    list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task li {
+    background-color: #f9fafb; /* Нежный цвет карточек */
+  border-radius: 12px;
+  margin-bottom: 15px;
+  padding: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Плавный переход */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легкая тень */
 }
 
 .task p {
-    margin: 8px 0;
-    font-size: 16px;
+    font-size: 1em;
+  margin: 8px 0;
+  line-height: 1.6;
+  color: #4a5568; /* Темный серый цвет текста */
 }
 
 .task p strong {
