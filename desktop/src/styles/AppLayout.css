@@ -11,8 +11,22 @@
     margin-right: 30px;
 }
 
+.ant-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.ant-layout-header {
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
 .ant-layout-sider {
     background: #001529;
+    height: 100%;
 }
 
 .ant-menu-item {
@@ -20,6 +34,18 @@
 }
 
 .ant-layout-content {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 20px;
     background: #fff;
+    border-radius: 8px;
+    justify-content: space-between;
+}
+
+.ant-layout-sider-children {
+    position: fixed;
+}
+
+.schedule-container {
     border-radius: 8px;
 }
