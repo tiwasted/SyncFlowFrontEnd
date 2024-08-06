@@ -29,16 +29,16 @@ const OrderList = ({ orders, setOrders }) => {
     <div>
       {orders.map((order) => (
         <div key={order.id} className="order-item">
-            <h4>{order.service_name}</h4>
+            {/* <h4>{order.service_name}</h4> */}
             <p> <b>Наименование: </b> {`${order.order_name}`}</p>
-            <p>{`Цена: ${order.price}`}</p>
-            <p>{`Дата: ${order.order_date}`}</p>
-            <p>{`Время: ${order.order_time}`}</p>
-            <p>{`Адрес: ${order.address}`}</p>
-            <p>{`Имя клиента: ${order.name_client}`}</p>
-            <p>{`Номер клиента: ${order.phone_number_client}`}</p>
-            <p>{`Описание: ${order.description}`}</p>
-            <p>{`Статус: ${order.status === 'in processing' ? 'В обработке' : order.status}`}</p>
+            <p> <b>Цена: </b> {`${order.price}`}</p>
+            <p> <b>Дата: </b> {`Дата: ${order.order_date}`}</p>
+            <p> <b>Время: </b> {`Время: ${order.order_time}`}</p>
+            <p> <b>Адрес: </b> {`Адрес: ${order.address}`}</p>
+            <p> <b>Имя клиента: </b> {`Имя клиента: ${order.name_client}`}</p>
+            <p> <b>Номер клиента: </b> {`Номер клиента: ${order.phone_number_client}`}</p>
+            <p> <b>Описание: </b> {`Описание: ${order.description}`}</p>
+            <p><b>Статус: </b> {`Статус: ${order.status === 'in processing' ? 'В обработке' : order.status}`}</p>
           <Link to={`/edit-order/${order.id}`}>
             <button className='general-btns'>Редактировать</button>
           </Link>

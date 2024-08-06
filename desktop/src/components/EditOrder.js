@@ -1,4 +1,3 @@
-// EditOrder.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useOrders } from './OrderContext';
@@ -6,7 +5,7 @@ import api from '../services/tokenService';
 
 const EditOrder = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); // Заменили useHistory на useNavigate
+  const navigate = useNavigate();
   const { orders, setOrders } = useOrders();
   const [order, setOrder] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

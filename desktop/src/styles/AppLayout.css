@@ -7,8 +7,12 @@
 .header-title {
     color: #000;
     font-size: 20px;
-    font-weight: bold;
-    margin-right: 30px;
+    /* font-weight: bold; */
+    margin-left: 30px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* text-align: center; */
+
 }
 
 .ant-layout {

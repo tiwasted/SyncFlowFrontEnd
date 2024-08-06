@@ -1,17 +1,18 @@
 .schedule-container {
   position: relative; /* Относительное позиционирование для контейнера */
   padding: 20px;
-  background-color: #f0f3f5; /* Легкий серый фон для контраста */
+  /* background-color: #f0f3f5;  */
   min-height: 100vh;
   font-family: 'Arial', sans-serif; /* Современный шрифт */
 }
 
 .schedule-content {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  /* justify-content: flex-start; */
   gap: 20px;
-  align-items: flex-start; /* Вертикальное выравнивание по началу */
-  position: relative; /* Относительное позиционирование для правильного размещения fixed-календаря */
+  align-items: flex-start;
+  position: relative;
 }
 
 .order-list-container {
@@ -24,7 +25,7 @@
   width: 100%;
   max-width: 600px;
   border-radius: 16px;
-  min-height: 600px; /* Минимальная высота для примера */
+  min-height: 400px; /* Минимальная высота для примера */
 }
 
 .order-list-container ul {
@@ -34,7 +35,7 @@
 }
 
 .order-list-container li {
-  background-color: #f9fafb; /* Нежный цвет карточек */
+  background-color: #f4f4f4; /* Нежный цвет карточек */
   border-radius: 12px;
   margin-bottom: 15px;
   padding: 20px;
@@ -66,7 +67,7 @@
 }
 
 .order-list-container p {
-  font-size: 1em;
+  font-size: 1.2em;
   margin: 8px 0;
   line-height: 1.6;
   color: #4a5568; /* Темный серый цвет текста */
@@ -77,7 +78,7 @@
 }
 
 .calendar-container {
-  position: fixed; /* Фиксированное позиционирование для статичности при прокрутке */
+  /* position: fixed; */
   right: 180px; /* Увеличенный отступ справа для большего смещения влево */
   top: 300px; /* Увеличенный отступ сверху для размещения ниже */
   background-color: #ffffff;
@@ -85,11 +86,12 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 500px; /* Увеличенная ширина для календаря */
-  height: auto; 
+  height: 500px;
   max-height: calc(100vh - 340px); /* Учет отступов для фиксированной высоты */
   overflow-y: auto;
   z-index: 100; /* Обеспечение того, что календарь сверху других элементов */
   transition: transform 0.3s ease; /* Плавная анимация */
+  margin-right: 50px;
 }
 
 .calendar-container h3 {

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { MenuFoldOutlined, MenuUnfoldOutlined, UploadOutlined, AreaChartOutlined, UsergroupAddOutlined, CalendarOutlined, HistoryOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
+import { UploadOutlined, AreaChartOutlined, UsergroupAddOutlined, CalendarOutlined, HistoryOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
 const AppLayout = ({ children }) => {
-    const [collapsed, setCollapsed] = useState(false);
+    // const [collapsed, setCollapsed] = useState(false);
+    const [collapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
@@ -70,7 +71,7 @@ const AppLayout = ({ children }) => {
                 justifyContent: 'space-between',
             }}
             >
-                <Button
+                {/* <Button
                     type="text"
                     icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                     onClick={() => setCollapsed(!collapsed)}
@@ -79,7 +80,7 @@ const AppLayout = ({ children }) => {
                     width: 64,
                     height: 64,
                     }}
-                />
+                /> */}
                 <div className="header-title">StaffHub</div>
                 <Button
                             type="primary"
