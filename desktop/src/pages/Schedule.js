@@ -62,7 +62,7 @@ const Schedule = () => {
                   <p> <b>Номер клиента: </b> {`${order.phone_number_client}`}</p>
                   <p> <b>Описание: </b> {`${order.description}`}</p>
                   <p> <b>Статус: </b> {`${order.status === 'in waiting' ? 'В ожидании' : order.status}`}</p>
-                  <p> <b>Сотрудник: </b> {`${order.assigned_employee ? `${order.assigned_employee.first_name} ${order.assigned_employee.last_name}` : 'Не назначен'}`}</p>
+                  <p> <b>Сотрудник: </b> {order.assigned_employee_name ? `${order.assigned_employee_name} (${order.assigned_employee_phone})` : 'Не назначен'}</p>
                 </li>
               ))
             ) : (

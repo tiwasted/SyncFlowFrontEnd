@@ -21,6 +21,7 @@ const HistoryOfOrders = () => {
         try {
             const url = orderType === 'b2b' ? '/order-history/b2b-history/' : '/order-history/b2c-history/';
             const response = await api.get(url, { params: filters });
+            console.log('Fetched orders:', response.data);
             setOrders(response.data);
         } catch (err) {
             setError('Ошибка загрузки заказов');
@@ -64,12 +65,20 @@ const HistoryOfOrders = () => {
                             <p>Цена: {order.price}</p>
                             <p>Адрес: {order.address}</p>
                             <p>Отчет: {order.report || 'Нет отчета'}</p>
-                            {order.assigned_employee && (
+                            <p>Сотрудник: {order.assigned_employee_name || 'Не назначен'}</p>
+                            {order.assigned_employee_name && (
                                 <div>
-                                    <p>Сотрудник: {order.assigned_employee.first_name} {order.assigned_employee.last_name}</p>
-                                    <p>Телефон: {order.assigned_employee.phone}</p>
+                                    <p>Телефон: {order.assigned_employee_phone}</p>
                                 </div>
                             )}
+                            
+                            {/* {order.assigned_employee && ( */}
+                                {/* // <div> */}
+                                    {/* <p>Сотрудник: {order.assigned_employee.first_name} {order.assigned_employee.last_name}</p> */}
+                                    {/* <p> <b>Сотрудник: </b> {order.assigned_employee_name}</p> */}
+                                    {/* <p>Телефон: {order.assigned_employee_phone}</p> */}
+                                {/* </div> */}
+                            {/* // )} */}
                         </div>
                     </li>
                 ))}
