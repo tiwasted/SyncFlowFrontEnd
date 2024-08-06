@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import OrderList from '../components/OrderList';
 import { useOrders } from '../components/OrderContext';
-import '../styles/Dashboard.module.css'
 
 const Dashboard = () => {
 
@@ -12,11 +11,11 @@ const Dashboard = () => {
   return (
     <React.Fragment>
       <div className="orders">
-        <div className='order-header'>
-          <h1>Список заказов</h1>
+        <div>
           <Link to="/add-order">
-            <button className='general-btns create-order-btn'>Создать заказ</button>
+            <button className='general-btns'>Создать заказ</button>
           </Link>
+          <h1>Список заказов</h1>
         </div>
         <div className='order-content'>
             {orders && <OrderList orders={orders} />}
