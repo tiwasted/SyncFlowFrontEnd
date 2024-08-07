@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from '../components/Calendar';
-import OrderList from '../components/OrderList'; // Импортируйте новый компонент
+import OrderListForSchedule from '../components/OrderListForSchedule'; // Импортируйте новый компонент
 import api from '../services/tokenService';
 import jwtDecode from 'jwt-decode';
 
@@ -45,7 +45,7 @@ const Schedule = () => {
       <h1 className=''>Расписание на день</h1>
       <div className="schedule-content">
         <div className="order-list-container">
-          <OrderList orders={orders} setOrders={setOrders} /> {/* Используйте OrderList */}
+          <OrderListForSchedule orders={orders} setOrders={setOrders} />
         </div>
         <div className="calendar-container">
           <h3 className='h3-schedule'>Календарь</h3>

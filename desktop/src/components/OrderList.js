@@ -46,8 +46,6 @@ const OrderList = ({ orders, setOrders }) => {
           <p><b>Номер клиента: </b> {order.phone_number_client}</p>
           <p><b>Описание: </b> {order.description}</p>
           <p><b>Статус: </b> {order.status === 'in processing' ? 'В обработке' : order.status}</p>
-          <p> <b>Сотрудник: </b> {order.assigned_employee_name ? `${order.assigned_employee_name}` : 'Не назначен'}</p>
-          <p> <b>Телефон сотрудника: </b> {order.assigned_employee_phone}</p>
           <button className='general-btns' onClick={() => handleEditClick(order.id)}>Редактировать</button>
           <button className='general-btns delete-btn' onClick={() => handleDelete(order.id)}>Удалить</button>
           <AssignEmployee orderId={order.id} onEmployeeAssigned={handleEmployeeAssigned} />
@@ -58,4 +56,6 @@ const OrderList = ({ orders, setOrders }) => {
 };
 
 export default OrderList;
+
+
 
