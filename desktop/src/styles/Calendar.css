@@ -98,6 +98,16 @@
   color: #fff;
 }
 
+.custom-calendar .react-calendar__month-view__days__day:focus {
+  outline: 0;
+	background-color: #007bff;
+  color: black;
+}
+
+.custom-calendar .react-calendar__tile--now {
+  background-color: yellow; /* Жёлтый фон для текущего дня */
+}
+
 .custom-calendar .react-calendar__month-view__days__day--day--faded {
   color: #aaa;
 }
