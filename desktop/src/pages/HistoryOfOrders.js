@@ -45,7 +45,7 @@ const HistoryOfOrders = () => {
     return (
         <div className="order-history">
             <h1 className="order-history__title">
-                {orderType === 'b2b' ? 'История B2B заказов' : 'История B2C заказов'}
+                {orderType === 'b2b' ? 'История B2B заказов' : 'История заказов'}
             </h1>
             <OrderFilterForm onSubmit={handleFilterSubmit} />
             {loading && <p className="order-history__loading">Загрузка...</p>}

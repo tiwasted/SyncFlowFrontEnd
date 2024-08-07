@@ -39,7 +39,7 @@ const AddOrder = () => {
       }, 2000);
 
     } catch (error) {
-      setError('Ошибка при добавлении заказа');
+      setError('Заполните все поля');
     }
   };
 
