@@ -1,32 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useOrders } from './OrderContext';
 import api from '../services/tokenService';
 
 const EditOrder = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { orders, setOrders } = useOrders();
   const [order, setOrder] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Получаем предыдущий путь из состояния
+  const previousPath = location.state?.from;
+
   useEffect(() => {
-    // Найти заказ по ID
     const orderToEdit = orders.find(order => order.id === parseInt(id));
     if (orderToEdit) {
       setOrder(orderToEdit);
       setIsLoading(false);
     } else {
-      // Если заказ не найден, получить его с сервера
       const fetchOrder = async () => {
         try {
-          // const token = localStorage.getItem('accessToken');
-          const response = await api.get(`http://localhost:8000/orders/b2c-orders/${id}`, {
-            // headers: {
-            //   'Authorization': `Bearer ${token}`,
-            // },
-          });
+          const response = await api.get(`http://localhost:8000/orders/b2c-orders/${id}/`);
           setOrder(response.data);
           setIsLoading(false);
         } catch (error) {
@@ -48,19 +45,10 @@ const EditOrder = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const token = localStorage.getItem('accessToken');
-      await api.put(`http://localhost:8000/orders/b2c-orders/${id}/`, order, {
-        // headers: {
-        //   'Authorization': `Bearer ${token}`,
-        // },
-      });
-
-      // Обновление локального состояния заказов
+      await api.put(`http://localhost:8000/orders/b2c-orders/${id}/`, order);
       const updatedOrders = orders.map(o => (o.id === order.id ? order : o));
       setOrders(updatedOrders);
-
-      // Возврат на страницу Dashboard после успешного обновления
-      navigate('/dashboard'); // Заменили history.push на navigate
+      navigate(previousPath); // Перенаправление на предыдущую страницу
     } catch (error) {
       console.error("Ошибка при обновлении заказа", error);
       setError('Ошибка при обновлении заказа');
@@ -79,6 +67,7 @@ const EditOrder = () => {
     <div className='add-order-container'>
       <h2 className='add-h2'>Редактировать заказ</h2>
       <form onSubmit={handleSubmit}>
+        {/* Поля формы */}
         <div className='add-form-group'>
           <label className='add-label'>Наименование заказа:</label>
           <input
@@ -151,17 +140,20 @@ const EditOrder = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
-          <label
-          name="status"
-          value={order.status}
-          onChange={handleInputChange}
-          > Стутус: <option value="in_processing">In Processing</option>
-          </label>
+        <div className='add-form-group'>
+          <label className='add-label'>Статус:</label>
+          <select
+            name="status"
+            value={order.status}
+            onChange={handleInputChange}
+          >
+            <option value="in_processing">In Processing</option>
+            {/* Добавьте другие опции, если нужно */}
+          </select>
         </div>
         <button type="submit" className='general-btns'>Сохранить изменения</button>
-        <button onClick={() => navigate(-1)}>Назад</button>
-    </form>
+        <button type="button" onClick={() => navigate(-1)}>Назад</button>
+      </form>
     </div>
   );
 };
