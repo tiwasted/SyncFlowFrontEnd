@@ -28,6 +28,10 @@
 	margin-bottom: 15px;
 }
 
+abbr {
+	text-decoration: none;
+}
+
 .react-calendar__navigation {
 	margin-bottom: 1rem;
 }
