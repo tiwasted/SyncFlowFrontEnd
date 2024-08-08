@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import AssignEmployee from '../components/AssignEmployee';
+import ReassignEmployee from './ReassignEmployee';
 import api from '../services/tokenService';
 
 const OrderList = ({ orders, setOrders }) => {
@@ -50,7 +50,7 @@ const OrderList = ({ orders, setOrders }) => {
           <p><b>Телефон сотрудника: </b> {order.assigned_employee_phone}</p>
           <button className='general-btns' onClick={() => handleEditClick(order.id)}>Редактировать</button>
           <button className='general-btns delete-btn' onClick={() => handleDelete(order.id)}>Удалить</button>
-          <AssignEmployee orderId={order.id} onEmployeeAssigned={handleEmployeeAssigned} />
+          <ReassignEmployee orderId={order.id} onEmployeeAssigned={handleEmployeeAssigned} />
         </div>
       ))}
     </div>

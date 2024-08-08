@@ -127,3 +127,27 @@
 abbr {
   text-decoration: none;
 }
+
+/* Выходные дни в виде чисел в месяце */
+.custom-calendar .react-calendar__month-view__days__day--weekend {
+  color: red; /* Красный цвет для выходных */
+}
+
+/* Для наглядности, также можно добавить стиль для выделения выходных при наведении */
+.custom-calendar .react-calendar__month-view__days__day--weekend:hover {
+  background-color: #007bff;
+  color: darkred; /* Более тёмный красный при наведении */
+}
+
+
+/* Стили для дней, которые не входят в текущий месяц */
+.custom-calendar .react-calendar__month-view__days__day--neighboringMonth {
+  color: #aaa; /* Более светлый цвет для дней не текущего месяца */
+  background-color: #f5f5f5;
+}
+
+/* При наведении можно сделать цвет более заметным */
+.custom-calendar .react-calendar__month-view__days__day--neighboringMonth:hover {
+  background-color: #007bff;
+  color: #777; /* Более темный цвет при наведении */
+}
