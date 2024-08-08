@@ -11,6 +11,7 @@ import Employees from './pages/Employees';
 import B2Bclient from './pages/B2Bclients';
 import HistoryOfOrders from './pages/HistoryOfOrders';
 import SettingsPage from './pages/SettingsPage';
+import OrderDetails from './components/OrderDetails'; // Импортируем компонент OrderDetails
 
 import { OrderProvider } from './components/OrderContext';
 import Login from './components/Login';
@@ -46,27 +47,28 @@ const AppContent = () => {
     <div className="app-container">
       <div className="app-main-content">
         {!isLoginPage ? (
-            <AppLayout>
-              <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route element={<ProtectedRoute />}>
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/schedule" element={<Schedule />} />
-                  <Route path="/employees" element={<Employees />} />
-                  <Route path="/add-order" element={<AddOrder />} />
-                  <Route path="/add-order-b2b" element={<AddOrderB2B />} />
-                  <Route path="/history-of-orders" element={<HistoryOfOrders />} />
-                  <Route path="/settings" element={<SettingsPage />} />
-                  <Route path="/edit-order/:id" element={<EditOrder />} />
-                  <Route path="/b2b-clients" element={<B2Bclient />} />
-                </Route>
-              </Routes>
-            </AppLayout>
-          ) : (
+          <AppLayout>
             <Routes>
               <Route path="/login" element={<Login />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/schedule" element={<Schedule />} />
+                <Route path="/employees" element={<Employees />} />
+                <Route path="/add-order" element={<AddOrder />} />
+                <Route path="/add-order-b2b" element={<AddOrderB2B />} />
+                <Route path="/history-of-orders" element={<HistoryOfOrders />} />
+                <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/edit-order/:id" element={<EditOrder />} />
+                <Route path="/b2b-clients" element={<B2Bclient />} />
+                <Route path="/order/:orderId" element={<OrderDetails />} /> {/* Новый маршрут для деталей заказа */}
+              </Route>
             </Routes>
-          )}
+          </AppLayout>
+        ) : (
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        )}
       </div>
     </div>
   );
