@@ -2,15 +2,21 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AssignEmployee from '../components/AssignEmployee';
 import api from '../services/tokenService';
+import { useOrders } from '../components/OrderContext'; // Импортируем хук useOrders
 
-const OrderList = ({ orders, setOrders }) => {
+const OrderList = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Получаем orders и setOrders из контекста
+  const { orders, setOrders } = useOrders();
 
   const handleDelete = async (id) => {
     try {
       await api.delete(`http://localhost:8000/orders/b2c-orders/${id}/`);
-      setOrders(orders.filter(order => order.id !== id));
+      
+      // Обновление состояния заказов после успешного удаления
+      setOrders(prevOrders => prevOrders.filter(order => order.id !== id));
     } catch (error) {
       console.error("Ошибка при удалении заказа", error);
     }
@@ -56,6 +62,3 @@ const OrderList = ({ orders, setOrders }) => {
 };
 
 export default OrderList;
-
-
-

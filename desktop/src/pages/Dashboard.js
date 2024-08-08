@@ -1,12 +1,10 @@
-// Dashboard.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import OrderList from '../components/OrderList';
-import { useOrders } from '../components/OrderContext';
+import { useOrders } from '../components/OrderContext'; // Импортируем хук useOrders
 
 const Dashboard = () => {
-
-  const { orders } = useOrders();
+  const { orders } = useOrders(); // Получаем заказы из контекста
 
   return (
     <React.Fragment>
@@ -18,8 +16,7 @@ const Dashboard = () => {
           <h1>Список заказов</h1>
         </div>
         <div className='order-content'>
-            {orders && <OrderList orders={orders} />}
-            <OrderList />
+          {orders && <OrderList />} {/* OrderList теперь использует контекст напрямую */}
         </div>
       </div>
     </React.Fragment>

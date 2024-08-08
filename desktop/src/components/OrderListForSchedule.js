@@ -37,7 +37,7 @@ const OrderList = ({ orders, setOrders }) => {
       {orders.map((order) => (
         <div key={order.id} className="order-item">
           <h4>{order.service_name}</h4>
-          <p><b>Наименование: </b> {order.order_name}</p>
+          <p className='box-pic'><b>Наименование: </b> {order.order_name}</p>
           <p><b>Цена: </b> {order.price}</p>
           <p><b>Дата: </b> {order.order_date}</p>
           <p><b>Время: </b> {order.order_time}</p>

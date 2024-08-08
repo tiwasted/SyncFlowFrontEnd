@@ -61,9 +61,9 @@
   align-items: center;
 }
 
-.order-list-container h4::before {
-  content: '📦'; /* Значок перед заголовком */
-  margin-right: 8px;
+.order-list-container .box-pic::after {
+  content: '📦';
+  margin-left: 8px;
 }
 
 .order-list-container p {
