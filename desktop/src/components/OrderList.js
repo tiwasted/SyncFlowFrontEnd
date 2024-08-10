@@ -140,12 +140,12 @@ const OrderList = () => {
             <p>{order.address}</p>
             <p>{order.name_client}</p>
             <p>{order.phone_number_client}</p>
-            <p>{order.status === 'in processing' ? 'В обработке' : order.status}</p>
+            <p className='order-list-status'>{order.status === 'in processing' ? 'В обработке' : order.status}</p>
           </div>
-          <p>Описание: <TruncatedText text={order.description} limit={150} /></p>
+          <p className='order-item-description'>Описание: <TruncatedText text={order.description} limit={150} /></p>
           <div className='order-list-btns'> 
-            <button className='general-btns' onClick={() => handleEditClick(order.id)}>Редактировать</button>
-            <button className='general-btns delete-btn' onClick={() => handleDelete(order.id)}>Удалить</button>
+            <button className='order-list-edit-btn' onClick={() => handleEditClick(order.id)}>Редактировать</button>
+            <button className='order-list-delete-btn' onClick={() => handleDelete(order.id)}>Удалить</button>
             <AssignEmployee orderId={order.id} onEmployeeAssigned={handleEmployeeAssigned} />
           </div>
         </div>
