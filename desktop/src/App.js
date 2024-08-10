@@ -23,7 +23,6 @@ import './styles/App.css';
 import './styles/AppLayout.css';
 
 import './styles/CommonStyles/ButtonStyles.css';
-import './styles/CommonStyles/ContentStyles.css';
 
 import './styles/Sidebar.css';
 import './styles/HistoryOfOrders.css';
