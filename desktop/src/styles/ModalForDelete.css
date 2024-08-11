@@ -1,0 +1,79 @@
+   .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Более тёмный фон для лучшего контраста */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modal-content-form {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Более заметная тень */
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .modal-body {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333; /* Тёмно-серый цвет текста для лучшего контраста */
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .modal-confirm-btn,
+  .modal-cancel-btn {
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-left: 10px;
+  }
+  
+  .modal-confirm-btn {
+    background: linear-gradient(45deg, #d9534f, #c9302c); /* Градиент для кнопки подтверждения */
+    color: #fff;
+  }
+  
+  .modal-confirm-btn:hover {
+    background: linear-gradient(45deg, #c9302c, #d9534f); /* Инвертированный градиент при наведении */
+    transform: scale(1.05); /* Увеличение кнопки при наведении */
+  }
+  
+  .modal-cancel-btn {
+    background: linear-gradient(45deg, #5bc0de, #31b0d5); /* Градиент для кнопки отмены */
+    color: #fff;
+  }
+  
+  .modal-cancel-btn:hover {
+    background: linear-gradient(45deg, #31b0d5, #5bc0de); /* Инвертированный градиент при наведении */
+    transform: scale(1.05); /* Увеличение кнопки при наведении */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

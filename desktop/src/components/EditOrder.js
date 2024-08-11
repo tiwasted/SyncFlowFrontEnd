@@ -23,7 +23,7 @@ const EditOrder = () => {
     } else {
       const fetchOrder = async () => {
         try {
-          const response = await api.get(`http://localhost:8000/orders/b2c-orders/${id}/`);
+          const response = await api.get(`/orders/b2c-orders/${id}/`);
           setOrder(response.data);
           setIsLoading(false);
         } catch (error) {

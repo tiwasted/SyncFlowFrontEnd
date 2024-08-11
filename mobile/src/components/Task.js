@@ -36,7 +36,7 @@ const ReportForm = ({ isOpen, onRequestClose, task, onSubmit }) => {
                         onChange={(e) => setContent(e.target.value)}
                         required
                     />
-                    <button className='report-button' type="submit">Отправить отчет</button>
+                    <button className='report-button' type="submit">Отправить отчёт</button>
                 </form>
                 <button className="cancel-btn" onClick={onRequestClose}>Отмена</button>
             </div>
@@ -49,7 +49,7 @@ const Task = ({ task, onUpdate }) => {
     const [actionType, setActionType] = useState(null);
 
     const getOrderUrl = (action) => {
-        const baseUrl = task.order_type === 'B2B' ? 'http://localhost:8000/orders/b2b-orders' : 'http://localhost:8000/orders/b2c-orders';
+        const baseUrl = task.order_type === 'B2B' ? '/orders/b2b-orders' : '/orders/b2c-orders';
         return `${baseUrl}/${task.id}/${action}/`;
     };
 

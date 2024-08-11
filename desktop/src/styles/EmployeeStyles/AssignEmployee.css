@@ -6,6 +6,10 @@
     font-family: Arial, sans-serif; /* Удобочитаемый шрифт */
 }
 
+.assign-employee-location {
+    margin-top: 20px;
+}
+
 .assign-employee select {
     padding: 10px; 
     border: 1px solid #ddd; /* Тонкая граница */

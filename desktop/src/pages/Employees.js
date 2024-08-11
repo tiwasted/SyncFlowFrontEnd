@@ -13,7 +13,7 @@ const Employees = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await api.get('http://127.0.0.1:8000/employees/employees/', {});
+      const response = await api.get('/employees/employees/', {});
       console.log('Fetched employees:', response.data); // Выводим список сотрудников
       setEmployees(response.data);
     } catch (error) {
@@ -28,7 +28,7 @@ const Employees = () => {
         return;
       }
       // Используем правильный путь с подставленным идентификатором сотрудника
-      await api.delete(`http://127.0.0.1:8000/employees/${id}/delete/`, {
+      await api.delete(`/employees/${id}/delete/`, {
         // headers: {
         //   'Authorization': `Bearer ${localStorage.getItem('token')}`
         // }
@@ -45,7 +45,7 @@ const Employees = () => {
   const handleAddEmployee = async (newEmployee) => {
     try {
       // Отправляем запрос на сервер для добавления нового сотрудника
-      const response = await api.post('http://127.0.0.1:8000/employees/employees/', newEmployee, {});
+      const response = await api.post('/employees/employees/', newEmployee, {});
       
       // Обновляем список сотрудников, добавляя нового сотрудника в начало массива
       setEmployees([response.data, ...employees]);

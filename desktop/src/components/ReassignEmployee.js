@@ -23,7 +23,7 @@ const ReassignEmployee = ({ orderId }) => {
     const handleAssign = async () => {
         try {
             const response = await api.post(
-                `http://localhost:8000/orders/b2c-orders/${orderId}/assign_employee/`,
+                `/orders/b2c-orders/${orderId}/assign_employee/`,
                 { employee_id: employeeId },
             );
 
@@ -44,7 +44,7 @@ const ReassignEmployee = ({ orderId }) => {
     };
 
     return (
-        <div className="assign-employee">
+        <div className="assign-employee assign-employee-location">
             <select 
                 className="employee-select"
                 value={employeeId} 

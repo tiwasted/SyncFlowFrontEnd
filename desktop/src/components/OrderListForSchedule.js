@@ -9,7 +9,7 @@ const OrderList = ({ orders, setOrders }) => {
 
   const handleDelete = async (id) => {
     try {
-      await api.delete(`http://localhost:8000/orders/b2c-orders/${id}/`);
+      await api.delete(`/orders/b2c-orders/${id}/`);
       setOrders(orders.filter(order => order.id !== id));
     } catch (error) {
       console.error("Ошибка при удалении заказа", error);
