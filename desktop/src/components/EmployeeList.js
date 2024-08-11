@@ -1,29 +1,3 @@
-// import React from "react";
-
-// const EmployeeList = ({ employees, onEdit, onDelete }) => {
-//     return (
-//         <div className="">
-//             <h1>Список сотрудников</h1>
-//             <ul>
-//                 {employees.map(employee => (
-//                 <div className="content-item" key={employee.id}>
-//                     <p>Имя: {employee.first_name}</p> <br />
-//                     <p>Фамилия: {employee.last_name}</p> <br />
-//                     <p>Телефон: {employee.phone}</p> <br />
-//                     <button className='general-btns' onClick={() => {
-//                     onEdit(employee.id)}}>Редактировать</button>
-//                     <button className='general-btns delete-btn' onClick={() => {
-//                     onDelete(employee.id)}}>Удалить</button>
-//                 </div>
-//                 ))}
-//             </ul>
-//         </div>
-//     );
-// };
-
-// export default EmployeeList;
-
-
 import React from "react";
 
 const EmployeeList = ({ employees, onEdit, onDelete }) => {
@@ -50,14 +24,6 @@ const EmployeeList = ({ employees, onEdit, onDelete }) => {
                     </div>
                 </div>
             ))}
-            {/* <div>
-                {employees.map(employee => (
-                    <div key={employee.id} style={{ marginTop: '10px' }}>
-                        <button className='general-btns' onClick={() => onEdit(employee.id)}>Редактировать</button>
-                        <button className='general-btns delete-btn' onClick={() => onDelete(employee.id)}>Удалить</button>
-                    </div>
-                ))}
-            </div> */}
         </div>
     );
 };

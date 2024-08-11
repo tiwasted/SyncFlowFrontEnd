@@ -28,11 +28,7 @@ const Login = () => {
         return;
       }
 
-<<<<<<< HEAD
-      const response = await axios.post('http://localhost:8000/users/auth/login/', {
-=======
       const response = await api.post('/users/auth/login/', {
->>>>>>> 0380f29a530b5f01df9c4a101d868b78d24790d0
         phone: username,
         password: password
       });
