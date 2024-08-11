@@ -1,19 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ReassignEmployee from './ReassignEmployee';
 import api from '../services/tokenService';
+import ModalForDelete from './ModalForDelete';
 
 const OrderList = ({ orders, setOrders }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [showModal, setShowModal] = useState(false);
+  const [orderToDelete, setOrderToDelete] = useState(null);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
+    if (orderToDelete === null) return;
+
     try {
-      await api.delete(`/orders/b2c-orders/${id}/`);
-      setOrders(orders.filter(order => order.id !== id));
+      await api.delete(`/orders/b2c-orders/${orderToDelete}/`);
+      setOrders(orders.filter(order => order.id !== orderToDelete));
+      setShowModal(false);
     } catch (error) {
       console.error("Ошибка при удалении заказа", error);
     }
+  };
+
+  const handleDeleteClick = (id) => {
+    setOrderToDelete(id); // Сохраняем ID заказа, который хотим удалить
+    setShowModal(true); // Открываем модальное окно
   };
 
   const handleEmployeeAssigned = (updatedOrder) => {
@@ -26,6 +37,10 @@ const OrderList = ({ orders, setOrders }) => {
 
   const handleEditClick = (orderId) => {
     navigate(`/edit-order/${orderId}`, { state: { from: location.pathname } });
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   if (!orders || orders.length === 0) {
@@ -49,10 +64,17 @@ const OrderList = ({ orders, setOrders }) => {
           <p><b>Сотрудник: </b> {order.assigned_employee_name ? `${order.assigned_employee_name}` : 'Не назначен'}</p>
           <p><b>Телефон сотрудника: </b> {order.assigned_employee_phone}</p>
           <button className='general-btns' onClick={() => handleEditClick(order.id)}>Редактировать</button>
-          <button className='general-btns delete-btn' onClick={() => handleDelete(order.id)}>Удалить</button>
+          <button className='general-btns delete-btn' onClick={() => handleDeleteClick(order.id)}>Удалить</button>
           <ReassignEmployee orderId={order.id} onEmployeeAssigned={handleEmployeeAssigned} />
         </div>
       ))}
+      <ModalForDelete
+        show={showModal}
+        onClose={closeModal}
+        onConfirm={handleDelete}
+      >
+        Вы точно хотите удалить заказ?
+      </ModalForDelete>
     </div>
   );
 };
