@@ -27,10 +27,13 @@ import './styles/CommonStyles/ButtonStyles.css';
 import './styles/HistoryOfOrders.css';
 import './styles/Schedule.css';
 import './styles/Calendar.css';
+import './styles/Dashboard.css';
+import './styles/SettingsPage.css';
 
 import './styles/OrderStyles/OrderList.css';
 import './styles/OrderStyles/AddOrder.css';
 import './styles/OrderStyles/OrderFilter.css';
+import './styles/OrderStyles/OrderListForSchedule.css';
 
 import './styles/EmployeeStyles/EmployeesPage.css';
 import './styles/EmployeeStyles/EmployeeList.css';

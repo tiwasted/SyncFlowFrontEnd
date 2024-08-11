@@ -1,51 +1,52 @@
 .assign-employee {
-    display: flex; /* Для выравнивания элементов в одну строку */
-    align-items: center; /* Выравнивание по центру по вертикали */
-    gap: 10px; /* Расстояние между элементами */
-    /* margin-top: 20px;  */
-    font-family: Arial, sans-serif; /* Удобочитаемый шрифт */
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Соответствует общему стилю */
+    font-family: Arial, sans-serif;
 }
 
 .assign-employee-location {
-    margin-top: 20px;
+    margin-top: 18px; /* Адаптировано под стиль */
 }
 
 .assign-employee select {
-    padding: 10px; 
-    border: 1px solid #ddd; /* Тонкая граница */
-    border-radius: 4px; /* Скругленные углы */
-    font-size: 1.1em; /* Увеличенный размер текста */
-    background-color: #f9f9f9; /* Светлый фон */
-    color: #333; /* Темный цвет текста */
+    padding: 10px;
+    border: 1px solid #cccccc; /* Соответствует общему стилю */
+    border-radius: 8px; /* Увеличенные скругленные углы для согласованности */
+    font-size: 1em; /* Умеренный размер текста */
+    background-color: #ffffff; /* Белый фон, как в order list */
+    color: #283593; /* Темно-синий цвет текста, как в заголовке */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
 }
 
 .assign-employee button {
-    background-color: #007bff; /* Синий фон кнопки */
-    color: white; /* Белый цвет текста */
-    border: none; /* Без границ */
-    border-radius: 4px; /* Скругленные углы */
-    padding: 10px 20px; /* Внутренние отступы */
-    cursor: pointer; /* Курсор руки */
-    font-size: 1em; /* Размер текста кнопки */
-    transition: background-color 0.3s; /* Плавный переход цвета */
+    background: linear-gradient(135deg, #42a5f5, #1e88e5); /* Градиент, соответствующий кнопкам */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.3s ease; /* Добавлен эффект при наведении */
 }
 
 .assign-employee button:hover {
-    background-color: #0056b3; /* Более темный синий при наведении */
+    background: linear-gradient(135deg, #1e88e5, #1565c0); /* Градиент при наведении */
+    transform: translateY(-2px); /* Легкое поднятие */
 }
 
 @media (max-width: 768px) {
     .assign-employee {
-        flex-direction: column; /* Выравнивание элементов в колонку на мобильных устройствах */
-        align-items: stretch; /* Растяжение элементов по ширине */
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .assign-employee select {
-        width: 100%; /* Ширина на всю ширину контейнера */
-        margin-bottom: 10px; /* Отступ снизу */
+        width: 100%;
+        margin-bottom: 12px; /* Адаптировано под стиль */
     }
 
     .assign-employee button {
-        width: 100%; /* Ширина на всю ширину контейнера */
+        width: 100%;
     }
 }

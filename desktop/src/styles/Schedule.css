@@ -1,31 +1,32 @@
+/* Общие стили */
 .schedule-container {
-  position: relative; /* Относительное позиционирование для контейнера */
+  position: relative;
   padding: 20px;
-  /* background-color: #f0f3f5;  */
   min-height: 100vh;
-  font-family: 'Arial', sans-serif; /* Современный шрифт */
+  font-family: 'Arial', sans-serif;
+  background-color: #f7fafc; /* Светлый фон для улучшения читаемости */
+}
+
+.schedule-title {
+  margin-bottom: 15px;
 }
 
 .schedule-content {
   display: flex;
   justify-content: space-between;
-  /* justify-content: flex-start; */
   gap: 20px;
   align-items: flex-start;
-  position: relative;
 }
 
 .order-list-container {
   flex: 1;
   background-color: #ffffff;
-  border: none;
   padding: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень для объема */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  width: 100%;
   max-width: 600px;
   border-radius: 16px;
-  min-height: 400px; /* Минимальная высота для примера */
+  min-height: 400px;
 }
 
 .order-list-container ul {
@@ -35,28 +36,24 @@
 }
 
 .order-list-container li {
-  background-color: #f4f4f4; /* Нежный цвет карточек */
+  background-color: #f9fafb; /* Немного более светлый фон карточек */
   border-radius: 12px;
   margin-bottom: 15px;
   padding: 20px;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Плавный переход */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легкая тень */
-}
-
-.order-list-container li:last-child {
-  margin-bottom: 0;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .order-list-container li:hover {
-  background-color: #e2e8f0; /* Цвет фона при наведении */
-  transform: translateY(-5px) scale(1.02); /* Анимация при наведении */
+  background-color: #e2e8f0;
+  transform: translateY(-3px) scale(1.02); /* Немного уменьшил смещение для более мягкой анимации */
 }
 
 .order-list-container h4 {
   font-size: 1.3em;
   margin-bottom: 10px;
   font-weight: bold;
-  color: #2d3748; /* Более темный цвет заголовков */
+  color: #2d3748;
   display: flex;
   align-items: center;
 }
@@ -67,30 +64,31 @@
 }
 
 .order-list-container p {
-  font-size: 1.2em;
+  font-size: 1.1em; /* Чуть уменьшенный размер шрифта для лучшей читаемости */
   margin: 8px 0;
   line-height: 1.6;
-  color: #4a5568; /* Темный серый цвет текста */
+  color: #4a5568;
 }
 
 .order-list-container p b {
-  color: #2b6cb0; /* Синий акцент для ключевых элементов */
+  color: #2b6cb0;
 }
 
+/* Стили для календаря */
 .calendar-container {
-  position: fixed;
-  right: 180px; /* Увеличенный отступ справа для большего смещения влево */
-  top: 300px; /* Увеличенный отступ сверху для размещения ниже */
+  position: sticky; /* "Sticky" для лучшей гибкости */
+  top: 100px; /* Начальная позиция сверху */
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 500px; /* Увеличенная ширина для календаря */
-  height: 500px;
-  max-height: calc(100vh - 340px); /* Учет отступов для фиксированной высоты */
+  width: 100%;
+  max-width: 450px; /* Чуть уменьшенная ширина для лучшего размещения */
+  height: auto;
+  max-height: calc(100vh - 120px); /* Учитываем верхний отступ */
   overflow-y: auto;
-  z-index: 100; /* Обеспечение того, что календарь сверху других элементов */
-  transition: transform 0.3s ease; /* Плавная анимация */
+  z-index: 100;
+  transition: transform 0.3s ease, max-height 0.3s ease; /* Плавные переходы */
   margin-right: 50px;
 }
 
@@ -98,34 +96,35 @@
   font-size: 1.5em;
   color: #2d3748;
   margin-bottom: 16px;
-  text-align: center; /* Центрирование заголовка */
+  text-align: center;
 }
 
+/* Мобильная адаптация */
 @media (max-width: 1024px) {
   .schedule-content {
-    justify-content: space-between;
-    flex-direction: column; /* Изменяем направление на колонку для планшетов */
+    flex-direction: column;
+    align-items: stretch;
   }
   
   .order-list-container {
     width: 100%;
-    margin-right: 0; /* Убираем отступ */
+    margin-right: 0;
   }
 
   .calendar-container {
-    position: static; /* Статическое позиционирование для маленьких экранов */
+    position: static;
     width: 100%;
+    max-width: none; /* Убираем ограничение ширины для мобильных устройств */
     margin-top: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .schedule-content {
-    flex-direction: column;
+  .calendar-container {
+    padding: 15px;
   }
 
-  .calendar-container {
-    width: 100%;
-    padding: 10px;
+  .order-list-container p {
+    font-size: 1em; /* Уменьшенный размер шрифта для компактности на мобильных устройствах */
   }
 }
