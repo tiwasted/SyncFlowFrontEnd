@@ -9,7 +9,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
 
   const addEmployee = async () => {
     try {
-      const response = await api.post('http://127.0.0.1:8000/employees/create/', {
+      const response = await api.post('/employees/create/', {
         first_name: firstName,
         last_name: lastName,
         password: password,

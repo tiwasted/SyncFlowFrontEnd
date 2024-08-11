@@ -78,7 +78,7 @@
 }
 
 .calendar-container {
-  /* position: fixed; */
+  position: fixed;
   right: 180px; /* Увеличенный отступ справа для большего смещения влево */
   top: 300px; /* Увеличенный отступ сверху для размещения ниже */
   background-color: #ffffff;

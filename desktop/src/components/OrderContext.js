@@ -12,7 +12,7 @@ const OrderContext = createContext();
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await api.get('http://localhost:8000/orders/b2c-orders/', {
+        const response = await api.get('/orders/b2c-orders/', {
         });
         setOrders(response.data); // Устанавливаем полученные данные
       } catch (error) {
