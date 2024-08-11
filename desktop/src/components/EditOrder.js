@@ -45,7 +45,7 @@ const EditOrder = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.put(`http://localhost:8000/orders/b2c-orders/${id}/`, order);
+      await api.put(`/orders/b2c-orders/${id}/`, order);
       const updatedOrders = orders.map(o => (o.id === order.id ? order : o));
       setOrders(updatedOrders);
       navigate(previousPath); // Перенаправление на предыдущую страницу
