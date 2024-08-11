@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/TruncatedText.css'; // Подключение стилей
 
 const TruncatedText = ({ text, limit }) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -10,14 +11,19 @@ const TruncatedText = ({ text, limit }) => {
     const truncatedText = text.length > limit ? text.slice(0, limit) + "..." : text;
 
     return (
-        <span>
-            {isExpanded ? text : truncatedText}
+        <div className="truncated-text-container">
+            <span className="truncated-text-content">
+                {isExpanded ? text : truncatedText}
+            </span>
             {text.length > limit && (
-                <span onClick={toggleExpansion} style={{ color: 'blue', cursor: 'pointer' }}>
+                <span
+                    onClick={toggleExpansion}
+                    className={`truncated-text-toggle ${isExpanded ? 'collapsed' : 'expanded'}`}
+                >
                     {isExpanded ? ' Свернуть' : ' Читать дальше'}
                 </span>
             )}
-        </span>
+        </div>
     );
 };
 

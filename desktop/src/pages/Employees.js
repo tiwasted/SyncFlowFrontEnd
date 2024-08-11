@@ -61,7 +61,7 @@ const Employees = () => {
     <div>
       <div className='employeeContent'>
           {/* <h1>Сотрудники</h1> */}
-          <button className='general-btns' onClick={() => setIsModalOpen(true)}>
+          <button className='add-employee-btn' onClick={() => setIsModalOpen(true)}>
             Добавить сотрудника
           </button>
       </div>

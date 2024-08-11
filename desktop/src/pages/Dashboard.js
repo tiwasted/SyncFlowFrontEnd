@@ -11,9 +11,9 @@ const Dashboard = () => {
       <div className="orders">
         <div>
           <Link to="/add-order">
-            <button className='general-btns'>Создать заказ</button>
+            <button className='create-order-btn'>Создать заказ</button>
           </Link>
-          <h1>Список заказов</h1>
+          <h1 className='list-of-orders-title-dashboard'>Список заказов</h1>
         </div>
         <div className='order-content'>
           {orders && <OrderList />} {/* OrderList теперь использует контекст напрямую */}

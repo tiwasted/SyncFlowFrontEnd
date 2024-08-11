@@ -1,12 +1,11 @@
-
-.order-list-container-dashboard {
-    position: relative;
+/* .order-list-container-dashboard {
+  position: relative;
   padding-left: 20px;
   padding-right: 20px;
   background-color: #f7f8fa;
   border-radius: 8px;
   max-height: 690px; 
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
 .order-item-grid-header {
@@ -31,10 +30,11 @@
   border-bottom: 1px solid #ccc;
   align-items: center;
   font-size: 18px;
+  margin-bottom: 15px;
 }
 
 .order-item {
-  margin-top: 15px;
+  margin-bottom: 15px;
   background-color: #f9f9f9; 
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -65,7 +65,7 @@
 .order-list-btns {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .order-list-edit-btn, .order-list-delete-btn {
@@ -98,61 +98,302 @@
 .order-item-description {
     text-align: start;
     font-size: 18px;
-}
+} */
 
 
 
 
 
 
-/* .order-item {
-    background-color: #f9f9f9; 
-    border: 1px solid #ddd;
-    border-radius: 8px; 
-    padding: 20px; 
-    margin-bottom: 20px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    font-family: Arial, sans-serif; 
-    color: #333; 
-}
 
-.order-item h4 {
-    font-size: 1.5em; 
-    margin-bottom: 10px; 
-    color: #0056b3; 
-}
 
-.order-item p {
-    font-size: 1.2em; 
-    margin: 5px 0; 
-}
 
-.order-item-grid {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-    text-align: center;
-}
 
-.order-list-btns {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 10px;
+
+
+
+
+
+/* .order-list-container-dashboard {
+  position: relative;
+  padding: 15px;
+  padding-top: 0px;
+  background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+  border-radius: 15px;
+  max-height: 690px;
+  overflow-y: auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .order-item-grid-header {
-    position: sticky;
-    top: 0;
-    background-color: #f9f9f9; 
-    z-index: 10; 
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0; 
-    font-weight: bold;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 15px;
+  background: linear-gradient(135deg, #3f51b5, #1a237e);
+  color: #ffffff;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  text-align: start;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.order-list-container-dashboard {
-    position: relative;
-    max-height: 690px; 
-    overflow-y: auto;
+.order-item-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 15px;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  background-color: #ffffff;
+  align-items: center;
+  font-size: 17px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-item-grid:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.order-item {
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.order-item:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.order-list-status {
+  border-radius: 15px;
+  font-weight: bold;
+  padding: 8px 15px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.order-list-status.in-processing {
+  background: linear-gradient(135deg, #ffeb3b, #fbc02d);
+  color: #000000;
+}
+
+.order-list-status.completed {
+  background: linear-gradient(135deg, #4caf50, #388e3c);
+  color: #ffffff;
+}
+
+.order-list-status.cancelled {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  color: #ffffff;
+}
+
+.order-list-btns {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  justify-content: flex-end;
+}
+
+.order-list-edit-btn, .order-list-delete-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.order-list-edit-btn {
+  background: linear-gradient(135deg, #2196f3, #1976d2);
+  color: #ffffff;
+}
+
+.order-list-edit-btn:hover {
+  background: linear-gradient(135deg, #1976d2, #1565c0);
+  transform: translateY(-2px);
+}
+
+.order-list-delete-btn {
+  background: linear-gradient(135deg, #e53935, #d32f2f);
+  color: #ffffff;
+}
+
+.order-list-delete-btn:hover {
+  background: linear-gradient(135deg, #d32f2f, #c62828);
+  transform: translateY(-2px);
+}
+
+.order-item-description {
+  text-align: start;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #424242;
 } */
+
+
+
+
+
+
+
+
+
+.order-list-container-dashboard {
+  position: relative;
+  padding: 15px;
+  padding-top: 0px;
+  background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+  border-radius: 12px;
+  max-height: 660px;
+  overflow-y: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.order-item-grid-header {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+  background-color: #283593;
+  background: linear-gradient(135deg, #5c6bc0, #1e88e5);
+  color: #ffffff;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+}
+
+/* .order-item-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid #cccccc;
+  background-color: #ffffff;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+} */
+
+.order-item-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid #dddddd; /* Тонкая граница для отделения */
+  background-color: #ffffff; /* Белый фон для контраста */
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 8px; /* Скругленные углы */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень для выделения */
+  color: #424242; /* Цвет текста для контраста */
+}
+
+.order-item {
+  margin-bottom: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 18px;
+  border: 1px solid #eeeeee;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.order-list-status {
+  /* border-radius: 12px;
+  font-weight: 600;
+  padding: 8px 12px;
+  text-align: center;
+  text-transform: uppercase; */
+  border-radius: 12px;
+  font-weight: bold;
+  padding: 6px 12px;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #e0f7fa, #e1f5fe); /* Легкий градиент для выделения */
+  color: #00796b; /* Цвет текста для контраста */
+}
+
+.order-list-status.in-processing {
+  background: linear-gradient(135deg, #ffeb3b, #fbc02d);
+  color: #000000;
+}
+
+.order-list-status.completed {
+  background: linear-gradient(135deg, #66bb6a, #43a047);
+  color: #ffffff;
+}
+
+.order-list-status.cancelled {
+  background: linear-gradient(135deg, #ef5350, #e53935);
+  color: #ffffff;
+}
+
+.order-list-btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  justify-content: flex-end;
+}
+
+.order-list-edit-btn, .order-list-delete-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.order-list-edit-btn {
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+  color: #ffffff;
+}
+
+.order-list-edit-btn:hover {
+  background: linear-gradient(135deg, #1e88e5, #1565c0);
+  transform: translateY(-2px);
+}
+
+.order-list-delete-btn {
+  background: linear-gradient(135deg, #ef5350, #e53935);
+  color: #ffffff;
+}
+
+.order-list-delete-btn:hover {
+  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  transform: translateY(-2px);
+}
+
+.order-item-description {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #283593;
+  background-color: #e8eaf6;
+  border-left: 4px solid #1e88e5;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  margin-top: 10px;
+  white-space: pre-wrap; /* сохраняет пробелы и переносы строк */
+  word-wrap: break-word; /* переносит слова, если они слишком длинные */
+  overflow-wrap: break-word; /* тоже помогает переносить длинные слова */
+  overflow: hidden; /* предотвращает выход содержимого за границы */
+  max-width: 100%; /* ограничивает ширину текста внутри контейнера */
+}

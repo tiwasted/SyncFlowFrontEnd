@@ -42,7 +42,7 @@ const Schedule = () => {
 
   return (
     <div className="schedule-container">
-      <h1 className=''>Расписание на день</h1>
+      <h1 className='schedule-title'>Расписание на день</h1>
       <div className="schedule-content">
         <div className="order-list-container">
           <OrderListForSchedule orders={orders} setOrders={setOrders} />

@@ -1,62 +1,110 @@
-/* Общий контейнер для списка */
-.employeeList {
-    max-width: 800px;
-    margin: 0 auto;
+.employee-list-container {
     padding: 20px;
-    font-family: sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
 }
 
-/* Заголовок списка */
-h1 {
-    text-align: center;
+.employee-list-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #424242;
     margin-bottom: 20px;
 }
 
-/* Список сотрудников */
-.employeeList ul {
-    list-style: none;
-    padding: 10px;
+.employee-grid-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+    background: linear-gradient(135deg, #5c6bc0, #1e88e5);
+    color: #ffffff;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-/* Каждый элемент списка (сотрудник) */
-.employee-list {
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-}
-
-.content-item {
-    background-color: #fbfbfb; /* Светлый фон для карточки */
-    border: 1px solid #ddd; /* Тонкая граница */
-    border-radius: 8px; /* Скругленные углы */
-    padding: 20px; /* Внутренние отступы */
-    margin-bottom: 20px; /* Отступ между карточками */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень для объема */
-    font-family: Arial, sans-serif; /* Удобочитаемый шрифт */
-    color: #333; /* Темный цвет текста */
-}
-
-.content-item p {
-    font-size: 1.2em; /* Увеличенный размер текста */
-    margin: 5px 0; /* Отступы между строками */
+.employee-grid-header-item {
+    font-size: 16px;
 }
 
 .employee-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-    text-align: center;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+    padding: 12px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-items: center;
 }
 
-.employee-grid-header {
-    font-weight: bold;
+.employee-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+    align-items: center;
 }
 
-.employee-first-last-name {
+.employee-name {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    text-align: left;
 }
 
-.employee-first-last-name-text{
-    margin-right: 5px;
+.employee-last-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.employee-first-name {
+    color: #757575;
+    font-size: 16px;
+}
+
+.employee-phone {
+    font-size: 16px;
+    color: #424242;
+}
+
+.employee-actions {
+    /* display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end; */
+}
+
+.employee-edit-btn, .employee-delete-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.employee-edit-btn {
+    background: linear-gradient(135deg, #42a5f5, #1e88e5);
+    color: #ffffff;
+    margin-right: 20px;
+}
+
+.employee-edit-btn:hover {
+    background: linear-gradient(135deg, #1e88e5, #1565c0);
+    transform: translateY(-2px);
+}
+
+.employee-delete-btn {
+    background: linear-gradient(135deg, #ef5350, #e53935);
+    color: #ffffff;
+}
+
+.employee-delete-btn:hover {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    transform: translateY(-2px);
 }

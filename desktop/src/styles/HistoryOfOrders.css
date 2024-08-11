@@ -1,44 +1,22 @@
-.order-history__item-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-/* Новые или обновленные стили */
-.order-history__item-body {
-  margin-top: 10px;
-}
-
-/* Пример стилей для разных статусов */
-.order-history__item-status--new {
-  background-color: #87CEFA; /* Голубой для новых заказов */
-}
-
-.order-history__item-status--in-progress {
-  background-color: #FFFF00; /* Желтый для заказов в процессе */
-}
-
-.order-history__item-status--completed {
-  background-color: #90EE90; /* Зеленый для завершенных заказов */
-}
-
-/* Основной стиль для контейнера истории заказов */
 .order-history {
   padding: 20px;
+  background: linear-gradient(135deg, #e0f7fa, #f1f8e9); /* Используем фон, как в других частях интерфейса */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
 }
 
 .order-history__title {
   font-size: 24px;
   font-weight: bold;
+  color: #424242; /* Цвет заголовка, как в других частях интерфейса */
   margin-bottom: 20px;
 }
 
 .order-history__loading,
 .order-history__error {
   font-size: 18px;
-  color: #d9534f; /* Красный для ошибок */
+  color: #d9534f; /* Цвет ошибки, как и в других частях интерфейса */
 }
 
 .order-history__list {
@@ -47,28 +25,55 @@
 }
 
 .order-history__item {
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: 1px solid #dddddd; /* Тонкая граница для элементов списка */
+  border-radius: 8px; /* Скругленные углы для соответствия */
   margin-bottom: 15px;
   padding: 15px;
-  background-color: #f9f9f9;
+  background-color: #ffffff; /* Белый фон, как в других частях интерфейса */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Легкая тень для выделения */
 }
 
-.order-history__item-title {
-  font-size: 20px;
+.order-history__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
   font-weight: bold;
+  color: #424242; /* Цвет текста, как в других частях интерфейса */
+}
+
+.order-history__item-body {
+  margin-top: 10px;
+  color: #424242; /* Цвет текста, как в других частях интерфейса */
+}
+
+.order-history__item-status--new {
+  background: linear-gradient(135deg, #87CEFA, #00BFFF); /* Используем градиентный фон, как в других частях интерфейса */
+  color: #ffffff;
+}
+
+.order-history__item-status--in-progress {
+  background: linear-gradient(135deg, #FFFF00, #F9A825); /* Градиентный фон для статуса "в процессе" */
+  color: #333;
+}
+
+.order-history__item-status--completed {
+  background: linear-gradient(135deg, #90EE90, #66BB6A); /* Градиентный фон для завершенных заказов */
+  color: #ffffff;
 }
 
 .order-history__item-status {
   display: inline-block;
   padding: 5px 10px;
-  border-radius: 3px;
+  border-radius: 8px;
   background-color: #e7e7e7;
-  color: #333;
+  color: #424242; /* Цвет текста, как в других частях интерфейса */
 }
 
 .order-history__item-body p {
   margin: 5px 0;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .order-history__pagination {
@@ -77,27 +82,29 @@
 }
 
 .order-history__pagination button {
-  background-color: #5bc0de; /* Цвет кнопок */
+  background: linear-gradient(135deg, #42a5f5, #1e88e5); /* Градиентный фон кнопок */
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   color: white;
   font-size: 16px;
   padding: 10px 20px;
   margin: 0 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .order-history__pagination button:disabled {
-  background-color: #aaa; /* Цвет для неактивных кнопок */
+  background: linear-gradient(135deg, #b0bec5, #90a4ae); /* Цвет кнопок в состоянии отключения */
   cursor: not-allowed;
 }
 
 .order-history__pagination button:hover:not(:disabled) {
-  background-color: #31b0d5; /* Цвет кнопки при наведении */
+  background: linear-gradient(135deg, #1e88e5, #1565c0); /* Более темный синий при наведении */
+  transform: translateY(-2px);
 }
 
 .order-history__pagination span {
   font-size: 18px;
+  color: #424242; /* Цвет текста, как в других частях интерфейса */
   margin: 0 10px;
 }

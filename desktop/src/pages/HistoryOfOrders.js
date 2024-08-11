@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+// import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import api from '../services/tokenService';
 import OrderFilterForm from '../components/OrderFilter';
 
@@ -8,11 +9,11 @@ const STATUS_TRANSLATION = {
     cancelled: 'Отменен',
 };
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 10;
 
 const HistoryOfOrders = () => {
     const { orderType } = useParams();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
     const [filters, setFilters] = useState({});
     const [loading, setLoading] = useState(false);
@@ -59,9 +60,9 @@ const HistoryOfOrders = () => {
         });
     };
 
-    const handleOrderClick = (orderId) => {
-        navigate(`/order/${orderId}`);
-    };
+    // const handleOrderClick = (orderId) => {
+    //     navigate(`/order/${orderId}`);
+    // };
 
     return (
         <div className="order-history">
@@ -76,7 +77,7 @@ const HistoryOfOrders = () => {
                     <li 
                         key={order.id} 
                         className="order-history__item"
-                        onClick={() => handleOrderClick(order.id)}
+                        // onClick={() => handleOrderClick(order.id)}
                     >
                         <div className="order-history__item-header">
                             <h2 className="order-history__item-title">Наименование: {order.order_name}</h2>

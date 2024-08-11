@@ -22,35 +22,37 @@ const EmployeeList = ({ employees, onEdit, onDelete }) => {
     };
 
     return (
-        <div className="">
-            <h1>Список сотрудников</h1>
-            <div className="employee-grid employee-grid-header">
-                <div>Фамилия Имя</div>
-                <div>Телефон</div>
-            </div>
-            {employees.map(employee => (
-                <div className="employee-grid" key={employee.id}>
-                    <div className="employee-first-last-name"> 
-                        <div className="employee-first-last-name-text">{employee.last_name}</div>
-                        <div>{employee.first_name}</div>
-                    </div>
-                    <div>{employee.phone}</div>
-                    <div>
-                        <div key={employee.id}>
-                            <button className='general-btns' onClick={() => onEdit(employee.id)}>Редактировать</button>
-                            <button className='general-btns delete-btn' onClick={() => handleDeleteClick(employee.id)}>Удалить</button>
-                        </div>
-                    </div>
+        <div className="employee-list-container">
+    <h1 className="employee-list-title">Список сотрудников</h1>
+    <div className="employee-grid-header">
+        <div className="employee-grid-header-item">Фамилия Имя</div>
+        <div className="employee-grid-header-item">Телефон</div>
+        <div className="employee-grid-header-item">Действия</div>
+    </div>
+    {employees.map(employee => (
+        <div className="employee-grid" key={employee.id}>
+            {/* <div className="employee-info"> */}
+                <div className="employee-name">
+                    <div className="employee-last-name">{employee.last_name}</div>
+                    <div className="employee-first-name">{employee.first_name}</div>
                 </div>
-            ))}
-            <ModalForDelete
-                show={showModal}
-                onClose={closeModal}
-                onConfirm={handleDelete}
-            >
-                Вы точно хотите удалить этого сотрудника?
-            </ModalForDelete>
+                <div className="employee-phone">{employee.phone}</div>
+                <div className="employee-actions">
+                    <button className="employee-edit-btn" onClick={() => onEdit(employee.id)}>Редактировать</button>
+                    <button className="employee-delete-btn" onClick={() => handleDeleteClick(employee.id)}>Удалить</button>
+                </div>
+            {/* </div> */}
         </div>
+    ))}
+    <ModalForDelete
+        show={showModal}
+        onClose={closeModal}
+        onConfirm={handleDelete}
+    >
+        Вы точно хотите удалить этого сотрудника?
+    </ModalForDelete>
+</div>
+
     );
 };
 

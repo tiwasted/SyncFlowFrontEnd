@@ -16,6 +16,7 @@ const ReportForm = ({ isOpen, onRequestClose, task, onSubmit }) => {
         await onSubmit(task, content);
         setContent('');
         onRequestClose();
+        window.location.reload();
     };
 
     return (
@@ -102,6 +103,7 @@ const Task = ({ task, onUpdate }) => {
         <div className="task">
             <ul className='task-list'>
                     <p><strong>Тип заказа:</strong> {task.order_type}</p>
+                    <p><strong>Наименование заказа:</strong>{task.order_name}</p>
                     {/* <p><strong>Компания:</strong> {task.company_name}</p> */}
                     <p><strong>Дата:</strong> {task.order_date}</p>
                     <p><strong>Время:</strong> {task.order_time}</p>
