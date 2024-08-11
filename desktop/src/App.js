@@ -24,7 +24,6 @@ import './styles/AppLayout.css';
 
 import './styles/CommonStyles/ButtonStyles.css';
 
-import './styles/Sidebar.css';
 import './styles/HistoryOfOrders.css';
 import './styles/Schedule.css';
 import './styles/Calendar.css';

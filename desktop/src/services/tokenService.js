@@ -1,9 +1,11 @@
 import axios from 'axios';
-// import jwtDecode from 'jwt-decode';
+
+// Определите базовый URL из переменной окружения
+const apiUrl = process.env.REACT_APP_API_URL;
 
 // Создаем экземпляр axios
 const axiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: apiUrl,  // Используем переменную окружения
   headers: {
     'Content-Type': 'application/json'
   }
@@ -12,7 +14,7 @@ const axiosInstance = axios.create({
 // Функция для обновления токена
 const refreshToken = async () => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/users/api/token/refresh/', {
+    const response = await axios.post(`${apiUrl}/users/api/token/refresh/`, {  // Используем переменную окружения
       refresh: localStorage.getItem('refreshToken')
     });
     const newToken = response.data.access;

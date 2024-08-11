@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useSidebarVisibility } from '../functions/SidebarContext';
 import styles from '../styles/Login.module.css';
+import api from '../services/tokenService'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Login = () => {
         return;
       }
 
-      const response = await axios.post('http://127.0.0.1:8000/users/auth/login/', {
+      const response = await api.post('/users/auth/login/', {
         phone: username,
         password: password
       });
@@ -41,6 +41,7 @@ const Login = () => {
         localStorage.setItem('refresh_token', refreshToken);
         login(accessToken);
         navigate('/dashboard');
+        window.location.reload();
       }
     } catch (error) {
       if (error.response && error.response.data) {
