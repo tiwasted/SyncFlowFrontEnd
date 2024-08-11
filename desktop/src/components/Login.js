@@ -28,7 +28,7 @@ const Login = () => {
         return;
       }
 
-      const response = await axios.post('http://85.202.195.116/api/users/auth/login/', {
+      const response = await axios.post('http://localhost:8000/users/auth/login/', {
         phone: username,
         password: password
       });

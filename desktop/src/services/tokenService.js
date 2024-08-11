@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Создаем экземпляр axios
 const axiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'http://localhost:8000',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
 // Функция для обновления токена
 const refreshToken = async () => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/users/api/token/refresh/', {
+    const response = await axios.post('http://localhost:8000/users/api/token/refresh/', {
       refresh: localStorage.getItem('refreshToken')
     });
     const newToken = response.data.access;
