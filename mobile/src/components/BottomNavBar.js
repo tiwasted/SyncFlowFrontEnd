@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { UserOutlined, CalendarOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
 import '../styles/BottomNavBar.css';
@@ -10,16 +11,16 @@ const Navbar = () => {
     <Footer className="bottom-nav">
       <ul className="nav-list">
         <li className="nav-item">
-          <a href="/schedule" className="nav-link">
+        <Link to="/schedule" className="nav-link">
             <CalendarOutlined style={{ fontSize: 30, color: '#4285f4' }} />
             <span>Расписание</span>
-          </a>
+        </Link>
         </li>
         <li className="nav-item">
-          <a href="/profile" className="nav-link">
+        <Link to="/profile" className="nav-link">
             <UserOutlined style={{ fontSize: 30, color: '#4285f4' }} />
             <span>Профиль</span>
-          </a>
+        </Link>
         </li>
       </ul>
     </Footer>
