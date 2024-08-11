@@ -2,12 +2,12 @@
     display: flex; /* Для выравнивания элементов в одну строку */
     align-items: center; /* Выравнивание по центру по вертикали */
     gap: 10px; /* Расстояние между элементами */
-    margin-top: 20px; /* Отступ сверху */
+    /* margin-top: 20px;  */
     font-family: Arial, sans-serif; /* Удобочитаемый шрифт */
 }
 
 .assign-employee select {
-    padding: 10px; /* Внутренние отступы */
+    padding: 10px; 
     border: 1px solid #ddd; /* Тонкая граница */
     border-radius: 4px; /* Скругленные углы */
     font-size: 1.1em; /* Увеличенный размер текста */

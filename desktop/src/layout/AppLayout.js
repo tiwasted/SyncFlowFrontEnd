@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { UploadOutlined, AreaChartOutlined, UsergroupAddOutlined, CalendarOutlined, HistoryOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
 const AppLayout = ({ children }) => {
-    // const [collapsed, setCollapsed] = useState(false);
     const [collapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -21,90 +20,80 @@ const AppLayout = ({ children }) => {
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
-        <Sider trigger={null} collapsible collapsed={collapsed}>
-            <div className="logo" />
-            <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={['location.pathname']}
-            items={[
-                {
-                key: '1',
-                icon: <AreaChartOutlined />,
-                label: <Link to="/dashboard">Dashboard</Link>,
-                },
-                {
-                key: '2',
-                icon: <CalendarOutlined />,
-                label: <Link to="/schedule">Расписание</Link>,
-                },
-                {
-                key: '3',
-                icon: <HistoryOutlined />,
-                label: <Link to="/history-of-orders">История заказов</Link>,
-                },
-                {
-                key: '4',
-                icon: <UploadOutlined />,
-                label: <Link to="/b2b-clients">B2B</Link>,
-                },
-                {
-                key: '5',
-                icon: <UsergroupAddOutlined />,
-                label: <Link to="/employees">Сотрудники</Link>,
-                },
-                {
-                key: '6',
-                icon: <SettingOutlined />,
-                label: <Link to="/settings">Настройки</Link>,
-                },
-            ]}
-            />
-        </Sider>
-        <Layout>
-            <Header
-            style={{
-                padding: 0,
-                background: colorBgContainer,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-            }}
-            >
-                {/* <Button
-                    type="text"
-                    icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                    onClick={() => setCollapsed(!collapsed)}
+            <Sider trigger={null} collapsible collapsed={collapsed}>
+                <div className="logo" />
+                <Menu
+                    theme="dark"
+                    mode="inline"
+                    defaultSelectedKeys={[window.location.pathname]} // Устанавливаем активный пункт меню на основе текущего пути
+                    items={[
+                        {
+                            key: '/dashboard',
+                            icon: <AreaChartOutlined />,
+                            label: <a href="/dashboard">Dashboard</a>,
+                        },
+                        {
+                            key: '/schedule',
+                            icon: <CalendarOutlined />,
+                            label: <a href="/schedule">Расписание</a>,
+                        },
+                        {
+                            key: '/history-of-orders',
+                            icon: <HistoryOutlined />,
+                            label: <a href="/history-of-orders">История заказов</a>,
+                        },
+                        {
+                            key: '/b2b-clients',
+                            icon: <UploadOutlined />,
+                            label: <a href="/b2b-clients">B2B</a>,
+                        },
+                        {
+                            key: '/employees',
+                            icon: <UsergroupAddOutlined />,
+                            label: <a href="/employees">Сотрудники</a>,
+                        },
+                        {
+                            key: '/settings',
+                            icon: <SettingOutlined />,
+                            label: <a href="/settings">Настройки</a>,
+                        },
+                    ]}
+                />
+            </Sider>
+            <Layout>
+                <Header
                     style={{
-                    fontSize: '16px',
-                    width: 64,
-                    height: 64,
+                        padding: 0,
+                        background: colorBgContainer,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
                     }}
-                /> */}
-                <div className="header-title">StaffHub</div>
-                <Button
-                            type="primary"
-                            icon={<LogoutOutlined />}
-                            onClick={handleLogout}
-                            style={{
-                                marginRight: '16px',
-                            }}
-                        >
-                            Выйти
-                </Button>
-            </Header>
-            <Content
-            style={{
-                margin: '24px 16px',
-                padding: 24,
-                minHeight: 280,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-            }}
-            >
-            {children}
-            </Content>
-        </Layout>
+                >
+                    <div className="header-title">StaffHub</div>
+                    <Button
+                        type="primary"
+                        icon={<LogoutOutlined />}
+                        onClick={handleLogout}
+                        style={{
+                            marginRight: '16px',
+                        }}
+                    >
+                        Выйти
+                    </Button>
+                </Header>
+                <Content
+                    style={{
+                        margin: '24px 16px',
+                        padding: 24,
+                        minHeight: 280,
+                        background: colorBgContainer,
+                        borderRadius: borderRadiusLG,
+                    }}
+                >
+                    {children}
+                </Content>
+            </Layout>
         </Layout>
     );
 };

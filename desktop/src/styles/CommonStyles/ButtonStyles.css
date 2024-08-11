@@ -32,12 +32,11 @@
   display: flex;                   /* Используем Flexbox для кнопок */
   justify-content: space-between;  /* Распределяем кнопки по краям */
   align-items: center;             /* Выравниваем кнопки по вертикали */
-  margin-top: 20px;                /* Отступ сверху */
   max-width: 518px;
 }
 
 .general-btns {
-  padding: 10px 20px;              /* Внутренние отступы кнопок */
+  padding: 10px 20px;              
   font-size: 16px;                 /* Размер шрифта кнопок */
   font-weight: bold;               /* Толщина шрифта */
   color: #fff;                     /* Цвет текста кнопок */

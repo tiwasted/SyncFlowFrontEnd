@@ -23,7 +23,7 @@ const AssignEmployee = ({ orderId }) => {
     const handleAssign = async () => {
         try {
             const response = await api.post(
-                `http://localhost:8000/orders/b2c-orders/${orderId}/assign_employee/`,
+                `/orders/b2c-orders/${orderId}/assign_employee/`,
                 { employee_id: employeeId },
             );
 

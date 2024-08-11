@@ -67,7 +67,6 @@ const EditOrder = () => {
     <div className='add-order-container'>
       <h2 className='add-h2'>Редактировать заказ</h2>
       <form onSubmit={handleSubmit}>
-        {/* Поля формы */}
         <div className='add-form-group'>
           <label className='add-label'>Наименование заказа:</label>
           <input
@@ -141,18 +140,20 @@ const EditOrder = () => {
           />
         </div>
         <div className='add-form-group'>
-          <label className='add-label'>Статус:</label>
-          <select
+          {/* <label className='add-label'>Статус:</label> */}
+          <div
             name="status"
             value={order.status}
             onChange={handleInputChange}
           >
-            <option value="in_processing">In Processing</option>
-            {/* Добавьте другие опции, если нужно */}
-          </select>
+            {/* <option value="in_processing">In Processing</option> */}
+          </div>
         </div>
-        <button type="submit" className='general-btns'>Сохранить изменения</button>
-        <button type="button" onClick={() => navigate(-1)}>Назад</button>
+        <div className='form-btns'>
+          <button type="submit" className='general-btns'>Сохранить изменения</button>
+          <button type="button" className='back-btn' onClick={() => navigate(-1)}>Назад</button>
+        </div>
+        
       </form>
     </div>
   );
