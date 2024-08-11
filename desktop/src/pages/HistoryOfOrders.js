@@ -8,7 +8,7 @@ const STATUS_TRANSLATION = {
     cancelled: 'Отменен',
 };
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 6;
 
 const HistoryOfOrders = () => {
     const { orderType } = useParams();
