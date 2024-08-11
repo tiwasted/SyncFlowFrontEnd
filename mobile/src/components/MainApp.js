@@ -11,7 +11,7 @@ import "../styles/App.css";
 const MainApp = () => {
     const { isAuthenticated, isLoading } = useAuth();
     const location = useLocation();
-    const isLoginPage = location.pathname === '/login';
+    const isLoginPage = location.pathname === '/mweb/login';
 
     if (isLoading) {
     return <div>Loading...</div>;
