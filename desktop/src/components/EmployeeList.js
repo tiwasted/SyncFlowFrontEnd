@@ -1,39 +1,32 @@
-// import React from "react";
-
-// const EmployeeList = ({ employees, onEdit, onDelete }) => {
-//     return (
-//         <div className="">
-//             <h1>Список сотрудников</h1>
-//             <ul>
-//                 {employees.map(employee => (
-//                 <div className="content-item" key={employee.id}>
-//                     <p>Имя: {employee.first_name}</p> <br />
-//                     <p>Фамилия: {employee.last_name}</p> <br />
-//                     <p>Телефон: {employee.phone}</p> <br />
-//                     <button className='general-btns' onClick={() => {
-//                     onEdit(employee.id)}}>Редактировать</button>
-//                     <button className='general-btns delete-btn' onClick={() => {
-//                     onDelete(employee.id)}}>Удалить</button>
-//                 </div>
-//                 ))}
-//             </ul>
-//         </div>
-//     );
-// };
-
-// export default EmployeeList;
-
-
-import React from "react";
+import React, {useState} from "react";
+import ModalForDelete from "./ModalForDelete";
 
 const EmployeeList = ({ employees, onEdit, onDelete }) => {
+    const [showModal, setShowModal] = useState(false);
+    const [employeeToDelete, setEmployeeToDelete] = useState(null);
+
+    const handleDelete = () => {
+        if (employeeToDelete === null) return;
+
+        onDelete(employeeToDelete); // Вызов функции удаления из родительского компонента
+        setShowModal(false); // Закрываем модальное окно после удаления
+    };
+
+    const handleDeleteClick = (id) => {
+        setEmployeeToDelete(id); // Сохраняем ID сотрудника, которого хотим удалить
+        setShowModal(true); // Открываем модальное окно
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
     return (
         <div className="">
             <h1>Список сотрудников</h1>
             <div className="employee-grid employee-grid-header">
                 <div>Фамилия Имя</div>
                 <div>Телефон</div>
-                {/* <div>Телефон</div> */}
             </div>
             {employees.map(employee => (
                 <div className="employee-grid" key={employee.id}>
@@ -45,19 +38,18 @@ const EmployeeList = ({ employees, onEdit, onDelete }) => {
                     <div>
                         <div key={employee.id}>
                             <button className='general-btns' onClick={() => onEdit(employee.id)}>Редактировать</button>
-                            <button className='general-btns delete-btn' onClick={() => onDelete(employee.id)}>Удалить</button>
+                            <button className='general-btns delete-btn' onClick={() => handleDeleteClick(employee.id)}>Удалить</button>
                         </div>
                     </div>
                 </div>
             ))}
-            {/* <div>
-                {employees.map(employee => (
-                    <div key={employee.id} style={{ marginTop: '10px' }}>
-                        <button className='general-btns' onClick={() => onEdit(employee.id)}>Редактировать</button>
-                        <button className='general-btns delete-btn' onClick={() => onDelete(employee.id)}>Удалить</button>
-                    </div>
-                ))}
-            </div> */}
+            <ModalForDelete
+                show={showModal}
+                onClose={closeModal}
+                onConfirm={handleDelete}
+            >
+                Вы точно хотите удалить этого сотрудника?
+            </ModalForDelete>
         </div>
     );
 };
