@@ -50,7 +50,7 @@ const OrderList = ({ orders, setOrders }) => {
   return (
     <div>
       {orders.map((order) => (
-        <div key={order.id} className="order-item">
+        <div key={order.id} className="order-item-schedule">
           <h4>{order.service_name}</h4>
           <p className='box-pic'><b>Наименование: </b> {order.order_name}</p>
           <p><b>Цена: </b> {order.price}</p>
@@ -63,8 +63,8 @@ const OrderList = ({ orders, setOrders }) => {
           <p><b>Статус: </b> {order.status === 'in waiting' ? 'В ожидании' : order.status}</p>
           <p><b>Сотрудник: </b> {order.assigned_employee_name ? `${order.assigned_employee_name}` : 'Не назначен'}</p>
           <p><b>Телефон сотрудника: </b> {order.assigned_employee_phone}</p>
-          <button className='general-btns' onClick={() => handleEditClick(order.id)}>Редактировать</button>
-          <button className='general-btns delete-btn' onClick={() => handleDeleteClick(order.id)}>Удалить</button>
+          <button className='order-list-schedule-edit-btn' onClick={() => handleEditClick(order.id)}>Редактировать</button>
+          <button className='order-list-schedule-delete-btn' onClick={() => handleDeleteClick(order.id)}>Удалить</button>
           <ReassignEmployee orderId={order.id} onEmployeeAssigned={handleEmployeeAssigned} />
         </div>
       ))}
