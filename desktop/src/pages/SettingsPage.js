@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../services/tokenService';
 
 const SettingsPage = () => {
   const [oldPassword, setOldPassword] = useState('');
@@ -26,17 +26,23 @@ const SettingsPage = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:8000/api/change-password/',
-        { old_password: oldPassword, new_password: newPassword },
+      await api.put(
+        '/employers/change-password/',
+        { old_password: oldPassword, 
+          new_password: newPassword,
+          confirm_password: confirmNewPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setMessage('Пароль успешно изменён!');
       setTimeout(() => {
         handleCloseModal();
-      }, 2000);
+      }, 1000);
     } catch (error) {
-      setMessage('Ошибка при изменении пароля');
+      if (error.response && error.response.data) {
+        setMessage(`Ошибка: ${error.response.data.detail || 'Неизвестная ошибка'}`)
+      } else {
+        setMessage('Ошибка при изменении пароля');
+      }
     }
   };
 

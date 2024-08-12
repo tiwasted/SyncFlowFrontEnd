@@ -1,11 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import ModalForDelete from "./ModalForDelete";
+import EmployeeEdit from "./EmployeeEdit";
+import axiosInstance from "../services/tokenService";
 
-const EmployeeList = ({ employees, onEdit, onDelete }) => {
+const EmployeeList = ({ employees, setEmployees, onDelete }) => {
     const [showModal, setShowModal] = useState(false);
     const [employeeToDelete, setEmployeeToDelete] = useState(null);
+    const [employeeToEdit, setEmployeeToEdit] = useState(null);
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         if (employeeToDelete === null) return;
 
         onDelete(employeeToDelete); // Вызов функции удаления из родительского компонента
@@ -13,46 +16,73 @@ const EmployeeList = ({ employees, onEdit, onDelete }) => {
     };
 
     const handleDeleteClick = (id) => {
-        setEmployeeToDelete(id); // Сохраняем ID сотрудника, которого хотим удалить
-        setShowModal(true); // Открываем модальное окно
+        setEmployeeToDelete(id);
+        setShowModal(true);
     };
 
-    const closeModal = () => {
-        setShowModal(false);
+    const handleEditClick = (employee) => {
+        setEmployeeToEdit(employee);
+    };
+
+    const handleCancelEdit = () => {
+        setEmployeeToEdit(null);
+    };
+
+    const handleSaveEdit = async (updatedEmployee) => {
+        try {
+            const response = await axiosInstance.put(`/employees/edit/${updatedEmployee.id}/`, updatedEmployee);
+            setEmployees(
+                employees.map(emp => (emp.id === updatedEmployee.id ? response.data : emp))
+            );
+            setEmployeeToEdit(null);
+        } catch (error) {
+            console.error("Ошибка при сохранении данных сотрудника:", error);
+        }
     };
 
     return (
         <div className="employee-list-container">
-    <h1 className="employee-list-title">Список сотрудников</h1>
-    <div className="employee-grid-header">
-        <div className="employee-grid-header-item">Фамилия Имя</div>
-        <div className="employee-grid-header-item">Телефон</div>
-        <div className="employee-grid-header-item">Действия</div>
-    </div>
-    {employees.map(employee => (
-        <div className="employee-grid" key={employee.id}>
-            {/* <div className="employee-info"> */}
-                <div className="employee-name">
-                    <div className="employee-last-name">{employee.last_name}</div>
-                    <div className="employee-first-name">{employee.first_name}</div>
-                </div>
-                <div className="employee-phone">{employee.phone}</div>
-                <div className="employee-actions">
-                    <button className="employee-edit-btn" onClick={() => onEdit(employee.id)}>Редактировать</button>
-                    <button className="employee-delete-btn" onClick={() => handleDeleteClick(employee.id)}>Удалить</button>
-                </div>
-            {/* </div> */}
+            {employeeToEdit ? (
+                <EmployeeEdit
+                    employee={employeeToEdit}
+                    onSave={handleSaveEdit}
+                    onCancel={handleCancelEdit}
+                />
+            ) : (
+                <>
+                    <h1 className="employee-list-title">Список сотрудников</h1>
+                    <div className="employee-grid-header">
+                        <div className="employee-grid-header-item">Фамилия Имя</div>
+                        <div className="employee-grid-header-item">Телефон</div>
+                        <div className="employee-grid-header-item">Действия</div>
+                    </div>
+                    {employees.map((employee) => (
+                        <div className="employee-grid" key={employee.id}>
+                            <div className="employee-name">
+                                <div className="employee-last-name">{employee.last_name}</div>
+                                <div className="employee-first-name">{employee.first_name}</div>
+                            </div>
+                            <div className="employee-phone">{employee.phone}</div>
+                            <div className="employee-actions">
+                                <button className="employee-edit-btn" onClick={() => handleEditClick(employee)}>
+                                    Редактировать
+                                </button>
+                                <button className="employee-delete-btn" onClick={() => handleDeleteClick(employee.id)}>
+                                    Удалить
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                    <ModalForDelete
+                        show={showModal}
+                        onClose={() => setShowModal(false)}
+                        onConfirm={handleDelete}
+                    >
+                        Вы точно хотите удалить этого сотрудника?
+                    </ModalForDelete>
+                </>
+            )}
         </div>
-    ))}
-    <ModalForDelete
-        show={showModal}
-        onClose={closeModal}
-        onConfirm={handleDelete}
-    >
-        Вы точно хотите удалить этого сотрудника?
-    </ModalForDelete>
-</div>
-
     );
 };
 
