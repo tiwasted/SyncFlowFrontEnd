@@ -123,7 +123,7 @@ const Task = ({ task, onUpdate }) => {
                 <p><strong>Телефон клиента:</strong> {task.phone_number_client}</p>
                 <p><strong>Имя клиента:</strong> {task.name_client}</p>
                 <p><strong>Цена:</strong> {task.price}</p>
-                <p><strong>Описание:</strong> {task.description}</p>
+                <p><b>Описание:</b> {task.description}</p>
                 <p><strong>Статус:</strong> {task.status}</p>
                 <div className='task-buttons'>
                     {task.status !== 'completed' && task.status !== 'canceled' && (
