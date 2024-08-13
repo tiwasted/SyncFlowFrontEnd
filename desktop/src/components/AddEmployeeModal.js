@@ -6,23 +6,35 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [error, setError] = useState('');
 
   const addEmployee = async () => {
+    if (!firstName || !lastName || !password || !phoneNumber) {
+      setError('Пожалуйста, заполните все поля.');
+      return;
+    }
+
+    const newEmployee = {
+      first_name: firstName,
+      last_name: lastName,
+      password: password,
+      phone: phoneNumber
+    };
+
     try {
-      const response = await api.post('/employees/create/', {
-        first_name: firstName,
-        last_name: lastName,
-        password: password,
-        phone: phoneNumber
-      }, {
+      console.log("Sending data:", newEmployee); // Отладка
+      const response = await api.post('/employees/create/', newEmployee, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
         }
       });
       onEmployeeAdded(response.data);
       onClose();
     } catch (error) {
-      console.error('Error adding employee', error);
+      const errorMessage = error.response?.data?.detail || 'Ошибка при добавлении сотрудника';
+      setError(errorMessage);
+      console.error('Error adding employee', error.response ? error.response.data : error.message);
     }
   };
 
@@ -35,6 +47,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
       <div className="modal-content">
         <span className="modal-close" onClick={onClose}>&times;</span>
         <h2 className="modal-title">Добавить сотрудника</h2>
+        {error && <div className="error-message">{error}</div>}
         <div className="form-group">
           <input
             type="text"
