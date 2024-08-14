@@ -18,6 +18,9 @@ const HistoryOfOrders = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [nextPage, setNextPage] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
+    const [imageUrl, setImageUrl] = useState('');
+
+    const BASE_URL = "http://localhost:8000"; 
 
     const fetchOrders = useCallback(async (url = null, filters = {}) => {
         setLoading(true);
@@ -57,18 +60,21 @@ const HistoryOfOrders = () => {
 
     const handlePageChange = (direction) => {
         if (direction === 'next' && nextPage) {
-            fetchOrders(nextPage, filters);  // Делаем запрос на следующий URL
+            fetchOrders(nextPage, filters); 
         } else if (direction === 'prev' && prevPage) {
-            fetchOrders(prevPage, filters);  // Делаем запрос на предыдущий URL
+            fetchOrders(prevPage, filters);  
         }
     };
 
-    const handleImageClick = (orderId) => {
-        const imageUrl = `/b2c/orders/${orderId}/image/`; // Замените на актуальный эндпоинт для получения изображения
-        window.open(imageUrl, '_blank');
+    const handleImageClick = async (orderId) => {
+        try {
+            const response = await api.get(`/b2c/orders/${orderId}/image/`);
+            const imageUrl = response.data.image_url;
+            setImageUrl(`${BASE_URL}${imageUrl}`);
+        } catch (err) {
+            console.error('Ошибка загрузки изображения:', err);
+        }
     };
-
-    // b2c/orders/${orderId}/image/
 
     return (
         <div className="order-history">
@@ -103,7 +109,7 @@ const HistoryOfOrders = () => {
                             )}
                             <p>Отчет: {order.report || 'Нет отчета'}</p>
                             <p>Цена: {order.price}</p>
-                            {/* Новая кнопка для открытия изображения */}
+       
                             <button
                                 onClick={() => handleImageClick(order.id)}
                                 className="order-history__image-button"
@@ -114,6 +120,12 @@ const HistoryOfOrders = () => {
                     </li>
                 ))}
             </ul>
+
+            {imageUrl && (
+                <div className="order-history__image">
+                    <img src={imageUrl} alt="Order" />
+                </div>
+            )}
             <div className="order-history__pagination">
                 <button 
                     onClick={() => handlePageChange('prev')} 
