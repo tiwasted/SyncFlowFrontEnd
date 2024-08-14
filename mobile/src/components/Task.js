@@ -82,7 +82,7 @@ const Task = ({ task, onUpdate }) => {
         setContent('');
         setPhotos([]);
         setIsReportModalOpen(false);
-        window.location.reload();
+        // window.location.reload();
     };
 
     return (

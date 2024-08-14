@@ -8,14 +8,12 @@ const STATUS_TRANSLATION = {
     cancelled: 'Отменен',
 };
 
-const PAGE_SIZE = 10;
-
 const HistoryOfOrders = () => {
     const { orderType } = useParams();
     const [orders, setOrders] = useState([]);
     const [filters, setFilters] = useState({});
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] =useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [nextPage, setNextPage] = useState(null);
@@ -29,13 +27,12 @@ const HistoryOfOrders = () => {
             const response = await api.get(finalUrl, {
                 params: !url ? {
                     ...filters,
-                    page_size: PAGE_SIZE,
                     page: currentPage
-                } : {},  // Если URL передан, параметры уже внутри ссылки
+                } : {},
             });
 
             setOrders(response.data.results);
-            setTotalPages(Math.ceil(response.data.count / PAGE_SIZE));
+            setTotalPages(Math.ceil(response.data.count / 10));
             setNextPage(response.data.next);
             setPrevPage(response.data.previous);
         } catch (err) {
@@ -53,7 +50,9 @@ const HistoryOfOrders = () => {
     };
 
     useEffect(() => {
-        fetchOrders();
+        if (Object.keys(filters).length > 0) {
+            fetchOrders();
+        }
     }, [currentPage, filters, fetchOrders]);
 
     const handlePageChange = (direction) => {
@@ -64,6 +63,13 @@ const HistoryOfOrders = () => {
         }
     };
 
+    const handleImageClick = (orderId) => {
+        const imageUrl = `/b2c/orders/${orderId}/image/`; // Замените на актуальный эндпоинт для получения изображения
+        window.open(imageUrl, '_blank');
+    };
+
+    // b2c/orders/${orderId}/image/
+
     return (
         <div className="order-history">
             <h1 className="order-history__title">
@@ -72,6 +78,7 @@ const HistoryOfOrders = () => {
             <OrderFilterForm onSubmit={handleFilterSubmit} />
             {loading && <p className="order-history__loading">Загрузка...</p>}
             {error && <p className="order-history__error">{error}</p>}
+            {orders.length === 0 && !loading && <p>Заказы не найдены</p>}
             <ul className="order-history__list">
                 {orders.map(order => (
                     <li key={order.id} className="order-history__item">
@@ -84,15 +91,25 @@ const HistoryOfOrders = () => {
                         <div className="order-history__item-body">
                             <p>Дата заказа: {order.order_date}</p>
                             <p>Время заказа: {order.order_time}</p>
-                            <p>Цена: {order.price}</p>
+                            <p>Имя клиента: {order.name_client}</p>
+                            <p>Номер клиента: {order.phone_number_client}</p>
                             <p>Адрес: {order.address}</p>
-                            <p>Отчет: {order.report || 'Нет отчета'}</p>
+                            <p>Описание заказа: {order.description}</p>
                             <p>Сотрудник: {order.assigned_employee_name || 'Не назначен'}</p>
                             {order.assigned_employee_name && (
                                 <div>
                                     <p>Телефон: {order.assigned_employee_phone}</p>
                                 </div>
                             )}
+                            <p>Отчет: {order.report || 'Нет отчета'}</p>
+                            <p>Цена: {order.price}</p>
+                            {/* Новая кнопка для открытия изображения */}
+                            <button
+                                onClick={() => handleImageClick(order.id)}
+                                className="order-history__image-button"
+                            >
+                                Показать изображение
+                            </button>
                         </div>
                     </li>
                 ))}
