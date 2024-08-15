@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from '../services/tokenService';
+import api from '../services/TokenService';
 
 const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   const [firstName, setFirstName] = useState('');
@@ -22,7 +22,6 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
     };
 
     try {
-      console.log("Sending data:", newEmployee); // Отладка
       const response = await api.post('/employees/create/', newEmployee, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from '../services/tokenService';
+import api from '../services/TokenService';
 
 const SettingsPage = () => {
   const [oldPassword, setOldPassword] = useState('');
@@ -28,7 +28,7 @@ const SettingsPage = () => {
       const token = localStorage.getItem('token');
       await api.put(
         '/employers/change-password/',
-        { old_password: oldPassword, 
+        { old_password: oldPassword,
           new_password: newPassword,
           confirm_password: confirmNewPassword },
         { headers: { Authorization: `Bearer ${token}` } }

@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { SidebarProvider } from './functions/SidebarContext';
-import { AuthProvider } from './context/AuthContext';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { AuthProvider } from './context/AuthProvider';
+import { SidebarProvider } from './functions/SidebarProvider';
+import { OrderProvider } from './components/OrderProvider';
 import ProtectedRoute from './context/ProtectedRoute';
 import AppLayout from './layout/AppLayout';
 
@@ -13,7 +14,7 @@ import HistoryOfOrders from './pages/HistoryOfOrders';
 import SettingsPage from './pages/SettingsPage';
 import OrderDetails from './components/OrderDetails'; // Импортируем компонент OrderDetails
 
-import { OrderProvider } from './components/OrderContext';
+
 import Login from './components/Login';
 import AddOrder from './components/AddOrder';
 import AddOrderB2B from './components/AddOrderB2B';
@@ -75,18 +76,16 @@ const AppContent = () => {
   );
 };
 
-function AppWrapper() {
+function App() {
   return (
     <AuthProvider>
       <SidebarProvider>
         <OrderProvider>
-          <Router>
-            <AppContent />
-          </Router>
+          <AppContent />
         </OrderProvider>
       </SidebarProvider>
     </AuthProvider>
   );
 }
 
-export default AppWrapper;
+export default App;

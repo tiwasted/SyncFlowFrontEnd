@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
-import { useSidebarVisibility } from '../functions/SidebarContext';
+import { useSidebarVisibility } from '../functions/SidebarProvider';
 import styles from '../styles/Login.module.css';
-import api from '../services/tokenService'
+import api, { isTokenExpired } from '../services/TokenService';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -37,11 +37,16 @@ const Login = () => {
       const refreshToken = response.data.refresh;
 
       if (accessToken && refreshToken) {
+        if (isTokenExpired(accessToken) || isTokenExpired(refreshToken)) {
+          setErrorMessage('Срок действия токена истек, пожалуйста, войдите снова.');
+          localStorage.clear();
+          navigate('/login');
+          return;
+        }
         localStorage.setItem('access_token', accessToken);
         localStorage.setItem('refresh_token', refreshToken);
         login(accessToken);
         navigate('/dashboard');
-        window.location.reload();
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -63,7 +68,9 @@ const Login = () => {
     <div className={styles.formContainer}>
       <form onSubmit={handleLogin} className={styles.formLogin}>
         <h2 className={styles.h2Login}>Добро пожаловать</h2>
-        <h6 className={styles.h6Login}>Войдите в систему, чтобы отслеживать заказы и пользоваться нашими услугами.</h6>
+        <h6 className={styles.h6Login}>
+          Войдите в систему, чтобы отслеживать заказы и пользоваться нашими услугами.
+        </h6>
         <input
           type="text"
           placeholder="Логин (номер телефона)"

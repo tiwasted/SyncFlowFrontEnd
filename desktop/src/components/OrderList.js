@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AssignEmployee from '../components/AssignEmployee';
-import api from '../services/tokenService';
-import { useOrders } from '../components/OrderContext';
+import api from '../services/TokenService';
+import { useOrders } from './OrderProvider';
 import TruncatedText from '../components/TruncatedText'; // Импортируем TruncatedText
 import ModalForDelete from '../components/ModalForDelete';
 
 const OrderList = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { orders, setOrders } = useOrders();
+  const { orders, setOrders, loading, error } = useOrders();
   const [showModal, setShowModal] = useState(false);
   const [orderToDelete, setOrderToDelete] = useState(null);
 
@@ -17,7 +17,7 @@ const OrderList = () => {
     try {
       await api.delete(`/orders/b2c-orders/${orderToDelete}/`);
       setOrders(prevOrders => prevOrders.filter(order => order.id !== orderToDelete));
-      setShowModal(false); // Закрываем модальное окно после удаления
+      setShowModal(false);
     } catch (error) {
       console.error("Ошибка при удалении заказа", error);
     }
@@ -32,8 +32,8 @@ const OrderList = () => {
   };
 
   const handleDeleteClick = (id) => {
-    setOrderToDelete(id); // Сохраняем ID заказа, который хотим удалить
-    setShowModal(true); // Открываем модальное окно
+    setOrderToDelete(id);
+    setShowModal(true);
   };
 
   const handleEditClick = (orderId) => {
@@ -43,6 +43,14 @@ const OrderList = () => {
   const closeModal = () => {
     setShowModal(false);
   };
+
+  if (loading) {
+    return <div>Loading orders...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   if (!orders || orders.length === 0) {
     return null;

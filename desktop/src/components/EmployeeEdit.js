@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axiosInstance from "../services/tokenService";
+import api from "../services/TokenService";
 
 const EmployeeEdit = ({ employee, onSave, onCancel }) => {
     const [firstName, setFirstName] = useState(employee.first_name);
@@ -16,7 +16,7 @@ const EmployeeEdit = ({ employee, onSave, onCancel }) => {
             };
 
             // Отправляем PUT-запрос на сервер для обновления данных сотрудника
-            const response = await axiosInstance.put(`/employees/edit/${employee.id}/`, updatedEmployee);
+            const response = await api.put(`/employees/edit/${employee.id}/`, updatedEmployee);
 
             // Вызываем функцию сохранения с обновленными данными
             onSave(response.data);

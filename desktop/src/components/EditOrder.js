@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { useOrders } from './OrderContext';
-import api from '../services/tokenService';
+import { useOrders } from './OrderProvider';
+import api from '../services/TokenService';
 
 const EditOrder = () => {
   const { id } = useParams();

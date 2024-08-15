@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useOrders } from '../components/OrderContext';
-import api from '../services/tokenService';
+import { useOrders } from './OrderProvider';
+import api from '../services/TokenService';
 
 const AssignEmployee = ({ orderId }) => {
     const [employeeId, setEmployeeId] = useState('');

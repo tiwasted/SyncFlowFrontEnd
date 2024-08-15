@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from '../components/Calendar';
 import OrderListForSchedule from '../components/OrderListForSchedule'; // Импортируйте новый компонент
-import api from '../services/tokenService';
+import api from '../services/TokenService';
 import jwtDecode from 'jwt-decode';
 
 const Schedule = () => {

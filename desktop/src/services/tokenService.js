@@ -1,36 +1,54 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
-// Определите базовый URL из переменной окружения
 const apiUrl = process.env.REACT_APP_API_URL;
 
-// Создаем экземпляр axios
-const axiosInstance = axios.create({
-  baseURL: apiUrl,  // Используем переменную окружения
+const TokenService = axios.create({
+  baseURL: apiUrl,
   headers: {
     'Content-Type': 'application/json'
   }
 });
 
-// Функция для обновления токена
+export const isTokenExpired = (token) => {
+  if (!token) return true;
+  const decodedToken = jwt_decode(token);
+  const currentTime = Date.now() / 1000;
+  return decodedToken.exp < currentTime;
+};
+
 const refreshToken = async () => {
+  const refreshToken = localStorage.getItem('refresh_token');
+  if (!refreshToken || isTokenExpired(refreshToken)) {
+    console.error('Рефреш токен отсутствует или истек.');
+    logout(); // Добавлено для выхода из системы
+    return null;
+  }
+
   try {
-    const response = await axios.post(`${apiUrl}/users/api/token/refresh/`, {  // Используем переменную окружения
-      refresh: localStorage.getItem('refreshToken')
+    const response = await axios.post(`${apiUrl}/users/api/token/refresh/`, {
+      refresh: refreshToken
     });
     const newToken = response.data.access;
-    localStorage.setItem('token', newToken);
+    localStorage.setItem('access_token', newToken);
     return newToken;
   } catch (error) {
-    console.error('Ошибка refresh токена:', error);
+    console.error('Ошибка при обновлении токена:', error);
+    logout(); // Добавлено для выхода из системы
     return null;
   }
 };
 
-// Интерцептор запросов
-axiosInstance.interceptors.request.use(
+const logout = () => {
+  localStorage.removeItem('access_token');
+  localStorage.removeItem('refresh_token');
+  window.location.href = '/login'; // Перенаправление на страницу логина
+};
+
+TokenService.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('access_token');
-    if (token) {
+    if (token && !isTokenExpired(token)) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
     return config;
@@ -38,8 +56,7 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Интерцептор ответов
-axiosInstance.interceptors.response.use(
+TokenService.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
@@ -47,13 +64,13 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
       const newToken = await refreshToken();
       if (newToken) {
-        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+        TokenService.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
         originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
-        return axiosInstance(originalRequest);
+        return TokenService(originalRequest);
       }
     }
     return Promise.reject(error);
   }
 );
 
-export default axiosInstance;
+export default TokenService;

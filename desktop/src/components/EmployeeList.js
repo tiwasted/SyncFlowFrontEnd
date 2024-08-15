@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModalForDelete from "./ModalForDelete";
 import EmployeeEdit from "./EmployeeEdit";
-import axiosInstance from "../services/tokenService";
+import TokenService from "../services/TokenService";
 
 const EmployeeList = ({ employees, setEmployees, onDelete }) => {
     const [showModal, setShowModal] = useState(false);
@@ -30,7 +30,7 @@ const EmployeeList = ({ employees, setEmployees, onDelete }) => {
 
     const handleSaveEdit = async (updatedEmployee) => {
         try {
-            const response = await axiosInstance.put(`/employees/edit/${updatedEmployee.id}/`, updatedEmployee);
+            const response = await TokenService.put(`/employees/edit/${updatedEmployee.id}/`, updatedEmployee);
             setEmployees(
                 employees.map(emp => (emp.id === updatedEmployee.id ? response.data : emp))
             );
