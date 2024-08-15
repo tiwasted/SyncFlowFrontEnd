@@ -3,7 +3,7 @@
   position: relative;
   padding: 20px;
   min-height: 100vh;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   background-color: #f7fafc; /* Светлый фон для улучшения читаемости */
 }
 
@@ -59,7 +59,7 @@
 }
 
 .order-list-container .box-pic::after {
-  content: '📦';
+  content: "📦";
   margin-left: 8px;
 }
 
@@ -105,7 +105,7 @@
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .order-list-container {
     width: 100%;
     margin-right: 0;

@@ -1,54 +1,59 @@
-import React, { useState } from 'react';
-import api from '../services/TokenService';
+import React, { useState } from "react";
+import api from "../services/TokenService";
 
 const SettingsPage = () => {
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmNewPassword, setConfirmNewPassword] = useState(''); // Добавлено состояние для подтверждения нового пароля
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState(""); // Добавлено состояние для подтверждения нового пароля
   const [showModal, setShowModal] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleOpenModal = () => {
     setShowModal(true);
-    setOldPassword('');
-    setNewPassword('');
-    setConfirmNewPassword(''); // Сброс состояния подтверждения пароля
-    setMessage('');
+    setOldPassword("");
+    setNewPassword("");
+    setConfirmNewPassword(""); // Сброс состояния подтверждения пароля
+    setMessage("");
   };
 
   const handleCloseModal = () => setShowModal(false);
 
   const handlePasswordChange = async () => {
-    if (newPassword !== confirmNewPassword) { // Проверка совпадения нового пароля и его подтверждения
-      setMessage('Новый пароль и его подтверждение не совпадают');
+    if (newPassword !== confirmNewPassword) {
+      // Проверка совпадения нового пароля и его подтверждения
+      setMessage("Новый пароль и его подтверждение не совпадают");
       return;
     }
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       await api.put(
-        '/employers/change-password/',
-        { old_password: oldPassword,
+        "/employers/change-password/",
+        {
+          old_password: oldPassword,
           new_password: newPassword,
-          confirm_password: confirmNewPassword },
+          confirm_password: confirmNewPassword,
+        },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setMessage('Пароль успешно изменён!');
+      setMessage("Пароль успешно изменён!");
       setTimeout(() => {
         handleCloseModal();
       }, 1000);
     } catch (error) {
       if (error.response && error.response.data) {
-        setMessage(`Ошибка: ${error.response.data.detail || 'Неизвестная ошибка'}`)
+        setMessage(
+          `Ошибка: ${error.response.data.detail || "Неизвестная ошибка"}`
+        );
       } else {
-        setMessage('Ошибка при изменении пароля');
+        setMessage("Ошибка при изменении пароля");
       }
     }
   };
 
   return (
     <div>
-      <h1 className='settings-title'>Настройки</h1>
+      <h1 className="settings-title">Настройки</h1>
       <button className="settings-change-pass-btn" onClick={handleOpenModal}>
         Изменить пароль
       </button>
@@ -57,9 +62,9 @@ const SettingsPage = () => {
         <div className="add-order-container">
           <div className="add-form-group">
             <div>
-              <h2 className='add-form-group'>Изменение пароля</h2>
+              <h2 className="add-form-group">Изменение пароля</h2>
             </div>
-            <div className=''>
+            <div className="">
               <input
                 type="password"
                 placeholder="Старый пароль"

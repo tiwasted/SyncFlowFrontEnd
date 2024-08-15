@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthProvider';
-import { useNavigate } from 'react-router-dom';
-import { useSidebarVisibility } from '../functions/SidebarProvider';
-import styles from '../styles/Login.module.css';
-import api, { isTokenExpired } from '../services/TokenService';
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { useSidebarVisibility } from "../functions/SidebarProvider";
+import styles from "../styles/Login.module.css";
+import api, { isTokenExpired } from "../services/TokenService";
 
 const Login = () => {
   const navigate = useNavigate();
   const { setIsVisible } = useSidebarVisibility();
   const { login } = useAuth();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     setIsVisible(false);
@@ -24,13 +24,13 @@ const Login = () => {
     event.preventDefault();
     try {
       if (!/^\+?[0-9]{10,14}$/.test(username)) {
-        setErrorMessage('Неверный формат номера телефона');
+        setErrorMessage("Неверный формат номера телефона");
         return;
       }
 
-      const response = await api.post('/users/auth/login/', {
+      const response = await api.post("/users/auth/login/", {
         phone: username,
-        password: password
+        password: password,
       });
 
       const accessToken = response.data.access;
@@ -38,15 +38,17 @@ const Login = () => {
 
       if (accessToken && refreshToken) {
         if (isTokenExpired(accessToken) || isTokenExpired(refreshToken)) {
-          setErrorMessage('Срок действия токена истек, пожалуйста, войдите снова.');
+          setErrorMessage(
+            "Срок действия токена истек, пожалуйста, войдите снова."
+          );
           localStorage.clear();
-          navigate('/login');
+          navigate("/login");
           return;
         }
-        localStorage.setItem('access_token', accessToken);
-        localStorage.setItem('refresh_token', refreshToken);
+        localStorage.setItem("access_token", accessToken);
+        localStorage.setItem("refresh_token", refreshToken);
         login(accessToken);
-        navigate('/dashboard');
+        navigate("/dashboard");
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -56,10 +58,10 @@ const Login = () => {
         } else if (password && password.length > 0) {
           setErrorMessage(password[0]);
         } else {
-          setErrorMessage('Неверный логин или пароль');
+          setErrorMessage("Неверный логин или пароль");
         }
       } else {
-        setErrorMessage('Произошла ошибка во время аутентификации');
+        setErrorMessage("Произошла ошибка во время аутентификации");
       }
     }
   };
@@ -69,7 +71,8 @@ const Login = () => {
       <form onSubmit={handleLogin} className={styles.formLogin}>
         <h2 className={styles.h2Login}>Добро пожаловать</h2>
         <h6 className={styles.h6Login}>
-          Войдите в систему, чтобы отслеживать заказы и пользоваться нашими услугами.
+          Войдите в систему, чтобы отслеживать заказы и пользоваться нашими
+          услугами.
         </h6>
         <input
           type="text"
@@ -88,7 +91,9 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" className={styles.buttonLogin}>Войти</button>
+        <button type="submit" className={styles.buttonLogin}>
+          Войти
+        </button>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         <div className={styles.footerText}>
           Если забыли пароль, обратитесь по номеру +7 (777) 777-77-77

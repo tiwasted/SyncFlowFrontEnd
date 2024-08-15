@@ -1,6 +1,6 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import api from '../services/TokenService';
-import { useAuth } from '../context/AuthProvider'; 
+import React, { createContext, useState, useContext, useEffect } from "react";
+import api from "../services/TokenService";
+import { useAuth } from "../context/AuthProvider";
 
 const OrderContext = createContext();
 
@@ -20,11 +20,11 @@ export const OrderProvider = ({ children }) => {
       setError(null); // Сбрасываем ошибку перед новым запросом
 
       try {
-        const response = await api.get('/orders/b2c-orders/');
+        const response = await api.get("/orders/b2c-orders/");
         setOrders(response.data);
       } catch (error) {
-        console.error('Ошибка при получении заказов', error);
-        setError('Ошибка при получении заказов');
+        console.error("Ошибка при получении заказов", error);
+        setError("Ошибка при получении заказов");
         setOrders([]);
       } finally {
         setLoading(false); // Завершаем загрузку
@@ -40,4 +40,3 @@ export const OrderProvider = ({ children }) => {
     </OrderContext.Provider>
   );
 };
-

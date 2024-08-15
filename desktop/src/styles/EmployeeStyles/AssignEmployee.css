@@ -1,52 +1,60 @@
 .assign-employee {
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Соответствует общему стилю */
-    font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Соответствует общему стилю */
+  font-family: Arial, sans-serif;
 }
 
 .assign-employee-location {
-    margin-top: 18px; /* Адаптировано под стиль */
+  margin-top: 18px; /* Адаптировано под стиль */
 }
 
 .assign-employee select {
-    padding: 10px;
-    border: 1px solid #cccccc; /* Соответствует общему стилю */
-    border-radius: 8px; /* Увеличенные скругленные углы для согласованности */
-    font-size: 1em; /* Умеренный размер текста */
-    background-color: #ffffff; /* Белый фон, как в order list */
-    color: #283593; /* Темно-синий цвет текста, как в заголовке */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
+  padding: 10px;
+  border: 1px solid #cccccc; /* Соответствует общему стилю */
+  border-radius: 8px; /* Увеличенные скругленные углы для согласованности */
+  font-size: 1em; /* Умеренный размер текста */
+  background-color: #ffffff; /* Белый фон, как в order list */
+  color: #283593; /* Темно-синий цвет текста, как в заголовке */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
 }
 
 .assign-employee button {
-    background: linear-gradient(135deg, #42a5f5, #1e88e5); /* Градиент, соответствующий кнопкам */
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s, transform 0.3s ease; /* Добавлен эффект при наведении */
+  background: linear-gradient(
+    135deg,
+    #42a5f5,
+    #1e88e5
+  ); /* Градиент, соответствующий кнопкам */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.3s ease; /* Добавлен эффект при наведении */
 }
 
 .assign-employee button:hover {
-    background: linear-gradient(135deg, #1e88e5, #1565c0); /* Градиент при наведении */
-    transform: translateY(-2px); /* Легкое поднятие */
+  background: linear-gradient(
+    135deg,
+    #1e88e5,
+    #1565c0
+  ); /* Градиент при наведении */
+  transform: translateY(-2px); /* Легкое поднятие */
 }
 
 @media (max-width: 768px) {
-    .assign-employee {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .assign-employee {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-    .assign-employee select {
-        width: 100%;
-        margin-bottom: 12px; /* Адаптировано под стиль */
-    }
+  .assign-employee select {
+    width: 100%;
+    margin-bottom: 12px; /* Адаптировано под стиль */
+  }
 
-    .assign-employee button {
-        width: 100%;
-    }
+  .assign-employee button {
+    width: 100%;
+  }
 }

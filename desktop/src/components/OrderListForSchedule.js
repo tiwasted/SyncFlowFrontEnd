@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import ReassignEmployee from './ReassignEmployee';
-import api from '../services/TokenService';
-import ModalForDelete from './ModalForDelete';
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import ReassignEmployee from "./ReassignEmployee";
+import api from "../services/TokenService";
+import ModalForDelete from "./ModalForDelete";
 
 const OrderList = ({ orders, setOrders }) => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const OrderList = ({ orders, setOrders }) => {
 
     try {
       await api.delete(`/orders/b2c-orders/${orderToDelete}/`);
-      setOrders(orders.filter(order => order.id !== orderToDelete));
+      setOrders(orders.filter((order) => order.id !== orderToDelete));
       setShowModal(false);
     } catch (error) {
       console.error("Ошибка при удалении заказа", error);
@@ -28,8 +28,8 @@ const OrderList = ({ orders, setOrders }) => {
   };
 
   const handleEmployeeAssigned = (updatedOrder) => {
-    setOrders(prevOrders =>
-      prevOrders.map(order =>
+    setOrders((prevOrders) =>
+      prevOrders.map((order) =>
         order.id === updatedOrder.id ? updatedOrder : order
       )
     );
@@ -52,20 +52,59 @@ const OrderList = ({ orders, setOrders }) => {
       {orders.map((order) => (
         <div key={order.id} className="order-item-schedule">
           <h4>{order.service_name}</h4>
-          <p className='box-pic'><b>Наименование: </b> {order.order_name}</p>
-          <p><b>Цена: </b> {order.price}</p>
-          <p><b>Дата: </b> {order.order_date}</p>
-          <p><b>Время: </b> {order.order_time}</p>
-          <p><b>Адрес: </b> {order.address}</p>
-          <p><b>Имя клиента: </b> {order.name_client}</p>
-          <p><b>Номер клиента: </b> {order.phone_number_client}</p>
-          <p><b>Описание: </b> {order.description}</p>
-          <p><b>Статус: </b> {order.status === 'in waiting' ? 'В ожидании' : order.status}</p>
-          <p><b>Сотрудник: </b> {order.assigned_employee_name ? `${order.assigned_employee_name}` : 'Не назначен'}</p>
-          <p><b>Телефон сотрудника: </b> {order.assigned_employee_phone}</p>
-          <button className='order-list-schedule-edit-btn' onClick={() => handleEditClick(order.id)}>Редактировать</button>
-          <button className='order-list-schedule-delete-btn' onClick={() => handleDeleteClick(order.id)}>Удалить</button>
-          <ReassignEmployee orderId={order.id} onEmployeeAssigned={handleEmployeeAssigned} />
+          <p className="box-pic">
+            <b>Наименование: </b> {order.order_name}
+          </p>
+          <p>
+            <b>Цена: </b> {order.price}
+          </p>
+          <p>
+            <b>Дата: </b> {order.order_date}
+          </p>
+          <p>
+            <b>Время: </b> {order.order_time}
+          </p>
+          <p>
+            <b>Адрес: </b> {order.address}
+          </p>
+          <p>
+            <b>Имя клиента: </b> {order.name_client}
+          </p>
+          <p>
+            <b>Номер клиента: </b> {order.phone_number_client}
+          </p>
+          <p>
+            <b>Описание: </b> {order.description}
+          </p>
+          <p>
+            <b>Статус: </b>{" "}
+            {order.status === "in waiting" ? "В ожидании" : order.status}
+          </p>
+          <p>
+            <b>Сотрудник: </b>{" "}
+            {order.assigned_employee_name
+              ? `${order.assigned_employee_name}`
+              : "Не назначен"}
+          </p>
+          <p>
+            <b>Телефон сотрудника: </b> {order.assigned_employee_phone}
+          </p>
+          <button
+            className="order-list-schedule-edit-btn"
+            onClick={() => handleEditClick(order.id)}
+          >
+            Редактировать
+          </button>
+          <button
+            className="order-list-schedule-delete-btn"
+            onClick={() => handleDeleteClick(order.id)}
+          >
+            Удалить
+          </button>
+          <ReassignEmployee
+            orderId={order.id}
+            onEmployeeAssigned={handleEmployeeAssigned}
+          />
         </div>
       ))}
       <ModalForDelete
@@ -80,6 +119,3 @@ const OrderList = ({ orders, setOrders }) => {
 };
 
 export default OrderList;
-
-
-
