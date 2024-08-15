@@ -15,7 +15,7 @@ const B2Bclients = () => {
       const response = await axios.get("/api/b2bclients/");
       setB2BClients(response.data);
     } catch (error) {
-      console.error("Ошибка при получении списка клиентов B2B:", error);
+      // console.error("Ошибка при получении списка клиентов B2B:", error);
     }
   };
 
@@ -32,12 +32,12 @@ const B2Bclients = () => {
   // Обработчики для кнопок
   const handleCreateOrderClick = () => {
     // Логика для создания заказа B2B
-    console.log("Создать заказ B2B");
+    // console.log("Создать заказ B2B");
   };
 
   const handleAddClientClick = () => {
     // Логика для добавления клиента B2B
-    console.log("Добавить клиента B2B");
+    // console.log("Добавить клиента B2B");
   };
 
   return (

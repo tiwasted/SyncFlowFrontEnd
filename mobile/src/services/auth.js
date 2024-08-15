@@ -12,8 +12,8 @@ export const login = async (phone, password) => {
         });
 
         if (response.status === 200 && response.data.access && response.data.refresh) {
-            const { access, refresh } = response.data;
-            console.log('Успешный вход. Токен:', access, refresh);
+            // const { access, refresh } = response.data;
+            // console.log('Успешный вход. Токен:', access, refresh);
             // Возвращение токенов в localStorage
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
@@ -23,13 +23,13 @@ export const login = async (phone, password) => {
         }
     } catch (error) {
         if (error.response) {
-            console.error('Ошибка ответа сервера:', error.response.data);
-            console.error('Статус:', error.response.status);
-            console.error('Заголовки:', error.response.headers);
+            // console.error('Ошибка ответа сервера:', error.response.data);
+            // console.error('Статус:', error.response.status);
+            // console.error('Заголовки:', error.response.headers);
         } else if (error.request) {
-            console.error('Ошибка запроса:', error.request);
+            // console.error('Ошибка запроса:', error.request);
         } else {
-            console.error('Ошибка:', error.message);
+            // console.error('Ошибка:', error.message);
         }
         throw error;
     }
@@ -53,7 +53,7 @@ export const checkTokenValidity = async (token) => {
         const response = await axios.post(`${API_URL}verify/`, { token });
         return response.status === 200;
     } catch (error) {
-        console.error('Ошибка проверки токена:', error);
+        // console.error('Ошибка проверки токена:', error);
         return false;
     }
 };

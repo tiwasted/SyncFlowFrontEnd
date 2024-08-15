@@ -23,7 +23,7 @@ export const OrderProvider = ({ children }) => {
         const response = await api.get("/orders/b2c-orders/");
         setOrders(response.data);
       } catch (error) {
-        console.error("Ошибка при получении заказов", error);
+        // console.error("Ошибка при получении заказов", error);
         setError("Ошибка при получении заказов");
         setOrders([]);
       } finally {

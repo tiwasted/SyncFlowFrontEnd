@@ -26,7 +26,7 @@ const SettingsPage = () => {
     }
 
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("access_token");
       await api.put(
         "/employers/change-password/",
         {

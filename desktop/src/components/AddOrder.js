@@ -18,6 +18,11 @@ const AddOrder = () => {
   const navigate = useNavigate();
 
   const handleSaveOrder = async () => {
+    if (!nameOfOrder || !price || !date || !time || !address || !nameOfClient || !phoneNumber || !description) {
+      setError("Заполните все поля");
+      return;
+    }
+
     try {
       const formData = new FormData();
       formData.append("order_name", nameOfOrder);
@@ -30,12 +35,11 @@ const AddOrder = () => {
       formData.append("description", description);
 
       const response = await api.post("/orders/b2c-orders/", formData, {});
-
       setOrders((prevOrders) => [...prevOrders, response.data]);
       setOrderSaved(true);
       setTimeout(() => {
         navigate("/dashboard");
-      }, 2000);
+      }, 1000);
     } catch (error) {
       setError("Заполните все поля");
     }

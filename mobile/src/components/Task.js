@@ -36,7 +36,7 @@ const Task = ({ task, onUpdate }) => {
             });
             onUpdate(response.data);
         } catch (error) {
-            console.error('Ошибка при завершении заказа:', error);
+            // console.error('Ошибка при завершении заказа:', error);
         }
     };
 
@@ -51,7 +51,7 @@ const Task = ({ task, onUpdate }) => {
             });
             onUpdate(response.data);
         } catch (error) {
-            console.error('Ошибка при отмене заказа:', error);
+            // console.error('Ошибка при отмене заказа:', error);
         }
     };
 

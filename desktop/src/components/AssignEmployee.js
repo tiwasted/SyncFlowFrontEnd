@@ -13,7 +13,7 @@ const AssignEmployee = ({ orderId }) => {
         const response = await api.get("/employees/employees/");
         setEmployees(response.data);
       } catch (error) {
-        console.error("Ошибка при получении списка сотрудников", error);
+        // console.error("Ошибка при получении списка сотрудников", error);
       }
     };
 

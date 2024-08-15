@@ -27,7 +27,7 @@ const EditOrder = () => {
           setOrder(response.data);
           setIsLoading(false);
         } catch (error) {
-          console.error("Ошибка при получении заказа", error);
+          // console.error("Ошибка при получении заказа", error);
           setError("Ошибка при получении заказа");
           setIsLoading(false);
         }
@@ -50,7 +50,7 @@ const EditOrder = () => {
       setOrders(updatedOrders);
       navigate(previousPath); // Перенаправление на предыдущую страницу
     } catch (error) {
-      console.error("Ошибка при обновлении заказа", error);
+      // console.error("Ошибка при обновлении заказа", error);
       setError("Ошибка при обновлении заказа");
     }
   };

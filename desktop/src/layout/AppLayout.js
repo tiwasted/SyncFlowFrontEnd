@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  UploadOutlined,
+  // UploadOutlined,
   AreaChartOutlined,
   UsergroupAddOutlined,
   CalendarOutlined,
@@ -52,11 +52,11 @@ const AppLayout = ({ children }) => {
               icon: <HistoryOutlined />,
               label: <a href="/history-of-orders">История заказов</a>,
             },
-            {
-              key: "/b2b-clients",
-              icon: <UploadOutlined />,
-              label: <a href="/b2b-clients">B2B</a>,
-            },
+            // {
+            //   key: "/b2b-clients",
+            //   icon: <UploadOutlined />,
+            //   label: <a href="/b2b-clients">B2B</a>,
+            // },
             {
               key: "/employees",
               icon: <UsergroupAddOutlined />,

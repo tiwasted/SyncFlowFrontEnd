@@ -21,7 +21,7 @@ const OrderList = () => {
       );
       setShowModal(false);
     } catch (error) {
-      console.error("Ошибка при удалении заказа", error);
+      // console.error("Ошибка при удалении заказа", error);
     }
   };
 

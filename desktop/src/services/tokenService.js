@@ -20,7 +20,7 @@ export const isTokenExpired = (token) => {
 const refreshToken = async () => {
   const refreshToken = localStorage.getItem("refresh_token");
   if (!refreshToken || isTokenExpired(refreshToken)) {
-    console.error("Рефреш токен отсутствует или истек.");
+    // console.error("Рефреш токен отсутствует или истек.");
     logout(); // Добавлено для выхода из системы
     return null;
   }
@@ -33,7 +33,7 @@ const refreshToken = async () => {
     localStorage.setItem("access_token", newToken);
     return newToken;
   } catch (error) {
-    console.error("Ошибка при обновлении токена:", error);
+    // console.error("Ошибка при обновлении токена:", error);
     logout(); // Добавлено для выхода из системы
     return null;
   }

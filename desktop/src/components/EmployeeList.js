@@ -41,7 +41,7 @@ const EmployeeList = ({ employees, setEmployees, onDelete }) => {
       );
       setEmployeeToEdit(null);
     } catch (error) {
-      console.error("Ошибка при сохранении данных сотрудника:", error);
+      // console.error("Ошибка при сохранении данных сотрудника:", error);
     }
   };
 

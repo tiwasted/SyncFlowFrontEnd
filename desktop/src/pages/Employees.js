@@ -20,14 +20,14 @@ const Employees = () => {
       });
       setEmployees(response.data);
     } catch (error) {
-      console.error("Error fetching employees", error);
+      // console.error("Error fetching employees", error);
     }
   };
 
   const deleteEmployee = async (id) => {
     try {
       if (!id) {
-        console.error("Invalid employee id");
+        // console.error("Invalid employee id");
         return;
       }
       await api.delete(`/employees/${id}/delete/`, {
@@ -37,7 +37,7 @@ const Employees = () => {
       });
       setEmployees(employees.filter((emp) => emp.id !== id));
     } catch (error) {
-      console.error("Error deleting employee", error);
+      // console.error("Error deleting employee", error);
     }
   };
 
@@ -47,7 +47,7 @@ const Employees = () => {
       await fetchEmployees(); // Обновляем список сотрудников после добавления
       setIsModalOpen(false);
     } catch (error) {
-      console.error("Error adding employee", error);
+      // console.error("Error adding employee", error);
     }
   };
 

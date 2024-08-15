@@ -7,7 +7,7 @@ const B2BClientList = ({ b2bClients, onDeleteB2BClient }) => {
       await axios.delete(`/api/b2bclients/${id}/`);
       onDeleteB2BClient(id);
     } catch (error) {
-      console.error("Ошибка при удалении клиента B2B:", error);
+      // console.error("Ошибка при удалении клиента B2B:", error);
     }
   };
 

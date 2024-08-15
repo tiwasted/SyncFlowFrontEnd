@@ -13,7 +13,7 @@ const ReassignEmployee = ({ orderId }) => {
         const response = await api.get("/employees/employees/");
         setEmployees(response.data);
       } catch (error) {
-        console.error("Ошибка при получении списка сотрудников", error);
+        // console.error("Ошибка при получении списка сотрудников", error);
       }
     };
 
@@ -39,7 +39,7 @@ const ReassignEmployee = ({ orderId }) => {
       // Перезагрузка страницы
       window.location.reload();
     } catch (error) {
-      console.error("Ошибка при назначении сотрудника", error);
+      // console.error("Ошибка при назначении сотрудника", error);
     }
   };
 

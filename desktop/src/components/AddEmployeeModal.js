@@ -34,10 +34,10 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
       const errorMessage =
         error.response?.data?.detail || "Ошибка при добавлении сотрудника";
       setError(errorMessage);
-      console.error(
-        "Error adding employee",
-        error.response ? error.response.data : error.message
-      );
+      // console.error(
+      //   "Error adding employee",
+      //   error.response ? error.response.data : error.message
+      // );
     }
   };
 

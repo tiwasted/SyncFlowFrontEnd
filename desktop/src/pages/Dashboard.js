@@ -17,7 +17,6 @@ const Dashboard = () => {
         </div>
         <div className="order-content">
           {orders && <OrderList />}{" "}
-          {/* OrderList теперь использует контекст напрямую */}
         </div>
       </div>
     </React.Fragment>

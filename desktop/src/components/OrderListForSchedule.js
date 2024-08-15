@@ -18,7 +18,7 @@ const OrderList = ({ orders, setOrders }) => {
       setOrders(orders.filter((order) => order.id !== orderToDelete));
       setShowModal(false);
     } catch (error) {
-      console.error("Ошибка при удалении заказа", error);
+      // console.error("Ошибка при удалении заказа", error);
     }
   };
 

@@ -46,7 +46,7 @@ const HistoryOfOrders = () => {
         setPrevPage(response.data.previous);
       } catch (err) {
         setError("Ошибка загрузки заказов");
-        console.error("Error fetching orders:", err);
+        // console.error("Error fetching orders:", err);
       } finally {
         setLoading(false);
       }
@@ -86,7 +86,7 @@ const HistoryOfOrders = () => {
       if (err.response && err.response.status === 404) {
         console.log("Изображение отсутствует");
       } else {
-        console.error("Ошибка загрузки изображения:", err);
+        // console.error("Ошибка загрузки изображения:", err);
       }
     }
   };

@@ -17,7 +17,7 @@ const OrderDetails = () => {
         setOrder(response.data);
       } catch (err) {
         setError("Ошибка загрузки данных заказа");
-        console.error("Error fetching order details:", err);
+        // console.error("Error fetching order details:", err);
       } finally {
         setLoading(false);
       }
