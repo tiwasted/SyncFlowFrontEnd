@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import AddEmployeeModal from '../components/AddEmployeeModal';
-import EmployeeList from '../components/EmployeeList';
-import api from '../services/tokenService';
+import React, { useState, useEffect } from "react";
+import AddEmployeeModal from "../components/AddEmployeeModal";
+import EmployeeList from "../components/EmployeeList";
+import api from "../services/TokenService";
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -13,31 +13,31 @@ const Employees = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await api.get('/employees/employees/', {
+      const response = await api.get("/employees/employees/", {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
       setEmployees(response.data);
     } catch (error) {
-      console.error('Error fetching employees', error);
+      // console.error("Error fetching employees", error);
     }
   };
 
   const deleteEmployee = async (id) => {
     try {
       if (!id) {
-        console.error('Invalid employee id');
+        // console.error("Invalid employee id");
         return;
       }
       await api.delete(`/employees/${id}/delete/`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
-      setEmployees(employees.filter(emp => emp.id !== id));
+      setEmployees(employees.filter((emp) => emp.id !== id));
     } catch (error) {
-      console.error('Error deleting employee', error);
+      // console.error("Error deleting employee", error);
     }
   };
 
@@ -47,22 +47,25 @@ const Employees = () => {
       await fetchEmployees(); // Обновляем список сотрудников после добавления
       setIsModalOpen(false);
     } catch (error) {
-      console.error('Error adding employee', error);
+      // console.error("Error adding employee", error);
     }
   };
 
   return (
     <div>
-      <div className='employeeContent'>
-        <button className='add-employee-btn' onClick={() => setIsModalOpen(true)}>
+      <div className="employeeContent">
+        <button
+          className="add-employee-btn"
+          onClick={() => setIsModalOpen(true)}
+        >
           Добавить сотрудника
         </button>
       </div>
       <EmployeeList employees={employees} onDelete={deleteEmployee} />
-      <AddEmployeeModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        onEmployeeAdded={handleAddEmployee} 
+      <AddEmployeeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onEmployeeAdded={handleAddEmployee}
       />
     </div>
   );

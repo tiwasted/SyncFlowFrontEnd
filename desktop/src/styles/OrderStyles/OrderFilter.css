@@ -1,89 +1,89 @@
 .order-filter-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background-color: #f8f9fa; /* светлый фон для контраста */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* легкая тень */
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f8f9fa; /* светлый фон для контраста */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* легкая тень */
+  margin-bottom: 30px;
 }
 
 .order-filter-form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* пространство между элементами */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* пространство между элементами */
 }
 
 .form-control {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d1d1d1; /* легкий серый цвет для границы */
-    border-radius: 6px;
-    box-sizing: border-box;
-    transition: border-color 0.2s;
-    position: relative; /* для позиционирования стрелки */
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d1d1; /* легкий серый цвет для границы */
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+  position: relative; /* для позиционирования стрелки */
 }
 
 .form-control:focus {
-    border-color: #80bdff; /* изменение цвета границы при фокусе */
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: #80bdff; /* изменение цвета границы при фокусе */
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .order-filter-btn {
-    align-self: center;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    background: linear-gradient(135deg, #42a5f5, #1e88e5);
-    color: #ffffff;
+  align-self: center;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+  color: #ffffff;
 }
 
 .order-filter-btn:hover {
-    background: linear-gradient(135deg, #1e88e5, #1565c0);
-    transform: translateY(-2px);
+  background: linear-gradient(135deg, #1e88e5, #1565c0);
+  transform: translateY(-2px);
 }
 
 label {
-    font-weight: bold;
-    color: #333; /* темный цвет для текста */
+  font-weight: bold;
+  color: #333; /* темный цвет для текста */
 }
 
 .form-control-select-wrapper {
-    position: relative;
+  position: relative;
 }
 
 .form-control-select {
-    width: 100%;
-    padding-right: 40px; /* увеличиваем отступ для стрелки */
-    position: relative;
-    background: transparent; /* убираем стандартный фон */
-    appearance: none; /* убираем стандартные стрелки */
-    border: 1px solid #d1d1d1; /* легкий серый цвет для границы */
-    border-radius: 6px;
+  width: 100%;
+  padding-right: 40px; /* увеличиваем отступ для стрелки */
+  position: relative;
+  background: transparent; /* убираем стандартный фон */
+  appearance: none; /* убираем стандартные стрелки */
+  border: 1px solid #d1d1d1; /* легкий серый цвет для границы */
+  border-radius: 6px;
 }
 
 .form-control-select-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    width: 24px;
-    height: 24px;
-    background-repeat: no-repeat;
-    background-position: center;
-    transform: translateY(-50%);
-    transition: background-image 0.2s;
-    pointer-events: none; /* игнорировать события мыши на иконке */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translateY(-50%);
+  transition: background-image 0.2s;
+  pointer-events: none; /* игнорировать события мыши на иконке */
 }
 
 .form-control-select-wrapper.active .form-control-select-icon {
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23444' stroke-width='2' d='M7 14l5-5 5 5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23444' stroke-width='2' d='M7 14l5-5 5 5'/%3E%3C/svg%3E");
 }
 
 .form-control-select-icon.default {
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23444' stroke-width='2' d='M7 10l5 5 5-5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23444' stroke-width='2' d='M7 10l5 5 5-5'/%3E%3C/svg%3E");
 }

@@ -8,7 +8,7 @@ const Calendar = ({ value, onChange }) => {
 
         // Устанавливаем время на полночь в локальном часовом поясе
         const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-        console.log('Выбранная дата (UTC):', utcDate.toISOString());
+        // console.log('Выбранная дата (UTC):', utcDate.toISOString());
         onChange(utcDate);
     };
 

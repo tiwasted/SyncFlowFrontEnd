@@ -17,13 +17,13 @@ const handleChange = async (event) => {
 const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-    console.log('Отправлямые данные:', formData);
+    // console.log('Отправлямые данные:', formData);
     const token = await apiLogin(formData.phone, formData.password); // Вызов функции для входа из auth.js
-    console.log('Успешный вход. Токен:', token);
+    // console.log('Успешный вход. Токен:', token);
     login(token)
     navigate('/schedule', { replace: true });
     } catch (error) {
-    console.error('Ошибка входа:', error.response ? error.response.data : error.message);
+    // console.error('Ошибка входа:', error.response ? error.response.data : error.message);
       // Обработка ошибок при входе
     }
 };
