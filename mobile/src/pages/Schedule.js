@@ -21,7 +21,7 @@ const Schedule = () => {
         // Форматируем дату в строку YYYY-MM-DD
         const selectedDate = date.toISOString().split('T')[0];
         
-        console.log('Отправляемая дата:', selectedDate); // Для отладки
+        // console.log('Отправляемая дата:', selectedDate); // Для отладки
 
         const token = localStorage.getItem('jwt_token');
 
@@ -36,7 +36,7 @@ const Schedule = () => {
         if (error.response && error.response.status === 401) {
           navigate('/login');
         } else {
-          console.error('Ошибка при получении задач:', error);
+          // console.error('Ошибка при получении задач:', error);
         }
       }
     };
@@ -50,38 +50,38 @@ const Schedule = () => {
       await api.post(`/orders/${endpoint}/${task.id}/complete_order/`);
       setTasks((prevTasks) => prevTasks.map((t) => (t.id === task.id ? { ...t, status: 'completed' } : t)));
     } catch (error) {
-      console.error('Ошибка при завершении задачи:', error);
+      // console.error('Ошибка при завершении задачи:', error);
     }
   };
 
   const handleCancel = async (task) => {
     try {
 
-      console.log('Начало выполнения handleCancel');
-      const token = localStorage.getItem('access_token');
-      console.log('Токен перед отправкой запроса:', token);
+      // console.log('Начало выполнения handleCancel');
+      // const token = localStorage.getItem('access_token');
+      // console.log('Токен перед отправкой запроса:', token);
 
-      const endpoint = task.order_type === 'B2B' ? 'b2b-orders' : 'b2c-orders';
-      const url = `/orders/${endpoint}/${task.id}/cancel_order/`;
-      console.log('URL запроса:', url);
+      // const endpoint = task.order_type === 'B2B' ? 'b2b-orders' : 'b2c-orders';
+      // const url = `/orders/${endpoint}/${task.id}/cancel_order/`;
+      // console.log('URL запроса:', url);
 
-      const response = await api.post(url, {});
-      console.log('Ответ получен:', response);
+      // const response = await api.post(url, {});
+      // console.log('Ответ получен:', response);
 
       setTasks((prevTasks) => prevTasks.map((t) => (t.id === task.id ? { ...t, status: 'canceled' } : t)));
-      console.log('Состояние задач обновлено');
+      // console.log('Состояние задач обновлено');
     } catch (error) {
-      console.error('Ошибка при отмене задачи:', error);
+      // console.error('Ошибка при отмене задачи:', error);
       if (error.response) {
-        console.error('Данные ответа:', error.response.data);
-        console.error('Статус ответа:', error.response.status);
-        console.error('Заголовки ответа:', error.response.headers);
+        // console.error('Данные ответа:', error.response.data);
+        // console.error('Статус ответа:', error.response.status);
+        // console.error('Заголовки ответа:', error.response.headers);
       } else if (error.request) {
-        console.error('Запрос был сделан, но ответ не получен:', error.request);
+        // console.error('Запрос был сделан, но ответ не получен:', error.request);
       } else {
-        console.error('Ошибка при настройке запроса:', error.message);
+        // console.error('Ошибка при настройке запроса:', error.message);
       }
-      console.error('Конфигурация запроса:', error.config);
+      // console.error('Конфигурация запроса:', error.config);
   }
 };
 

@@ -2,7 +2,7 @@
   display: flex;
   height: 100vh;
 }
-  
+
 .app-main-content {
   flex-grow: 1;
   overflow-y: auto;

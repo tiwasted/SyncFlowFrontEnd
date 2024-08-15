@@ -100,7 +100,7 @@
 
 .custom-calendar .react-calendar__month-view__days__day:focus {
   outline: 0;
-	background-color: #007bff;
+  background-color: #007bff;
   color: black;
 }
 
@@ -139,7 +139,6 @@ abbr {
   color: darkred; /* Более тёмный красный при наведении */
 }
 
-
 /* Стили для дней, которые не входят в текущий месяц */
 .custom-calendar .react-calendar__month-view__days__day--neighboringMonth {
   color: #aaa; /* Более светлый цвет для дней не текущего месяца */
@@ -147,7 +146,8 @@ abbr {
 }
 
 /* При наведении можно сделать цвет более заметным */
-.custom-calendar .react-calendar__month-view__days__day--neighboringMonth:hover {
+.custom-calendar
+  .react-calendar__month-view__days__day--neighboringMonth:hover {
   background-color: #007bff;
   color: #777; /* Более темный цвет при наведении */
 }

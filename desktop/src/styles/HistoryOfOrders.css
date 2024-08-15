@@ -1,6 +1,10 @@
 .order-history {
   padding: 20px;
-  background: linear-gradient(135deg, #e0f7fa, #f1f8e9); /* Используем фон, как в других частях интерфейса */
+  background: linear-gradient(
+    135deg,
+    #e0f7fa,
+    #f1f8e9
+  ); /* Используем фон, как в других частях интерфейса */
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
@@ -48,17 +52,29 @@
 }
 
 .order-history__item-status--new {
-  background: linear-gradient(135deg, #87CEFA, #00BFFF); /* Используем градиентный фон, как в других частях интерфейса */
+  background: linear-gradient(
+    135deg,
+    #87cefa,
+    #00bfff
+  ); /* Используем градиентный фон, как в других частях интерфейса */
   color: #ffffff;
 }
 
 .order-history__item-status--in-progress {
-  background: linear-gradient(135deg, #FFFF00, #F9A825); /* Градиентный фон для статуса "в процессе" */
+  background: linear-gradient(
+    135deg,
+    #ffff00,
+    #f9a825
+  ); /* Градиентный фон для статуса "в процессе" */
   color: #333;
 }
 
 .order-history__item-status--completed {
-  background: linear-gradient(135deg, #90EE90, #66BB6A); /* Градиентный фон для завершенных заказов */
+  background: linear-gradient(
+    135deg,
+    #90ee90,
+    #66bb6a
+  ); /* Градиентный фон для завершенных заказов */
   color: #ffffff;
 }
 
@@ -82,7 +98,11 @@
 }
 
 .order-history__pagination button {
-  background: linear-gradient(135deg, #42a5f5, #1e88e5); /* Градиентный фон кнопок */
+  background: linear-gradient(
+    135deg,
+    #42a5f5,
+    #1e88e5
+  ); /* Градиентный фон кнопок */
   border: none;
   border-radius: 6px;
   color: white;
@@ -94,12 +114,20 @@
 }
 
 .order-history__pagination button:disabled {
-  background: linear-gradient(135deg, #b0bec5, #90a4ae); /* Цвет кнопок в состоянии отключения */
+  background: linear-gradient(
+    135deg,
+    #b0bec5,
+    #90a4ae
+  ); /* Цвет кнопок в состоянии отключения */
   cursor: not-allowed;
 }
 
 .order-history__pagination button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #1e88e5, #1565c0); /* Более темный синий при наведении */
+  background: linear-gradient(
+    135deg,
+    #1e88e5,
+    #1565c0
+  ); /* Более темный синий при наведении */
   transform: translateY(-2px);
 }
 
@@ -107,4 +135,31 @@
   font-size: 18px;
   color: #424242; /* Цвет текста, как в других частях интерфейса */
   margin: 0 10px;
+}
+
+.order-history__image-button {
+  background-color: #007bff; /* Зеленый фон кнопки */
+  color: white; /* Белый цвет текста */
+  padding: 10px 20px; /* Внутренние отступы */
+  border: none; /* Убираем границу */
+  border-radius: 5px; /* Скругляем углы */
+  font-size: 16px; /* Размер шрифта */
+  cursor: pointer; /* Указатель при наведении */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Плавный переход цвета и масштаба */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для кнопки */
+  margin-top: 10px; /* Отступ сверху */
+}
+
+.order-history__image-button:hover {
+  transform: scale(1.05); /* Увеличиваем кнопку при наведении */
+}
+
+.order-history__image-button:active {
+  transform: scale(1); /* Возвращаем масштаб при нажатии */
+}
+
+.order-history__image-button:disabled {
+  background-color: #ccc; /* Серый цвет для отключенной кнопки */
+  cursor: not-allowed; /* Запрещающий указатель при отключении */
+  box-shadow: none; /* Убираем тень для отключенной кнопки */
 }

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { useOrders } from './OrderContext';
-import api from '../services/tokenService';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useOrders } from "./OrderProvider";
+import api from "../services/TokenService";
 
 const EditOrder = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ const EditOrder = () => {
   const previousPath = location.state?.from;
 
   useEffect(() => {
-    const orderToEdit = orders.find(order => order.id === parseInt(id));
+    const orderToEdit = orders.find((order) => order.id === parseInt(id));
     if (orderToEdit) {
       setOrder(orderToEdit);
       setIsLoading(false);
@@ -27,8 +27,8 @@ const EditOrder = () => {
           setOrder(response.data);
           setIsLoading(false);
         } catch (error) {
-          console.error("Ошибка при получении заказа", error);
-          setError('Ошибка при получении заказа');
+          // console.error("Ошибка при получении заказа", error);
+          setError("Ошибка при получении заказа");
           setIsLoading(false);
         }
       };
@@ -46,12 +46,12 @@ const EditOrder = () => {
     e.preventDefault();
     try {
       await api.put(`/orders/b2c-orders/${id}/`, order);
-      const updatedOrders = orders.map(o => (o.id === order.id ? order : o));
+      const updatedOrders = orders.map((o) => (o.id === order.id ? order : o));
       setOrders(updatedOrders);
       navigate(previousPath); // Перенаправление на предыдущую страницу
     } catch (error) {
-      console.error("Ошибка при обновлении заказа", error);
-      setError('Ошибка при обновлении заказа');
+      // console.error("Ошибка при обновлении заказа", error);
+      setError("Ошибка при обновлении заказа");
     }
   };
 
@@ -64,11 +64,11 @@ const EditOrder = () => {
   }
 
   return (
-    <div className='add-order-container'>
-      <h2 className='add-h2'>Редактировать заказ</h2>
+    <div className="add-order-container">
+      <h2 className="add-h2">Редактировать заказ</h2>
       <form onSubmit={handleSubmit}>
-        <div className='add-form-group'>
-          <label className='add-label'>Наименование заказа:</label>
+        <div className="add-form-group">
+          <label className="add-label">Наименование заказа:</label>
           <input
             type="text"
             name="order_name"
@@ -76,8 +76,8 @@ const EditOrder = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div className='add-form-group'>
-          <label className='add-label'>Цена:</label>
+        <div className="add-form-group">
+          <label className="add-label">Цена:</label>
           <input
             type="number"
             name="price"
@@ -85,8 +85,8 @@ const EditOrder = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div className='add-form-group'>
-          <label className='add-label'>Имя клиента:</label>
+        <div className="add-form-group">
+          <label className="add-label">Имя клиента:</label>
           <input
             type="text"
             name="name_client"
@@ -94,8 +94,8 @@ const EditOrder = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div className='add-form-group'>
-          <label className='add-label'>Телефон клиента:</label>
+        <div className="add-form-group">
+          <label className="add-label">Телефон клиента:</label>
           <input
             type="text"
             name="phone_number_client"
@@ -103,8 +103,8 @@ const EditOrder = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div className='add-form-group'>
-          <label className='add-label'>Дата:</label>
+        <div className="add-form-group">
+          <label className="add-label">Дата:</label>
           <input
             type="date"
             name="order_date"
@@ -112,8 +112,8 @@ const EditOrder = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div className='add-form-group'>
-          <label className='add-label'>Время:</label>
+        <div className="add-form-group">
+          <label className="add-label">Время:</label>
           <input
             type="time"
             name="order_time"
@@ -121,8 +121,8 @@ const EditOrder = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div className='add-form-group'>
-          <label className='add-label'>Адрес:</label>
+        <div className="add-form-group">
+          <label className="add-label">Адрес:</label>
           <input
             type="text"
             name="address"
@@ -130,30 +130,33 @@ const EditOrder = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div className='add-form-group'>
-          <label className='add-label'>Описание:</label>
+        <div className="add-form-group">
+          <label className="add-label">Описание:</label>
           <textarea
-            className='add-textarea'
+            className="add-textarea"
             name="description"
             value={order.description}
             onChange={handleInputChange}
           />
         </div>
-        <div className='add-form-group'>
+        <div className="add-form-group">
           {/* <label className='add-label'>Статус:</label> */}
-          <div
-            name="status"
-            value={order.status}
-            onChange={handleInputChange}
-          >
+          <div name="status" value={order.status} onChange={handleInputChange}>
             {/* <option value="in_processing">In Processing</option> */}
           </div>
         </div>
-        <div className='form-btns'>
-          <button type="submit" className='general-btns'>Сохранить изменения</button>
-          <button type="button" className='back-btn' onClick={() => navigate(-1)}>Назад</button>
+        <div className="form-btns">
+          <button type="submit" className="general-btns">
+            Сохранить изменения
+          </button>
+          <button
+            type="button"
+            className="back-btn"
+            onClick={() => navigate(-1)}
+          >
+            Назад
+          </button>
         </div>
-        
       </form>
     </div>
   );

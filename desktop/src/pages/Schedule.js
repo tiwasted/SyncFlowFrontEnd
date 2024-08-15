@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import Calendar from '../components/Calendar';
-import OrderListForSchedule from '../components/OrderListForSchedule'; // Импортируйте новый компонент
-import api from '../services/tokenService';
-import jwtDecode from 'jwt-decode';
+import React, { useState, useEffect } from "react";
+import Calendar from "../components/Calendar";
+import OrderListForSchedule from "../components/OrderListForSchedule"; // Импортируйте новый компонент
+import api from "../services/TokenService";
+import jwtDecode from "jwt-decode";
 
 const Schedule = () => {
   const [date, setDate] = useState(() => {
@@ -13,7 +13,7 @@ const Schedule = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem("access_token");
     if (token) {
       const decodedToken = jwtDecode(token);
       setCurrentUser(decodedToken);
@@ -22,17 +22,17 @@ const Schedule = () => {
 
   useEffect(() => {
     if (!currentUser) return;
-    
+
     const fetchOrders = async () => {
-      const formattedDate = date.toISOString().split('T')[0];
+      const formattedDate = date.toISOString().split("T")[0];
       const userId = currentUser.user_id;
       try {
         const response = await api.get(`/orders/schedule/`, {
-          params: { date: formattedDate, user_id: userId }
+          params: { date: formattedDate, user_id: userId },
         });
         setOrders(response.data);
       } catch (error) {
-        console.error("Ошибка при получении заказов", error);
+        // console.error("Ошибка при получении заказов", error);
         setOrders([]);
       }
     };
@@ -42,13 +42,13 @@ const Schedule = () => {
 
   return (
     <div className="schedule-container">
-      <h1 className='schedule-title'>Расписание на день</h1>
+      <h1 className="schedule-title">Расписание на день</h1>
       <div className="schedule-content">
         <div className="order-list-container">
           <OrderListForSchedule orders={orders} setOrders={setOrders} />
         </div>
         <div className="calendar-container">
-          <h3 className='h3-schedule'>Календарь</h3>
+          <h3 className="h3-schedule">Календарь</h3>
           <Calendar value={date} onDateChange={setDate} />
         </div>
       </div>

@@ -1,54 +1,54 @@
 .logo {
-    height: 32px;
-    background: #001529;
-    margin: 16px;
+  height: 32px;
+  background: #001529;
+  margin: 16px;
 }
 
 .header-title {
-    color: #000;
-    font-size: 20px;
-    font-weight: bold;
-    margin-left: 30px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 30px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .ant-layout {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .ant-layout-header {
-    padding: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .ant-layout-sider {
-    background: #001529;
-    height: 100%;
+  background: #001529;
+  height: 100%;
 }
 
 .ant-menu-item {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .ant-layout-content {
-    flex-grow: 1;
-    overflow: auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    justify-content: space-between;
+  flex-grow: 1;
+  overflow: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  justify-content: space-between;
 }
 
 .ant-layout-sider-children {
-    position: fixed;
+  position: fixed;
 }
 
 .schedule-container {
-    border-radius: 8px;
+  border-radius: 8px;
 }

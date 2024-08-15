@@ -17,7 +17,7 @@ const isTokenExpired = (token) => {
         const currentTime = Date.now() / 1000;
         return decodedToken.exp < currentTime;
     } catch (error) {
-        console.error('Ошибка при проверке токена:', error);
+        // console.error('Ошибка при проверке токена:', error);
         return true;
     }
 };
@@ -31,28 +31,28 @@ const refreshAccessToken = async () => {
         localStorage.setItem('access_token', response.data.access);
         return response.data.access;
     } catch (error) {
-        console.error('Не удалось обновить токен', error);
+        // console.error('Не удалось обновить токен', error);
         throw error;
     }
 };
 
 api.interceptors.request.use(async (config) => {
-    console.log('Интерцептор запроса вызван');
+    // console.log('Интерцептор запроса вызван');
     
     let accessToken = localStorage.getItem('access_token');
-    console.log('Токен из localStorage:', accessToken);
+    // console.log('Токен из localStorage:', accessToken);
 
     if (accessToken && !isTokenExpired(accessToken)) {
         config.headers['Authorization'] = `Bearer ${accessToken}`;
-        console.log('Заголовки после добавления токена:', config.headers);
+        // console.log('Заголовки после добавления токена:', config.headers);
     } else {
-        console.log('Токен отсутствует или истек, попытка обновления');
+        // console.log('Токен отсутствует или истек, попытка обновления');
         try {
             accessToken = await refreshAccessToken();
             config.headers['Authorization'] = `Bearer ${accessToken}`;
-            console.log('Токен обновлен и добавлен в заголовки');
+            // console.log('Токен обновлен и добавлен в заголовки');
         } catch (error) {
-            console.error('Не удалось обновить токен', error);
+            // console.error('Не удалось обновить токен', error);
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
             // Здесь можно добавить редирект на страницу входа
@@ -63,7 +63,7 @@ api.interceptors.request.use(async (config) => {
 
     return config;
 }, (error) => {
-    console.error('Ошибка в интерцепторе запроса:', error);
+    // console.error('Ошибка в интерцепторе запроса:', error);
     return Promise.reject(error);
 });
 

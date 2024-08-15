@@ -1,86 +1,89 @@
 .add-order-container {
-  max-width: 600px;                /* Максимальная ширина контейнера */
-  margin: 0 auto;                  /* Центрирование контейнера */
-  padding: 20px;                   /* Внутренние отступы */
-  background-color: #f9f9f9;       /* Фоновый цвет */
-  border-radius: 8px;              /* Скругление углов */
+  max-width: 600px; /* Максимальная ширина контейнера */
+  margin: 0 auto; /* Центрирование контейнера */
+  padding: 20px; /* Внутренние отступы */
+  background-color: #f9f9f9; /* Фоновый цвет */
+  border-radius: 8px; /* Скругление углов */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для контейнера */
 }
-  
+
 .add-h2 {
-  text-align: center;              /* Центрирование заголовка */
+  text-align: center; /* Центрирование заголовка */
 }
 
 .add-form-group {
-  margin-bottom: 15px;             /* Отступы между группами формы */
+  margin-bottom: 15px; /* Отступы между группами формы */
 }
 
 .add-label {
-  display: block;                  /* Отображение как блок */
-  margin-bottom: 5px;              /* Отступ под меткой */
+  display: block; /* Отображение как блок */
+  margin-bottom: 5px; /* Отступ под меткой */
 }
 
-.add-input-date, .add-input-time, .add-textarea, input {
-  width: 100%;                     /* Полная ширина элементов ввода */
-  padding: 8px;                    /* Внутренние отступы ввода */
-  font-size: 14px;                 /* Размер шрифта */
-  border: 1px solid #ccc;          /* Граница ввода */
-  border-radius: 4px;              /* Скругление углов ввода */
+.add-input-date,
+.add-input-time,
+.add-textarea,
+input {
+  width: 100%; /* Полная ширина элементов ввода */
+  padding: 8px; /* Внутренние отступы ввода */
+  font-size: 14px; /* Размер шрифта */
+  border: 1px solid #ccc; /* Граница ввода */
+  border-radius: 4px; /* Скругление углов ввода */
 }
 
 .form-btns {
-  display: flex;                   /* Используем Flexbox для кнопок */
-  justify-content: space-between;  /* Распределяем кнопки по краям */
-  align-items: center;             /* Выравниваем кнопки по вертикали */
+  display: flex; /* Используем Flexbox для кнопок */
+  justify-content: space-between; /* Распределяем кнопки по краям */
+  align-items: center; /* Выравниваем кнопки по вертикали */
   max-width: 518px;
 }
 
 .general-btns {
-  padding: 10px 20px;              
-  font-size: 16px;                 /* Размер шрифта кнопок */
-  font-weight: bold;               /* Толщина шрифта */
-  color: #fff;                     /* Цвет текста кнопок */
-  background-color: #007bff;       /* Цвет фона кнопок */
-  border: none;                    /* Убираем границу */
-  border-radius: 5px;              /* Скругление углов кнопок */
-  cursor: pointer;                 /* Изменение курсора при наведении */
+  padding: 10px 20px;
+  font-size: 16px; /* Размер шрифта кнопок */
+  font-weight: bold; /* Толщина шрифта */
+  color: #fff; /* Цвет текста кнопок */
+  background-color: #007bff; /* Цвет фона кнопок */
+  border: none; /* Убираем границу */
+  border-radius: 5px; /* Скругление углов кнопок */
+  cursor: pointer; /* Изменение курсора при наведении */
   transition: background-color 0.3s; /* Плавный переход цвета */
 }
 
 .general-btns:hover {
-  background-color: #0056b3;       /* Цвет фона при наведении */
+  background-color: #0056b3; /* Цвет фона при наведении */
 }
 
 .general-btns:active {
-  background-color: #cc4936;       /* Цвет фона при нажатии */
-  transform: translateY(2px);      /* Смещение вниз при нажатии */
+  background-color: #cc4936; /* Цвет фона при нажатии */
+  transform: translateY(2px); /* Смещение вниз при нажатии */
 }
 
 .general-btns:focus {
-  outline: none;                   /* Убираем контур фокуса */
+  outline: none; /* Убираем контур фокуса */
   box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.5); /* Тень при фокусе */
 }
 
 .add-error-message {
-  color: red;                      /* Цвет ошибки */
-  margin-top: 10px;                /* Отступ сверху */
+  color: red; /* Цвет ошибки */
+  margin-top: 10px; /* Отступ сверху */
 }
 
 .add-success-message {
-  color: green;                    /* Цвет успешного сообщения */
-  margin-top: 10px;                /* Отступ сверху */
-  text-align: center;              /* Центрирование сообщения */
+  color: green; /* Цвет успешного сообщения */
+  margin-top: 10px; /* Отступ сверху */
+  text-align: center; /* Центрирование сообщения */
 }
 
 .back-btn {
-  padding: 10px 20px;              /* Внутренние отступы кнопок */
-  font-size: 16px;                 /* Размер шрифта кнопок */
-  font-weight: bold;               /* Толщина шрифта */
-  color: #fff;                     /* Цвет текста кнопок */
-  background-color: grey;       /* Цвет фона кнопок */
-  border: none;                    /* Убираем границу */
-  border-radius: 5px;              /* Скругление углов кнопок */
-  cursor: pointer;                 /* Изменение курсора при наведении */
+  padding: 10px 20px; /* Внутренние отступы кнопок */
+  font-size: 16px; /* Размер шрифта кнопок */
+  font-weight: bold; /* Толщина шрифта */
+  color: #fff; /* Цвет текста кнопок */
+  background-color: grey; /* Цвет фона кнопок */
+  border: none; /* Убираем границу */
+  border-radius: 5px; /* Скругление углов кнопок */
+  cursor: pointer; /* Изменение курсора при наведении */
   transition: background-color 0.3s; /* Плавный переход цвета */
 }
 
