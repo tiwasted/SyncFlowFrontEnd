@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import OrderList from "../components/OrderList";
-import { useOrders } from "../components/OrderProvider"; // Импортируем хук useOrders
+import { useOrders } from "../context/OrderProvider"; // Импортируем хук useOrders
 
 const Dashboard = () => {
   const { orders } = useOrders(); // Получаем заказы из контекста

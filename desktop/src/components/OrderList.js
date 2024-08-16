@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import AssignEmployee from "../components/AssignEmployee";
 import api from "../services/TokenService";
-import { useOrders } from "./OrderProvider";
+import { useOrders } from "../context/OrderProvider";
 import TruncatedText from "../components/TruncatedText"; // Импортируем TruncatedText
 import ModalForDelete from "../components/ModalForDelete";
 
