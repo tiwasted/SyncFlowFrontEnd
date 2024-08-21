@@ -34,7 +34,7 @@ const AddOrder = () => {
       formData.append("phone_number_client", phoneNumber);
       formData.append("description", description);
 
-      const response = await api.post("/orders/b2c-orders/", formData, {});
+      const response = await api.post("/orders/b2c-orders/", formData);
       setOrders((prevOrders) => [...prevOrders, response.data]);
       setOrderSaved(true);
       setTimeout(() => {

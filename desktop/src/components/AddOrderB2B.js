@@ -31,8 +31,7 @@ const AddOrderB2B = () => {
 
       const response = await api.post(
         "http://localhost:8000/orders/b2b-orders/",
-        formData,
-        {}
+        formData
       );
 
       setOrders((prevOrders) => [...prevOrders, response.data]);

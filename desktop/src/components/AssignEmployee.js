@@ -57,7 +57,7 @@ const AssignEmployee = ({ orderId }) => {
           </option>
         ))}
       </select>
-      <button className="general-btns" onClick={handleAssign}>
+      <button className="" onClick={handleAssign}>
         Назначить сотрудника
       </button>
     </div>

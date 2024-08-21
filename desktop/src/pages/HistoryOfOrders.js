@@ -19,8 +19,6 @@ const HistoryOfOrders = () => {
   const [nextPage, setNextPage] = useState(null);
   const [prevPage, setPrevPage] = useState(null);
 
-  const BASE_URL = "http://localhost:8000";
-
   const fetchOrders = useCallback(
     async (url = null, filters = {}) => {
       setLoading(true);
@@ -69,7 +67,7 @@ const HistoryOfOrders = () => {
   const handlePageChange = (direction) => {
     if (direction === "next" && nextPage) {
       fetchOrders(nextPage, filters);
-    } else if (direction === "prev" && prevPage) {
+    } else if (direction === "previous" && prevPage) {
       fetchOrders(prevPage, filters);
     }
   };
@@ -78,7 +76,7 @@ const HistoryOfOrders = () => {
     try {
       const response = await api.get(`/b2c/orders/${orderId}/image/`);
       const imageUrl = response.data.image_url;
-      const fullImageUrl = `${BASE_URL}${imageUrl}`;
+      const fullImageUrl = `http://localhost:8000${imageUrl}`;
 
       // Открытие изображения в новой вкладке
       window.open(fullImageUrl, "_blank");

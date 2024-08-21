@@ -32,7 +32,7 @@ const Schedule = () => {
         });
         setOrders(response.data);
       } catch (error) {
-        // console.error("Ошибка при получении заказов", error);
+        console.error("Ошибка при получении заказов", error);
         setOrders([]);
       }
     };

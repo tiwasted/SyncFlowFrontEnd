@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import AssignEmployee from "../components/AssignEmployee";
+// import AssignEmployee from "../components/AssignEmployee";
 import api from "../services/TokenService";
 import { useOrders } from "../context/OrderProvider";
-import TruncatedText from "../components/TruncatedText"; // Импортируем TruncatedText
 import ModalForDelete from "../components/ModalForDelete";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const OrderList = () => {
   const navigate = useNavigate();
@@ -21,17 +22,17 @@ const OrderList = () => {
       );
       setShowModal(false);
     } catch (error) {
-      // console.error("Ошибка при удалении заказа", error);
+      console.error("Ошибка при удалении заказа", error);
     }
   };
 
-  const handleEmployeeAssigned = (updatedOrder) => {
-    setOrders((prevOrders) =>
-      prevOrders.map((order) =>
-        order.id === updatedOrder.id ? updatedOrder : order
-      )
-    );
-  };
+  // const handleEmployeeAssigned = (updatedOrder) => {
+  //   setOrders((prevOrders) =>
+  //     prevOrders.map((order) =>
+  //       order.id === updatedOrder.id ? updatedOrder : order
+  //     )
+  //   );
+  // };
 
   const handleDeleteClick = (id) => {
     setOrderToDelete(id);
@@ -58,64 +59,130 @@ const OrderList = () => {
     return null;
   }
 
+  // return (
+  //   <div className="order-container-dashboard">
+  //     {orders.map((order) => (
+  //       <div className="order-item-dashboard" key={order.id}>
+  //         <div className="order-item-grid-dashboard">
+  //           <p>{order.order_name}</p>
+  //           {/* <p>{order.price}</p> */}
+  //           <p>{order.order_date}</p>
+  //           <p>{order.order_time}</p>
+  //           <p>{order.address}</p>
+  //         </div>
+  //         <div className="order-btns-dashboard">
+  //           <button
+  //             className="order-list-btn-dashboard"
+  //             onClick={() => handleEditClick(order.id)}
+  //           >
+  //             Редактировать
+  //           </button>
+  //           <button
+  //             className="order-delete-btn-dashboard"
+  //             onClick={() => handleDeleteClick(order.id)}
+  //           >
+  //             Удалить
+  //           </button>
+  //           <AssignEmployee
+  //             orderId={order.id}
+  //             onEmployeeAssigned={handleEmployeeAssigned}
+  //           />
+
+  //           <ModalForDelete
+  //             show={showModal}
+  //             onClose={closeModal}
+  //             onConfirm={handleDelete}
+  //           >
+  //             Вы точно хотите удалить заказ?
+  //           </ModalForDelete>
+  //         </div>
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
+
+
+  // return (
+  //   <div className="order-container-dashboard">
+  //     {orders.map((order) => (
+  //       <div className="order-item-dashboard" key={order.id}>
+  //         <div className="order-item-details">
+  //           <div className="order-item-info">
+  //             <p className="order-item-name">Наименование: {order.order_name}</p>
+  //             <p className="order-item-date">Дата: {order.order_date}</p>
+  //             <p className="order-item-time">Время: {order.order_time}</p>
+  //             <p className="order-item-address">Адрес: {order.address}</p>
+  //           </div>
+  //           <div className="order-item-actions">
+  //             <button
+  //               className="order-list-btn-dashboard"
+  //               onClick={() => handleEditClick(order.id)}
+  //             >
+  //               Редактировать
+  //             </button>
+  //             <button
+  //               className="order-delete-btn-dashboard"
+  //               onClick={() => handleDeleteClick(order.id)}
+  //             >
+  //               Удалить
+  //             </button>
+  //           </div>
+  //         </div>
+          
+  //       </div>
+  //     ))}
+  //     <ModalForDelete
+  //           show={showModal}
+  //           onClose={closeModal}
+  //           onConfirm={handleDelete}
+  //         >
+  //           Вы точно хотите удалить заказ?
+  //         </ModalForDelete>
+  //   </div>
+  // );
+  
+
   return (
-    <div className="order-list-container-dashboard">
-      <div className="order-item-grid-header">
-        <div>Наименование</div>
-        <div>Цена</div>
-        <div>Дата</div>
-        <div>Время</div>
-        <div>Адрес</div>
-        <div>Имя клиента</div>
-        <div>Номер клиента</div>
-        <div>Статус</div>
-      </div>
+    <div className="order-container-dashboard">
       {orders.map((order) => (
-        <div className="order-item" key={order.id}>
-          <div className="order-item-grid">
-            <p>{order.order_name}</p>
-            <p>{order.price}</p>
-            <p>{order.order_date}</p>
-            <p>{order.order_time}</p>
-            <p>{order.address}</p>
-            <p>{order.name_client}</p>
-            <p>{order.phone_number_client}</p>
-            <p className="order-list-status">
-              {order.status === "in processing" ? "В обработке" : order.status}
-            </p>
+        <div className="order-item-dashboard" key={order.id}>
+          <div className="order-item-details">
+            <div className="order-item-info">
+              <p className="order-item-name">Наименование: {order.order_name}</p>
+              <p className="order-item-date">{order.order_date}, {order.order_time}, {order.address}</p>
+              {/* <p className="order-item-time">Время: {order.order_time}</p>
+              <p className="order-item-address">Адрес: {order.address}</p> */}
+              
+            </div>
+            <div className="order-item-actions">
+              <button
+                className="order-list-btn-dashboard"
+                onClick={() => handleEditClick(order.id)}
+                aria-label="Редактировать"
+              >
+                <i className="fas fa-pencil-alt"></i>
+              </button>
+              <button
+                className="order-delete-btn-dashboard"
+                onClick={() => handleDeleteClick(order.id)}
+                aria-label="Удалить"
+              >
+                <i className="fas fa-trash-alt"></i>
+              </button>
+            </div>
           </div>
-          <p className="order-item-description">
-            Описание: <TruncatedText text={order.description} limit={150} />
-          </p>
-          <div className="order-list-btns">
-            <button
-              className="order-list-edit-btn"
-              onClick={() => handleEditClick(order.id)}
-            >
-              Редактировать
-            </button>
-            <button
-              className="order-list-delete-btn"
-              onClick={() => handleDeleteClick(order.id)}
-            >
-              Удалить
-            </button>
-            <AssignEmployee
-              orderId={order.id}
-              onEmployeeAssigned={handleEmployeeAssigned}
-            />
-          </div>
+          <ModalForDelete
+            show={showModal}
+            onClose={closeModal}
+            onConfirm={handleDelete}
+          >
+            Вы точно хотите удалить заказ?
+          </ModalForDelete>
         </div>
       ))}
-      <ModalForDelete
-        show={showModal}
-        onClose={closeModal}
-        onConfirm={handleDelete}
-      >
-        Вы точно хотите удалить заказ?
-      </ModalForDelete>
     </div>
   );
+  
 };
 
 export default OrderList;

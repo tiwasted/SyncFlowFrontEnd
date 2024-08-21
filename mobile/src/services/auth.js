@@ -67,3 +67,84 @@ export const setAuthHeader = () => {
         delete axios.defaults.headers.common['Authorization'];
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+// import axios from 'axios';
+// // import jwt_decode from 'jwt-decode';
+
+// const apiUrl = process.env.REACT_APP_API_URL;
+// // const API_URL = `${apiUrl}/users/auth/login/`;
+
+// const api = axios.create({
+//     baseURL: apiUrl,
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+// });
+
+// export const login = async (phone, password) => {
+//     try {
+//         const response = await api.post('/auth/login/', { phone, password });
+
+//         if (response.status === 200 && response.data.access && response.data.refresh) {
+//             const { access, refresh } = response.data;
+//             localStorage.setItem('access_token', access);
+//             localStorage.setItem('refresh_token', refresh);
+//             return access;
+//         } else {
+//             throw new Error('Не удалось получить токен');
+//         }
+//     } catch (error) {
+//         handleError(error);
+//         throw error;
+//     }
+// };
+
+// export const logout = () => {
+//     localStorage.removeItem('access_token');
+//     localStorage.removeItem('refresh_token');
+//     window.location.href = '/login';
+// };
+
+// export const getCurrentToken = () => {
+//     return localStorage.getItem('access_token');
+// };
+
+// export const checkTokenValidity = async (token) => {
+//     try {
+//         const response = await api.post('/auth/token/verify/', { token });
+//         return response.status === 200;
+//     } catch (error) {
+//         console.error('Ошибка проверки токена:', error);
+//         return false;
+//     }
+// };
+
+// export const setAuthHeader = () => {
+//     const token = getCurrentToken();
+//     if (token) {
+//         api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+//     } else {
+//         delete api.defaults.headers.common['Authorization'];
+//     }
+// };
+
+// // Обработка ошибок для единообразия
+// const handleError = (error) => {
+//     if (error.response) {
+//         console.error('Ошибка ответа сервера:', error.response.data);
+//     } else if (error.request) {
+//         console.error('Ошибка запроса:', error.request);
+//     } else {
+//         console.error('Ошибка:', error.message);
+//     }
+// };

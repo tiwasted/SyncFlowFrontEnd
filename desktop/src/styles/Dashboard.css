@@ -1,6 +1,5 @@
-.list-of-orders-title-dashboard {
-  margin-top: 15px;
-  margin-bottom: 15px;
+.create-order-btn-container{
+  padding-left: 10px;
 }
 
 .create-order-btn {
@@ -18,3 +17,50 @@
   background: linear-gradient(135deg, #1e88e5, #1565c0);
   transform: translateY(-2px);
 }
+
+.h2-title-dashboard{
+  text-align: center;
+  padding: 10px;
+}
+
+.orders {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  /* padding: 20px;  */
+  border-radius: 8px; /* Закругляет углы контейнера */
+
+}
+
+.dashboard-order-list-container {
+  flex: 1;
+  min-width: 250px; /* Минимальная ширина контейнера */
+  max-width: 600px; /* Максимальная ширина контейнера */
+  box-sizing: border-box;
+  background-color: #ffffff; /* Белый фон для каждого контейнера */
+
+  border-radius: 8px; /* Закругляет углы */
+  /* padding: 16px;  */
+  padding-left: 10px;
+  padding-right: 10px;
+
+
+}
+
+.dashboard-order-list-container-from-calendar {
+  /* Добавить стили для контейнера, если необходимы дополнительные оформления */
+}
+
+/* .calendar-container {
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+

@@ -20,8 +20,8 @@ export const isTokenExpired = (token) => {
 const refreshToken = async () => {
   const refreshToken = localStorage.getItem("refresh_token");
   if (!refreshToken || isTokenExpired(refreshToken)) {
-    // console.error("Рефреш токен отсутствует или истек.");
-    logout(); // Добавлено для выхода из системы
+    console.error("Рефреш токен отсутствует или истек.");
+    logout();
     return null;
   }
 
@@ -33,8 +33,8 @@ const refreshToken = async () => {
     localStorage.setItem("access_token", newToken);
     return newToken;
   } catch (error) {
-    // console.error("Ошибка при обновлении токена:", error);
-    logout(); // Добавлено для выхода из системы
+    console.error("Ошибка при обновлении токена:", error);
+    logout();
     return null;
   }
 };
@@ -42,7 +42,7 @@ const refreshToken = async () => {
 const logout = () => {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
-  window.location.href = "/login"; // Перенаправление на страницу логина
+  window.location.href = "/login";
 };
 
 TokenService.interceptors.request.use(
