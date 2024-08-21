@@ -53,23 +53,23 @@ const Dashboard = () => {
 
         </div>
         <div className="orders">
-          <div className="dashboard-order-list-container">
+          <div className="">
             <h2 className="h2-title-dashboard">Завтра</h2>
-            <div className="">
+            <div className="dashboard-order-list-container">
               {orders && <OrderList />}
             </div>
           </div>
           
-          <div className="dashboard-order-list-container">
+          <div className="">
             <h2 className="h2-title-dashboard">Заказы без даты</h2>
-            <div className="">
+            <div className="dashboard-order-list-container">
               {orders && <OrderList />}
             </div>
           </div>
           
-          <div className="dashboard-order-list-container">
+          <div className="">
           <h2 className="h2-title-dashboard">Календарный день</h2>
-            <div className="dashboard-order-list-container-from-calendar">
+            <div className="dashboard-order-list-container">
               {filteredOrders.length > 0 ? (
                 <OrderList orders={filteredOrders} />
               ) : (

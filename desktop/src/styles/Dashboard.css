@@ -28,7 +28,6 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: space-between;
-  /* padding: 20px;  */
   border-radius: 8px; /* Закругляет углы контейнера */
 
 }
@@ -44,23 +43,6 @@
   /* padding: 16px;  */
   padding-left: 10px;
   padding-right: 10px;
-
-
+  max-height: 780px; /* Устанавливаем максимальную высоту контейнера */
+  overflow-y: auto; /* Включаем вертикальный скролл при переполнении */
 }
-
-.dashboard-order-list-container-from-calendar {
-  /* Добавить стили для контейнера, если необходимы дополнительные оформления */
-}
-
-/* .calendar-container {
-  flex: 1;
-  min-width: 250px;
-  max-width: 400px;
-  box-sizing: border-box;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} */
-

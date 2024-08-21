@@ -11,6 +11,8 @@ import {
 import { Button, Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
+import iconTab from './iconTab.svg';
+
 
 const { Header, Content, Footer } = Layout;
 
@@ -38,13 +40,14 @@ const AppLayout = ({ children }) => {
           justifyContent: "space-between",
         }}
       >
-        
+                <img src={iconTab} alt="Icon" style={{ width: 30, height: 30, marginLeft: 48 }} />
+
         <div className="header-title">StaffHub</div>
         <Menu
           theme="light"
           mode="horizontal"
           defaultSelectedKeys={[window.location.pathname]}
-          style={{ flex: 1, justifyContent: "flex-end", marginRight: 100 }} // Центрируем меню
+          style={{ flex: 1, justifyContent: "flex-end", paddingRight: 100 }} // Центрируем меню
           items={[
             {
               key: "/dashboard",
@@ -83,7 +86,7 @@ const AppLayout = ({ children }) => {
           icon={<LogoutOutlined />}
           onClick={handleLogout}
           style={{
-            marginRight: "16px",
+            marginRight: "40px",
           }}
         >
           Выйти
