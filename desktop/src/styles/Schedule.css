@@ -1,26 +1,23 @@
-.calendar-container h3 {
-  font-size: 1.5em;
-  color: #2d3748;
-  margin-bottom: 16px;
+.schedule-content {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center;  */
+}
+
+.employee-list-container,
+.orders-of-employee,
+.schedule-calendar-container{
+  flex: 1; /* равномерное распределение ширины между дивами */
+  /* margin: 0 10px;  */
+  /* text-align: center;  */
+}
+
+.schedule-calendar-container h3 {
   text-align: center;
 }
 
-/* Мобильная адаптация */
-@media (max-width: 1024px) {
-  
 
-  .calendar-container {
-    position: static;
-    width: 100%;
-    max-width: none; /* Убираем ограничение ширины для мобильных устройств */
-    margin-top: 20px;
-  }
-}
 
-@media (max-width: 768px) {
-  .calendar-container {
-    padding: 15px;
-  }
 
- 
-}
+
+

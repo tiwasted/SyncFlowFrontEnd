@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-// import AssignEmployee from "../components/AssignEmployee";
+import AssignEmployee from "../components/AssignEmployee";
 import api from "../services/TokenService";
 import { useOrders } from "../context/OrderProvider";
 import ModalForDelete from "../components/ModalForDelete";
@@ -26,13 +26,13 @@ const OrderList = () => {
     }
   };
 
-  // const handleEmployeeAssigned = (updatedOrder) => {
-  //   setOrders((prevOrders) =>
-  //     prevOrders.map((order) =>
-  //       order.id === updatedOrder.id ? updatedOrder : order
-  //     )
-  //   );
-  // };
+  const handleEmployeeAssigned = (updatedOrder) => {
+    setOrders((prevOrders) =>
+      prevOrders.map((order) =>
+        order.id === updatedOrder.id ? updatedOrder : order
+      )
+    );
+  };
 
   const handleDeleteClick = (id) => {
     setOrderToDelete(id);
@@ -66,7 +66,7 @@ const OrderList = () => {
           <div className="order-item-details">
             <div className="order-item-info">
               <p className="order-item-name">Наименование: {order.order_name}</p>
-              <p className="order-item-date">{order.order_date}, {order.order_time}, {order.address}</p>
+              <p className="order-item-date">{order.order_time}, {order.order_date}, {order.address}</p>
               {/* <p className="order-item-time">Время: {order.order_time}</p>
               <p className="order-item-address">Адрес: {order.address}</p> */}
               
@@ -88,6 +88,10 @@ const OrderList = () => {
               </button>
             </div>
           </div>
+          <AssignEmployee
+              orderId={order.id}
+              onEmployeeAssigned={handleEmployeeAssigned}
+            />
           <ModalForDelete
             show={showModal}
             onClose={closeModal}
