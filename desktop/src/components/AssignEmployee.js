@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useOrders } from "./OrderProvider";
+import { useOrders } from "../context/OrderProvider";
 import api from "../services/TokenService";
 
 const AssignEmployee = ({ orderId }) => {
@@ -44,7 +44,7 @@ const AssignEmployee = ({ orderId }) => {
   };
 
   return (
-    <div className="assign-employee">
+    <div className="assign-employee-container">
       <select
         className="employee-select"
         value={employeeId}
@@ -57,8 +57,8 @@ const AssignEmployee = ({ orderId }) => {
           </option>
         ))}
       </select>
-      <button className="general-btns" onClick={handleAssign}>
-        Назначить сотрудника
+      <button className="assign-btn" onClick={handleAssign}>
+        <span className="icon">✔️</span>
       </button>
     </div>
   );

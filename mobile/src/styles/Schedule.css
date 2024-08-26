@@ -18,7 +18,7 @@
 	
 }
 
-.custom-calendar {
+/* .custom-calendar {
 	width: 100%;
 	border: none;
 	background-color: var(--c-bg-tertiary);
@@ -26,7 +26,7 @@
 	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.1);
 	padding: 1rem;
 	margin-bottom: 15px;
-}
+} */
 
 abbr {
 	text-decoration: none;

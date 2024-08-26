@@ -1,6 +1,5 @@
-.list-of-orders-title-dashboard {
-  margin-top: 15px;
-  margin-bottom: 15px;
+.create-order-btn-container{
+  padding-left: 10px;
 }
 
 .create-order-btn {
@@ -17,4 +16,135 @@
 .create-order-btn:hover {
   background: linear-gradient(135deg, #1e88e5, #1565c0);
   transform: translateY(-2px);
+}
+
+.h2-title-dashboard{
+  text-align: center;
+  padding: 10px;
+}
+
+.orders {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  border-radius: 8px; /* Закругляет углы контейнера */
+
+}
+
+.dashboard-order-list-container {
+  flex: 1;
+  min-width: 250px; /* Минимальная ширина контейнера */
+  max-width: 600px; /* Максимальная ширина контейнера */
+  box-sizing: border-box;
+  background-color: #ffffff; /* Белый фон для каждого контейнера */
+  border-radius: 8px; /* Закругляет углы */
+  padding-left: 10px;
+  padding-right: 10px;
+  max-height: 780px; /* Устанавливаем максимальную высоту контейнера */
+  overflow-y: auto; /* Включаем вертикальный скролл при переполнении */
+}
+
+/* .dashboard-calendar-container{
+  flex: 1;
+  min-width: 250px;
+  max-width: 600px;
+  box-sizing: border-box;
+  background-color: #ffffff; 
+  border-radius: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-height: 780px; 
+  overflow-y: auto;
+} */
+
+.assign-employee-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+  transition: box-shadow 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.employee-select {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  background-color: #fafafa;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.employee-select:focus {
+  border-color: #0069d9;
+  box-shadow: 0 0 8px rgba(0, 105, 217, 0.3);
+  transform: scale(1.02);
+  outline: none;
+}
+
+.assign-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: #0069d9;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.assign-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease-out;
+}
+
+.assign-btn:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.assign-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+.assign-btn:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  font-size: 18px;
+  color: #ffffff;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.assign-btn:hover .icon {
+  transform: rotate(360deg);
 }

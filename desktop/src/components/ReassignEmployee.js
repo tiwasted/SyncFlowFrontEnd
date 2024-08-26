@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useOrders } from "./OrderProvider";
+import { useOrders } from "../context/OrderProvider";
 import api from "../services/TokenService";
 
 const ReassignEmployee = ({ orderId }) => {
@@ -44,9 +44,9 @@ const ReassignEmployee = ({ orderId }) => {
   };
 
   return (
-    <div className="assign-employee assign-employee-location">
+    <div className="">
       <select
-        className="employee-select"
+        className=""
         value={employeeId}
         onChange={(e) => setEmployeeId(e.target.value)}
       >
@@ -57,7 +57,7 @@ const ReassignEmployee = ({ orderId }) => {
           </option>
         ))}
       </select>
-      <button className="general-btns" onClick={handleAssign}>
+      <button className="" onClick={handleAssign}>
         Переназначить сотрудника
       </button>
     </div>

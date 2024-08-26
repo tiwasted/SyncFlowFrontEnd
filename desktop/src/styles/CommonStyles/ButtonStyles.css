@@ -20,17 +20,6 @@
   margin-bottom: 5px; /* Отступ под меткой */
 }
 
-.add-input-date,
-.add-input-time,
-.add-textarea,
-input {
-  width: 100%; /* Полная ширина элементов ввода */
-  padding: 8px; /* Внутренние отступы ввода */
-  font-size: 14px; /* Размер шрифта */
-  border: 1px solid #ccc; /* Граница ввода */
-  border-radius: 4px; /* Скругление углов ввода */
-}
-
 .form-btns {
   display: flex; /* Используем Flexbox для кнопок */
   justify-content: space-between; /* Распределяем кнопки по краям */

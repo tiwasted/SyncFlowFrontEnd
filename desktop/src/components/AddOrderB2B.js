@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useOrders } from "../components/OrderProvider";
+import { useOrders } from "../context/OrderProvider";
 import api from "../services/TokenService";
 
 const AddOrderB2B = () => {
@@ -31,8 +31,7 @@ const AddOrderB2B = () => {
 
       const response = await api.post(
         "http://localhost:8000/orders/b2b-orders/",
-        formData,
-        {}
+        formData
       );
 
       setOrders((prevOrders) => [...prevOrders, response.data]);

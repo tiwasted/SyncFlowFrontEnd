@@ -17,7 +17,8 @@
 .ant-layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
+  background-color: white;
 }
 
 .ant-layout-header {
@@ -39,15 +40,15 @@
 .ant-layout-content {
   flex-grow: 1;
   overflow: auto;
-  padding: 20px;
+  /* padding: 20px; */
   background: #fff;
   border-radius: 8px;
   justify-content: space-between;
 }
 
-.ant-layout-sider-children {
+/* .ant-layout-sider-children {
   position: fixed;
-}
+} */
 
 .schedule-container {
   border-radius: 8px;

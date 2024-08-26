@@ -48,7 +48,7 @@ const OrderList = ({ orders, setOrders }) => {
   }
 
   return (
-    <div>
+    <div className="order-container-schedule">
       {orders.map((order) => (
         <div key={order.id} className="order-item-schedule">
           <h4>{order.service_name}</h4>

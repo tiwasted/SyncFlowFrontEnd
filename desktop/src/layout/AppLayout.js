@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   // UploadOutlined,
   AreaChartOutlined,
@@ -11,11 +11,12 @@ import {
 import { Button, Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
+import iconTab from './iconTab.svg';
 
-const { Header, Sider, Content } = Layout;
+
+const { Header, Content, Footer } = Layout;
 
 const AppLayout = ({ children }) => {
-  const [collapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -29,13 +30,24 @@ const AppLayout = ({ children }) => {
   };
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo" />
+    <Layout style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <Header
+        style={{
+          padding: 0,
+          background: colorBgContainer,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+                <img src={iconTab} alt="Icon" style={{ width: 30, height: 30, marginLeft: 48 }} />
+
+        <div className="header-title">StaffHub</div>
         <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={[window.location.pathname]} // Устанавливаем активный пункт меню на основе текущего пути
+          theme="light"
+          mode="horizontal"
+          defaultSelectedKeys={[window.location.pathname]}
+          style={{ flex: 1, justifyContent: "flex-end", paddingRight: 100 }} // Центрируем меню
           items={[
             {
               key: "/dashboard",
@@ -69,41 +81,38 @@ const AppLayout = ({ children }) => {
             },
           ]}
         />
-      </Sider>
-      <Layout>
-        <Header
+        <Button
+          type="primary"
+          icon={<LogoutOutlined />}
+          onClick={handleLogout}
           style={{
-            padding: 0,
-            background: colorBgContainer,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            marginRight: "40px",
           }}
         >
-          <div className="header-title">StaffHub</div>
-          <Button
-            type="primary"
-            icon={<LogoutOutlined />}
-            onClick={handleLogout}
-            style={{
-              marginRight: "16px",
-            }}
-          >
-            Выйти
-          </Button>
-        </Header>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          {children}
-        </Content>
-      </Layout>
+          Выйти
+        </Button>
+      </Header>
+      <Content
+        style={{
+          margin: "24px 16px",
+          padding: 24,
+          flex: 1,
+          background: colorBgContainer,
+          borderRadius: borderRadiusLG,
+        }}
+      >
+        {children}
+      </Content>
+      <Footer
+        style={{
+          textAlign: "center",
+          background: colorBgContainer,
+          padding: "16px 50px",
+          borderRadius: borderRadiusLG,
+        }}
+      >
+        © 2024 StaffHub
+      </Footer>
     </Layout>
   );
 };

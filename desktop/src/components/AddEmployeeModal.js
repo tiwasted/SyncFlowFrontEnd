@@ -22,12 +22,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
     };
 
     try {
-      const response = await api.post("/employees/create/", newEmployee, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await api.post("/employees/create/", newEmployee);
       onEmployeeAdded(response.data);
       onClose();
     } catch (error) {

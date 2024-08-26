@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
 import { SidebarProvider } from "./functions/SidebarProvider";
-import { OrderProvider } from "./components/OrderProvider";
+import { OrderProvider } from "./context/OrderProvider";
 import ProtectedRoute from "./context/ProtectedRoute";
 import AppLayout from "./layout/AppLayout";
 

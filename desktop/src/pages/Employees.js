@@ -13,21 +13,17 @@ const Employees = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await api.get("/employees/employees/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await api.get("/employees/employees/");
       setEmployees(response.data);
     } catch (error) {
-      // console.error("Error fetching employees", error);
+      console.error("Error fetching employees", error);
     }
   };
 
   const deleteEmployee = async (id) => {
     try {
       if (!id) {
-        // console.error("Invalid employee id");
+        console.error("Invalid employee id");
         return;
       }
       await api.delete(`/employees/${id}/delete/`, {
@@ -37,17 +33,16 @@ const Employees = () => {
       });
       setEmployees(employees.filter((emp) => emp.id !== id));
     } catch (error) {
-      // console.error("Error deleting employee", error);
+      console.error("Error deleting employee", error);
     }
   };
 
   const handleAddEmployee = async (newEmployee) => {
     try {
-      // Оставляем добавление сотрудника в модальном окне и вызов функции обновления
-      await fetchEmployees(); // Обновляем список сотрудников после добавления
+      await fetchEmployees();
       setIsModalOpen(false);
     } catch (error) {
-      // console.error("Error adding employee", error);
+      console.error("Error adding employee", error);
     }
   };
 

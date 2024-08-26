@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import api from "../services/TokenService";
-import { useAuth } from "../context/AuthProvider";
+import { useAuth } from "./AuthProvider";
 
 const OrderContext = createContext();
 
