@@ -4,7 +4,7 @@ import AssignEmployee from "../components/AssignEmployee";
 import api from "../services/TokenService";
 import { useOrders } from "../context/OrderProvider";
 import ModalForDelete from "../components/ModalForDelete";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 
 const OrderList = () => {

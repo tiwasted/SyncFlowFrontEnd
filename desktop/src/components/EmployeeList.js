@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModalForDelete from "./ModalForDelete";
 import EmployeeEdit from "./EmployeeEdit";
-import TokenService from "../services/TokenService";
+import api from "../services/TokenService";
 
 const EmployeeList = ({ employees, setEmployees, onDelete }) => {
   const [showModal, setShowModal] = useState(false);
@@ -30,7 +30,7 @@ const EmployeeList = ({ employees, setEmployees, onDelete }) => {
 
   const handleSaveEdit = async (updatedEmployee) => {
     try {
-      const response = await TokenService.put(
+      const response = await api.put(
         `/employees/edit/${updatedEmployee.id}/`,
         updatedEmployee
       );
@@ -41,7 +41,7 @@ const EmployeeList = ({ employees, setEmployees, onDelete }) => {
       );
       setEmployeeToEdit(null);
     } catch (error) {
-      // console.error("Ошибка при сохранении данных сотрудника:", error);
+      console.error("Ошибка при сохранении данных сотрудника:", error);
     }
   };
 

@@ -1,5 +1,4 @@
-/* Модальное окно для добавления сотрудника */
-.modal {
+.add-employee-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,8 +12,7 @@
   overflow: auto;
 }
 
-/* Контент модального окна */
-.modal-content {
+.add-employee-modal-content {
   background-color: #fff;
   padding: 40px;
   border-radius: 8px;
@@ -23,12 +21,9 @@
   max-width: 500px;
   position: relative;
   animation: slideDown 0.3s ease-in-out;
-  /* display: flex; */
-  /* justify-content: center; */
 }
 
-/* Заголовок */
-.modal-title {
+.add-employee-modal-title {
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: 600;
@@ -36,8 +31,7 @@
   color: #333;
 }
 
-/* Кнопка закрытия */
-.modal-close {
+.add-employee-modal-close {
   position: absolute;
   top: 10px;
   right: 20px;
@@ -47,17 +41,15 @@
   transition: color 0.3s ease;
 }
 
-.modal-close:hover {
+.add-employee-modal-close:hover {
   color: #333;
 }
 
-/* Группа формы */
-.form-group {
+.add-employee-form-group {
   margin-bottom: 20px;
 }
 
-/* Поля ввода */
-.form-input {
+.add-employee-form-input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -67,14 +59,13 @@
   transition: border-color 0.3s ease;
 }
 
-.form-input:focus {
+.add-employee-form-input:focus {
   border-color: #007bff;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
-/* Кнопка отправки */
-.form-button {
+.add-employee-form-button {
   width: 100%;
   padding: 12px 20px;
   background-color: #007bff;
@@ -87,17 +78,16 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.form-button:hover {
+.add-employee-form-button:hover {
   background-color: #0056b3;
   transform: translateY(-2px);
 }
 
-.form-button:active {
+.add-employee-form-button:active {
   background-color: #004085;
   transform: translateY(0);
 }
 
-/* Анимация */
 @keyframes slideDown {
   from {
     opacity: 0;
