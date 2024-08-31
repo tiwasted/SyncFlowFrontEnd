@@ -13,7 +13,7 @@ const ReassignEmployee = ({ orderId }) => {
         const response = await api.get("/employees/employees/");
         setEmployees(response.data);
       } catch (error) {
-        // console.error("Ошибка при получении списка сотрудников", error);
+        console.error("Ошибка при получении списка сотрудников", error);
       }
     };
 
@@ -36,17 +36,16 @@ const ReassignEmployee = ({ orderId }) => {
 
       setEmployeeId(""); // Очистка после успешного назначения
 
-      // Перезагрузка страницы
-      window.location.reload();
     } catch (error) {
-      // console.error("Ошибка при назначении сотрудника", error);
+      console.error("Ошибка при переназначении сотрудника", error);
     }
   };
 
   return (
-    <div className="">
+    <div className="reassign-container">
+      <h2 className="reassign-title">Переназначить сотрудника</h2>
       <select
-        className=""
+        className="reassign-select"
         value={employeeId}
         onChange={(e) => setEmployeeId(e.target.value)}
       >
@@ -57,8 +56,8 @@ const ReassignEmployee = ({ orderId }) => {
           </option>
         ))}
       </select>
-      <button className="" onClick={handleAssign}>
-        Переназначить сотрудника
+      <button className="reassign-button" onClick={handleAssign}>
+        Переназначить
       </button>
     </div>
   );

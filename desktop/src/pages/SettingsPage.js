@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
-import AddLocationModal from "../components/AddLocationModal"
+import AddLocationModal from "../components/AddLocationModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 
 const SettingsPage = () => {
@@ -38,10 +38,6 @@ const SettingsPage = () => {
       console.error("Ошибка при загрузке городов:", error);
     }
   };
-
-  useEffect(() => {
-    fetchCountries();
-  }, []);
 
   useEffect(() => {
     fetchCities(selectedCountry);
@@ -101,9 +97,10 @@ const SettingsPage = () => {
     }
   };
 
-  const handleOpenAddLocationModal = () => {
+  const handleOpenAddLocationModal = async () => {
     setShowAddLocationModal(true);
     setMessage("");
+    await fetchCountries(); // Вызов fetchCountries при открытии модального окна
   };
 
   const handleCloseAddLocationModal = () => {
@@ -128,6 +125,7 @@ const SettingsPage = () => {
 
   const handleCountryChange = (e) => {
     setSelectedCountry(Number(e.target.value));
+    setSelectedCities([]); // Reset selected cities when country changes
   };
 
   const handleCityChange = (e) => {

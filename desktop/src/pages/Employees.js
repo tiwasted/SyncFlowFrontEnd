@@ -38,7 +38,7 @@ const Employees = () => {
         console.error("Invalid employee id");
         return;
       }
-      await api.delete(`/employees/${id}/delete`, {
+      await api.delete(`/employees/${id}/delete/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
