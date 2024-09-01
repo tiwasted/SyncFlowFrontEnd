@@ -23,9 +23,8 @@ const ManagerEdit = ({ manager, onSave, onCancel }) => {
 
       // Вызываем функцию сохранения с обновленными данными
       onSave(response.data);
-      // window.location.reload();
     } catch (error) {
-      // console.error("Ошибка при сохранении данных сотрудника:", error);
+      console.error("Ошибка при сохранении данных сотрудника:", error);
       // Здесь можно добавить обработку ошибок, например, отображение сообщения пользователю
     }
   };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ModalForDelete from "./ModalForDelete";
-import ManagerEdit from "./ManagerEdit"; // Assuming you have a ManagerEdit component
+import ManagerEdit from "./ManagerEdit"; 
 import api from "../services/TokenService";
 
 const ManagerList = ({ managers, setManagers, onDelete }) => {

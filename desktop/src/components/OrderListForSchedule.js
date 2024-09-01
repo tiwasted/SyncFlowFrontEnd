@@ -94,18 +94,12 @@ const OrderListForSchedule = ({ orders, setOrders }) => {
                 Наименование: {order.order_name}
               </p>
               <p className="order-item-details">
-                <b>Время:</b> {order.order_time}, <b>Дата:</b> {order.order_date}
+                <b>Время:</b> {order.order_time}, <b>Дата:</b> {order.order_date}, <b>Цена:</b> {order.price}
               </p>
               <p>
                 <b>Статус: </b>{" "}
                 {order.status === "in_waiting" ? "В ожидании" : order.status}
               </p>
-              {/* <p>
-                <b>Сотрудник: </b>{" "}
-                {order.list_assigned_employees && order.list_assigned_employees.length > 0
-                  ? `${order.list_assigned_employees[0].first_name} ${order.list_assigned_employees[0].last_name}`
-                  : "Не назначен"}
-              </p> */}
               <p>
                 <b>Сотрудник (-и): </b>{" "}
                 {order.list_assigned_employees && order.list_assigned_employees.length > 0

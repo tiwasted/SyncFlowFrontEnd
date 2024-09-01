@@ -10,25 +10,19 @@ const Employees = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetchEmployees();
-    fetchManagers();
+    fetchData();
   }, []);
 
-  const fetchEmployees = async () => {
+  const fetchData = async () => {
     try {
-      const response = await api.get("/employees/employees/");
-      setEmployees(response.data);
+      const [employeesResponse, managersResponse] = await Promise.all([
+        api.get("/employees/employees/"),
+        api.get("/employers/managers/"),
+      ]);
+      setEmployees(employeesResponse.data);
+      setManagers(managersResponse.data);
     } catch (error) {
-      console.error("Error fetching employees", error);
-    }
-  };
-
-  const fetchManagers = async () => {
-    try {
-      const response = await api.get("/employers/managers/");
-      setManagers(response.data);
-    } catch (error) {
-      console.error("Error fetching managers", error);
+      console.error("Error fetching data", error);
     }
   };
 
@@ -38,11 +32,7 @@ const Employees = () => {
         console.error("Invalid employee id");
         return;
       }
-      await api.delete(`/employees/${id}/delete/`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      await api.delete(`/employees/${id}/delete/`);
       setEmployees(employees.filter((emp) => emp.id !== id));
     } catch (error) {
       console.error("Error deleting employee", error);
@@ -64,8 +54,7 @@ const Employees = () => {
 
   const handleAddEmployee = async (newEmployee) => {
     try {
-      await fetchEmployees();
-      await fetchManagers();
+      await fetchData();
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error adding employee", error);

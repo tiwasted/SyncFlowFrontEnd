@@ -10,7 +10,7 @@ const AddB2BClient = ({ onB2BClientAdded }) => {
       onB2BClientAdded(response.data);
       setNewB2BClient({ name: "", email: "" });
     } catch (error) {
-      // console.error("Ошибка при добавлении клиента:", error);
+      console.error("Ошибка при добавлении клиента:", error);
     }
   };
 
