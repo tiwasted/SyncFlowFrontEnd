@@ -1,224 +1,75 @@
-// import React, { useState, useEffect } from "react";
-// import { useOrders } from "../context/OrderProvider";
-// import api from "../services/TokenService";
-
-// const AssignEmployee = ({ orderId }) => {
-//   const [employeeId, setEmployeeId] = useState("");
-//   const [employees, setEmployees] = useState([]);
-//   const { setOrders } = useOrders();
-
-//   useEffect(() => {
-//     const fetchEmployees = async () => {
-//       try {
-//         const response = await api.get("/employees/employees/");
-//         setEmployees(response.data);
-//       } catch (error) {
-//         // console.error("Ошибка при получении списка сотрудников", error);
-//       }
-//     };
-
-//     fetchEmployees();
-//   }, []);
-
-//   const handleAssign = async () => {
-//     try {
-//       const response = await api.post(
-//         `/orders/b2c-orders/${orderId}/assign_employee/`,
-//         { employee_id: employeeId }
-//       );
-
-//       const updatedOrder = response.data;
-//       setOrders((prevOrders) =>
-//         prevOrders.map((order) =>
-//           order.id === updatedOrder.id ? updatedOrder : order
-//         )
-//       );
-
-//       setEmployeeId(""); // Очистка после успешного назначения
-
-//       // Перезагрузка страницы
-//       window.location.reload();
-//     } catch (error) {
-//       console.error("Ошибка при назначении сотрудника", error);
-//     }
-//   };
-
-//   return (
-//     <div className="assign-employee-container">
-//       <select
-//         className="employee-select"
-//         value={employeeId}
-//         onChange={(e) => setEmployeeId(e.target.value)}
-//       >
-//         <option value="">Выберите сотрудника</option>
-//         {employees.map((employee) => (
-//           <option key={employee.id} value={employee.id}>
-//             {employee.first_name} {employee.last_name}
-//           </option>
-//         ))}
-//       </select>
-//       <button className="assign-btn" onClick={handleAssign}>
-//         <span className="icon">✔️</span>
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default AssignEmployee;
-
-
-
-// import React, { useState } from "react";
-// import { useOrders } from "../context/OrderProvider";
-// import api from "../services/TokenService";
-
-// const AssignEmployee = ({ orderId, onEmployeeAssigned }) => {
-//   const [employeeId, setEmployeeId] = useState("");
-//   const [employees, setEmployees] = useState([]);
-//   const { setOrders } = useOrders();
-
-//   const fetchEmployees = async () => {
-//     try {
-//       const response = await api.get("/employees/employees/");
-//       setEmployees(response.data);
-//     } catch (error) {
-//       console.error("Ошибка при получении списка сотрудников", error);
-//     }
-//   };
-
-//   const handleAssign = async () => {
-//     try {
-//       const response = await api.post(
-//         `/orders/b2c-orders/${orderId}/assign_employee/`,
-//         { employee_id: employeeId }
-//       );
-
-//       const updatedOrder = response.data;
-//       setOrders((prevOrders) =>
-//         prevOrders.map((order) =>
-//           order.id === updatedOrder.id ? updatedOrder : order
-//         )
-//       );
-
-//       setEmployeeId(""); // Очистка после успешного назначения
-
-//       // Перезагрузка страницы
-//       window.location.reload();
-//     } catch (error) {
-//       console.error("Ошибка при назначении сотрудника", error);
-//     }
-//   };
-
-//   const handleSelectClick = () => {
-//     if (employees.length === 0) {
-//       fetchEmployees();
-//     }
-//   };
-
-//   const handleSelectChange = (e) => {
-//     setEmployeeId(e.target.value);
-//   };
-
-//   return (
-//     <div className="assign-employee-container">
-//       <select
-//         className="employee-select"
-//         value={employeeId}
-//         onChange={handleSelectChange}
-//         onClick={handleSelectClick}
-//       >
-//         <option value="">Выберите сотрудника</option>
-//         {employees.map((employee) => (
-//           <option key={employee.id} value={employee.id}>
-//             {employee.first_name} {employee.last_name}
-//           </option>
-//         ))}
-//       </select>
-//       <button className="assign-btn" onClick={handleAssign}>
-//         <span className="icon">✔️</span>
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default AssignEmployee;
-
-
-
-
-
-
-import React, { useState } from "react";
-import { useOrders } from "../context/OrderProvider";
+import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
+import "../styles/ReassignEmployee.css"; // Используем те же стили, что и для ReassignEmployee
 
-const AssignEmployee = ({ orderId, onEmployeeAssigned }) => {
-  const [employeeId, setEmployeeId] = useState("");
+const AssignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
+  const [employeeIds, setEmployeeIds] = useState([]);
   const [employees, setEmployees] = useState([]);
-  const { setOrders } = useOrders();
 
-  const fetchEmployees = async () => {
-    try {
-      const response = await api.get("/employees/employees/");
-      setEmployees(response.data);
-    } catch (error) {
-      console.error("Ошибка при получении списка сотрудников", error);
-    }
-  };
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const response = await api.get("/employees/assigning-list/");
+        setEmployees(response.data);
+      } catch (error) {
+        console.error("Ошибка при получении списка сотрудников", error);
+      }
+    };
+
+    fetchEmployees();
+  }, []);
 
   const handleAssign = async () => {
     try {
       const response = await api.post(
         `/orders/b2c-orders/${orderId}/assign_employee/`,
-        { employee_ids: employeeId }
+        { employee_ids: employeeIds }
       );
 
       const updatedOrder = response.data;
-      setOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order.id === updatedOrder.id ? updatedOrder : order
-        )
-      );
-
-      setEmployeeId(""); // Очистка после успешного назначения
-
-      // Обновляем состояние в родительском компоненте
-      if (onEmployeeAssigned) {
-        onEmployeeAssigned(updatedOrder);
-      }
+      onEmployeeAssigned(updatedOrder);
+      setEmployeeIds([]); // Очистка после успешного назначения
+      onClose(); // Закрытие модального окна после успешного назначения
     } catch (error) {
       console.error("Ошибка при назначении сотрудника", error);
     }
   };
 
-  const handleSelectClick = () => {
-    if (employees.length === 0) {
-      fetchEmployees();
-    }
+  const handleSelectChange = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
+    setEmployeeIds(selectedOptions);
   };
 
-  const handleSelectChange = (e) => {
-    setEmployeeId(e.target.value);
-  };
+  if (!show) {
+    return null;
+  }
 
   return (
-    <div className="assign-employee-container">
-      <select
-        className="employee-select"
-        value={employeeId}
-        onChange={handleSelectChange}
-        onClick={handleSelectClick}
-      >
-        <option value="">Выберите сотрудника</option>
-        {employees.map((employee) => (
-          <option key={employee.id} value={employee.id}>
-            {employee.first_name} {employee.last_name}
-          </option>
-        ))}
-      </select>
-      <button className="assign-btn" onClick={handleAssign}>
-        <span className="icon">✔️</span>
-      </button>
+    <div className="reassign-modal">
+      <div className="reassign-modal-content">
+        <span className="reassign-close" onClick={onClose}>
+          &times;
+        </span>
+        <h2 className="reassign-title">Назначить сотрудника</h2>
+        <select
+          className="reassign-select"
+          multiple
+          value={employeeIds}
+          onChange={handleSelectChange}
+        >
+          <option value="" disabled>Выберите сотрудников</option>
+          {employees.map((employee) => (
+            <option key={employee.id} value={employee.id}>
+              {employee.first_name} {employee.last_name}
+            </option>
+          ))}
+        </select>
+        <div className="reassign-button-container">
+          <button className="reassign-button" onClick={handleAssign}>
+            Назначить сотрудников
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

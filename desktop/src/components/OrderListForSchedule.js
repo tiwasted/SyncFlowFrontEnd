@@ -1,30 +1,61 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import ReassignEmployee from "./ReassignEmployee";
 import api from "../services/TokenService";
 import ModalForDelete from "./ModalForDelete";
+import ModalForEditDashboard from "./ModalForEdit";
+import PencilIcon from "../Icons/Pencil.svg";
+import BasketIcon from "../Icons/Basket.svg";
+import EmployeeIcon from "../Icons/Employee.png";
 
-const OrderList = ({ orders, setOrders }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
+const OrderListForSchedule = ({ orders, setOrders }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showReassignModal, setShowReassignModal] = useState(false);
   const [orderToDelete, setOrderToDelete] = useState(null);
+  const [orderToEdit, setOrderToEdit] = useState(null);
+  const [orderToReassign, setOrderToReassign] = useState(null);
 
   const handleDelete = async () => {
     if (orderToDelete === null) return;
 
     try {
-      await api.delete(`/orders/b2c-orders/${orderToDelete}/`);
+      await api.delete(`/orders/schedule-orders/${orderToDelete}/`);
       setOrders(orders.filter((order) => order.id !== orderToDelete));
       setShowModal(false);
     } catch (error) {
-      // console.error("Ошибка при удалении заказа", error);
+      console.error("Ошибка при удалении заказа", error);
     }
   };
 
   const handleDeleteClick = (id) => {
-    setOrderToDelete(id); // Сохраняем ID заказа, который хотим удалить
-    setShowModal(true); // Открываем модальное окно
+    setOrderToDelete(id);
+    setShowModal(true);
+  };
+
+  const handleEditClick = (order) => {
+    if (order) {
+      setOrderToEdit(order);
+      setShowEditModal(true);
+    }
+  };
+
+  const handleEditSave = async (updatedOrder) => {
+    try {
+      await api.put(`/orders/schedule-orders/${updatedOrder.id}/`, updatedOrder);
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order.id === updatedOrder.id ? updatedOrder : order
+        )
+      );
+      setShowEditModal(false);
+    } catch (error) {
+      console.error("Ошибка при обновлении заказа", error);
+    }
+  };
+
+  const handleReassignClick = (order) => {
+    setOrderToReassign(order);
+    setShowReassignModal(true);
   };
 
   const handleEmployeeAssigned = (updatedOrder) => {
@@ -33,14 +64,19 @@ const OrderList = ({ orders, setOrders }) => {
         order.id === updatedOrder.id ? updatedOrder : order
       )
     );
-  };
-
-  const handleEditClick = (orderId) => {
-    navigate(`/edit-order/${orderId}`, { state: { from: location.pathname } });
+    setShowReassignModal(false);
   };
 
   const closeModal = () => {
     setShowModal(false);
+  };
+
+  const closeEditModal = () => {
+    setShowEditModal(false);
+  };
+
+  const closeReassignModal = () => {
+    setShowReassignModal(false);
   };
 
   if (!orders || orders.length === 0) {
@@ -50,61 +86,54 @@ const OrderList = ({ orders, setOrders }) => {
   return (
     <div className="order-container-schedule">
       {orders.map((order) => (
-        <div key={order.id} className="order-item-schedule">
-          <h4>{order.service_name}</h4>
-          <p className="box-pic">
-            <b>Наименование: </b> {order.order_name}
-          </p>
-          <p>
-            <b>Цена: </b> {order.price}
-          </p>
-          <p>
-            <b>Дата: </b> {order.order_date}
-          </p>
-          <p>
-            <b>Время: </b> {order.order_time}
-          </p>
-          <p>
-            <b>Адрес: </b> {order.address}
-          </p>
-          <p>
-            <b>Имя клиента: </b> {order.name_client}
-          </p>
-          <p>
-            <b>Номер клиента: </b> {order.phone_number_client}
-          </p>
-          <p>
-            <b>Описание: </b> {order.description}
-          </p>
-          <p>
-            <b>Статус: </b>{" "}
-            {order.status === "in waiting" ? "В ожидании" : order.status}
-          </p>
-          <p>
-            <b>Сотрудник: </b>{" "}
-            {order.assigned_employee_name
-              ? `${order.assigned_employee_name}`
-              : "Не назначен"}
-          </p>
-          <p>
-            <b>Телефон сотрудника: </b> {order.assigned_employee_phone}
-          </p>
-          <button
-            className="order-list-schedule-edit-btn"
-            onClick={() => handleEditClick(order.id)}
-          >
-            Редактировать
-          </button>
-          <button
-            className="order-list-schedule-delete-btn"
-            onClick={() => handleDeleteClick(order.id)}
-          >
-            Удалить
-          </button>
-          <ReassignEmployee
-            orderId={order.id}
-            onEmployeeAssigned={handleEmployeeAssigned}
-          />
+        <div key={order.id} className="order-item-dashboard order-item-schedule">
+          <div className="order-item-details-container">
+            <h4>{order.service_name}</h4>
+            <div className="order-item-info">
+              <p className="order-item-name">
+                Наименование: {order.order_name}
+              </p>
+              <p className="order-item-details">
+                <b>Время:</b> {order.order_time}, <b>Дата:</b> {order.order_date}
+              </p>
+              <p>
+                <b>Статус: </b>{" "}
+                {order.status === "in_waiting" ? "В ожидании" : order.status}
+              </p>
+              {/* <p>
+                <b>Сотрудник: </b>{" "}
+                {order.list_assigned_employees && order.list_assigned_employees.length > 0
+                  ? `${order.list_assigned_employees[0].first_name} ${order.list_assigned_employees[0].last_name}`
+                  : "Не назначен"}
+              </p> */}
+              <p>
+                <b>Сотрудник (-и): </b>{" "}
+                {order.list_assigned_employees && order.list_assigned_employees.length > 0
+                  ? order.list_assigned_employees.map(employee => `${employee.first_name} ${employee.last_name}`).join(', ')
+                  : "Не назначен"}
+              </p>
+            </div>
+            <div className="order-item-actions">
+              <button
+                className="order-list-btn-dashboard"
+                onClick={() => handleEditClick(order)}
+              >
+                <img src={PencilIcon} alt="Редактировать" className="icon" />
+              </button>
+              <button
+                className="order-delete-btn-dashboard"
+                onClick={() => handleDeleteClick(order.id)}
+              >
+                <img src={BasketIcon} alt="Удалить" className="icon" />
+              </button>
+              <button
+                className="order-reassign-btn-dashboard"
+                onClick={() => handleReassignClick(order)}
+              >
+                <img src={EmployeeIcon} alt="Переназначить" className="icon" />
+              </button>
+            </div>
+          </div>
         </div>
       ))}
       <ModalForDelete
@@ -114,8 +143,22 @@ const OrderList = ({ orders, setOrders }) => {
       >
         Вы точно хотите удалить заказ?
       </ModalForDelete>
+      <ModalForEditDashboard
+        show={showEditModal}
+        onClose={closeEditModal}
+        order={orderToEdit}
+        onSave={handleEditSave}
+      />
+      {orderToReassign && (
+        <ReassignEmployee
+          orderId={orderToReassign.id}
+          onEmployeeAssigned={handleEmployeeAssigned}
+          show={showReassignModal}
+          onClose={closeReassignModal}
+        />
+      )}
     </div>
   );
 };
 
-export default OrderList;
+export default OrderListForSchedule;
