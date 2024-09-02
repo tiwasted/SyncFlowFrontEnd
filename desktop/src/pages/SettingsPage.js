@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
 import AddLocationModal from "../components/AddLocationModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
+import "../styles/ChangePasswordModal.css";
+
 
 const SettingsPage = () => {
   const [countries, setCountries] = useState([]);
@@ -147,9 +149,7 @@ const SettingsPage = () => {
         >
           Добавить город(-а)
         </button>
-      </div>
 
-      <div>
         <button
           className="change-pass-btn"
           onClick={handleOpenChangePasswordModal}

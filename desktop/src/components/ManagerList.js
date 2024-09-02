@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/ManagerList.css";
 import ModalForDelete from "./ModalForDelete";
 import ManagerEdit from "./ManagerEdit"; 
 import api from "../services/TokenService";
@@ -11,8 +12,8 @@ const ManagerList = ({ managers, setManagers, onDelete }) => {
   const handleDelete = async () => {
     if (managerToDelete === null) return;
 
-    onDelete(managerToDelete); // Call the delete function from the parent component
-    setShowModal(false); // Close the modal after deletion
+    onDelete(managerToDelete);
+    setShowModal(false);
   };
 
   const handleDeleteClick = (id) => {
@@ -59,15 +60,23 @@ const ManagerList = ({ managers, setManagers, onDelete }) => {
           <div className="manager-grid-header">
             <div className="manager-grid-header-item">Фамилия Имя</div>
             <div className="manager-grid-header-item">Телефон</div>
+            <div className="manager-grid-header-item">Город (-а) Менеджера</div>
             <div className="manager-grid-header-item">Действия</div>
           </div>
           {managers.map((manager) => (
             <div className="manager-grid" key={manager.id}>
               <div className="manager-name">
-                <div className="manager-last-name">{manager.last_name}</div>
-                <div className="manager-first-name">{manager.first_name}</div>
+                {manager.last_name} {manager.first_name}
               </div>
               <div className="manager-phone">{manager.phone}</div>
+              <div className="manager-cities">
+                {manager.cities.map((city, index) => (
+                  <span key={city.id} className="manager-city">
+                    {city.name}
+                    {index < manager.cities.length - 1 && <span className="city-separator"> </span>}
+                  </span>
+                ))}
+              </div>
               <div className="manager-actions">
                 <button
                   className="manager-edit-btn"

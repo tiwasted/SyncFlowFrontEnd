@@ -34,12 +34,12 @@ const ChangePasswordModal = ({
   };
 
   return (
-    <div className="settings-modal-overlay">
-      <div className="settings-modal-content settings-change-password-modal-content">
-        <div className="settings-modal-header">
+    <div className="settings-change-password-modal-overlay">
+      <div className="settings-change-password-modal-content">
+        <div className="settings-change-password-modal-header">
           <h2 className="title-change-password">Изменение пароля</h2>
         </div>
-        <div className="settings-modal-body">
+        <div className="settings-change-password-modal-body">
           <input
             type={showPasswords ? "text" : "password"}
             className="password-input"
@@ -68,17 +68,17 @@ const ChangePasswordModal = ({
               checked={showPasswords}
               onChange={toggleShowPasswords}
             />
-            <label>Показать пароли</label>
+            <label className="show-passwords">Показать пароли</label>
           </div>
-          <div className="settings-modal-footer">
+          <div className="settings-change-password-modal-footer">
             <button
-              className="settings-modal-save-btn"
+              className="settings-change-password-modal-save-btn"
               onClick={handlePasswordChange}
             >
               Сохранить
             </button>
             <button
-              className="settings-modal-close-btn"
+              className="settings-change-password-modal-close-btn"
               onClick={handleCloseChangePasswordModal}
             >
               Закрыть

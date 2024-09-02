@@ -64,8 +64,7 @@ const EmployeeList = ({ employees, setEmployees, onDelete }) => {
           {employees.map((employee) => (
             <div className="employee-grid" key={employee.id}>
               <div className="employee-name">
-                <div className="employee-last-name">{employee.last_name}</div>
-                <div className="employee-first-name">{employee.first_name}</div>
+                {employee.last_name} {employee.first_name}
               </div>
               <div className="employee-phone">{employee.phone}</div>
               <div className="employee-actions">

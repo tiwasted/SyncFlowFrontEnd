@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/AddLocationModal.css";
 
 const AddLocationModal = ({
   countries,
@@ -22,14 +23,14 @@ const AddLocationModal = ({
   );
 
   return (
-    <div className="settings-modal-overlay">
-      <div className="settings-modal-content settings-choose-cities-modal-content">
-        <div className="settings-modal-header">
+    <div className="settings-choose-cities-modal-overlay">
+      <div className="settings-choose-cities-modal-content">
+        <div className="settings-choose-cities-modal-header">
           <h2 className="title-choose-cities">Добавление городов</h2>
         </div>
-        <div className="settings-modal-body">
-          <div className="settings-modal-columns">
-            <div className="settings-modal-column">
+        <div className="settings-choose-cities-modal-body">
+          <div className="settings-choose-cities-modal-columns">
+            <div className="settings-choose-cities-modal-column">
               <label>Выберите страну:</label>
               <input
                 type="text"
@@ -60,58 +61,53 @@ const AddLocationModal = ({
                 ))}
               </div>
             </div>
-            <div className="settings-modal-column">
-              {selectedCountry && (
-                <>
-                  <label className="label-choose-cities">Выберите города:</label>
-                  <input
-                    type="text"
-                    placeholder="Поиск города"
-                    value={citySearch}
-                    onChange={(e) => setCitySearch(e.target.value)}
-                    className="city-search-input"
-                  />
-                  <div className="city-select">
-                    {filteredCities.map((city) => (
-                      <div className="checkbox-group" key={city.id}>
-                        <label
-                          htmlFor={`city-${city.id}`}
-                          className="checkbox-label"
-                        >
-                          {city.name}
-                        </label>
-                        <input
-                          type="checkbox"
-                          name="city"
-                          value={city.id}
-                          checked={selectedCities.includes(city.id)}
-                          onChange={handleCityChange}
-                          id={`city-${city.id}`}
-                          className="input-city"
-                        />
-                      </div>
-                    ))}
+            <div className="settings-choose-cities-modal-column">
+              <label className="label-choose-cities">Выберите города:</label>
+              <input
+                type="text"
+                placeholder="Поиск города"
+                value={citySearch}
+                onChange={(e) => setCitySearch(e.target.value)}
+                className="city-search-input"
+                disabled={!selectedCountry}
+              />
+              <div className="city-select">
+                {filteredCities.map((city) => (
+                  <div className="checkbox-group" key={city.id}>
+                    <label
+                      htmlFor={`city-${city.id}`}
+                      className="checkbox-label"
+                    >
+                      {city.name}
+                    </label>
+                    <input
+                      type="checkbox"
+                      name="city"
+                      value={city.id}
+                      checked={selectedCities.includes(city.id)}
+                      onChange={handleCityChange}
+                      id={`city-${city.id}`}
+                      className="input-city"
+                    />
                   </div>
-                </>
-              )}
-            </div>
-            <div className="settings-modal-column">
-              <div className="settings-modal-footer">
-                <button
-                  className="settings-modal-save-btn"
-                  onClick={handleAddCountryAndCities}
-                >
-                  Сохранить
-                </button>
-                <button
-                  className="settings-modal-close-btn"
-                  onClick={handleCloseAddLocationModal}
-                >
-                  Закрыть
-                </button>
+                ))}
               </div>
             </div>
           </div>
+        </div>
+        <div className="settings-choose-cities-modal-footer">
+          <button
+            className="settings-choose-cities-modal-save-btn"
+            onClick={handleAddCountryAndCities}
+          >
+            Сохранить
+          </button>
+          <button
+            className="settings-choose-cities-modal-close-btn"
+            onClick={handleCloseAddLocationModal}
+          >
+            Закрыть
+          </button>
         </div>
       </div>
     </div>

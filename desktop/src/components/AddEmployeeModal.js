@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
 
 const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [role, setRole] = useState("employee");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    password: "",
+    phoneNumber: "",
+    role: "employee",
+    selectedCities: [],
+  });
   const [error, setError] = useState("");
   const [availableCities, setAvailableCities] = useState([]);
-  const [selectedCities, setSelectedCities] = useState([]);
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -20,14 +22,13 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (role === "manager") {
+    if (formData.role === "manager") {
       fetchAvailableCities();
     } else {
       setAvailableCities([]);
-      setSelectedCities([]);
+      setFormData((prev) => ({ ...prev, selectedCities: [] }));
     }
-    resetForm();
-  }, [role]);
+  }, [formData.role]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -58,6 +59,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   };
 
   const addEmployee = async () => {
+    const { firstName, lastName, password, phoneNumber, role, selectedCities } = formData;
     if (!firstName || !lastName || !password || !phoneNumber) {
       setError("Пожалуйста, заполните все поля");
       return;
@@ -65,10 +67,10 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
 
     const newEmployee = {
       phone: phoneNumber,
-      password: password,
+      password,
       first_name: firstName,
       last_name: lastName,
-      role: role,
+      role,
       cities: role === "manager" ? selectedCities : [],
     };
 
@@ -86,24 +88,33 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
     }
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleCityChange = (e) => {
     const { value, checked } = e.target;
     const cityId = parseInt(value, 10);
-    setSelectedCities((prevSelectedCities) =>
-      checked
-        ? [...prevSelectedCities, cityId]
-        : prevSelectedCities.filter((city) => city !== cityId)
-    );
+    setFormData((prev) => ({
+      ...prev,
+      selectedCities: checked
+        ? [...prev.selectedCities, cityId]
+        : prev.selectedCities.filter((city) => city !== cityId),
+    }));
   };
 
-  const resetForm = () => {
-    setFirstName("");
-    setLastName("");
-    setPassword("");
-    setPhoneNumber("");
+  const resetForm = (roleChanged = false) => {
+    setFormData((prev) => ({
+      ...prev,
+      firstName: roleChanged ? "" : prev.firstName,
+      lastName: roleChanged ? "" : prev.lastName,
+      password: roleChanged ? "" : prev.password,
+      phoneNumber: roleChanged ? "" : prev.phoneNumber,
+      selectedCities: [],
+    }));
     setError("");
     setAvailableCities([]);
-    setSelectedCities([]);
   };
 
   if (!isOpen) return null;
@@ -117,10 +128,11 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
         <h2 className="add-employee-modal-title">Добавить сотрудника</h2>
         <div className="add-employee-form-group">
           <select
-            value={role}
+            name="role"
+            value={formData.role}
             onChange={(e) => {
-              setRole(e.target.value);
-              resetForm();
+              handleInputChange(e);
+              resetForm(true);
             }}
           >
             {roles.map((role) => (
@@ -133,40 +145,44 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
         <div className="add-employee-form-group">
           <input
             type="text"
+            name="firstName"
             className="add-employee-form-input"
             placeholder="Имя"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={formData.firstName}
+            onChange={handleInputChange}
           />
         </div>
         <div className="add-employee-form-group">
           <input
             type="text"
+            name="lastName"
             className="add-employee-form-input"
             placeholder="Фамилия"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={formData.lastName}
+            onChange={handleInputChange}
           />
         </div>
         <div className="add-employee-form-group">
           <input
             type="password"
+            name="password"
             className="add-employee-form-input"
             placeholder="Пароль"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={handleInputChange}
           />
         </div>
         <div className="add-employee-form-group">
           <input
             type="text"
+            name="phoneNumber"
             className="add-employee-form-input"
             placeholder="Номер телефона"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            value={formData.phoneNumber}
+            onChange={handleInputChange}
           />
         </div>
-        {role === "manager" && (
+        {formData.role === "manager" && (
           <div className="add-employee-form-group">
             <label>Выберите города:</label>
             <div className="add-employee-form-checkbox-group">
@@ -176,7 +192,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
                     <input
                       type="checkbox"
                       value={city.id}
-                      checked={selectedCities.includes(city.id)}
+                      checked={formData.selectedCities.includes(city.id)}
                       onChange={handleCityChange}
                     />
                     {city.name}

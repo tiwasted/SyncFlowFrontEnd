@@ -32,7 +32,7 @@ import "./styles/OrderStyles/AddOrder.css";
 import "./styles/OrderStyles/OrderFilter.css";
 import "./styles/OrderStyles/OrderListForSchedule.css";
 
-import "./styles/EmployeeStyles/EmployeesPage.css";
+import "./styles/EmployeeStyles/Employees.css";
 import "./styles/EmployeeStyles/EmployeeList.css";
 import "./styles/EmployeeStyles/AddEmployeeModal.css";
 import "./styles/EmployeeStyles/AssignEmployee.css";

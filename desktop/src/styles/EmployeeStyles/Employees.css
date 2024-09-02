@@ -1,93 +1,3 @@
-/* .employees-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-}
-
-.employees-section {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.employees-add-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.employees-add-btn:hover {
-  background-color: #0056b3;
-}
-
-.manager-list-container,
-.employee-list-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.manager-grid,
-.employee-grid {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.manager-grid-header,
-.employee-grid-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: #f1f1f1;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.manager-grid-header-item,
-.employee-grid-header-item {
-  flex: 1;
-  text-align: center;
-}
-
-.manager-actions,
-.employee-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.manager-edit-btn,
-.employee-edit-btn,
-.manager-delete-btn,
-.employee-delete-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.manager-edit-btn:hover,
-.employee-edit-btn:hover,
-.manager-delete-btn:hover,
-.employee-delete-btn:hover {
-  background-color: #0056b3;
-} */
-
-
-
-
-
 .employees-container {
   display: flex;
   flex-direction: column;
@@ -115,7 +25,6 @@
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  margin-bottom: 20px;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -129,6 +38,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.manager-list-title,
+.employee-list-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .manager-grid,
@@ -164,10 +81,29 @@
   font-weight: bold;
 }
 
+.manager-name,
+.manager-phone,
+.manager-actions,
+.manager-cities,
+.employee-name,
+.employee-phone,
+.employee-actions {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .manager-actions,
 .employee-actions {
   display: flex;
   gap: 10px;
+}
+
+.city-separator {
+  margin-right: 8px;
 }
 
 .manager-edit-btn,
