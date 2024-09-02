@@ -1,4 +1,4 @@
-.reassign-modal {
+/* .reassign-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -30,7 +30,7 @@
   
   .reassign-title {
     margin-bottom: 20px;
-    text-align: center; /* Центрирование текста */
+    text-align: center; 
   }
 
   
@@ -51,7 +51,7 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    text-align: center; /* Центрирование текста */
+    text-align: center;
   }
   
   .reassign-button:hover {
@@ -61,4 +61,4 @@
   .reassign-button-container {
     display: flex;
     justify-content: center
-  }
+  } */

@@ -3,7 +3,7 @@ import api from "../services/TokenService";
 import "../styles/ReassignEmployee.css";
 
 const ReassignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
-  const [employeeId, setEmployeeId] = useState("");
+  const [employeeIds, setEmployeeIds] = useState([]);
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
@@ -23,16 +23,21 @@ const ReassignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
     try {
       const response = await api.post(
         `/orders/b2c-orders/${orderId}/assign_employee/`,
-        { employee_ids: employeeId }
+        { employee_ids: employeeIds }
       );
 
       const updatedOrder = response.data;
       onEmployeeAssigned(updatedOrder);
-      setEmployeeId(""); // Очистка после успешного назначения
+      setEmployeeIds([]); // Очистка после успешного назначения
       onClose(); // Закрытие модального окна после успешного назначения
     } catch (error) {
       console.error("Ошибка при переназначении сотрудника", error);
     }
+  };
+
+  const handleSelectChange = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
+    setEmployeeIds(selectedOptions);
   };
 
   if (!show) {
@@ -48,8 +53,9 @@ const ReassignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
         <h2 className="reassign-title">Переназначить сотрудника</h2>
         <select
           className="reassign-select"
-          value={employeeId}
-          onChange={(e) => setEmployeeId(e.target.value)}
+          multiple
+          value={employeeIds}
+          onChange={handleSelectChange}
         >
           <option value="">Выберите сотрудника</option>
           {employees.map((employee) => (
