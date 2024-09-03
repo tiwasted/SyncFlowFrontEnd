@@ -42,7 +42,7 @@ const OrderSchedule = ({ currentUser }) => {
         <OrderListForSchedule orders={orders} setOrders={setOrders} />
       </div>
       <div className="schedule-orders-calendar-container">
-        <h3 className="h3-schedule">Календарь</h3>
+        <h3 className="h3-order-schedule">Календарь</h3>
         <Calendar value={date} onDateChange={handleDateChange} />
       </div>
     </div>

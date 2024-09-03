@@ -4,6 +4,7 @@ import ModalForDelete from "../components/ModalForDelete";
 import ScheduleEditOrderModal from "../components/ScheduleEditOrderModal";
 import ReassignEmployee from "../components/ReassignEmployee";
 import api from "../services/TokenService";
+import "../styles/EmployeeSchedule.css";
 
 const EmployeeSchedule = ({ date, setDate }) => {
   const [employeeOrders, setEmployeeOrders] = useState([]);
@@ -19,7 +20,9 @@ const EmployeeSchedule = ({ date, setDate }) => {
   const fetchEmployeeSchedule = async (selectedDate) => {
     const formattedDate = selectedDate.toISOString().split("T")[0];
     try {
-      const response = await api.get(`/schedules/schedule/list_employees_by_orders/?date=${formattedDate}`);
+      const response = await api.get(
+        `/schedules/schedule/list_employees_by_orders/?date=${formattedDate}`
+      );
       console.log("Employee Schedule Data:", response.data); // Логирование данных
       setEmployeeSchedule(response.data || []);
     } catch (error) {
@@ -31,7 +34,9 @@ const EmployeeSchedule = ({ date, setDate }) => {
   const fetchEmployeeOrders = async (employeeId, selectedDate) => {
     const formattedDate = selectedDate.toISOString().split("T")[0];
     try {
-      const response = await api.get(`/schedules/schedule/list_orders_for_employee/?employee_id=${employeeId}&date=${formattedDate}`);
+      const response = await api.get(
+        `/schedules/schedule/list_orders_for_employee/?employee_id=${employeeId}&date=${formattedDate}`
+      );
       setEmployeeOrders(response.data || []);
     } catch (error) {
       console.error("Ошибка при получении заказов сотрудника:", error);
@@ -67,7 +72,9 @@ const EmployeeSchedule = ({ date, setDate }) => {
   const confirmDeleteOrder = async () => {
     try {
       await api.delete(`/orders/b2c-orders/${orderToDelete}/`);
-      setEmployeeOrders((prevOrders) => prevOrders.filter(order => order.id !== orderToDelete));
+      setEmployeeOrders((prevOrders) =>
+        prevOrders.filter((order) => order.id !== orderToDelete)
+      );
     } catch (error) {
       console.error("Ошибка при удалении заказа:", error);
     }
@@ -82,9 +89,14 @@ const EmployeeSchedule = ({ date, setDate }) => {
 
   const handleSaveOrder = async (updatedOrder) => {
     try {
-      const response = await api.put(`/orders/b2c-orders/${updatedOrder.id}/`, updatedOrder);
+      const response = await api.put(
+        `/orders/b2c-orders/${updatedOrder.id}/`,
+        updatedOrder
+      );
       setEmployeeOrders((prevOrders) =>
-        prevOrders.map((order) => (order.id === updatedOrder.id ? response.data : order))
+        prevOrders.map((order) =>
+          order.id === updatedOrder.id ? response.data : order
+        )
       );
     } catch (error) {
       console.error("Ошибка при обновлении заказа:", error);
@@ -104,7 +116,9 @@ const EmployeeSchedule = ({ date, setDate }) => {
 
   const handleEmployeeAssigned = (updatedOrder) => {
     setEmployeeOrders((prevOrders) =>
-      prevOrders.map((order) => (order.id === updatedOrder.id ? updatedOrder : order))
+      prevOrders.map((order) =>
+        order.id === updatedOrder.id ? updatedOrder : order
+      )
     );
     setShowReassignModal(false);
     setOrderToReassign(null);
@@ -116,16 +130,25 @@ const EmployeeSchedule = ({ date, setDate }) => {
   };
 
   return (
-    <div className="employee-schedule-content">
-      <div className="employee-schedule-board">
-        <h3>Расписание на {date.toLocaleDateString()}</h3>
-        <ul>
+  <div className="employee-schedule-content">
+    <div className="employee-schedule-sections">
+      <div className="employee-schedule-section employee-schedule-board">
+        <h3 className="employee-schedule-title-schedule-of-employees">
+          Расписание на {date.toLocaleDateString()}
+        </h3>
+        <ul className="employee-schedule-ul-schedule-of-employees">
           {employeeSchedule.map((schedule, index) => (
-            <li key={index}>
-              <span>{schedule.order_time}</span>
-              <span>
+            <li
+              className="employee-schedule-li-schedule-of-employees"
+              key={index}
+            >
+              <span className="employee-schedule-span-order-time-schedule-of-employees">
+                {schedule.order_time}
+              </span>
+              <span className="employee-schedule-span-employees-schedule-of-employees">
                 {schedule.employees.map((employee, empIndex) => (
                   <button
+                    className="employee-schedule-button-employee-schedule-of-employees"
                     key={empIndex}
                     onClick={() => handleEmployeeClick(employee)}
                   >
@@ -138,20 +161,50 @@ const EmployeeSchedule = ({ date, setDate }) => {
         </ul>
       </div>
 
-      <div className="employee-orders-board">
+      <div className="employee-schedule-section employee-schedule-orders-board">
         {selectedEmployee && (
           <div>
-            <h3>Заказы сотрудника: {selectedEmployeeName}</h3>
-            <ul>
+            <h3 className="employee-schedule-title-orders">
+              Заказы сотрудника: {selectedEmployeeName}
+            </h3>
+            <ul className="employee-schedule-ul-orders">
               {employeeOrders.map((order) => (
-                <li key={order.id}>
-                  <span>{order.order_time}</span>
-                  <span>{order.order_name}</span>
-                  <span>{order.address}</span>
-                  <span>{order.price}</span>
-                  <button onClick={() => handleEditOrder(order)}>Редактировать</button>
-                  <button onClick={() => handleDeleteOrder(order.id)}>Удалить</button>
-                  <button onClick={() => handleReassignOrder(order)}>Переназначить сотрудника</button>
+                <li className="employee-schedule-li-orders" key={order.id}>
+                  <div className="employee-schedule-order-card">
+                    <div className="employee-schedule-order-header">
+                      <span className="employee-schedule-order-name">
+                        <i className="fa fa-clipboard"></i> {order.order_name}
+                      </span>
+                      <span className="employee-schedule-order-time">
+                        <i className="fa fa-clock"></i> {order.order_time}
+                      </span>
+                    </div>
+                    <div className="employee-schedule-order-details">
+                      <span className="employee-schedule-order-address">
+                        <i className="fa fa-map-marker"></i> {order.address}
+                      </span>
+                    </div>
+                    <div className="employee-schedule-action-buttons">
+                      <button
+                        onClick={() => handleEditOrder(order)}
+                        className="employee-schedule-action-button edit"
+                      >
+                        <i className="fa fa-edit"></i> Редактировать
+                      </button>
+                      <button
+                        onClick={() => handleDeleteOrder(order.id)}
+                        className="employee-schedule-action-button delete"
+                      >
+                        <i className="fa fa-trash"></i> Удалить
+                      </button>
+                      <button
+                        onClick={() => handleReassignOrder(order)}
+                        className="employee-schedule-action-button reassign"
+                      >
+                        <i className="fa fa-exchange"></i> Переназначить
+                      </button>
+                    </div>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -159,19 +212,21 @@ const EmployeeSchedule = ({ date, setDate }) => {
         )}
       </div>
 
-      <div className="schedule-employee-calendar-container">
-        <h3 className="h3-schedule">Календарь</h3>
+      <div className="employee-schedule-section employee-schedule-calendar-container">
+        <h3 className="employee-schedule-title-calendar">Календарь</h3>
         <Calendar value={date} onDateChange={handleDateChange} />
       </div>
+    </div>
 
-      {editingOrder && (
-        <ScheduleEditOrderModal
-          order={editingOrder}
-          onClose={() => setEditingOrder(null)}
-          onSave={handleSaveOrder}
-        />
-      )}
+    {editingOrder && (
+      <ScheduleEditOrderModal
+        order={editingOrder}
+        onClose={() => setEditingOrder(null)}
+        onSave={handleSaveOrder}
+      />
+    )}
 
+    {showDeleteModal && (
       <ModalForDelete
         show={showDeleteModal}
         onClose={cancelDeleteOrder}
@@ -179,21 +234,19 @@ const EmployeeSchedule = ({ date, setDate }) => {
       >
         Вы уверены, что хотите удалить этот заказ?
       </ModalForDelete>
+    )}
 
-      {showReassignModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <ReassignEmployee
-              orderId={orderToReassign.id}
-              onEmployeeAssigned={handleEmployeeAssigned}
-              show={showReassignModal}
-              onClose={closeReassignModal}
-            />
-          </div>
-        </div>
-      )}
-    </div>
-  );
+    {showReassignModal && (
+      <ReassignEmployee
+        orderId={orderToReassign.id}
+        onEmployeeAssigned={handleEmployeeAssigned}
+        show={showReassignModal}
+        onClose={closeReassignModal}
+      />
+    )}
+  </div>
+);
+
 };
 
 export default EmployeeSchedule;
