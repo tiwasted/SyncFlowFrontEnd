@@ -15,7 +15,7 @@ const OrderSchedule = ({ currentUser }) => {
 
     const formattedDate = selectedDate.toISOString().split('T')[0];
     const userId = currentUser.user_id;
-    console.log("Fetching orders with params:", { date: formattedDate, user_id: userId });
+    // console.log("Fetching orders with params:", { date: formattedDate, user_id: userId });
 
     try {
       const response = await api.get("/schedules/schedule/", {
@@ -23,7 +23,7 @@ const OrderSchedule = ({ currentUser }) => {
       });
       setOrders(response.data);
     } catch (error) {
-      console.error("Ошибка при получении заказов:", error);
+      // console.error("Ошибка при получении заказов:", error);
     }
   }, [currentUser]);
 

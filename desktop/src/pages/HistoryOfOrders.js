@@ -78,11 +78,10 @@ const HistoryOfOrders = () => {
       const imageUrl = response.data.image_url;
       const fullImageUrl = `http://localhost:8000${imageUrl}`;
 
-      // Открытие изображения в новой вкладке
       window.open(fullImageUrl, "_blank");
     } catch (err) {
       if (err.response && err.response.status === 404) {
-        console.log("Изображение отсутствует");
+        // console.log("Изображение отсутствует");
       } else {
         // console.error("Ошибка загрузки изображения:", err);
       }
@@ -117,12 +116,15 @@ const HistoryOfOrders = () => {
               <p>Номер клиента: {order.phone_number_client}</p>
               <p>Адрес: {order.address}</p>
               <p>Описание заказа: {order.description}</p>
-              <p>Сотрудник: {order.assigned_employee_name || "Не назначен"}</p>
-              {order.assigned_employee_name && (
-                <div>
-                  <p>Телефон: {order.assigned_employee_phone}</p>
-                </div>
-              )}
+              <p>
+                Сотрудник (-и):{" "}
+                {order.employee_info.map((employee, index) => (
+                  <span key={index}>
+                    {employee.first_name} {employee.last_name} ({employee.phone}
+                    ){index < order.employee_info.length - 1 && ", "}
+                  </span>
+                ))}
+              </p>
               <p>Отчет: {order.report || "Нет отчета"}</p>
               <p>Цена: {order.price}</p>
 

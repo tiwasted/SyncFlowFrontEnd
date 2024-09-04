@@ -27,7 +27,7 @@ const Schedule = () => {
         const response = await api.get("/employers/get-primary-city/");
         setCityName(response.data.city_name); // Устанавливаем название города
       } catch (error) {
-        console.error("Ошибка при получении названия города:", error);
+        // console.error("Ошибка при получении названия города:", error);
       }
     };
 

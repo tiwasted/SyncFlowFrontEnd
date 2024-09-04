@@ -42,7 +42,7 @@ const ManagerList = ({ managers, setManagers, onDelete }) => {
       );
       setManagerToEdit(null);
     } catch (error) {
-      console.error("Error saving manager data:", error);
+      // console.error("Error saving manager data:", error);
     }
   };
 

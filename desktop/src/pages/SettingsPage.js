@@ -23,7 +23,7 @@ const SettingsPage = () => {
       setCountries(response.data || []);
     } catch (error) {
       setMessage("Ошибка при загрузке стран");
-      console.error("Ошибка при загрузке стран:", error);
+      // console.error("Ошибка при загрузке стран:", error);
     }
   };
 
@@ -37,7 +37,7 @@ const SettingsPage = () => {
       }
     } catch (error) {
       setMessage("Ошибка при загрузке городов");
-      console.error("Ошибка при загрузке городов:", error);
+      // console.error("Ошибка при загрузке городов:", error);
     }
   };
 
@@ -64,7 +64,7 @@ const SettingsPage = () => {
       } else {
         setMessage("Ошибка при добавлении данных");
       }
-      console.error("Ошибка при добавлении страны и городов:", error);
+      // console.error("Ошибка при добавлении страны и городов:", error);
     }
   };
 
@@ -95,14 +95,14 @@ const SettingsPage = () => {
       } else {
         setMessage("Ошибка при изменении пароля");
       }
-      console.error("Ошибка при изменении пароля:", error);
+      // console.error("Ошибка при изменении пароля:", error);
     }
   };
 
   const handleOpenAddLocationModal = async () => {
     setShowAddLocationModal(true);
     setMessage("");
-    await fetchCountries(); // Вызов fetchCountries при открытии модального окна
+    await fetchCountries();
   };
 
   const handleCloseAddLocationModal = () => {
@@ -127,7 +127,7 @@ const SettingsPage = () => {
 
   const handleCountryChange = (e) => {
     setSelectedCountry(Number(e.target.value));
-    setSelectedCities([]); // Reset selected cities when country changes
+    setSelectedCities([]);
   };
 
   const handleCityChange = (e) => {

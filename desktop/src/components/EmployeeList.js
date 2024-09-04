@@ -11,8 +11,8 @@ const EmployeeList = ({ employees, setEmployees, onDelete }) => {
   const handleDelete = async () => {
     if (employeeToDelete === null) return;
 
-    onDelete(employeeToDelete); // Вызов функции удаления из родительского компонента
-    setShowModal(false); // Закрываем модальное окно после удаления
+    onDelete(employeeToDelete);
+    setShowModal(false);
   };
 
   const handleDeleteClick = (id) => {
@@ -41,7 +41,7 @@ const EmployeeList = ({ employees, setEmployees, onDelete }) => {
       );
       setEmployeeToEdit(null);
     } catch (error) {
-      console.error("Ошибка при сохранении данных сотрудника:", error);
+      // console.error("Ошибка при сохранении данных сотрудника:", error);
     }
   };
 

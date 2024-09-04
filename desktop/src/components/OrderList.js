@@ -21,7 +21,7 @@ const OrderList = ({ orders, updateOrders }) => {
       updateOrders();
       setShowModal(false);
     } catch (error) {
-      console.error("Ошибка при удалении заказа", error);
+      // console.error("Ошибка при удалении заказа", error);
     }
   };
 
@@ -53,7 +53,7 @@ const OrderList = ({ orders, updateOrders }) => {
       updateOrders();
       setShowEditModal(false);
     } catch (error) {
-      console.error("Ошибка при обновлении заказа", error);
+      // console.error("Ошибка при обновлении заказа", error);
     }
   };
 

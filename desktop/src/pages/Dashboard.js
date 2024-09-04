@@ -13,7 +13,6 @@ const Dashboard = () => {
   const [selectedCity, setSelectedCity] = useState(null);
   const [showCreateOrderModal, setShowCreateOrderModal] = useState(false);
 
-  // Отдельные состояния для заказов каждой колонки
   const [tomorrowOrders, setTomorrowOrders] = useState([]);
   const [ordersWithoutDates, setOrdersWithoutDates] = useState([]);
   const [calendarOrders, setCalendarOrders] = useState([]);
@@ -30,7 +29,7 @@ const Dashboard = () => {
         setOrdersWithoutDates(noDateResponse.data);
         setCalendarOrders(calendarResponse.data);
       } catch (error) {
-        console.error("Ошибка при обновлении заказов:", error);
+        // console.error("Ошибка при обновлении заказов:", error);
       }
     }
   }, [selectedCity, date]);
@@ -46,7 +45,7 @@ const Dashboard = () => {
         const response = await api.get("/employers/dashboard/list-cities/");
         setCities(response.data.cities);
       } catch (error) {
-        console.error("Ошибка при получении данных:", error);
+        // console.error("Ошибка при получении данных:", error);
       }
     };
 
@@ -55,7 +54,7 @@ const Dashboard = () => {
         const response = await api.get("/employers/get-primary-city/");
         setSelectedCity(response.data.city_id); // Устанавливаем выбранный город
       } catch (error) {
-        console.error("Ошибка при получении выбранного города:", error);
+        // console.error("Ошибка при получении выбранного города:", error);
       }
     };
 
@@ -74,7 +73,7 @@ const Dashboard = () => {
       setSelectedCity(cityId);
       fetchOrders();
     } catch (error) {
-      console.error("Ошибка при выборе города:", error.response ? error.response.data : error.message);
+      // console.error("Ошибка при выборе города:", error.response ? error.response.data : error.message);
     }
   };
 
@@ -106,7 +105,7 @@ const Dashboard = () => {
                 type="radio"
                 name="city"
                 className="city-radio"
-                checked={selectedCity === city.id} // Галочка устанавливается, если город выбран
+                checked={selectedCity === city.id}
                 onChange={() => handleCityChange(city.id)}
               />
               {city.name}
@@ -123,7 +122,7 @@ const Dashboard = () => {
         <ModalForCreateOrderDashboard
           show={showCreateOrderModal}
           onClose={handleCloseCreateOrderModal}
-          fetchOrders={fetchOrders} // Передаем функцию обновления заказов
+          fetchOrders={fetchOrders}
         />
 
         <div className="orders">

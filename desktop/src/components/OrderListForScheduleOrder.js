@@ -23,7 +23,7 @@ const OrderListForSchedule = ({ orders, setOrders }) => {
       setOrders(orders.filter((order) => order.id !== orderToDelete));
       setShowModal(false);
     } catch (error) {
-      console.error("Ошибка при удалении заказа", error);
+      // console.error("Ошибка при удалении заказа", error);
     }
   };
 
@@ -49,7 +49,7 @@ const OrderListForSchedule = ({ orders, setOrders }) => {
       );
       setShowEditModal(false);
     } catch (error) {
-      console.error("Ошибка при обновлении заказа", error);
+      // console.error("Ошибка при обновлении заказа", error);
     }
   };
 

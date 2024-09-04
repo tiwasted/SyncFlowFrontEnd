@@ -4,12 +4,14 @@ const OrderFilterForm = ({ onSubmit }) => {
   const [filters, setFilters] = useState({
     status: "",
     order_date: "",
-    order_time: "",
-    company_name: "",
-    address: "",
+    employee_phone: "",
+    // order_time: "",
+    // company_name: "",
+    // address: "",
     phone_number_client: "",
-    name_client: "",
-    price: "",
+    phone_number_employee: "",
+    // name_client: "",
+    // price: "",
   });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -73,54 +75,62 @@ const OrderFilterForm = ({ onSubmit }) => {
             onChange={handleChange}
             className="form-control"
           />
-          <input
+          {/* <input
             type="time"
             name="order_time"
             placeholder="Время заказа"
             value={filters.order_time}
             onChange={handleChange}
             className="form-control"
-          />
-          <input
+          /> */}
+          {/* <input
             type="text"
             name="company_name"
             placeholder="Компания"
             value={filters.company_name}
             onChange={handleChange}
             className="form-control"
-          />
-          <input
+          /> */}
+          {/* <input
             type="text"
             name="address"
             placeholder="Адрес"
             value={filters.address}
             onChange={handleChange}
             className="form-control"
-          />
+          /> */}
           <input
             type="text"
             name="phone_number_client"
-            placeholder="Номер телефона"
+            placeholder="Номер телефона клиента"
             value={filters.phone_number_client}
             onChange={handleChange}
             className="form-control"
           />
           <input
             type="text"
+            name="phone_number_employee"
+            placeholder="Номер телефона сотрудника"
+            value={filters.employee_phone_employee}
+            onChange={handleChange}
+            className="form-control"
+          />
+          {/* <input
+            type="text"
             name="name_client"
             placeholder="Имя клиента"
             value={filters.name_client}
             onChange={handleChange}
             className="form-control"
-          />
-          <input
+          /> */}
+          {/* <input
             type="number"
             name="price"
             placeholder="Цена"
             value={filters.price}
             onChange={handleChange}
             className="form-control"
-          />
+          /> */}
         </div>
         <button type="submit" className="order-filter-btn">
           Поиск

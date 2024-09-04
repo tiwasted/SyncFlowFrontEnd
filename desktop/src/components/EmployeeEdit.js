@@ -8,24 +8,20 @@ const EmployeeEdit = ({ employee, onSave, onCancel }) => {
 
   const handleSave = async () => {
     try {
-      // Создаем объект с обновленными данными сотрудника
       const updatedEmployee = {
         first_name: firstName,
         last_name: lastName,
         phone: phone,
       };
 
-      // Отправляем PUT-запрос на сервер для обновления данных сотрудника
       const response = await api.put(
         `/employees/edit/${employee.id}/`,
         updatedEmployee
       );
 
-      // Вызываем функцию сохранения с обновленными данными
       onSave(response.data);
     } catch (error) {
-      console.error("Ошибка при сохранении данных сотрудника:", error);
-      // Здесь можно добавить обработку ошибок, например, отображение сообщения пользователю
+      // console.error("Ошибка при сохранении данных сотрудника:", error);
     }
   };
 

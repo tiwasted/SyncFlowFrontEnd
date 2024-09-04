@@ -50,11 +50,7 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
       const response = await api.post("/orders/b2c-orders/", orderData);
       setOrders((prevOrders) => [...prevOrders, response.data]);
       setOrderSaved(true);
-      fetchOrders(); // Обновляем заказы после создания нового заказа
-      // setTimeout(() => {
-      //   resetForm();
-      //   onClose();
-      // }, 1000);
+      fetchOrders();
       resetForm();
       onClose();
     } catch (error) {

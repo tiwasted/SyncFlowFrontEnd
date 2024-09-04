@@ -22,33 +22,33 @@ const Employees = () => {
       setEmployees(employeesResponse.data);
       setManagers(managersResponse.data);
     } catch (error) {
-      console.error("Error fetching data", error);
+      // console.error("Error fetching data", error);
     }
   };
 
   const deleteEmployee = async (id) => {
     try {
       if (!id) {
-        console.error("Invalid employee id");
+        // console.error("Invalid employee id");
         return;
       }
       await api.delete(`/employees/${id}/delete/`);
       setEmployees(employees.filter((emp) => emp.id !== id));
     } catch (error) {
-      console.error("Error deleting employee", error);
+      // console.error("Error deleting employee", error);
     }
   };
 
   const deleteManager = async (id) => {
     try {
       if (!id) {
-        console.error("Invalid manager id");
+        // console.error("Invalid manager id");
         return;
       }
       await api.delete(`employers/manager/${id}/delete/`);
       setManagers(managers.filter((mgr) => mgr.id !== id));
     } catch (error) {
-      console.error("Error deleting manager", error);
+      // console.error("Error deleting manager", error);
     }
   };
 
@@ -57,7 +57,7 @@ const Employees = () => {
       await fetchData();
       setIsModalOpen(false);
     } catch (error) {
-      console.error("Error adding employee", error);
+      // console.error("Error adding employee", error);
     }
   };
 

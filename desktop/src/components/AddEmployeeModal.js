@@ -39,13 +39,17 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   const fetchRoles = async () => {
     try {
       const response = await api.get("/employers/roles/");
+      const roleTranslations = {
+        Employee: "Сотрудник",
+        Manager: "Менеджер",
+      };
       const formattedRoles = response.data.roles.map(([id, name]) => ({
         id,
-        name,
+        name: roleTranslations[name] || name,
       }));
       setRoles(formattedRoles);
     } catch (error) {
-      console.error("Error fetching roles", error);
+      // console.error("Error fetching roles", error);
     }
   };
 
@@ -54,7 +58,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
       const response = await api.get("/employers/available-cities/");
       setAvailableCities(response.data.cities || []);
     } catch (error) {
-      console.error("Error fetching available cities", error);
+      // console.error("Error fetching available cities", error);
     }
   };
 

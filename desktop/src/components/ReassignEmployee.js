@@ -12,7 +12,7 @@ const ReassignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
         const response = await api.get("/employees/assigning-list/");
         setEmployees(response.data);
       } catch (error) {
-        console.error("Ошибка при получении списка сотрудников", error);
+        // console.error("Ошибка при получении списка сотрудников", error);
       }
     };
 
@@ -28,10 +28,10 @@ const ReassignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
 
       const updatedOrder = response.data;
       onEmployeeAssigned(updatedOrder);
-      setEmployeeIds([]); // Очистка после успешного назначения
-      onClose(); // Закрытие модального окна после успешного назначения
+      setEmployeeIds([]);
+      onClose();
     } catch (error) {
-      console.error("Ошибка при переназначении сотрудника", error);
+      // console.error("Ошибка при переназначении сотрудника", error);
     }
   };
 

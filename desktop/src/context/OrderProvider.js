@@ -25,7 +25,7 @@ export const OrderProvider = ({ children }) => {
         const response = await api.get("/orders/b2c-orders/");
         setOrders(response.data);
       } catch (error) {
-        console.error("Error fetching orders:", error);
+        // console.error("Error fetching orders:", error);
         setError("Ошибка при получении заказов");
         setOrders([]);
       } finally {
