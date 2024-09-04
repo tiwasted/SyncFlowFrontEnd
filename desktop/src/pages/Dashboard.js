@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import api from "../services/TokenService";
 import OrderList from "../components/OrderList";
 import Calendar from "../components/Calendar";
@@ -17,6 +17,28 @@ const Dashboard = () => {
   const [tomorrowOrders, setTomorrowOrders] = useState([]);
   const [ordersWithoutDates, setOrdersWithoutDates] = useState([]);
   const [calendarOrders, setCalendarOrders] = useState([]);
+
+  const fetchOrders = useCallback(async () => {
+    if (selectedCity) {
+      try {
+        const [tomorrowResponse, noDateResponse, calendarResponse] = await Promise.all([
+          api.get("/orders/b2c-orders/tomorrow_orders/"),
+          api.get("/orders/b2c-orders/orders_without_dates/"),
+          api.get("/orders/b2c-orders/orders_by_dates/", { params: { date: date ? date.toISOString().split('T')[0] : undefined } })
+        ]);
+        setTomorrowOrders(tomorrowResponse.data);
+        setOrdersWithoutDates(noDateResponse.data);
+        setCalendarOrders(calendarResponse.data);
+      } catch (error) {
+        console.error("Ошибка при обновлении заказов:", error);
+      }
+    }
+  }, [selectedCity, date]);
+
+  const handleDateChange = async (newDate) => {
+    setDate(newDate);
+    fetchOrders();
+  };
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -42,36 +64,15 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    const fetchInitialOrders = async () => {
-      try {
-        const [tomorrowResponse, noDateResponse] = await Promise.all([
-          api.get("/orders/b2c-orders/tomorrow_orders/"),
-          api.get("/orders/b2c-orders/orders_without_dates/")
-        ]);
-        setTomorrowOrders(tomorrowResponse.data);
-        setOrdersWithoutDates(noDateResponse.data);
-      } catch (error) {
-        console.error("Ошибка при получении заказов:", error);
-      }
-    };
-
-    if (selectedCity) {
-      fetchInitialOrders();
-    }
-  }, [selectedCity]);
+    fetchOrders();
+  }, [selectedCity, fetchOrders]);
 
   const handleCityChange = async (cityId) => {
     try {
       const response = await api.post("/employers/select-primary-city/", { city_id: cityId });
       console.log('Response:', response.data);
       setSelectedCity(cityId);
-      // После успешного выбора города, выполняем запросы на отображение заказов
-      const [tomorrowResponse, noDateResponse] = await Promise.all([
-        api.get("/orders/b2c-orders/tomorrow_orders/"),
-        api.get("/orders/b2c-orders/orders_without_dates/")
-      ]);
-      setTomorrowOrders(tomorrowResponse.data);
-      setOrdersWithoutDates(noDateResponse.data);
+      fetchOrders();
     } catch (error) {
       console.error("Ошибка при выборе города:", error.response ? error.response.data : error.message);
     }
@@ -85,16 +86,11 @@ const Dashboard = () => {
     setShowCreateOrderModal(false);
   };
 
-  const handleDateChange = async (newDate) => {
-    setDate(newDate);
-    if (selectedCity) {
-      try {
-        const calendarResponse = await api.get("/orders/b2c-orders/orders_by_dates/", { params: { date: newDate ? newDate.toISOString().split('T')[0] : undefined } });
-        setCalendarOrders(calendarResponse.data);
-      } catch (error) {
-        console.error("Ошибка при обновлении заказов из календаря:", error);
-      }
-    }
+  const formatDate = (date) => {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
   };
 
   return (
@@ -127,27 +123,30 @@ const Dashboard = () => {
         <ModalForCreateOrderDashboard
           show={showCreateOrderModal}
           onClose={handleCloseCreateOrderModal}
+          fetchOrders={fetchOrders} // Передаем функцию обновления заказов
         />
 
         <div className="orders">
           <div className="dashboard-order-list-container">
             <h2 className="h2-title-dashboard">Завтра</h2>
             <div className="dashboard-order-list">
-              <OrderList orders={tomorrowOrders} />
+              <OrderList orders={tomorrowOrders} updateOrders={fetchOrders} />
             </div>
           </div>
 
           <div className="dashboard-order-list-container">
             <h2 className="h2-title-dashboard">Заказы без даты</h2>
             <div className="dashboard-order-list">
-              <OrderList orders={ordersWithoutDates} />
+              <OrderList orders={ordersWithoutDates} updateOrders={fetchOrders}/>
             </div>
           </div>
 
           <div className="dashboard-order-list-container">
-            <h2 className="h2-title-dashboard">Заказы из календаря</h2>
+            <h2 className="h2-title-dashboard">
+              Заказы на {date ? formatDate(date) : 'Выберите дату'}
+            </h2>
             <div className="dashboard-order-list">
-              {date && <OrderList orders={calendarOrders} date={date} />}
+              {date && <OrderList orders={calendarOrders} date={date} updateOrders={fetchOrders}/>}
             </div>
           </div>
 

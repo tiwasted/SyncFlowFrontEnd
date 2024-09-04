@@ -1,5 +1,7 @@
 import React from "react";
 import Calendar from "react-calendar";
+import "../styles/Calendar.css";
+
 
 const CalendarComponent = ({ value, onDateChange }) => {
   const handleDateChange = (date) => {

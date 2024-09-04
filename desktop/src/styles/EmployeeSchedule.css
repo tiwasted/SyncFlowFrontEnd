@@ -613,8 +613,8 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
-  overflow-y: auto; /* Добавляем прокрутку, если контент превышает высоту блока */
-  max-height: 400px; /* Ограничиваем высоту для лучшей управляемости */
+  /* overflow-y: auto; 
+  max-height: 400px;  */
 }
 
 .employee-schedule-li-schedule-of-employees,
@@ -703,7 +703,6 @@
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
   transition: background-color 0.3s, transform 0.3s;
 }
 

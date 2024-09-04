@@ -29,7 +29,7 @@ const ScheduleEditOrderModal = ({ order, onClose, onSave }) => {
             Наименование:
             <input
               type="text"
-              name="name"
+              name="order_name"
               value={editedOrder.order_name}
               onChange={handleChange}
               className="schedule-edit-order-input"

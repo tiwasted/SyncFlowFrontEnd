@@ -5,15 +5,15 @@ import ModalForDelete from "../components/ModalForDelete";
 import ModalForEditDashboard from "./ModalForEdit";
 import PencilIcon from "../Icons/Pencil.svg";
 import BasketIcon from "../Icons/Basket.svg";
-import EmployeeIcon from "../Icons/Employee.png"; // Добавьте иконку сотрудника
+import EmployeeIcon from "../Icons/Employee.png";
 
 const OrderList = ({ orders, updateOrders }) => {
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [showAssignModal, setShowAssignModal] = useState(false); // Новое состояние для модального окна назначения
+  const [showAssignModal, setShowAssignModal] = useState(false);
   const [orderToDelete, setOrderToDelete] = useState(null);
   const [orderToEdit, setOrderToEdit] = useState(null);
-  const [orderToAssign, setOrderToAssign] = useState(null); // Новое состояние для заказа назначения
+  const [orderToAssign, setOrderToAssign] = useState(null);
 
   const handleDelete = async () => {
     try {
@@ -27,7 +27,7 @@ const OrderList = ({ orders, updateOrders }) => {
 
   const handleEmployeeAssigned = (updatedOrder) => {
     updateOrders();
-    setShowAssignModal(false); // Закрываем модальное окно после назначения
+    setShowAssignModal(false);
   };
 
   const handleDeleteClick = (id) => {
@@ -73,6 +73,19 @@ const OrderList = ({ orders, updateOrders }) => {
     return <div>No orders available.</div>;
   }
 
+  const formatDate = (dateString) => {
+    if (!dateString) {
+      return "";          
+    }
+    const [year, month, day] = dateString.split('-');
+    return `${day}-${month}-${year}`;
+  };
+
+  const formatTime = (timeString) => {
+    const date = new Date(`1970-01-01T${timeString}`);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
+
   return (
     <div className="order-container-dashboard">
       {orders.map((order) => (
@@ -80,7 +93,7 @@ const OrderList = ({ orders, updateOrders }) => {
           <div className="order-item-details-container">
             <div className="order-item-info">
               <p className="order-item-name">Наименование: {order.order_name}</p>
-              <p className="order-item-details">{order.order_time}, {order.order_date}, {order.address}</p>
+              <p className="order-item-details">{formatTime(order.order_time)}, {formatDate(order.order_date)}, {order.address}</p>
             </div>
             <div className="order-item-actions">
               <button
@@ -117,6 +130,7 @@ const OrderList = ({ orders, updateOrders }) => {
         onClose={closeEditModal}
         order={orderToEdit}
         onSave={handleEditSave}
+        fetchOrders={updateOrders}
       />
       {orderToAssign && (
         <AssignEmployee

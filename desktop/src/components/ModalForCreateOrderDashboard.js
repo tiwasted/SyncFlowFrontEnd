@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useOrders } from "../context/OrderProvider";
 import api from "../services/TokenService";
 
-const ModalForCreateOrderDashboard = ({ show, onClose }) => {
+const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
   const [nameOfOrder, setOrderName] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
@@ -50,10 +50,13 @@ const ModalForCreateOrderDashboard = ({ show, onClose }) => {
       const response = await api.post("/orders/b2c-orders/", orderData);
       setOrders((prevOrders) => [...prevOrders, response.data]);
       setOrderSaved(true);
-      setTimeout(() => {
-        resetForm();
-        onClose();
-      }, 1000);
+      fetchOrders(); // Обновляем заказы после создания нового заказа
+      // setTimeout(() => {
+      //   resetForm();
+      //   onClose();
+      // }, 1000);
+      resetForm();
+      onClose();
     } catch (error) {
       if (error.response && error.response.data) {
         setError(error.response.data.message || "Ошибка при создании заказа");

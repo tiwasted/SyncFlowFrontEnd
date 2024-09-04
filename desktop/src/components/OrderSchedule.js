@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import OrderListForSchedule from "../components/OrderListForSchedule";
+import OrderListForScheduleOrder from "../components/OrderListForScheduleOrder";
 import Calendar from "../components/Calendar";
 import api from "../services/TokenService";
 
@@ -39,7 +39,7 @@ const OrderSchedule = ({ currentUser }) => {
   return (
     <div className="orders-schedule-content">
       <div className="orders-list-schedule-board">
-        <OrderListForSchedule orders={orders} setOrders={setOrders} />
+        <OrderListForScheduleOrder orders={orders} setOrders={setOrders} />
       </div>
       <div className="schedule-orders-calendar-container">
         <h3 className="h3-order-schedule">Календарь</h3>
