@@ -12,7 +12,7 @@ const TaskDetails = ({ task }) => (
         <p><strong>Имя клиента:</strong> {task.name_client}</p>
         <p><strong>Цена:</strong> {task.price}</p>
         <p><b>Описание:</b> {task.description}</p>
-        <p><strong>Статус:</strong> {task.status === 'in waiting' ? 'В ожидании' : task.status}</p>
+        <p><strong>Статус:</strong> {task.status === 'in_waiting' ? 'В ожидании' : task.status}</p>
     </ul>
 );
 

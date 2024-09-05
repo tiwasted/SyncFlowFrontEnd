@@ -26,10 +26,8 @@ const EmployeeSchedule = ({ date, setDate }) => {
       const response = await api.get(
         `/schedules/schedule/list_employees_by_orders/?date=${formattedDate}`
       );
-      // console.log("Employee Schedule Data:", response.data);
       setEmployeeSchedule(response.data || []);
     } catch (error) {
-      // console.error("Ошибка при получении расписания сотрудников:", error);
       setEmployeeSchedule([]);
     }
   };
@@ -42,7 +40,6 @@ const EmployeeSchedule = ({ date, setDate }) => {
       );
       setEmployeeOrders(response.data || []);
     } catch (error) {
-      // console.error("Ошибка при получении заказов сотрудника:", error);
       setEmployeeOrders([]);
     }
   };
@@ -83,7 +80,6 @@ const EmployeeSchedule = ({ date, setDate }) => {
         fetchEmployeeOrders(selectedEmployee, date);
       }
     } catch (error) {
-      // console.error("Ошибка при удалении заказа:", error);
     }
     setShowDeleteModal(false);
     setOrderToDelete(null);
@@ -110,7 +106,6 @@ const EmployeeSchedule = ({ date, setDate }) => {
         fetchEmployeeOrders(selectedEmployee, date);
       }
     } catch (error) {
-      // console.error("Ошибка при обновлении заказа:", error);
     }
     setEditingOrder(null);
   };
@@ -147,6 +142,14 @@ const EmployeeSchedule = ({ date, setDate }) => {
   const formatTime = (timeString) => {
     const date = new Date(`1970-01-01T${timeString}`);
     return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) {
+      return "";          
+    }
+    const [year, month, day] = dateString.split('-');
+    return `${day}-${month}-${year}`;
   };
 
   return (
@@ -198,65 +201,38 @@ const EmployeeSchedule = ({ date, setDate }) => {
                   <h3 className="employee-schedule-title-orders">
                     Заказы сотрудника: {selectedEmployeeName}
                   </h3>
-                  <ul className="employee-schedule-ul-orders">
+                  <div className="order-container-dashboard">
                     {employeeOrders.map((order) => (
-                      <li
-                        className="employee-schedule-li-orders"
-                        key={order.id}
-                      >
-                        <div className="employee-schedule-order-card">
-                          <div className="employee-schedule-order-header">
-                            <span className="employee-schedule-order-name">
-                              <i className="fa fa-clipboard"></i>{" "}
-                              {order.order_name}
-                            </span>
-                            <span className="employee-schedule-order-time">
-                              <i className="fa fa-clock"></i>{" "}
-                              {formatTime(order.order_time)}
-                            </span>
+                      <div className="order-item-dashboard" key={order.id}>
+                        <div className="order-item-details-container">
+                          <div className="order-item-info">
+                            <p className="order-item-name">Наименование: {order.order_name}</p>
+                            <p className="order-item-details">{formatTime(order.order_time)}, {formatDate(order.order_date)}, {order.address}, Цена: {order.price} тг</p>
                           </div>
-                          <div className="employee-schedule-order-details">
-                            <span className="employee-schedule-order-address">
-                              <i className="fa fa-map-marker"></i>Адрес:{" "}
-                              {order.address}, Цена: {order.price} тг
-                            </span>
-                          </div>
-                          <div className="employee-schedule-action-buttons">
+                          <div className="order-item-actions">
                             <button
+                              className="order-list-btn-dashboard"
                               onClick={() => handleEditOrder(order)}
-                              className="employee-schedule-action-button edit"
                             >
-                              <img
-                                src={PencilIcon}
-                                alt="Редактировать"
-                                className="icon"
-                              />
+                              <img src={PencilIcon} alt="Редактировать" className="icon" />
                             </button>
                             <button
+                              className="order-delete-btn-dashboard"
                               onClick={() => handleDeleteOrder(order.id)}
-                              className="employee-schedule-action-button delete"
                             >
-                              <img
-                                src={BasketIcon}
-                                alt="Удалить"
-                                className="icon"
-                              />
+                              <img src={BasketIcon} alt="Удалить" className="icon" />
                             </button>
                             <button
+                              className="order-assign-btn-dashboard"
                               onClick={() => handleReassignOrder(order)}
-                              className="employee-schedule-action-button reassign"
                             >
-                              <img
-                                src={ReassignEmployeeIcon}
-                                alt="Переназначить сотрудника"
-                                className="icon"
-                              />
+                              <img src={ReassignEmployeeIcon} alt="Переназначить сотрудника" className="icon" />
                             </button>
                           </div>
                         </div>
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </>
               ) : (
                 <h3 className="employee-schedule-title-orders">

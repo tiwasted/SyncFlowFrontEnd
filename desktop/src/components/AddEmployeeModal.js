@@ -18,17 +18,9 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   useEffect(() => {
     if (isOpen) {
       fetchRoles();
+      fetchAvailableCities(); // Fetch cities regardless of the role
     }
   }, [isOpen]);
-
-  useEffect(() => {
-    if (formData.role === "manager") {
-      fetchAvailableCities();
-    } else {
-      setAvailableCities([]);
-      setFormData((prev) => ({ ...prev, selectedCities: [] }));
-    }
-  }, [formData.role]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -75,7 +67,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
       first_name: firstName,
       last_name: lastName,
       role,
-      cities: role === "manager" ? selectedCities : [],
+      cities: selectedCities, // Always include selected cities
     };
 
     try {
@@ -108,15 +100,27 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
     }));
   };
 
-  const resetForm = (roleChanged = false) => {
-    setFormData((prev) => ({
-      ...prev,
-      firstName: roleChanged ? "" : prev.firstName,
-      lastName: roleChanged ? "" : prev.lastName,
-      password: roleChanged ? "" : prev.password,
-      phoneNumber: roleChanged ? "" : prev.phoneNumber,
+  const handleRoleChange = (e) => {
+    const { value } = e.target;
+    setFormData({
+      firstName: "",
+      lastName: "",
+      password: "",
+      phoneNumber: "",
+      role: value,
       selectedCities: [],
-    }));
+    });
+  };
+
+  const resetForm = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      password: "",
+      phoneNumber: "",
+      role: "employee",
+      selectedCities: [],
+    });
     setError("");
     setAvailableCities([]);
   };
@@ -134,10 +138,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
           <select
             name="role"
             value={formData.role}
-            onChange={(e) => {
-              handleInputChange(e);
-              resetForm(true);
-            }}
+            onChange={handleRoleChange}
           >
             {roles.map((role) => (
               <option key={role.id} value={role.id}>
@@ -186,26 +187,24 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
             onChange={handleInputChange}
           />
         </div>
-        {formData.role === "manager" && (
-          <div className="add-employee-form-group">
-            <label>Выберите города:</label>
-            <div className="add-employee-form-checkbox-group">
-              {availableCities.map((city) => (
-                <div key={city.id} className="add-employee-form-checkbox">
-                  <label>
-                    <input
-                      type="checkbox"
-                      value={city.id}
-                      checked={formData.selectedCities.includes(city.id)}
-                      onChange={handleCityChange}
-                    />
-                    {city.name}
-                  </label>
-                </div>
-              ))}
-            </div>
+        <div className="add-employee-form-group">
+          <label>Выберите города:</label>
+          <div className="add-employee-form-checkbox-group">
+            {availableCities.map((city) => (
+              <div key={city.id} className="add-employee-form-checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    value={city.id}
+                    checked={formData.selectedCities.includes(city.id)}
+                    onChange={handleCityChange}
+                  />
+                  {city.name}
+                </label>
+              </div>
+            ))}
           </div>
-        )}
+        </div>
         <button
           className="add-employee-form-button"
           onClick={addEmployee}

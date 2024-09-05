@@ -3,6 +3,7 @@ import AddEmployeeModal from "../components/AddEmployeeModal";
 import EmployeeList from "../components/EmployeeList";
 import ManagerList from "../components/ManagerList";
 import api from "../services/TokenService";
+import "../styles/Employees.css";
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -70,8 +71,8 @@ const Employees = () => {
         >
           Добавить сотрудника по роли
         </button>
-        <EmployeeList employees={employees} onDelete={deleteEmployee} />
-        <ManagerList managers={managers} onDelete={deleteManager} />
+        <EmployeeList employees={employees} onDelete={deleteEmployee} fetchData={fetchData} />
+        <ManagerList managers={managers} onDelete={deleteManager} fetchData={fetchData} />
         <AddEmployeeModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import api from "../services/TokenService";
+import "../styles/ManagerEdit.css"; // Assuming you have a CSS file for styling
 
-const ManagerEdit = ({ manager, onSave, onCancel }) => {
+const ManagerEdit = ({ manager, onSave, onCancel, fetchData }) => {
   const [firstName, setFirstName] = useState(manager.first_name);
   const [lastName, setLastName] = useState(manager.last_name);
   const [phone, setPhone] = useState(manager.phone);
@@ -20,51 +21,52 @@ const ManagerEdit = ({ manager, onSave, onCancel }) => {
       );
 
       onSave(response.data);
+      fetchData(); // Обновление данных после сохранения
+      onCancel(); // Закрытие окна после сохранения
     } catch (error) {
       // console.error("Ошибка при сохранении данных сотрудника:", error);
     }
   };
 
   return (
-    <div className="manager-edit-container">
-      <h2>Редактирование менеджера</h2>
-      <div className="manager-edit-form">
-        <label>
-          Имя:
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </label>
-        <label>
-          Фамилия:
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </label>
-        <label>
-          Номер телефона:
-          <input
-            type="text"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </label>
-        <div className="manager-edit-actions">
-          <button onClick={handleSave}>Сохранить</button>
-          <button onClick={onCancel}>Отмена</button>
-        </div>
+    <div className="manager-edit-modal">
+      <div className="manager-edit-modal-content">
+        <span className="manager-edit-close" onClick={onCancel}>&times;</span>
+        <h2 className="manager-edit-title">Редактирование менеджера</h2>
+        <form className="manager-edit-form">
+          <label className="manager-edit-label">
+            Имя:
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="manager-edit-input"
+            />
+          </label>
+          <label className="manager-edit-label">
+            Фамилия:
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="manager-edit-input"
+            />
+          </label>
+          <label className="manager-edit-label">
+            Номер телефона:
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="manager-edit-input"
+            />
+          </label>
+          <button type="button" onClick={handleSave} className="manager-edit-button">Сохранить</button>
+          <button type="button" onClick={onCancel} className="manager-edit-button">Отмена</button>
+        </form>
       </div>
     </div>
   );
 };
 
 export default ManagerEdit;
-
-
-
-
-

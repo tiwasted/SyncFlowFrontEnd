@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/AddLocationModal.css";
 
 const AddLocationModal = ({
@@ -11,17 +11,6 @@ const AddLocationModal = ({
   handleAddCountryAndCities,
   handleCloseAddLocationModal,
 }) => {
-  const [countrySearch, setCountrySearch] = useState("");
-  const [citySearch, setCitySearch] = useState("");
-
-  const filteredCountries = countries.filter((country) =>
-    country.name.toLowerCase().includes(countrySearch.toLowerCase())
-  );
-
-  const filteredCities = cities.filter((city) =>
-    city.name.toLowerCase().includes(citySearch.toLowerCase())
-  );
-
   return (
     <div className="settings-choose-cities-modal-overlay">
       <div className="settings-choose-cities-modal-content">
@@ -32,15 +21,8 @@ const AddLocationModal = ({
           <div className="settings-choose-cities-modal-columns">
             <div className="settings-choose-cities-modal-column">
               <label>Выберите страну:</label>
-              <input
-                type="text"
-                placeholder="Поиск страны"
-                value={countrySearch}
-                onChange={(e) => setCountrySearch(e.target.value)}
-                className="country-search-input"
-              />
               <div className="country-select">
-                {filteredCountries.map((country) => (
+                {countries.map((country) => (
                   <div className="radio-group" key={country.id}>
                     <label
                       htmlFor={`country-${country.id}`}
@@ -63,16 +45,8 @@ const AddLocationModal = ({
             </div>
             <div className="settings-choose-cities-modal-column">
               <label className="label-choose-cities">Выберите города:</label>
-              <input
-                type="text"
-                placeholder="Поиск города"
-                value={citySearch}
-                onChange={(e) => setCitySearch(e.target.value)}
-                className="city-search-input"
-                disabled={!selectedCountry}
-              />
               <div className="city-select">
-                {filteredCities.map((city) => (
+                {cities.map((city) => (
                   <div className="checkbox-group" key={city.id}>
                     <label
                       htmlFor={`city-${city.id}`}

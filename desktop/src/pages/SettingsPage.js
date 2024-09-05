@@ -4,7 +4,6 @@ import AddLocationModal from "../components/AddLocationModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import "../styles/ChangePasswordModal.css";
 
-
 const SettingsPage = () => {
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
