@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import api from "../services/TokenService";
-import Notification from "../components/Notification"; // Импортируем компонент Notification
-import "../styles/EmployeeEdit.css"; // Assuming you have a CSS file for styling
+import Notification from "../components/Notification";
+import "../styles/EmployeeEdit.css";
 
 const EmployeeEdit = ({ employee, onSave, onCancel, fetchData }) => {
   const [firstName, setFirstName] = useState(employee.first_name);
   const [lastName, setLastName] = useState(employee.last_name);
   const [phone, setPhone] = useState(employee.phone);
-  const [notification, setNotification] = useState({ message: "", type: "" }); // Добавляем состояние для уведомлений
+  const [notification, setNotification] = useState({ message: "", type: "" });
 
   const handleSave = async () => {
     try {
@@ -23,8 +23,8 @@ const EmployeeEdit = ({ employee, onSave, onCancel, fetchData }) => {
       );
 
       onSave(response.data);
-      fetchData(); // Обновление данных после сохранения
-      onCancel(); // Закрытие окна после сохранения
+      fetchData();
+      onCancel();
     } catch (error) {
       if (error.response && error.response.status === 403) {
         setNotification({ message: error.response.data.detail, type: "error" });
@@ -41,7 +41,9 @@ const EmployeeEdit = ({ employee, onSave, onCancel, fetchData }) => {
   return (
     <div className="employee-edit-modal">
       <div className="employee-edit-modal-content">
-        <span className="employee-edit-close" onClick={onCancel}>&times;</span>
+        <span className="employee-edit-close" onClick={onCancel}>
+          &times;
+        </span>
         <h2 className="employee-edit-title">Редактирование сотрудника</h2>
         <form className="employee-edit-form">
           <label className="employee-edit-label">
@@ -71,8 +73,20 @@ const EmployeeEdit = ({ employee, onSave, onCancel, fetchData }) => {
               className="employee-edit-input"
             />
           </label>
-          <button type="button" onClick={handleSave} className="employee-edit-button">Сохранить</button>
-          <button type="button" onClick={onCancel} className="employee-edit-button">Отмена</button>
+          <button
+            type="button"
+            onClick={handleSave}
+            className="employee-edit-button"
+          >
+            Сохранить
+          </button>
+          <button
+            type="button"
+            onClick={onCancel}
+            className="employee-edit-button"
+          >
+            Отмена
+          </button>
         </form>
       </div>
       {notification.message && (

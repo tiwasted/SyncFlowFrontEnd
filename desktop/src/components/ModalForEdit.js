@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const ModalForEditDashboard = ({ show, onClose, order, onSave, fetchOrders }) => {
+const ModalForEditDashboard = ({
+  show,
+  onClose,
+  order,
+  onSave,
+  fetchOrders,
+}) => {
   const [editedOrder, setEditedOrder] = useState(order || {});
 
   useEffect(() => {
@@ -16,8 +22,8 @@ const ModalForEditDashboard = ({ show, onClose, order, onSave, fetchOrders }) =>
     if (!date) return "";
     const d = new Date(date);
     const year = d.getFullYear();
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -25,7 +31,9 @@ const ModalForEditDashboard = ({ show, onClose, order, onSave, fetchOrders }) =>
     e.preventDefault();
     const updatedOrder = {
       ...editedOrder,
-      order_date: editedOrder.order_date ? formatDate(editedOrder.order_date) : null
+      order_date: editedOrder.order_date
+        ? formatDate(editedOrder.order_date)
+        : null,
     };
     await onSave(updatedOrder);
     fetchOrders();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
-import Notification from "../components/Notification"; // Импортируем компонент Notification
+import Notification from "../components/Notification";
+import "../styles/AddEmployeeModal.css";
 
 const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   const [formData, setFormData] = useState({
@@ -57,7 +58,8 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   };
 
   const addEmployee = async () => {
-    const { firstName, lastName, password, phoneNumber, role, selectedCities } = formData;
+    const { firstName, lastName, password, phoneNumber, role, selectedCities } =
+      formData;
     if (!firstName || !lastName || !password || !phoneNumber) {
       setError("Пожалуйста, заполните все поля");
       return;
@@ -149,6 +151,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
             name="role"
             value={formData.role}
             onChange={handleRoleChange}
+            className="add-employee-form-select"
           >
             {roles.map((role) => (
               <option key={role.id} value={role.id}>
@@ -197,24 +200,26 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
             onChange={handleInputChange}
           />
         </div>
-        <div className="add-employee-form-group">
-          <label>Выберите города:</label>
-          <div className="add-employee-form-checkbox-group">
-            {availableCities.map((city) => (
-              <div key={city.id} className="add-employee-form-checkbox">
-                <label>
-                  <input
-                    type="checkbox"
-                    value={city.id}
-                    checked={formData.selectedCities.includes(city.id)}
-                    onChange={handleCityChange}
-                  />
-                  {city.name}
-                </label>
-              </div>
-            ))}
+        {formData.role !== "employee" && (
+          <div className="add-employee-form-group">
+            <label>Выберите города:</label>
+            <div className="add-employee-form-checkbox-group">
+              {availableCities.map((city) => (
+                <div key={city.id} className="add-employee-form-checkbox">
+                  <label>
+                    <input
+                      type="checkbox"
+                      value={city.id}
+                      checked={formData.selectedCities.includes(city.id)}
+                      onChange={handleCityChange}
+                    />
+                    {city.name}
+                  </label>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
         <button
           className="add-employee-form-button"
           onClick={addEmployee}

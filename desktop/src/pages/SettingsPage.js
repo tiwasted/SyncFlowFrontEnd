@@ -3,7 +3,7 @@ import api from "../services/TokenService";
 import AddLocationModal from "../components/AddLocationModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import Notification from "../components/Notification";
-import "../styles/ChangePasswordModal.css";
+import ProfileSection from "../components/ProfileSection";
 
 const SettingsPage = () => {
   const [countries, setCountries] = useState([]);
@@ -31,7 +31,9 @@ const SettingsPage = () => {
   const fetchCities = async (countryId) => {
     try {
       if (countryId) {
-        const response = await api.get(`/orders/countries/${countryId}/cities/`);
+        const response = await api.get(
+          `/orders/countries/${countryId}/cities/`
+        );
         setCities(response.data || []);
       } else {
         setCities([]);
@@ -92,7 +94,9 @@ const SettingsPage = () => {
       }, 1000);
     } catch (error) {
       if (error.response && error.response.data) {
-        setMessage(`Ошибка: ${error.response.data.detail || "Неизвестная ошибка"}`);
+        setMessage(
+          `Ошибка: ${error.response.data.detail || "Неизвестная ошибка"}`
+        );
       } else {
         setMessage("Ошибка при изменении пароля");
       }
@@ -147,6 +151,7 @@ const SettingsPage = () => {
   return (
     <div className="settings-container">
       <h1 className="settings-title">Настройки</h1>
+
       <div className="settings-buttons">
         <button
           className="choose-cities-btn"
@@ -162,6 +167,7 @@ const SettingsPage = () => {
           Изменить пароль
         </button>
       </div>
+      <ProfileSection />
       {message && <div className="settings-message">{message}</div>}
 
       {showAddLocationModal && (

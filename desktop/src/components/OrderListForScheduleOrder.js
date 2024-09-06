@@ -41,7 +41,10 @@ const OrderListForSchedule = ({ orders, setOrders }) => {
 
   const handleEditSave = async (updatedOrder) => {
     try {
-      await api.put(`/orders/schedule-orders/${updatedOrder.id}/`, updatedOrder);
+      await api.put(
+        `/orders/schedule-orders/${updatedOrder.id}/`,
+        updatedOrder
+      );
       setOrders((prevOrders) =>
         prevOrders.map((order) =>
           order.id === updatedOrder.id ? updatedOrder : order
@@ -86,7 +89,10 @@ const OrderListForSchedule = ({ orders, setOrders }) => {
   return (
     <div className="order-container-schedule">
       {orders.map((order) => (
-        <div key={order.id} className="order-item-dashboard order-item-schedule">
+        <div
+          key={order.id}
+          className="order-item-dashboard order-item-schedule"
+        >
           <div className="order-item-details-container">
             <h4>{order.service_name}</h4>
             <div className="order-item-info">
@@ -94,7 +100,8 @@ const OrderListForSchedule = ({ orders, setOrders }) => {
                 Наименование: {order.order_name}
               </p>
               <p className="order-item-details">
-                <b>Время:</b> {order.order_time}, <b>Дата:</b> {order.order_date}, <b>Цена:</b> {order.price}
+                <b>Время:</b> {order.order_time}, <b>Дата:</b>{" "}
+                {order.order_date}, <b>Цена:</b> {order.price}
               </p>
               <p>
                 <b>Статус: </b>{" "}
@@ -102,8 +109,14 @@ const OrderListForSchedule = ({ orders, setOrders }) => {
               </p>
               <p>
                 <b>Сотрудник (-и): </b>{" "}
-                {order.list_assigned_employees && order.list_assigned_employees.length > 0
-                  ? order.list_assigned_employees.map(employee => `${employee.first_name} ${employee.last_name}`).join(', ')
+                {order.list_assigned_employees &&
+                order.list_assigned_employees.length > 0
+                  ? order.list_assigned_employees
+                      .map(
+                        (employee) =>
+                          `${employee.first_name} ${employee.last_name}`
+                      )
+                      .join(", ")
                   : "Не назначен"}
               </p>
             </div>

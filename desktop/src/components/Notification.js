@@ -3,7 +3,7 @@ import "../styles/Notification.css";
 
 const Notification = ({ message, type, onClose }) => {
   useEffect(() => {
-    if (message && type !== 'yellow') {
+    if (message && type !== "yellow") {
       const timer = setTimeout(onClose, 5000);
       return () => clearTimeout(timer);
     }
@@ -13,7 +13,7 @@ const Notification = ({ message, type, onClose }) => {
 
   return (
     <div
-      className={`notification ${type} ${type !== 'yellow' ? 'auto-fade' : ''}`}
+      className={`notification ${type} ${type !== "yellow" ? "auto-fade" : ""}`}
       role="alert"
       aria-live="assertive"
       aria-atomic="true"

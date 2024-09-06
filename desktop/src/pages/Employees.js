@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AddEmployeeModal from "../components/AddEmployeeModal";
 import EmployeeList from "../components/EmployeeList";
 import ManagerList from "../components/ManagerList";
-import Notification from "../components/Notification"; // Импортируем компонент Notification
+import Notification from "../components/Notification";
 import api from "../services/TokenService";
 import "../styles/Employees.css";
 
@@ -10,7 +10,7 @@ const Employees = () => {
   const [employees, setEmployees] = useState([]);
   const [managers, setManagers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [notification, setNotification] = useState({ message: "", type: "" }); // Добавляем состояние для уведомлений
+  const [notification, setNotification] = useState({ message: "", type: "" });
 
   useEffect(() => {
     fetchData();
@@ -85,8 +85,16 @@ const Employees = () => {
         >
           Добавить сотрудника по роли
         </button>
-        <EmployeeList employees={employees} onDelete={deleteEmployee} fetchData={fetchData} />
-        <ManagerList managers={managers} onDelete={deleteManager} fetchData={fetchData} />
+        <EmployeeList
+          employees={employees}
+          onDelete={deleteEmployee}
+          fetchData={fetchData}
+        />
+        <ManagerList
+          managers={managers}
+          onDelete={deleteManager}
+          fetchData={fetchData}
+        />
         <AddEmployeeModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}

@@ -41,7 +41,7 @@ const ManagerList = ({ managers, setManagers, onDelete, fetchData }) => {
         )
       );
       setManagerToEdit(null);
-      fetchData(); // Обновление данных после сохранения
+      fetchData();
     } catch (error) {
       // console.error("Error saving manager data:", error);
     }
@@ -66,7 +66,9 @@ const ManagerList = ({ managers, setManagers, onDelete, fetchData }) => {
             {manager.cities.map((city, index) => (
               <span key={city.id} className="manager-city">
                 {city.name}
-                {index < manager.cities.length - 1 && <span className="city-separator"> </span>}
+                {index < manager.cities.length - 1 && (
+                  <span className="city-separator"> </span>
+                )}
               </span>
             ))}
           </div>
@@ -91,7 +93,7 @@ const ManagerList = ({ managers, setManagers, onDelete, fetchData }) => {
           manager={managerToEdit}
           onSave={handleSaveEdit}
           onCancel={handleCancelEdit}
-          fetchData={fetchData} // Передача функции fetchData
+          fetchData={fetchData}
         />
       )}
       <ModalForDelete

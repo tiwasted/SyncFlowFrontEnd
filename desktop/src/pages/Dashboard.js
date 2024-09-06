@@ -22,11 +22,16 @@ const Dashboard = () => {
   const fetchOrders = useCallback(async () => {
     if (selectedCity) {
       try {
-        const [tomorrowResponse, noDateResponse, calendarResponse] = await Promise.all([
-          api.get("/orders/b2c-orders/tomorrow_orders/"),
-          api.get("/orders/b2c-orders/orders_without_dates/"),
-          api.get("/orders/b2c-orders/orders_by_dates/", { params: { date: date ? date.toISOString().split('T')[0] : undefined } })
-        ]);
+        const [tomorrowResponse, noDateResponse, calendarResponse] =
+          await Promise.all([
+            api.get("/orders/b2c-orders/tomorrow_orders/"),
+            api.get("/orders/b2c-orders/orders_without_dates/"),
+            api.get("/orders/b2c-orders/orders_by_dates/", {
+              params: {
+                date: date ? date.toISOString().split("T")[0] : undefined,
+              },
+            }),
+          ]);
         setTomorrowOrders(tomorrowResponse.data);
         setOrdersWithoutDates(noDateResponse.data);
         setCalendarOrders(calendarResponse.data);
@@ -57,7 +62,10 @@ const Dashboard = () => {
         setSelectedCity(response.data.city_id);
       } catch (error) {
         if (error.response && error.response.status === 404) {
-          setNotification({ message: "Выберите город, чтобы продолжить работу", type: "yellow" });
+          setNotification({
+            message: "Выберите город, чтобы продолжить работу",
+            type: "yellow",
+          });
         } else {
           // console.error("Ошибка при получении выбранного города:", error);
         }
@@ -74,8 +82,10 @@ const Dashboard = () => {
 
   const handleCityChange = async (cityId) => {
     try {
-      const response = await api.post("/employers/select-primary-city/", { city_id: cityId });
-      console.log('Response:', response.data);
+      const response = await api.post("/employers/select-primary-city/", {
+        city_id: cityId,
+      });
+      console.log("Response:", response.data);
       setSelectedCity(cityId);
       setNotification({ message: "", type: "" }); // Убираем уведомление после выбора города
       fetchOrders();
@@ -97,8 +107,8 @@ const Dashboard = () => {
   };
 
   const formatDate = (date) => {
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   };
@@ -107,25 +117,31 @@ const Dashboard = () => {
     <React.Fragment>
       <div>
         <div className="city-selection-container">
-          {Array.isArray(cities) && cities.map((city) => (
-            <label 
-              key={city.id} 
-              className={`city-label ${selectedCity === city.id ? 'selected' : ''}`}
+          {Array.isArray(cities) &&
+            cities.map((city) => (
+              <label
+                key={city.id}
+                className={`city-label ${
+                  selectedCity === city.id ? "selected" : ""
+                }`}
               >
-              <input
-                type="radio"
-                name="city"
-                className="city-radio"
-                checked={selectedCity === city.id}
-                onChange={() => handleCityChange(city.id)}
-              />
-              {city.name}
-            </label>
-          ))}
+                <input
+                  type="radio"
+                  name="city"
+                  className="city-radio"
+                  checked={selectedCity === city.id}
+                  onChange={() => handleCityChange(city.id)}
+                />
+                {city.name}
+              </label>
+            ))}
         </div>
 
         <div className="create-order-btn-container">
-          <button className="create-order-btn" onClick={handleOpenCreateOrderModal}>
+          <button
+            className="create-order-btn"
+            onClick={handleOpenCreateOrderModal}
+          >
             Создать заказ
           </button>
         </div>
@@ -147,16 +163,25 @@ const Dashboard = () => {
           <div className="dashboard-order-list-container">
             <h2 className="h2-title-dashboard">Заказы без даты</h2>
             <div className="dashboard-order-list">
-              <OrderList orders={ordersWithoutDates} updateOrders={fetchOrders}/>
+              <OrderList
+                orders={ordersWithoutDates}
+                updateOrders={fetchOrders}
+              />
             </div>
           </div>
 
           <div className="dashboard-order-list-container">
             <h2 className="h2-title-dashboard">
-              Заказы на {date ? formatDate(date) : 'Выберите дату'}
+              Заказы на {date ? formatDate(date) : "Выберите дату"}
             </h2>
             <div className="dashboard-order-list">
-              {date && <OrderList orders={calendarOrders} date={date} updateOrders={fetchOrders}/>}
+              {date && (
+                <OrderList
+                  orders={calendarOrders}
+                  date={date}
+                  updateOrders={fetchOrders}
+                />
+              )}
             </div>
           </div>
 

@@ -41,7 +41,9 @@ const OrderFilterForm = ({ onSubmit }) => {
   return (
     <form className="order-filter-form" onSubmit={handleSubmit}>
       <div className="order-filter-form__group">
-        <label htmlFor="status" className="order-filter-form__label">Статус:</label>
+        <label htmlFor="status" className="order-filter-form__label">
+          Статус:
+        </label>
         <select
           id="status"
           name="status"
@@ -56,7 +58,9 @@ const OrderFilterForm = ({ onSubmit }) => {
       </div>
 
       <div className="order-filter-form__group">
-        <label htmlFor="order_date" className="order-filter-form__label">Дата заказа:</label>
+        <label htmlFor="order_date" className="order-filter-form__label">
+          Дата заказа:
+        </label>
         <input
           type="date"
           id="order_date"
@@ -68,7 +72,12 @@ const OrderFilterForm = ({ onSubmit }) => {
       </div>
 
       <div className="order-filter-form__group">
-        <label htmlFor="phone_number_client" className="order-filter-form__label">Телефон клиента:</label>
+        <label
+          htmlFor="phone_number_client"
+          className="order-filter-form__label"
+        >
+          Телефон клиента:
+        </label>
         <input
           type="text"
           id="phone_number_client"
@@ -80,7 +89,12 @@ const OrderFilterForm = ({ onSubmit }) => {
       </div>
 
       <div className="order-filter-form__group">
-        <label htmlFor="phone_number_employee" className="order-filter-form__label">Телефон сотрудника:</label>
+        <label
+          htmlFor="phone_number_employee"
+          className="order-filter-form__label"
+        >
+          Телефон сотрудника:
+        </label>
         <input
           type="text"
           id="phone_number_employee"
@@ -92,7 +106,9 @@ const OrderFilterForm = ({ onSubmit }) => {
       </div>
 
       <div className="order-filter-form__group">
-        <label htmlFor="city" className="order-filter-form__label">Город:</label>
+        <label htmlFor="city" className="order-filter-form__label">
+          Город:
+        </label>
         <select
           id="city"
           name="city"
@@ -110,7 +126,9 @@ const OrderFilterForm = ({ onSubmit }) => {
       </div>
 
       <div className="order-filter-form__group">
-        <button type="submit" className="order-filter-form__btn">Поиск</button>
+        <button type="submit" className="order-filter-form__btn">
+          Поиск
+        </button>
       </div>
     </form>
   );

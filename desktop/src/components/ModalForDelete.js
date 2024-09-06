@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/ModalForDelete.css"; // Стили для модального окна
+import "../styles/ModalForDelete.css";
 
 const ModalForDelete = ({ show, onClose, onConfirm, children }) => {
   if (!show) {

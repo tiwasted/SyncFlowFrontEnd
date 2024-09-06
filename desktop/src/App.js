@@ -29,8 +29,6 @@ import "./styles/OrderStyles/OrderList.css";
 import "./styles/OrderStyles/AddOrder.css";
 import "./styles/OrderStyles/OrderListForSchedule.css";
 
-import "./styles/EmployeeStyles/AddEmployeeModal.css";
-
 const AppContent = () => {
   const location = useLocation();
   const isLoginPage = location.pathname === "/login";

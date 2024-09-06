@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Profile.css";
-import api from "../services/tokenService";
-import LogoutButton from "../components/LogoutButton";
-import ChangePassword from "../components/ChangePassword";
+import api from "../services/TokenService";
+import "../styles/ProfileSection.css";
 
-const Profile = () => {
+const ProfileSection = () => {
   const [profile, setProfile] = useState({
-    first_name: "",
     last_name: "",
+    first_name: "",
+    company_name: "",
+    company_description: "",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [message, setMessage] = useState("");
@@ -22,7 +22,7 @@ const Profile = () => {
       setProfile(response.data);
     } catch (error) {
       setMessage("Ошибка при загрузке профиля");
-      // console.error('Ошибка при загрузке профиля:', error);
+      // console.error("Ошибка при загрузке профиля:", error);
     }
   };
 
@@ -38,15 +38,27 @@ const Profile = () => {
       setIsEditing(false);
     } catch (error) {
       setMessage("Ошибка при обновлении профиля");
-      // console.error('Ошибка при обновлении профиля:', error);
+      // console.error("Ошибка при обновлении профиля:", error);
     }
   };
 
   return (
-    <div className="profile-container">
-      <div className="profile-title">Профиль</div>
-
+    <div className="profile-section">
+      <h2 className="profile-title">Профиль</h2>
       {message && <div className="profile-message">{message}</div>}
+      <div className="profile-field">
+        <label>Фамилия:</label>
+        {isEditing ? (
+          <input
+            type="text"
+            name="last_name"
+            value={profile.last_name}
+            onChange={handleInputChange}
+          />
+        ) : (
+          <span>{profile.last_name}</span>
+        )}
+      </div>
       <div className="profile-field">
         <label>Имя:</label>
         {isEditing ? (
@@ -61,16 +73,28 @@ const Profile = () => {
         )}
       </div>
       <div className="profile-field">
-        <label>Фамилия:</label>
+        <label>Название компании:</label>
         {isEditing ? (
           <input
             type="text"
-            name="last_name"
-            value={profile.last_name}
+            name="company_name"
+            value={profile.company_name}
             onChange={handleInputChange}
           />
         ) : (
-          <span>{profile.last_name}</span>
+          <span>{profile.company_name}</span>
+        )}
+      </div>
+      <div className="profile-field">
+        <label>Описание компании:</label>
+        {isEditing ? (
+          <textarea
+            name="company_description"
+            value={profile.company_description}
+            onChange={handleInputChange}
+          />
+        ) : (
+          <span>{profile.company_description}</span>
         )}
       </div>
       {isEditing ? (
@@ -82,12 +106,8 @@ const Profile = () => {
           Редактировать
         </button>
       )}
-      <ChangePassword />
-      <div className="profile-exit-btn">
-        <LogoutButton />
-      </div>
     </div>
   );
 };
 
-export default Profile;
+export default ProfileSection;

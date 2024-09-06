@@ -6,7 +6,7 @@ import "../styles/AssignEmployee.css";
 const AssignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
   const [employeeIds, setEmployeeIds] = useState([]);
   const [employees, setEmployees] = useState([]);
-  const [notification, setNotification] = useState({ message: "", type: "" }); 
+  const [notification, setNotification] = useState({ message: "", type: "" });
 
   useEffect(() => {
     const fetchEmployees = async () => {

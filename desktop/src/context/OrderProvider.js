@@ -1,4 +1,10 @@
-import React, { createContext, useState, useContext, useEffect, useMemo } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  useMemo,
+} from "react";
 import api from "../services/TokenService";
 import { useAuth } from "./AuthProvider";
 import { useLocation } from "react-router-dom";
@@ -16,7 +22,8 @@ export const OrderProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      if (authLoading || !isAuthenticated || location.pathname !== "/orders") return;
+      if (authLoading || !isAuthenticated || location.pathname !== "/orders")
+        return;
 
       setLoading(true);
       setError(null);
@@ -36,12 +43,15 @@ export const OrderProvider = ({ children }) => {
     fetchOrders();
   }, [isAuthenticated, authLoading, location.pathname]);
 
-  const contextValue = useMemo(() => ({
-    orders,
-    setOrders,
-    loading,
-    error
-  }), [orders, loading, error]);
+  const contextValue = useMemo(
+    () => ({
+      orders,
+      setOrders,
+      loading,
+      error,
+    }),
+    [orders, loading, error]
+  );
 
   return (
     <OrderContext.Provider value={contextValue}>

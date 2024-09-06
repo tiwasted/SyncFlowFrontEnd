@@ -29,14 +29,11 @@ const B2Bclients = () => {
     );
   };
 
-  // Обработчики для кнопок
   const handleCreateOrderClick = () => {
-    // Логика для создания заказа B2B
     // console.log("Создать заказ B2B");
   };
 
   const handleAddClientClick = () => {
-    // Логика для добавления клиента B2B
     // console.log("Добавить клиента B2B");
   };
 

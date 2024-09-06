@@ -1,54 +1,54 @@
 .login-form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .login-form-container h2 {
-    font-size: 24px;
-    font-weight: 600;
-    color: #2F2D3B;
-    margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #2f2d3b;
+  margin-bottom: 20px;
 }
 
 .login-form {
-    background: #fff;
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-bottom: 35px;
-    border-radius: 4px;
-    box-shadow: 0px 0 2px 0 rgba(0, 0, 0, 0.25);
-    width: 300px;
-    text-align: center;
+  background: #fff;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 35px;
+  border-radius: 4px;
+  box-shadow: 0px 0 2px 0 rgba(0, 0, 0, 0.25);
+  width: 300px;
+  text-align: center;
 }
 
 .inputLabel {
-    font-size: 12px;
-    color: #555;
-    margin-bottom: 6px;
-    margin-top: 24px;
-    display: block;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 6px;
+  margin-top: 24px;
+  display: block;
 }
 
 input {
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    padding: 0 11px;
-    margin-bottom: 20px;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 0 11px;
+  margin-bottom: 20px;
 }
 
 .submitButton {
-    width: 100%;
-    height: 40px;
-    color: #fff;
-    background-color: #065492;
-    border-color: #065492;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  background-color: #065492;
+  border-color: #065492;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
 }

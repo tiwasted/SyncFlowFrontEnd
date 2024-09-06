@@ -85,7 +85,7 @@ const OrderList = ({ orders, updateOrders }) => {
     if (!timeString) {
       return "Время не назначено";
     }
-    
+
     const date = new Date(`1970-01-01T${timeString}`);
     return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   };
@@ -100,18 +100,20 @@ const OrderList = ({ orders, updateOrders }) => {
                 <b>Наименование:</b> {order.order_name}
               </p>
               <div className="order-item-details">
-                  <div className="">
-                    <div className="order-item-time">{formatTime(order.order_time)}</div>
+                <div className="">
+                  <div className="order-item-time">
+                    {formatTime(order.order_time)}
                   </div>
-                  <div>
-                    <b>Дата:</b> {formatDate(order.order_date)}
-                  </div>
-                  <div>
-                    <b>Адрес:</b> {order.address}
-                  </div>
-                  <div>
-                    <b>Цена:</b> {order.price}
-                  </div>
+                </div>
+                <div>
+                  <b>Дата:</b> {formatDate(order.order_date)}
+                </div>
+                <div>
+                  <b>Адрес:</b> {order.address}
+                </div>
+                <div>
+                  <b>Цена:</b> {order.price}
+                </div>
               </div>
             </div>
             <div className="order-item-actions">

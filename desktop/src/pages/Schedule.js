@@ -30,7 +30,10 @@ const Schedule = () => {
         setCityName(response.data.city_name); // Устанавливаем название города
       } catch (error) {
         if (error.response && error.response.status === 404) {
-          setNotification({ message: "Зайдите в Dashboard и выберите город", type: "yellow" });
+          setNotification({
+            message: "Зайдите в Dashboard и выберите город",
+            type: "yellow",
+          });
         } else {
           // console.error("Ошибка при получении названия города:", error);
         }
@@ -46,7 +49,8 @@ const Schedule = () => {
 
   return (
     <div className="schedule-container">
-      <h1 className="schedule-title">Расписание города {cityName}</h1> {/* Отображаем название города */}
+      <h1 className="schedule-title">Расписание города {cityName}</h1>{" "}
+      {/* Отображаем название города */}
       <div className="schedule-buttons">
         {/* <button
           className={`schedule-button ${
@@ -65,7 +69,6 @@ const Schedule = () => {
           Расписание по сотрудникам
         </button>
       </div>
-
       {/* {scheduleMode === "orders" ? (
         <OrderSchedule
           date={date}
@@ -75,9 +78,8 @@ const Schedule = () => {
           currentUser={currentUser}
         />
       ) : ( */}
-        <EmployeeSchedule date={date} setDate={setDate} />
+      <EmployeeSchedule date={date} setDate={setDate} />
       {/* )} */}
-      
       {notification.message && (
         <Notification
           message={notification.message}

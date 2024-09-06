@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '../styles/ScheduleEditOrderModal.css';
+import React, { useState } from "react";
+import "../styles/ScheduleEditOrderModal.css";
 
 const ScheduleEditOrderModal = ({ order, onClose, onSave }) => {
   const [editedOrder, setEditedOrder] = useState(order ? { ...order } : {});
@@ -22,7 +22,9 @@ const ScheduleEditOrderModal = ({ order, onClose, onSave }) => {
   return (
     <div className="schedule-edit-order-modal">
       <div className="schedule-edit-order-modal-content">
-        <span className="schedule-edit-order-close" onClick={onClose}>&times;</span>
+        <span className="schedule-edit-order-close" onClick={onClose}>
+          &times;
+        </span>
         <h2 className="schedule-edit-order-title">Редактировать заказ</h2>
         <form className="schedule-edit-order-form">
           <label className="schedule-edit-order-label">
@@ -104,8 +106,14 @@ const ScheduleEditOrderModal = ({ order, onClose, onSave }) => {
               className="schedule-edit-order-textarea"
             />
           </label>
-          
-          <button type="button" onClick={handleSave} className="schedule-edit-order-button">Сохранить</button>
+
+          <button
+            type="button"
+            onClick={handleSave}
+            className="schedule-edit-order-button"
+          >
+            Сохранить
+          </button>
         </form>
       </div>
     </div>

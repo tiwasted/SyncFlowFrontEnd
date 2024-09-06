@@ -206,17 +206,6 @@ const HistoryOfOrders = () => {
 
 export default HistoryOfOrders;
 
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useCallback } from "react";
 // import { useParams } from "react-router-dom";
 // import { fetchOrders } from "../services/OrderService";

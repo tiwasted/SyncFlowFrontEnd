@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModalForDelete from "./ModalForDelete";
 import EmployeeEdit from "./EmployeeEdit";
-import "../styles/EmployeeList.css"; // Assuming you have a CSS file for styling
+import "../styles/EmployeeList.css";
 import api from "../services/TokenService";
 
 const EmployeeList = ({ employees, setEmployees, onDelete, fetchData }) => {
@@ -41,7 +41,7 @@ const EmployeeList = ({ employees, setEmployees, onDelete, fetchData }) => {
         )
       );
       setEmployeeToEdit(null);
-      fetchData(); // Обновление данных после сохранения
+      fetchData();
     } catch (error) {
       // console.error("Ошибка при сохранении данных сотрудника:", error);
     }
@@ -91,7 +91,7 @@ const EmployeeList = ({ employees, setEmployees, onDelete, fetchData }) => {
           employee={employeeToEdit}
           onSave={handleSaveEdit}
           onCancel={handleCancelEdit}
-          fetchData={fetchData} // Передача функции fetchData
+          fetchData={fetchData}
         />
       )}
       <ModalForDelete

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/TruncatedText.css"; // Подключение стилей
+import "../styles/TruncatedText.css";
 
 const TruncatedText = ({ text, limit }) => {
   const [isExpanded, setIsExpanded] = useState(false);

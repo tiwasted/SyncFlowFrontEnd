@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
 import "../styles/AssignEmployee.css";
 
-const ReassignEmployee = ({ orderId, assignedEmployees, onEmployeeAssigned, show, onClose }) => {
+const ReassignEmployee = ({
+  orderId,
+  assignedEmployees,
+  onEmployeeAssigned,
+  show,
+  onClose,
+}) => {
   const [employeeIds, setEmployeeIds] = useState([]);
   const [employees, setEmployees] = useState([]);
-
-  
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -24,7 +28,7 @@ const ReassignEmployee = ({ orderId, assignedEmployees, onEmployeeAssigned, show
 
   useEffect(() => {
     if (assignedEmployees) {
-      setEmployeeIds(assignedEmployees.map(employee => employee.id));
+      setEmployeeIds(assignedEmployees.map((employee) => employee.id));
     }
   }, [assignedEmployees]);
 
@@ -89,4 +93,3 @@ const ReassignEmployee = ({ orderId, assignedEmployees, onEmployeeAssigned, show
 };
 
 export default ReassignEmployee;
-

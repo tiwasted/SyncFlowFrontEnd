@@ -36,7 +36,16 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
   };
 
   const handleSaveOrder = async () => {
-    if (!nameOfOrder && !price && !date && !time && !address && !nameOfClient && !phoneNumber && !description) {
+    if (
+      !nameOfOrder &&
+      !price &&
+      !date &&
+      !time &&
+      !address &&
+      !nameOfClient &&
+      !phoneNumber &&
+      !description
+    ) {
       setError("Заполните хотя бы одно поле");
       return;
     }
@@ -60,7 +69,7 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
       setTimeout(() => {
         resetForm();
         onClose();
-      }, 1500); // Задержка в 1 секунду перед закрытием модального окна
+      }, 1500);
     } catch (error) {
       if (error.response && error.response.data) {
         setError(error.response.data.message || "Ошибка при создании заказа");
@@ -163,10 +172,24 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <button type="submit" className="edit-dashboard-button">Сохранить</button>
+          <button type="submit" className="edit-dashboard-button">
+            Сохранить
+          </button>
         </form>
-        {error && <Notification message={error} type="error" onClose={handleCloseNotification} />}
-        {orderSaved && <Notification message="Заказ успешно добавлен" type="success" onClose={handleCloseNotification} />}
+        {error && (
+          <Notification
+            message={error}
+            type="error"
+            onClose={handleCloseNotification}
+          />
+        )}
+        {orderSaved && (
+          <Notification
+            message="Заказ успешно добавлен"
+            type="success"
+            onClose={handleCloseNotification}
+          />
+        )}
       </div>
     </div>
   );
