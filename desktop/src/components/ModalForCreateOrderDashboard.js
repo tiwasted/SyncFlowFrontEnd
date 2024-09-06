@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useOrders } from "../context/OrderProvider";
 import api from "../services/TokenService";
+import Notification from "./Notification";
 
 const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
   const [nameOfOrder, setOrderName] = useState("");
@@ -35,6 +36,11 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
   };
 
   const handleSaveOrder = async () => {
+    if (!nameOfOrder && !price && !date && !time && !address && !nameOfClient && !phoneNumber && !description) {
+      setError("Заполните хотя бы одно поле");
+      return;
+    }
+
     try {
       const orderData = {
         order_name: nameOfOrder || undefined,
@@ -51,8 +57,10 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
       setOrders((prevOrders) => [...prevOrders, response.data]);
       setOrderSaved(true);
       fetchOrders();
-      resetForm();
-      onClose();
+      setTimeout(() => {
+        resetForm();
+        onClose();
+      }, 1500); // Задержка в 1 секунду перед закрытием модального окна
     } catch (error) {
       if (error.response && error.response.data) {
         setError(error.response.data.message || "Ошибка при создании заказа");
@@ -65,6 +73,11 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     handleSaveOrder();
+  };
+
+  const handleCloseNotification = () => {
+    setError("");
+    setOrderSaved(false);
   };
 
   if (!show) {
@@ -152,8 +165,8 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
           </div>
           <button type="submit" className="edit-dashboard-button">Сохранить</button>
         </form>
-        {error && <p className="error-message">{error}</p>}
-        {orderSaved && <div className="success-message">Заказ успешно добавлен</div>}
+        {error && <Notification message={error} type="error" onClose={handleCloseNotification} />}
+        {orderSaved && <Notification message="Заказ успешно добавлен" type="success" onClose={handleCloseNotification} />}
       </div>
     </div>
   );

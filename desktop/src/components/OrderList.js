@@ -70,20 +70,24 @@ const OrderList = ({ orders, updateOrders }) => {
   };
 
   if (!orders || orders.length === 0) {
-    return <div>No orders available.</div>;
+    return <div className="title-no-orders">Заказы отсутствуют</div>;
   }
 
   const formatDate = (dateString) => {
     if (!dateString) {
-      return "";          
+      return "";
     }
-    const [year, month, day] = dateString.split('-');
+    const [year, month, day] = dateString.split("-");
     return `${day}-${month}-${year}`;
   };
 
   const formatTime = (timeString) => {
+    if (!timeString) {
+      return "Время не назначено";
+    }
+    
     const date = new Date(`1970-01-01T${timeString}`);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   };
 
   return (
@@ -92,8 +96,23 @@ const OrderList = ({ orders, updateOrders }) => {
         <div className="order-item-dashboard" key={order.id}>
           <div className="order-item-details-container">
             <div className="order-item-info">
-              <p className="order-item-name">Наименование: {order.order_name}</p>
-              <p className="order-item-details">{formatTime(order.order_time)}, {formatDate(order.order_date)}, {order.address}</p>
+              <p className="order-item-name">
+                <b>Наименование:</b> {order.order_name}
+              </p>
+              <div className="order-item-details">
+                  <div className="">
+                    <div className="order-item-time">{formatTime(order.order_time)}</div>
+                  </div>
+                  <div>
+                    <b>Дата:</b> {formatDate(order.order_date)}
+                  </div>
+                  <div>
+                    <b>Адрес:</b> {order.address}
+                  </div>
+                  <div>
+                    <b>Цена:</b> {order.price}
+                  </div>
+              </div>
             </div>
             <div className="order-item-actions">
               <button
@@ -112,7 +131,11 @@ const OrderList = ({ orders, updateOrders }) => {
                 className="order-assign-btn-dashboard"
                 onClick={() => handleAssignClick(order)}
               >
-                <img src={EmployeeIcon} alt="Назначить сотрудника" className="icon" />
+                <img
+                  src={EmployeeIcon}
+                  alt="Назначить сотрудника"
+                  className="icon"
+                />
               </button>
             </div>
           </div>

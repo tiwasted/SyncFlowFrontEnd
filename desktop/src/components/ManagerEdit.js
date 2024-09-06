@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import api from "../services/TokenService";
+import Notification from "../components/Notification"; // Импортируем компонент Notification
 import "../styles/ManagerEdit.css"; // Assuming you have a CSS file for styling
 
 const ManagerEdit = ({ manager, onSave, onCancel, fetchData }) => {
   const [firstName, setFirstName] = useState(manager.first_name);
   const [lastName, setLastName] = useState(manager.last_name);
   const [phone, setPhone] = useState(manager.phone);
+  const [notification, setNotification] = useState({ message: "", type: "" }); // Добавляем состояние для уведомлений
 
   const handleSave = async () => {
     try {
@@ -24,8 +26,16 @@ const ManagerEdit = ({ manager, onSave, onCancel, fetchData }) => {
       fetchData(); // Обновление данных после сохранения
       onCancel(); // Закрытие окна после сохранения
     } catch (error) {
-      // console.error("Ошибка при сохранении данных сотрудника:", error);
+      if (error.response && error.response.status === 403) {
+        setNotification({ message: error.response.data.detail, type: "error" });
+      } else {
+        // console.error("Ошибка при сохранении данных менеджера:", error);
+      }
     }
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({ message: "", type: "" });
   };
 
   return (
@@ -65,6 +75,13 @@ const ManagerEdit = ({ manager, onSave, onCancel, fetchData }) => {
           <button type="button" onClick={onCancel} className="manager-edit-button">Отмена</button>
         </form>
       </div>
+      {notification.message && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={handleCloseNotification}
+        />
+      )}
     </div>
   );
 };

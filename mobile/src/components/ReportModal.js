@@ -8,12 +8,12 @@ const ReportModal = ({
     isOpen,
     task,
     content,
-    photos,
+    // photos,
     setContent,
-    handleFileChange,
+    // handleFileChange,
     handleSubmitReport,
     handleClose,
-    handleDeleteImage,
+    // handleDeleteImage,
 }) => (
     <Modal
         isOpen={isOpen}
@@ -32,7 +32,7 @@ const ReportModal = ({
                     onChange={(e) => setContent(e.target.value)}
                     required
                 />
-                <div className="photo-upload">
+                {/* <div className="photo-upload">
                     <label htmlFor="photo-input" className="photo-upload-label">
                         Загрузить фото
                     </label>
@@ -56,7 +56,7 @@ const ReportModal = ({
                             </div>
                         ))}
                     </div>
-                </div>
+                </div> */}
                 <button className='report-button' type="submit">Отправить отчёт</button>
             </form>
             <button className="cancel-btn" onClick={handleClose}>Отмена</button>

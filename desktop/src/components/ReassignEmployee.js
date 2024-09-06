@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
-import "../styles/ReassignEmployee.css";
+import "../styles/AssignEmployee.css";
 
-const ReassignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
+const ReassignEmployee = ({ orderId, assignedEmployees, onEmployeeAssigned, show, onClose }) => {
   const [employeeIds, setEmployeeIds] = useState([]);
   const [employees, setEmployees] = useState([]);
+
+  
 
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
         const response = await api.get("/employees/assigning-list/");
         setEmployees(response.data);
+        console.log(response.data);
       } catch (error) {
         // console.error("Ошибка при получении списка сотрудников", error);
       }
@@ -18,6 +21,12 @@ const ReassignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
 
     fetchEmployees();
   }, []);
+
+  useEffect(() => {
+    if (assignedEmployees) {
+      setEmployeeIds(assignedEmployees.map(employee => employee.id));
+    }
+  }, [assignedEmployees]);
 
   const handleAssign = async () => {
     try {
@@ -35,9 +44,12 @@ const ReassignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
     }
   };
 
-  const handleSelectChange = (e) => {
-    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-    setEmployeeIds(selectedOptions);
+  const handleCardClick = (employeeId) => {
+    setEmployeeIds((prevIds) =>
+      prevIds.includes(employeeId)
+        ? prevIds.filter((id) => id !== employeeId)
+        : [...prevIds, employeeId]
+    );
   };
 
   if (!show) {
@@ -50,23 +62,25 @@ const ReassignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
         <span className="reassign-close" onClick={onClose}>
           &times;
         </span>
-        <h2 className="reassign-title">Переназначить сотрудника</h2>
-        <select
-          className="reassign-select"
-          multiple
-          value={employeeIds}
-          onChange={handleSelectChange}
-        >
-          <option value="">Выберите сотрудника</option>
+        <h2 className="reassign-title">Назначить сотрудника</h2>
+        <div className="reassign-employee-list">
           {employees.map((employee) => (
-            <option key={employee.id} value={employee.id}>
-              {employee.first_name} {employee.last_name}
-            </option>
+            <div
+              key={employee.id}
+              className={`reassign-employee-card ${
+                employeeIds.includes(employee.id) ? "selected" : ""
+              }`}
+              onClick={() => handleCardClick(employee.id)}
+            >
+              <div className="reassign-employee-name">
+                {employee.first_name} {employee.last_name}
+              </div>
+            </div>
           ))}
-        </select>
+        </div>
         <div className="reassign-button-container">
           <button className="reassign-button" onClick={handleAssign}>
-            Переназначить сотрудника
+            Назначить сотрудников
           </button>
         </div>
       </div>
@@ -75,3 +89,4 @@ const ReassignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
 };
 
 export default ReassignEmployee;
+

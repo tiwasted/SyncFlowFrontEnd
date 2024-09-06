@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
 import AddLocationModal from "../components/AddLocationModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
+import Notification from "../components/Notification";
 import "../styles/ChangePasswordModal.css";
 
 const SettingsPage = () => {
@@ -15,6 +16,7 @@ const SettingsPage = () => {
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [showAddLocationModal, setShowAddLocationModal] = useState(false);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
+  const [notification, setNotification] = useState({ message: "", type: "" });
 
   const fetchCountries = async () => {
     try {
@@ -58,8 +60,8 @@ const SettingsPage = () => {
       setMessage("Страна и города успешно добавлены!");
       handleCloseAddLocationModal();
     } catch (error) {
-      if (error.response && error.response.data) {
-        setMessage(`Ошибка: ${error.response.data.detail || "Неизвестная ошибка"}`);
+      if (error.response && error.response.status === 403) {
+        setNotification({ message: error.response.data.detail, type: "error" });
       } else {
         setMessage("Ошибка при добавлении данных");
       }
@@ -138,6 +140,10 @@ const SettingsPage = () => {
     );
   };
 
+  const handleCloseNotification = () => {
+    setNotification({ message: "", type: "" });
+  };
+
   return (
     <div className="settings-container">
       <h1 className="settings-title">Настройки</h1>
@@ -181,6 +187,14 @@ const SettingsPage = () => {
           setConfirmNewPassword={setConfirmNewPassword}
           handlePasswordChange={handlePasswordChange}
           handleCloseChangePasswordModal={handleCloseChangePasswordModal}
+        />
+      )}
+
+      {notification.message && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={handleCloseNotification}
         />
       )}
     </div>

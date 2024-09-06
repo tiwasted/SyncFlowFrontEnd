@@ -3,6 +3,7 @@ import api from "../services/TokenService";
 import OrderList from "../components/OrderList";
 import Calendar from "../components/Calendar";
 import ModalForCreateOrderDashboard from "../components/ModalForCreateOrderDashboard";
+import Notification from "../components/Notification";
 
 const Dashboard = () => {
   const [date, setDate] = useState(() => {
@@ -12,6 +13,7 @@ const Dashboard = () => {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
   const [showCreateOrderModal, setShowCreateOrderModal] = useState(false);
+  const [notification, setNotification] = useState({ message: "", type: "" });
 
   const [tomorrowOrders, setTomorrowOrders] = useState([]);
   const [ordersWithoutDates, setOrdersWithoutDates] = useState([]);
@@ -52,9 +54,13 @@ const Dashboard = () => {
     const fetchSelectedCity = async () => {
       try {
         const response = await api.get("/employers/get-primary-city/");
-        setSelectedCity(response.data.city_id); // Устанавливаем выбранный город
+        setSelectedCity(response.data.city_id);
       } catch (error) {
-        // console.error("Ошибка при получении выбранного города:", error);
+        if (error.response && error.response.status === 404) {
+          setNotification({ message: "Выберите город, чтобы продолжить работу", type: "yellow" });
+        } else {
+          // console.error("Ошибка при получении выбранного города:", error);
+        }
       }
     };
 
@@ -71,6 +77,7 @@ const Dashboard = () => {
       const response = await api.post("/employers/select-primary-city/", { city_id: cityId });
       console.log('Response:', response.data);
       setSelectedCity(cityId);
+      setNotification({ message: "", type: "" }); // Убираем уведомление после выбора города
       fetchOrders();
     } catch (error) {
       // console.error("Ошибка при выборе города:", error.response ? error.response.data : error.message);
@@ -83,6 +90,10 @@ const Dashboard = () => {
 
   const handleCloseCreateOrderModal = () => {
     setShowCreateOrderModal(false);
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({ message: "", type: "" });
   };
 
   const formatDate = (date) => {
@@ -155,6 +166,13 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      {notification.message && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={handleCloseNotification}
+        />
+      )}
     </React.Fragment>
   );
 };

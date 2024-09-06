@@ -3,7 +3,6 @@ import '../styles/Task.css';
 
 const TaskDetails = ({ task }) => (
     <ul className='task-list'>
-        <p><strong>Тип заказа:</strong> {task.order_type}</p>
         <p><strong>Наименование заказа:</strong>{task.order_name}</p>
         <p><strong>Дата:</strong> {task.order_date}</p>
         <p><strong>Время:</strong> {task.order_time}</p>

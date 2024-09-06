@@ -1,165 +1,318 @@
-.order-history {
-  padding: 20px;
-  background: linear-gradient(
-    135deg,
-    #e0f7fa,
-    #f1f8e9
-  ); /* Используем фон, как в других частях интерфейса */
+.history-of-orders__container {
+  background-color: #f5f5f5;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.order-history__title {
-  font-size: 24px;
+.history-of-orders__title {
+  font-size: 26px;
+  color: #212529;
   font-weight: bold;
-  color: #424242; /* Цвет заголовка, как в других частях интерфейса */
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-.order-history__loading,
-.order-history__error {
-  font-size: 18px;
-  color: #d9534f; /* Цвет ошибки, как и в других частях интерфейса */
+.history-of-orders__loading,
+.history-of-orders__error {
+  text-align: center;
+  font-size: 20px;
+  color: #6c757d;
 }
 
-.order-history__list {
+.history-of-orders__list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.order-history__item {
-  border: 1px solid #dddddd; /* Тонкая граница для элементов списка */
-  border-radius: 8px; /* Скругленные углы для соответствия */
-  margin-bottom: 15px;
-  padding: 15px;
-  background-color: #ffffff; /* Белый фон, как в других частях интерфейса */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Легкая тень для выделения */
+.history-of-orders__item {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.order-history__item-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #424242; /* Цвет текста, как в других частях интерфейса */
-}
-
-.order-history__item-body {
-  margin-top: 10px;
-  color: #424242; /* Цвет текста, как в других частях интерфейса */
-}
-
-.order-history__item-status--new {
-  background: linear-gradient(
-    135deg,
-    #87cefa,
-    #00bfff
-  ); /* Используем градиентный фон, как в других частях интерфейса */
-  color: #ffffff;
-}
-
-.order-history__item-status--in-progress {
-  background: linear-gradient(
-    135deg,
-    #ffff00,
-    #f9a825
-  ); /* Градиентный фон для статуса "в процессе" */
-  color: #333;
-}
-
-.order-history__item-status--completed {
-  background: linear-gradient(
-    135deg,
-    #90ee90,
-    #66bb6a
-  ); /* Градиентный фон для завершенных заказов */
-  color: #ffffff;
-}
-
-.order-history__item-status {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 8px;
-  background-color: #e7e7e7;
-  color: #424242; /* Цвет текста, как в других частях интерфейса */
-}
-
-.order-history__item-body p {
-  margin: 5px 0;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.order-history__pagination {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.order-history__pagination button {
-  background: linear-gradient(
-    135deg,
-    #42a5f5,
-    #1e88e5
-  ); /* Градиентный фон кнопок */
-  border: none;
-  border-radius: 6px;
-  color: white;
-  font-size: 16px;
-  padding: 10px 20px;
-  margin: 0 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.order-history__pagination button:disabled {
-  background: linear-gradient(
-    135deg,
-    #b0bec5,
-    #90a4ae
-  ); /* Цвет кнопок в состоянии отключения */
-  cursor: not-allowed;
-}
-
-.order-history__pagination button:hover:not(:disabled) {
-  background: linear-gradient(
-    135deg,
-    #1e88e5,
-    #1565c0
-  ); /* Более темный синий при наведении */
+.history-of-orders__item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
 
-.order-history__pagination span {
+.history-of-orders__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.history-of-orders__item-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.history-of-orders__item-status {
+  font-size: 16px;
+  padding: 7px 15px;
+  border-radius: 20px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.history-of-orders__item-status--completed {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.history-of-orders__item-status--cancelled {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+.history-of-orders__item-body {
+  margin-top: 15px;
+}
+
+.history-of-orders__item-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.history-of-orders__item-detail {
+  flex: 1 1 calc(50% - 15px);
+  margin-bottom: 15px;
+}
+
+.history-of-orders__item-detail-label {
+  font-weight: 600;
+  color: #343a40;
+}
+
+.history-of-orders__item-detail-value {
+  font-size: 16px;
+  color: #495057;
+}
+
+.history-of-orders__employee {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .history-of-orders__item-detail {
+    flex: 1 1 100%;
+  }
+}
+
+.history-of-orders__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.history-of-orders__pagination-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
   font-size: 18px;
-  color: #424242; /* Цвет текста, как в других частях интерфейса */
-  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.order-history__image-button {
-  background-color: #007bff; /* Зеленый фон кнопки */
-  color: white; /* Белый цвет текста */
-  padding: 10px 20px; /* Внутренние отступы */
-  border: none; /* Убираем границу */
-  border-radius: 5px; /* Скругляем углы */
-  font-size: 16px; /* Размер шрифта */
-  cursor: pointer; /* Указатель при наведении */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Плавный переход цвета и масштаба */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для кнопки */
-  margin-top: 10px; /* Отступ сверху */
+.history-of-orders__pagination-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
 
-.order-history__image-button:hover {
-  transform: scale(1.05); /* Увеличиваем кнопку при наведении */
+.history-of-orders__pagination-button:hover:not(:disabled) {
+  background-color: #0056b3;
 }
 
-.order-history__image-button:active {
-  transform: scale(1); /* Возвращаем масштаб при нажатии */
+.history-of-orders__pagination-info {
+  font-size: 18px;
+  margin: 0 20px;
+  color: #343a40;
 }
 
-.order-history__image-button:disabled {
-  background-color: #ccc; /* Серый цвет для отключенной кнопки */
-  cursor: not-allowed; /* Запрещающий указатель при отключении */
-  box-shadow: none; /* Убираем тень для отключенной кнопки */
+
+
+
+
+/* 
+.history-of-orders__container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 50px auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
 }
+
+.history-of-orders__title {
+  font-size: 24px;
+  color: #343a40;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.history-of-orders__loading,
+.history-of-orders__error {
+  text-align: center;
+  font-size: 18px;
+  color: #6c757d;
+}
+
+.history-of-orders__content {
+  padding: 0;
+}
+
+.history-of-orders__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.history-of-orders__card {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 15px;
+  flex: 1 1 calc(33% - 20px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.history-of-orders__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.history-of-orders__card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.history-of-orders__card-status {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.history-of-orders__card-status--completed {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.history-of-orders__card-status--cancelled {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+.history-of-orders__card-body {
+  margin-top: 10px;
+}
+
+.history-of-orders__card-info {
+  margin-bottom: 10px;
+}
+
+.history-of-orders__card-info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.history-of-orders__card-info-label {
+  font-weight: 600;
+  color: #495057;
+  flex: 1;
+}
+
+.history-of-orders__card-info-value {
+  font-size: 14px;
+  color: #212529;
+  flex: 2;
+  text-align: right;
+}
+
+.history-of-orders__card-employees {
+  margin-top: 10px;
+}
+
+.history-of-orders__card-employees-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 5px;
+}
+
+.history-of-orders__card-employees-info {
+  font-size: 14px;
+}
+
+.history-of-orders__card-employee {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.history-of-orders__card-employee-name {
+  color: #212529;
+}
+
+.history-of-orders__card-employee-phone {
+  color: #6c757d;
+}
+
+.history-of-orders__card-no-employees {
+  color: #6c757d;
+}
+
+.history-of-orders__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.history-of-orders__pagination-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.history-of-orders__pagination-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.history-of-orders__pagination-button:not(:disabled):hover {
+  background-color: #0056b3;
+}
+
+.history-of-orders__pagination-info {
+  margin: 0 15px;
+  font-size: 14px;
+  color: #343a40;
+} */

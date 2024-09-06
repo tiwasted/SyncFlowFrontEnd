@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
+import Notification from "../components/Notification"; // Импортируем компонент Notification
 
 const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   const [formData, setFormData] = useState({
@@ -14,11 +15,12 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   const [availableCities, setAvailableCities] = useState([]);
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [notification, setNotification] = useState({ message: "", type: "" });
 
   useEffect(() => {
     if (isOpen) {
       fetchRoles();
-      fetchAvailableCities(); // Fetch cities regardless of the role
+      fetchAvailableCities();
     }
   }, [isOpen]);
 
@@ -67,7 +69,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
       first_name: firstName,
       last_name: lastName,
       role,
-      cities: selectedCities, // Always include selected cities
+      cities: selectedCities,
     };
 
     try {
@@ -76,9 +78,13 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
       onEmployeeAdded(response.data);
       onClose();
     } catch (error) {
-      const errorMessage =
-        error.response?.data?.detail || "Ошибка при добавлении сотрудника";
-      setError(errorMessage);
+      if (error.response && error.response.status === 403) {
+        setNotification({ message: error.response.data.detail, type: "error" });
+      } else {
+        const errorMessage =
+          error.response?.data?.detail || "Ошибка при добавлении сотрудника";
+        setError(errorMessage);
+      }
     } finally {
       setLoading(false);
     }
@@ -123,6 +129,10 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
     });
     setError("");
     setAvailableCities([]);
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({ message: "", type: "" });
   };
 
   if (!isOpen) return null;
@@ -214,6 +224,13 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
         </button>
         {error && <div className="add-employee-error-message">{error}</div>}
       </div>
+      {notification.message && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={handleCloseNotification}
+        />
+      )}
     </div>
   );
 };

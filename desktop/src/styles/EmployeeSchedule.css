@@ -593,11 +593,6 @@
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.employee-schedule-section:hover {
-  transform: translateY(-5px); /* Добавляем небольшое поднятие при наведении */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Увеличиваем тень при наведении */
-}
-
 .employee-schedule-title-schedule-of-employees,
 .employee-schedule-title-orders,
 .employee-schedule-title-calendar {
@@ -724,9 +719,9 @@
 }
 
 .employee-schedule-calendar-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* Гарантируем, что календарь занимает всю доступную высоту */
+  /* display: flex; */
+  align-items: center;
+
 }
 
 .employee-schedule-title-calendar {

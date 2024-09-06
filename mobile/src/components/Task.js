@@ -9,7 +9,7 @@ const Task = ({ task, onUpdate }) => {
     const [isReportModalOpen, setIsReportModalOpen] = useState(false);
     const [actionType, setActionType] = useState(null);
     const [report, setContent] = useState('');
-    const [photos, setPhotos] = useState([]);
+    // const [photos, setPhotos] = useState([]);
 
     const getOrderUrl = (action) => {
         const baseUrl = task.order_type === 'B2B' ? '/orders/b2b-orders' : '/orders/b2c-orders';
@@ -21,9 +21,9 @@ const Task = ({ task, onUpdate }) => {
         setIsReportModalOpen(true);
     };
 
-    const handleFileChange = (files) => {
-        setPhotos(files);
-    };
+    // const handleFileChange = (files) => {
+    //     setPhotos(files);
+    // };
 
     const handleCompleteOrder = async (formData) => {
         try {
@@ -61,17 +61,17 @@ const Task = ({ task, onUpdate }) => {
         const formData = new FormData();
         formData.append('report', report);
 
-        for (const photo of photos) {
-            const imageFormData = new FormData();
-            imageFormData.append('image', photo);
+        // for (const photo of photos) {
+        //     const imageFormData = new FormData();
+        //     imageFormData.append('image', photo);
 
-            await api.post(`/employees/orders/${task.id}/add-image/`, imageFormData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-        }
+        //     await api.post(`/employees/orders/${task.id}/add-image/`, imageFormData, {
+        //         headers: {
+        //             Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        //             'Content-Type': 'multipart/form-data',
+        //         },
+        //     });
+        // }
 
         if (actionType === 'complete') {
             await handleCompleteOrder(formData);
@@ -80,7 +80,7 @@ const Task = ({ task, onUpdate }) => {
         }
 
         setContent('');
-        setPhotos([]);
+        // setPhotos([]);
         setIsReportModalOpen(false);
         // window.location.reload();
     };
@@ -93,12 +93,12 @@ const Task = ({ task, onUpdate }) => {
                 isOpen={isReportModalOpen}
                 task={task}
                 content={report}
-                photos={photos}
+                // photos={photos}
                 setContent={setContent}
-                handleFileChange={handleFileChange}
+                // handleFileChange={handleFileChange}
                 handleSubmitReport={handleSubmitReport}
                 handleClose={() => setIsReportModalOpen(false)}
-                handleDeleteImage={(index) => setPhotos(photos.filter((_, i) => i !== index))}
+                // handleDeleteImage={(index) => setPhotos(photos.filter((_, i) => i !== index))}
             />
         </div>
     );

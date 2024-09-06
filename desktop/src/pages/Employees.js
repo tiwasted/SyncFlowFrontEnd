@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AddEmployeeModal from "../components/AddEmployeeModal";
 import EmployeeList from "../components/EmployeeList";
 import ManagerList from "../components/ManagerList";
+import Notification from "../components/Notification"; // Импортируем компонент Notification
 import api from "../services/TokenService";
 import "../styles/Employees.css";
 
@@ -9,6 +10,7 @@ const Employees = () => {
   const [employees, setEmployees] = useState([]);
   const [managers, setManagers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [notification, setNotification] = useState({ message: "", type: "" }); // Добавляем состояние для уведомлений
 
   useEffect(() => {
     fetchData();
@@ -36,7 +38,11 @@ const Employees = () => {
       await api.delete(`/employees/${id}/delete/`);
       setEmployees(employees.filter((emp) => emp.id !== id));
     } catch (error) {
-      // console.error("Error deleting employee", error);
+      if (error.response && error.response.status === 403) {
+        setNotification({ message: error.response.data.detail, type: "error" });
+      } else {
+        // console.error("Error deleting employee", error);
+      }
     }
   };
 
@@ -49,7 +55,11 @@ const Employees = () => {
       await api.delete(`employers/manager/${id}/delete/`);
       setManagers(managers.filter((mgr) => mgr.id !== id));
     } catch (error) {
-      // console.error("Error deleting manager", error);
+      if (error.response && error.response.status === 403) {
+        setNotification({ message: error.response.data.detail, type: "error" });
+      } else {
+        // console.error("Error deleting manager", error);
+      }
     }
   };
 
@@ -60,6 +70,10 @@ const Employees = () => {
     } catch (error) {
       // console.error("Error adding employee", error);
     }
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({ message: "", type: "" });
   };
 
   return (
@@ -79,6 +93,13 @@ const Employees = () => {
           onEmployeeAdded={handleAddEmployee}
         />
       </div>
+      {notification.message && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={handleCloseNotification}
+        />
+      )}
     </div>
   );
 };

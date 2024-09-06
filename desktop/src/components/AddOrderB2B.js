@@ -36,9 +36,9 @@ const AddOrderB2B = () => {
 
       setOrders((prevOrders) => [...prevOrders, response.data]);
       setOrderSaved(true);
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
+      // setTimeout(() => {
+      //   navigate("/dashboard");
+      // }, 2000);
     } catch (error) {
       setError("Ошибка при добавлении заказа");
     }

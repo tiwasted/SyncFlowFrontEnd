@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
-import "../styles/ReassignEmployee.css";
+import Notification from "./Notification";
+import "../styles/AssignEmployee.css";
 
 const AssignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
   const [employeeIds, setEmployeeIds] = useState([]);
   const [employees, setEmployees] = useState([]);
+  const [notification, setNotification] = useState({ message: "", type: "" }); 
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -31,13 +33,23 @@ const AssignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
       setEmployeeIds([]);
       onClose();
     } catch (error) {
-      // console.error("Ошибка при назначении сотрудника", error);
+      if (error.response && error.response.status === 400) {
+        setNotification({
+          message: "Сначала назначьте дату на заказ",
+          type: "warning",
+        });
+      } else {
+        // console.error("Ошибка при назначении сотрудника", error);
+      }
     }
   };
 
-  const handleSelectChange = (e) => {
-    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-    setEmployeeIds(selectedOptions);
+  const handleCardClick = (employeeId) => {
+    setEmployeeIds((prevIds) =>
+      prevIds.includes(employeeId)
+        ? prevIds.filter((id) => id !== employeeId)
+        : [...prevIds, employeeId]
+    );
   };
 
   if (!show) {
@@ -51,25 +63,34 @@ const AssignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
           &times;
         </span>
         <h2 className="reassign-title">Назначить сотрудника</h2>
-        <select
-          className="reassign-select"
-          multiple
-          value={employeeIds}
-          onChange={handleSelectChange}
-        >
-          <option value="" disabled>Выберите сотрудников</option>
+        <div className="reassign-employee-list">
           {employees.map((employee) => (
-            <option key={employee.id} value={employee.id}>
-              {employee.first_name} {employee.last_name}
-            </option>
+            <div
+              key={employee.id}
+              className={`reassign-employee-card ${
+                employeeIds.includes(employee.id) ? "selected" : ""
+              }`}
+              onClick={() => handleCardClick(employee.id)}
+            >
+              <div className="reassign-employee-name">
+                {employee.first_name} {employee.last_name}
+              </div>
+            </div>
           ))}
-        </select>
+        </div>
         <div className="reassign-button-container">
           <button className="reassign-button" onClick={handleAssign}>
             Назначить сотрудников
           </button>
         </div>
       </div>
+      {notification.message && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification({ message: "", type: "" })}
+        />
+      )}
     </div>
   );
 };

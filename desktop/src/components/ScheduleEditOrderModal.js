@@ -36,6 +36,16 @@ const ScheduleEditOrderModal = ({ order, onClose, onSave }) => {
             />
           </label>
           <label className="schedule-edit-order-label">
+            Цена:
+            <input
+              type="number"
+              name="price"
+              value={editedOrder.price}
+              onChange={handleChange}
+              className="schedule-edit-order-input"
+            />
+          </label>
+          <label className="schedule-edit-order-label">
             Дата заказа:
             <input
               type="date"
@@ -94,16 +104,7 @@ const ScheduleEditOrderModal = ({ order, onClose, onSave }) => {
               className="schedule-edit-order-textarea"
             />
           </label>
-          <label className="schedule-edit-order-label">
-            Цена:
-            <input
-              type="number"
-              name="price"
-              value={editedOrder.price}
-              onChange={handleChange}
-              className="schedule-edit-order-input"
-            />
-          </label>
+          
           <button type="button" onClick={handleSave} className="schedule-edit-order-button">Сохранить</button>
         </form>
       </div>
