@@ -28,7 +28,7 @@ const Schedule = () => {
       if (error.response && error.response.status === 401) {
         navigate("/login");
       } else {
-        console.error('Ошибка при получении задач:', error);
+        // console.error('Ошибка при получении задач:', error);
       }
     }
   }, [date, navigate]);
@@ -43,7 +43,7 @@ const Schedule = () => {
       await api.post(`/orders/${endpoint}/${task.id}/complete_order/`);
       fetchTasks(); // Обновляем список задач после завершения
     } catch (error) {
-      console.error('Ошибка при завершении задачи:', error);
+      // console.error('Ошибка при завершении задачи:', error);
     }
   };
 
@@ -55,7 +55,7 @@ const Schedule = () => {
         )
       );
     } catch (error) {
-      console.error('Ошибка при отмене задачи:', error);
+      // console.error('Ошибка при отмене задачи:', error);
     }
   };
 

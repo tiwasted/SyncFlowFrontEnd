@@ -19,7 +19,7 @@ const ManagerEdit = ({ manager, onSave, onCancel, fetchData }) => {
         const response = await api.get("/employers/available-cities/");
         setAvailableCities(response.data.cities);
       } catch (error) {
-        console.error("Ошибка при получении доступных городов:", error);
+        // console.error("Ошибка при получении доступных городов:", error);
       }
     };
 
@@ -45,7 +45,7 @@ const ManagerEdit = ({ manager, onSave, onCancel, fetchData }) => {
       if (error.response && error.response.status === 403) {
         setNotification({ message: error.response.data.detail, type: "error" });
       } else {
-        console.error("Ошибка при сохранении данных менеджера:", error);
+        // console.error("Ошибка при сохранении данных менеджера:", error);
       }
     }
   };
