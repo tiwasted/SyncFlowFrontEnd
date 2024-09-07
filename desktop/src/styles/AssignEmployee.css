@@ -1,0 +1,90 @@
+.reassign-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reassign-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 600px;
+  max-width: 90%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.reassign-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.reassign-title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.reassign-employee-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.reassign-employee-card {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 15px;
+  width: calc(50% - 10px);
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reassign-employee-card.selected {
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.reassign-employee-name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.reassign-employee-phone {
+  font-size: 14px;
+  color: #495057;
+}
+
+.reassign-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.reassign-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+}
+
+.reassign-button:hover {
+  background-color: #0056b3;
+}

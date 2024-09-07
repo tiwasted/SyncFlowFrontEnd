@@ -1,0 +1,85 @@
+.manager-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .manager-list-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .manager-grid-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .manager-grid-header-item {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .manager-grid {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .manager-grid:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .manager-name,
+  .manager-phone,
+  .manager-actions,
+  .manager-cities {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .manager-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .city-separator {
+    margin-right: 8px;
+  }
+  
+  .manager-edit-btn,
+  .manager-delete-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .manager-edit-btn:hover,
+  .manager-delete-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .manager-edit-btn:active,
+  .manager-delete-btn:active {
+    transform: scale(1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }

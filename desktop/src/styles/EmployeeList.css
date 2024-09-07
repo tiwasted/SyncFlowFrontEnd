@@ -1,0 +1,85 @@
+.employee-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .employee-list-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .employee-grid-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .employee-grid-header-item {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .employee-grid {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .employee-grid:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .employee-name,
+  .employee-phone,
+  .employee-actions,
+  .employee-cities {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .employee-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .city-separator {
+    margin-right: 8px;
+  }
+    
+  .employee-edit-btn,
+  .employee-delete-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .employee-edit-btn:hover,
+  .employee-delete-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .employee-edit-btn:active,
+  .employee-delete-btn:active {
+    transform: scale(1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }

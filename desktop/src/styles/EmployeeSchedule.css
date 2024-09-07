@@ -1,0 +1,729 @@
+/* .employee-schedule-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.employee-schedule-board,
+.employee-orders-board,
+.schedule-employee-calendar-container{
+  flex: 1;
+  margin: 0 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.employee-schedule-board h3,
+.employee-orders-board h3,
+.schedule-employee-calendar-container h3 {
+  font-size: 16px;
+  color: #333;
+}
+
+.employee-schedule-board ul,
+.employee-orders-board ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.employee-schedule-board li,
+.employee-orders-board li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.employee-schedule-board li span,
+.employee-orders-board li span {
+  flex: 1;
+}
+
+.employee-schedule-board button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .employee-schedule-board button:hover {
+    background-color: #0056b3;
+  }
+
+  .schedule-employee-calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.h3-employee-schedule {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333;
+  } */
+
+
+
+
+/* 
+  .employee-schedule-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+  }
+  
+  .employee-schedule-sections {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .employee-schedule-section {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .employee-schedule-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .employee-schedule-title-schedule-of-employees,
+  .employee-schedule-title-orders,
+  .employee-schedule-title-calendar {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .employee-schedule-ul-schedule-of-employees,
+  .employee-schedule-ul-orders {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .employee-schedule-li-schedule-of-employees,
+  .employee-schedule-li-orders {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+  }
+  
+  .employee-schedule-li-schedule-of-employees:hover,
+  .employee-schedule-li-orders:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .employee-schedule-span-order-time-schedule-of-employees,
+  .employee-schedule-span-order-time-orders,
+  .employee-schedule-span-order-name-orders,
+  .employee-schedule-span-order-address-orders {
+    flex: 1;
+    font-size: 1em;
+    color: #555;
+  }
+  
+  .employee-schedule-button-employee-schedule-of-employees,
+  .employee-schedule-action-button-orders {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .employee-schedule-button-employee-schedule-of-employees:hover,
+  .employee-schedule-action-button-orders:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  .employee-schedule-action-buttons-orders-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .employee-schedule-text-of-action-button-orders {
+    display: inline-block;
+    font-size: 0.9em;
+  } */
+
+
+
+
+  /* .employee-schedule-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+  }
+  
+  .employee-schedule-sections {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .employee-schedule-section {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .employee-schedule-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .employee-schedule-title-schedule-of-employees,
+  .employee-schedule-title-orders,
+  .employee-schedule-title-calendar {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .employee-schedule-ul-schedule-of-employees,
+  .employee-schedule-ul-orders {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .employee-schedule-li-schedule-of-employees,
+  .employee-schedule-li-orders {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+  }
+  
+  .employee-schedule-li-schedule-of-employees:hover,
+  .employee-schedule-li-orders:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .employee-schedule-span-order-time-schedule-of-employees,
+  .employee-schedule-span-order-time-orders,
+  .employee-schedule-span-order-name-orders,
+  .employee-schedule-span-order-address-orders {
+    flex: 1;
+    font-size: 1em;
+    color: #555;
+  }
+  
+  .employee-schedule-button-employee-schedule-of-employees,
+  .employee-schedule-action-button-orders {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .employee-schedule-button-employee-schedule-of-employees:hover,
+  .employee-schedule-action-button-orders:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  .employee-schedule-action-buttons-orders-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .employee-schedule-text-of-action-button-orders {
+    display: inline-block;
+    font-size: 0.9em;
+  } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.employee-schedule-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: linear-gradient(to right, #ece9e6, #ffffff);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #2c3e50;
+}
+
+.employee-schedule-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.employee-schedule-section {
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.employee-schedule-section:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.12);
+}
+
+.employee-schedule-title-schedule-of-employees,
+.employee-schedule-title-orders,
+.employee-schedule-title-calendar {
+  font-size: 1.6em;
+  margin-bottom: 20px;
+  color: #34495e;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  text-align: left;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.employee-schedule-ul-schedule-of-employees,
+.employee-schedule-ul-orders {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.employee-schedule-li-schedule-of-employees,
+.employee-schedule-li-orders {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(52, 73, 94, 0.15);
+  transition: background-color 0.3s ease;
+  font-size: 1em;
+}
+
+.employee-schedule-li-schedule-of-employees:hover,
+.employee-schedule-li-orders:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+}
+
+.employee-schedule-span-order-time-schedule-of-employees,
+.employee-schedule-span-order-time-orders,
+.employee-schedule-span-order-name-orders,
+.employee-schedule-span-order-address-orders {
+  flex: 1;
+  font-size: 1em;
+  color: #7f8c8d;
+}
+
+.employee-schedule-button-employee-schedule-of-employees {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 5px 10px rgba(52, 152, 219, 0.3);
+}
+
+.employee-schedule-button-employee-schedule-of-employees:hover {
+  background-color: #2980b9;
+  transform: translateY(-3px);
+}
+
+.employee-schedule-action-buttons-orders-container {
+  display: flex;
+  gap: 15px;
+}
+
+.employee-schedule-action-button-orders {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 5px 10px rgba(231, 76, 60, 0.3);
+}
+
+.employee-schedule-action-button-orders:hover {
+  background-color: #c0392b;
+  transform: translateY(-3px);
+}
+
+.employee-schedule-text-of-action-button-orders {
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.employee-schedule-calendar-container {
+  position: relative;
+}
+
+.employee-schedule-calendar-container:before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(to right, #3498db, #2ecc71);
+  border-radius: 15px 15px 0 0;
+} */
+
+
+
+
+
+
+
+
+/* .employee-schedule-content {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.employee-schedule-sections {
+  display: flex;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.employee-schedule-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.employee-schedule-title-schedule-of-employees,
+.employee-schedule-title-orders,
+.employee-schedule-title-calendar {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.employee-schedule-ul-schedule-of-employees,
+.employee-schedule-ul-orders {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.employee-schedule-li-schedule-of-employees,
+.employee-schedule-li-orders {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f7f7f7;
+  border-radius: 4px;
+}
+
+.employee-schedule-span-order-time-schedule-of-employees {
+  font-weight: bold;
+}
+
+.employee-schedule-span-employees-schedule-of-employees {
+  display: flex;
+  gap: 10px;
+}
+
+.employee-schedule-button-employee-schedule-of-employees {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.employee-schedule-button-employee-schedule-of-employees:hover {
+  background-color: #0056b3;
+}
+
+.employee-schedule-order-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  gap: 10px;
+}
+
+.employee-schedule-order-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.employee-schedule-order-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-schedule-action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.employee-schedule-action-button {
+  flex: 1;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.employee-schedule-action-button.edit {
+  background-color: #28a745;
+}
+
+.employee-schedule-action-button.delete {
+  background-color: #dc3545;
+}
+
+.employee-schedule-action-button.reassign {
+  background-color: #ffc107;
+}
+
+.employee-schedule-action-button:hover {
+  filter: brightness(0.9);
+}
+
+.employee-schedule-calendar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-schedule-title-calendar {
+  margin-bottom: 20px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.employee-schedule-content {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f0f0f0; /* Добавляем фоновый цвет для контраста */
+}
+
+.employee-schedule-sections {
+  display: flex;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.employee-schedule-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавляем легкую тень */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.employee-schedule-title-schedule-of-employees,
+.employee-schedule-title-orders,
+.employee-schedule-title-calendar {
+  font-size: 20px; /* Увеличен шрифт для более выразительного заголовка */
+  font-weight: bold;
+  margin-bottom: 15px; /* Увеличено расстояние между заголовком и содержимым */
+  color: #333;
+  text-align: center; /* Центрируем заголовки для баланса */
+}
+
+.employee-schedule-ul-schedule-of-employees,
+.employee-schedule-ul-orders {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  /* overflow-y: auto; 
+  max-height: 400px;  */
+}
+
+.employee-schedule-li-schedule-of-employees,
+.employee-schedule-li-orders {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 15px; /* Увеличено внутреннее поле для удобства чтения */
+  background-color: #f9f9f9; /* Немного осветляем фон элемента */
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.employee-schedule-li-schedule-of-employees:hover,
+.employee-schedule-li-orders:hover {
+  background-color: #e9e9e9; /* Добавляем выделение при наведении */
+}
+
+.employee-schedule-span-order-time-schedule-of-employees {
+  font-weight: bold;
+  color: #555; /* Добавляем цвет для контраста */
+}
+
+.employee-schedule-span-employees-schedule-of-employees {
+  display: flex;
+  gap: 10px;
+}
+
+.employee-schedule-button-employee-schedule-of-employees {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 15px; /* Немного увеличено поле для улучшения восприятия */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.employee-schedule-button-employee-schedule-of-employees:hover {
+  background-color: #0056b3;
+}
+
+.employee-schedule-order-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  gap: 10px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.employee-schedule-order-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.employee-schedule-order-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.employee-schedule-order-details {
+  display: flex;
+  flex-direction: column;
+  color: #666; /* Добавлен серый цвет для деталей заказа */
+}
+
+.employee-schedule-action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.employee-schedule-action-button {
+  flex: 1;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.employee-schedule-action-button.edit {
+  background-color: #28a745;
+}
+
+.employee-schedule-action-button.delete {
+  background-color: #dc3545;
+}
+
+.employee-schedule-action-button.reassign {
+  background-color: #ffc107;
+}
+
+.employee-schedule-action-button:hover {
+  filter: brightness(0.9);
+  transform: scale(1.05); /* Добавляем небольшой зум при наведении */
+}
+
+.employee-schedule-calendar-container {
+  /* display: flex; */
+  align-items: center;
+
+}
+
+.employee-schedule-title-calendar {
+  margin-bottom: 20px;
+}

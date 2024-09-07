@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSidebarVisibility } from "../functions/SidebarProvider";
 import styles from "../styles/Login.module.css";
 import api, { isTokenExpired } from "../services/TokenService";
+import Notification from "../components/Notification";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [notification, setNotification] = useState({ message: "", type: "" }); 
 
   useEffect(() => {
     setIsVisible(false);
@@ -51,7 +53,9 @@ const Login = () => {
         navigate("/dashboard");
       }
     } catch (error) {
-      if (error.response && error.response.data) {
+      if (error.response && error.response.status === 400) {
+        setNotification({ message: "Неверный логин или пароль", type: "error" });
+      } else if (error.response && error.response.data) {
         const { login: phone, password } = error.response.data;
         if (phone && phone.length > 0) {
           setErrorMessage(phone[0]);
@@ -64,6 +68,10 @@ const Login = () => {
         setErrorMessage("Произошла ошибка во время аутентификации");
       }
     }
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({ message: "", type: "" });
   };
 
   return (
@@ -99,6 +107,13 @@ const Login = () => {
           Если забыли пароль, обратитесь по номеру +7 (777) 777-77-77
         </div>
       </form>
+      {notification.message && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={handleCloseNotification}
+        />
+      )}
     </div>
   );
 };

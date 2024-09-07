@@ -1,0 +1,99 @@
+.notification {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px); /* добавляем начальную позицию */
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 20px 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    opacity: 0;
+    font-size: 18px;
+    animation: slide-in 0.4s forwards; /* только появление */
+    cursor: pointer; /* чтобы пользователь мог кликать */
+    max-width: 90%; /* адаптивность для мобильных */
+    word-wrap: break-word; /* для длинных сообщений */
+  }
+  
+  /* Стандартные уведомления с автоматическим исчезновением */
+  .notification.auto-fade {
+    animation: slide-in 0.4s forwards, fade-out 0.4s 4.6s forwards;
+  }
+  
+  .notification.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .notification.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+  
+  .notification.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    top: 200px;
+  }
+  
+  .notification.yellow {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    animation: slide-in 0.4s forwards;
+    top: 200px;
+  }
+  
+  .notification button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: inherit;
+    margin-left: 20px;
+    transition: transform 0.2s ease;
+  }
+  
+  .notification button:hover {
+    transform: scale(1.2);
+  }
+  
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-40px); /* плавный сдвиг */
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px); /* сдвиг вверх при исчезновении */
+    }
+  }
+  
+  /* Мобильная адаптация */
+  @media (max-width: 600px) {
+    .notification {
+      font-size: 16px;
+      padding: 15px 20px;
+      max-width: 95%;
+    }
+  
+    .notification button {
+      font-size: 20px;
+    }
+  }
+  

@@ -6,19 +6,13 @@
 }
 
 body {
-	line-height: 1.5;
-	/* min-height: 100vh; */
-	/* display: flex; */
-	/* align-items: center; */
-	/* justify-content: center; */
-	/* background-color: var(--c-bg-primary); */
-	/* color: var(--c-text-primary); */
+  line-height: 1.5;
 }
 
 button {
-	font: inherit;
-	cursor: pointer;
-	&:focus {
-		outline: 0;
-	}
+  font: inherit;
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+  }
 }

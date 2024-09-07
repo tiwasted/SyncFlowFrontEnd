@@ -11,8 +11,7 @@ import {
 import { Button, Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
-import iconTab from './iconTab.svg';
-
+import iconTab from "./iconTab.svg";
 
 const { Header, Content, Footer } = Layout;
 
@@ -30,7 +29,9 @@ const AppLayout = ({ children }) => {
   };
 
   return (
-    <Layout style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <Layout
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
       <Header
         style={{
           padding: 0,
@@ -40,7 +41,11 @@ const AppLayout = ({ children }) => {
           justifyContent: "space-between",
         }}
       >
-                <img src={iconTab} alt="Icon" style={{ width: 30, height: 30, marginLeft: 48 }} />
+        <img
+          src={iconTab}
+          alt="Icon"
+          style={{ width: 30, height: 30, marginLeft: 48 }}
+        />
 
         <div className="header-title">StaffHub</div>
         <Menu

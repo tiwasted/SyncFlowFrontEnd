@@ -14,7 +14,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [authLoading, setAuthLoading] = useState(true); // Новое состояние
+  const [authLoading, setAuthLoading] = useState(true);
 
   const [authState, setAuthState] = useState({
     token: localStorage.getItem("access_token") || null,
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
     setAuthState({ token: null, isAuthenticated: false });
-    navigate("/login"); // Перенаправление на страницу логина
+    navigate("/login");
   }, [navigate]);
 
   const login = useCallback(
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
       }
       localStorage.setItem("access_token", token);
       setAuthState({ token, isAuthenticated: true });
-      setAuthLoading(false); // Сброс загрузки после входа
+      setAuthLoading(false);
     },
     [logout]
   );
@@ -48,17 +48,18 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("access_token");
       if (token) {
         if (isTokenExpired(token)) {
-          logout(); // Выход из системы, если токен истек
+          logout();
         } else {
           setAuthState({ token, isAuthenticated: true });
         }
       } else {
         setAuthState({ token: null, isAuthenticated: false });
+        navigate("/login"); // Добавлено перенаправление на страницу логина
       }
-      setAuthLoading(false); // Сброс загрузки после проверки токена
+      setAuthLoading(false);
     };
     checkToken();
-  }, [logout]);
+  }, [logout, navigate]);
 
   return (
     <AuthContext.Provider value={{ ...authState, authLoading, login, logout }}>

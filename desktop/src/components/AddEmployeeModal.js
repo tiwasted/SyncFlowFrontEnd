@@ -1,93 +1,241 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
+import Notification from "../components/Notification";
+import "../styles/AddEmployeeModal.css";
 
 const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    password: "",
+    phoneNumber: "",
+    role: "employee",
+    selectedCities: [],
+  });
   const [error, setError] = useState("");
+  const [availableCities, setAvailableCities] = useState([]);
+  const [roles, setRoles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [notification, setNotification] = useState({ message: "", type: "" });
+
+  useEffect(() => {
+    if (isOpen) {
+      fetchRoles();
+      fetchAvailableCities();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      resetForm();
+    }
+  }, [isOpen]);
+
+  const fetchRoles = async () => {
+    try {
+      const response = await api.get("/employers/roles/");
+      const roleTranslations = {
+        Employee: "Сотрудник",
+        Manager: "Менеджер",
+      };
+      const formattedRoles = response.data.roles.map(([id, name]) => ({
+        id,
+        name: roleTranslations[name] || name,
+      }));
+      setRoles(formattedRoles);
+    } catch (error) {
+      // console.error("Error fetching roles", error);
+    }
+  };
+
+  const fetchAvailableCities = async () => {
+    try {
+      const response = await api.get("/employers/available-cities/");
+      setAvailableCities(response.data.cities || []);
+    } catch (error) {
+      // console.error("Error fetching available cities", error);
+    }
+  };
 
   const addEmployee = async () => {
+    const { firstName, lastName, password, phoneNumber, role, selectedCities } =
+      formData;
     if (!firstName || !lastName || !password || !phoneNumber) {
-      setError("Пожалуйста, заполните все поля.");
+      setError("Пожалуйста, заполните все поля");
       return;
     }
 
     const newEmployee = {
+      phone: phoneNumber,
+      password,
       first_name: firstName,
       last_name: lastName,
-      password: password,
-      phone: phoneNumber,
+      role,
+      cities: selectedCities,
     };
 
     try {
-      const response = await api.post("/employees/create/", newEmployee);
+      setLoading(true);
+      const response = await api.post("/employers/create-role/", newEmployee);
       onEmployeeAdded(response.data);
       onClose();
     } catch (error) {
-      const errorMessage =
-        error.response?.data?.detail || "Ошибка при добавлении сотрудника";
-      setError(errorMessage);
-      // console.error(
-      //   "Error adding employee",
-      //   error.response ? error.response.data : error.message
-      // );
+      if (error.response && error.response.status === 403) {
+        setNotification({ message: error.response.data.detail, type: "error" });
+      } else {
+        const errorMessage =
+          error.response?.data?.detail || "Ошибка при добавлении сотрудника";
+        setError(errorMessage);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (!isOpen) {
-    return null;
-  }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCityChange = (e) => {
+    const { value, checked } = e.target;
+    const cityId = parseInt(value, 10);
+    setFormData((prev) => ({
+      ...prev,
+      selectedCities: checked
+        ? [...prev.selectedCities, cityId]
+        : prev.selectedCities.filter((city) => city !== cityId),
+    }));
+  };
+
+  const handleRoleChange = (e) => {
+    const { value } = e.target;
+    setFormData({
+      firstName: "",
+      lastName: "",
+      password: "",
+      phoneNumber: "",
+      role: value,
+      selectedCities: [],
+    });
+  };
+
+  const resetForm = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      password: "",
+      phoneNumber: "",
+      role: "employee",
+      selectedCities: [],
+    });
+    setError("");
+    setAvailableCities([]);
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({ message: "", type: "" });
+  };
+
+  if (!isOpen) return null;
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <span className="modal-close" onClick={onClose}>
+    <div className="add-employee-modal">
+      <div className="add-employee-modal-content">
+        <span className="add-employee-modal-close" onClick={onClose}>
           &times;
         </span>
-        <h2 className="modal-title">Добавить сотрудника</h2>
-        {error && <div className="error-message">{error}</div>}
-        <div className="form-group">
+        <h2 className="add-employee-modal-title">Добавить сотрудника</h2>
+        <div className="add-employee-form-group">
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleRoleChange}
+            className="add-employee-form-select"
+          >
+            {roles.map((role) => (
+              <option key={role.id} value={role.id}>
+                {role.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="add-employee-form-group">
           <input
             type="text"
-            className="form-input"
+            name="firstName"
+            className="add-employee-form-input"
             placeholder="Имя"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={formData.firstName}
+            onChange={handleInputChange}
           />
         </div>
-        <div className="form-group">
+        <div className="add-employee-form-group">
           <input
             type="text"
-            className="form-input"
+            name="lastName"
+            className="add-employee-form-input"
             placeholder="Фамилия"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={formData.lastName}
+            onChange={handleInputChange}
           />
         </div>
-        <div className="form-group">
+        <div className="add-employee-form-group">
           <input
             type="password"
-            className="form-input"
+            name="password"
+            className="add-employee-form-input"
             placeholder="Пароль"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={handleInputChange}
           />
         </div>
-        <div className="form-group">
+        <div className="add-employee-form-group">
           <input
             type="text"
-            className="form-input"
+            name="phoneNumber"
+            className="add-employee-form-input"
             placeholder="Номер телефона"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            value={formData.phoneNumber}
+            onChange={handleInputChange}
           />
         </div>
-        <button className="form-button" onClick={addEmployee}>
-          Добавить
+        {formData.role !== "employee" && (
+          <div className="add-employee-form-group">
+            <label>Выберите города:</label>
+            <div className="add-employee-form-checkbox-group">
+              {availableCities.map((city) => (
+                <div key={city.id} className="add-employee-form-checkbox">
+                  <label>
+                    <input
+                      type="checkbox"
+                      value={city.id}
+                      checked={formData.selectedCities.includes(city.id)}
+                      onChange={handleCityChange}
+                    />
+                    {city.name}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        <button
+          className="add-employee-form-button"
+          onClick={addEmployee}
+          disabled={loading}
+        >
+          {loading ? "Добавление..." : "Добавить"}
         </button>
+        {error && <div className="add-employee-error-message">{error}</div>}
       </div>
+      {notification.message && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={handleCloseNotification}
+        />
+      )}
     </div>
   );
 };

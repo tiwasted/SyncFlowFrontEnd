@@ -44,12 +44,9 @@
   background: #fff;
   border-radius: 8px;
   justify-content: space-between;
+  
 }
 
 /* .ant-layout-sider-children {
   position: fixed;
 } */
-
-.schedule-container {
-  border-radius: 8px;
-}
