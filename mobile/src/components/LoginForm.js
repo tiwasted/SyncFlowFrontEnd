@@ -3,9 +3,11 @@ import { login as apiLogin } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import "../styles/LoginForm.css";
 import { useAuth } from "../services/AuthContext";
+import Notification from "../components/Notification";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ phone: "", password: "" });
+  const [notification, setNotification] = useState({ message: "", type: "" });
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -17,14 +19,20 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // console.log('Отправлямые данные:', formData);
       const token = await apiLogin(formData.phone, formData.password);
-      // console.log('Успешный вход. Токен:', token);
       login(token);
       navigate("/schedule", { replace: true });
     } catch (error) {
-      // console.error('Ошибка входа:', error.response ? error.response.data : error.message);
+      if (error.response && error.response.status === 400) {
+        setNotification({ message: "Неверный логин или пароль", type: "error" });
+      } else {
+        setNotification({ message: "Ошибка входа", type: "error" });
+      }
     }
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({ message: "", type: "" });
   };
 
   return (
@@ -53,6 +61,13 @@ const LoginForm = () => {
           Войти
         </button>
       </form>
+      {notification.message && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={handleCloseNotification}
+        />
+      )}
     </div>
   );
 };

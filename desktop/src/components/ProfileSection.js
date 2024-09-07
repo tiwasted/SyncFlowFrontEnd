@@ -33,7 +33,7 @@ const ProfileSection = () => {
 
   const handleSaveProfile = async () => {
     try {
-      await api.put("/users/profile/edit/", profile);
+      await api.put("/users/profile/", profile);
       setMessage("Профиль успешно обновлен!");
       setIsEditing(false);
     } catch (error) {

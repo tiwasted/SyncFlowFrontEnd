@@ -22,7 +22,7 @@ const Profile = () => {
       setProfile(response.data);
     } catch (error) {
       setMessage("Ошибка при загрузке профиля");
-      // console.error('Ошибка при загрузке профиля:', error);
+      console.error('Ошибка при загрузке профиля:', error);
     }
   };
 
@@ -38,7 +38,7 @@ const Profile = () => {
       setIsEditing(false);
     } catch (error) {
       setMessage("Ошибка при обновлении профиля");
-      // console.error('Ошибка при обновлении профиля:', error);
+      console.error('Ошибка при обновлении профиля:', error);
     }
   };
 

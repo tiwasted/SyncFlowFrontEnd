@@ -17,7 +17,7 @@ export const isTokenExpired = (token) => {
     const currentTime = Date.now() / 1000;
     return decodedToken.exp < currentTime;
   } catch (error) {
-    // console.error('Ошибка при проверке токена:', error);
+    console.error('Ошибка при проверке токена:', error);
     return true;
   }
 };
@@ -25,7 +25,7 @@ export const isTokenExpired = (token) => {
 const refreshToken = async () => {
   const refreshToken = localStorage.getItem("refresh_token");
   if (!refreshToken || isTokenExpired(refreshToken)) {
-    // console.error("Рефреш токен отсутствует или истек.");
+    console.error("Рефреш токен отсутствует или истек.");
     logout();
     return null;
   }
@@ -38,7 +38,7 @@ const refreshToken = async () => {
     localStorage.setItem("access_token", newToken);
     return newToken;
   } catch (error) {
-    // console.error("Ошибка при обновлении токена:", error);
+    console.error("Ошибка при обновлении токена:", error);
     logout();
     return null;
   }
@@ -63,7 +63,7 @@ api.interceptors.request.use(
           config.headers["Authorization"] = `Bearer ${accessToken}`;
         }
       } catch (error) {
-        // console.error("Ошибка при обновлении токена:", error);
+        console.error("Ошибка при обновлении токена:", error);
         throw error;
       }
     }
@@ -71,7 +71,7 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    // console.error("Ошибка в интерцепторе запроса:", error);
+    console.error("Ошибка в интерцепторе запроса:", error);
     return Promise.reject(error);
   }
 );

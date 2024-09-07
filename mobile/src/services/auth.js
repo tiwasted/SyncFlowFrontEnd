@@ -26,13 +26,13 @@ export const login = async (phone, password) => {
     }
   } catch (error) {
     if (error.response) {
-      // console.error('Ошибка ответа сервера:', error.response.data);
-      // console.error('Статус:', error.response.status);
-      // console.error('Заголовки:', error.response.headers);
+      console.error('Ошибка ответа сервера:', error.response.data);
+      console.error('Статус:', error.response.status);
+      console.error('Заголовки:', error.response.headers);
     } else if (error.request) {
-      // console.error('Ошибка запроса:', error.request);
+      console.error('Ошибка запроса:', error.request);
     } else {
-      // console.error('Ошибка:', error.message);
+      console.error('Ошибка:', error.message);
     }
     throw error;
   }
@@ -52,7 +52,7 @@ export const checkTokenValidity = async (token) => {
     const response = await axios.post(`${API_URL}verify/`, { token });
     return response.status === 200;
   } catch (error) {
-    // console.error('Ошибка проверки токена:', error);
+    console.error('Ошибка проверки токена:', error);
     return false;
   }
 };

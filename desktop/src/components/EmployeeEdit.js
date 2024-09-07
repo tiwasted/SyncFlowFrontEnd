@@ -80,13 +80,6 @@ const EmployeeEdit = ({ employee, onSave, onCancel, fetchData }) => {
           >
             Сохранить
           </button>
-          <button
-            type="button"
-            onClick={onCancel}
-            className="employee-edit-button"
-          >
-            Отмена
-          </button>
         </form>
       </div>
       {notification.message && (

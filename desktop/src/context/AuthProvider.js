@@ -54,11 +54,12 @@ export const AuthProvider = ({ children }) => {
         }
       } else {
         setAuthState({ token: null, isAuthenticated: false });
+        navigate("/login"); // Добавлено перенаправление на страницу логина
       }
       setAuthLoading(false);
     };
     checkToken();
-  }, [logout]);
+  }, [logout, navigate]);
 
   return (
     <AuthContext.Provider value={{ ...authState, authLoading, login, logout }}>
