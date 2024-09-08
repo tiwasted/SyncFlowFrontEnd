@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/TokenService";
+import Notification from "./Notification";
 import "../styles/ProfileSection.css";
 
 const ProfileSection = () => {
@@ -9,8 +10,9 @@ const ProfileSection = () => {
     company_name: "",
     company_description: "",
   });
+
   const [isEditing, setIsEditing] = useState(false);
-  const [message, setMessage] = useState("");
+  const [notification, setNotification] = useState({ message: "", type: "" });
 
   useEffect(() => {
     fetchProfile();
@@ -21,7 +23,10 @@ const ProfileSection = () => {
       const response = await api.get("/users/profile/");
       setProfile(response.data);
     } catch (error) {
-      setMessage("Ошибка при загрузке профиля");
+      setNotification({
+        message: "Ошибка при загрузке профиля",
+        type: "error",
+      });
       // console.error("Ошибка при загрузке профиля:", error);
     }
   };
@@ -34,18 +39,27 @@ const ProfileSection = () => {
   const handleSaveProfile = async () => {
     try {
       await api.put("/users/profile/", profile);
-      setMessage("Профиль успешно обновлен!");
+      setNotification({
+        message: "Профиль успешно обновлен!",
+        type: "success",
+      });
       setIsEditing(false);
     } catch (error) {
-      setMessage("Ошибка при обновлении профиля");
+      setNotification({
+        message: "Ошибка при обновлении профиля",
+        type: "error",
+      });
       // console.error("Ошибка при обновлении профиля:", error);
     }
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({ message: "", type: "" });
   };
 
   return (
     <div className="profile-section">
       <h2 className="profile-title">Профиль</h2>
-      {message && <div className="profile-message">{message}</div>}
       <div className="profile-field">
         <label>Фамилия:</label>
         {isEditing ? (
@@ -105,6 +119,13 @@ const ProfileSection = () => {
         <button className="profile-edit-btn" onClick={() => setIsEditing(true)}>
           Редактировать
         </button>
+      )}
+      {notification.message && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={handleCloseNotification}
+        />
       )}
     </div>
   );

@@ -91,6 +91,7 @@
 }
 
 .history-of-orders__item-detail-label {
+  margin-right: 8px;
   font-weight: 600;
   color: #343a40;
 }

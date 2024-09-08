@@ -1,154 +1,144 @@
-/* AddLocationModal.css */
-
-/* Overlay */
 .settings-choose-cities-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.settings-choose-cities-modal-content {
+  background: #fff;
+  border-radius: 8px;
+  width: 600px;
+  max-width: 90%;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.settings-choose-cities-modal-header {
+  margin-bottom: 20px;
+}
+
+.title-choose-cities {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+  text-align: center;
+}
+
+.settings-choose-cities-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.settings-choose-cities-modal-columns {
+  display: flex;
+  gap: 20px;
+}
+
+.settings-choose-cities-modal-column {
+  flex: 1;
+}
+
+.country-search-input,
+.city-search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  margin-bottom: 10px;
+  transition: border-color 0.3s;
+}
+
+.country-search-input:focus,
+.city-search-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.city-search-input:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.country-select,
+.city-select {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  background: #f9f9f9;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.radio-label,
+.checkbox-label {
+  margin-left: 10px;
+  font-size: 1em;
+  color: #333;
+}
+
+.input-country,
+.input-city {
+  margin-left: auto;
+}
+
+.settings-choose-cities-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.settings-choose-cities-modal-save-btn,
+.settings-choose-cities-modal-close-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.settings-choose-cities-modal-save-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.settings-choose-cities-modal-save-btn:hover {
+  background-color: #0056b3;
+}
+
+.settings-choose-cities-modal-close-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.settings-choose-cities-modal-close-btn:hover {
+  background-color: #999;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
-  
-  /* Modal Content */
-  .settings-choose-cities-modal-content {
-    background: #fff;
-    border-radius: 8px;
-    width: 600px;
-    max-width: 90%;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.3s ease-in-out;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  /* Header */
-  .settings-choose-cities-modal-header {
-    margin-bottom: 20px;
-  }
-  
-  .title-choose-cities {
-    margin: 0;
-    font-size: 1.5em;
-    color: #333;
-    text-align: center;
-  }
-  
-  /* Body */
-  .settings-choose-cities-modal-body {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .settings-choose-cities-modal-columns {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .settings-choose-cities-modal-column {
-    flex: 1;
-  }
-  
-  /* Search Inputs */
-  .country-search-input,
-  .city-search-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
-    margin-bottom: 10px;
-    transition: border-color 0.3s;
-  }
-  
-  .country-search-input:focus,
-  .city-search-input:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  .city-search-input:disabled {
-    background-color: #f0f0f0;
-    cursor: not-allowed;
-  }
-  
-  /* Select Lists */
-  .country-select,
-  .city-select {
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    background: #f9f9f9;
-  }
-  
-  .radio-group,
-  .checkbox-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .radio-label,
-  .checkbox-label {
-    margin-left: 10px;
-    font-size: 1em;
-    color: #333;
-  }
-  
-  .input-country,
-  .input-city {
-    margin-left: auto;
-  }
-  
-  /* Footer */
-  .settings-choose-cities-modal-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .settings-choose-cities-modal-save-btn,
-  .settings-choose-cities-modal-close-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .settings-choose-cities-modal-save-btn {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .settings-choose-cities-modal-save-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .settings-choose-cities-modal-close-btn {
-    background-color: #ccc;
-    color: #333;
-  }
-  
-  .settings-choose-cities-modal-close-btn:hover {
-    background-color: #999;
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
+}

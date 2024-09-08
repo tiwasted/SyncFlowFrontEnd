@@ -27,7 +27,9 @@ const OrderList = ({ orders, updateOrders }) => {
 
   const handleEmployeeAssigned = (updatedOrder) => {
     updateOrders();
-    setShowAssignModal(false);
+    setTimeout(() => {
+      setShowAssignModal(false);
+    }, 1500);
   };
 
   const handleDeleteClick = (id) => {

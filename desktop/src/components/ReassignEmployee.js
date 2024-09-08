@@ -17,7 +17,7 @@ const ReassignEmployee = ({
       try {
         const response = await api.get("/employees/assigning-list/");
         setEmployees(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         // console.error("Ошибка при получении списка сотрудников", error);
       }

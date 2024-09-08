@@ -104,7 +104,7 @@ const Login = () => {
         </button>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         <div className={styles.footerText}>
-          Если забыли пароль, обратитесь по номеру +7 (777) 777-77-77
+          Если забыли пароль, обратитесь по номеру +7 (708) 364-03-50
         </div>
       </form>
       {notification.message && (

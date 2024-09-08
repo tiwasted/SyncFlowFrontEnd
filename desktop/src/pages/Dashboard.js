@@ -50,7 +50,17 @@ const Dashboard = () => {
     const fetchCities = async () => {
       try {
         const response = await api.get("/employers/dashboard/list-cities/");
-        setCities(response.data.cities);
+        const citiesData = response.data.cities;
+        setCities(citiesData);
+
+        if (citiesData.length === 0) {
+          setNotification({
+            message: "Директор должен назначить вам город (-а)",
+            type: "yellow",
+          });
+        } else {
+          fetchSelectedCity();
+        }
       } catch (error) {
         // console.error("Ошибка при получении данных:", error);
       }
@@ -73,7 +83,6 @@ const Dashboard = () => {
     };
 
     fetchCities();
-    fetchSelectedCity();
   }, []);
 
   useEffect(() => {
@@ -82,10 +91,10 @@ const Dashboard = () => {
 
   const handleCityChange = async (cityId) => {
     try {
-      const response = await api.post("/employers/select-primary-city/", {
+      await api.post("/employers/select-primary-city/", {
         city_id: cityId,
       });
-      console.log("Response:", response.data);
+      // console.log("Response:", response.data);
       setSelectedCity(cityId);
       setNotification({ message: "", type: "" }); // Убираем уведомление после выбора города
       fetchOrders();
