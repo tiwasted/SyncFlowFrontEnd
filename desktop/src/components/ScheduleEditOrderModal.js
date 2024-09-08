@@ -28,7 +28,7 @@ const ScheduleEditOrderModal = ({ order, onClose, onSave }) => {
         <h2 className="schedule-edit-order-title">Редактировать заказ</h2>
         <form className="schedule-edit-order-form">
           <label className="schedule-edit-order-label">
-            Наименование:
+            Наименование заказа:
             <input
               type="text"
               name="order_name"
@@ -48,7 +48,7 @@ const ScheduleEditOrderModal = ({ order, onClose, onSave }) => {
             />
           </label>
           <label className="schedule-edit-order-label">
-            Дата заказа:
+            Дата:
             <input
               type="date"
               name="order_date"
@@ -58,31 +58,11 @@ const ScheduleEditOrderModal = ({ order, onClose, onSave }) => {
             />
           </label>
           <label className="schedule-edit-order-label">
-            Время заказа:
+            Время:
             <input
               type="time"
               name="order_time"
               value={editedOrder.order_time}
-              onChange={handleChange}
-              className="schedule-edit-order-input"
-            />
-          </label>
-          <label className="schedule-edit-order-label">
-            Имя клиента:
-            <input
-              type="text"
-              name="name_client"
-              value={editedOrder.name_client}
-              onChange={handleChange}
-              className="schedule-edit-order-input"
-            />
-          </label>
-          <label className="schedule-edit-order-label">
-            Номер клиента:
-            <input
-              type="text"
-              name="phone_number_client"
-              value={editedOrder.phone_number_client}
               onChange={handleChange}
               className="schedule-edit-order-input"
             />
@@ -98,7 +78,27 @@ const ScheduleEditOrderModal = ({ order, onClose, onSave }) => {
             />
           </label>
           <label className="schedule-edit-order-label">
-            Описание заказа:
+            Имя клиента:
+            <input
+              type="text"
+              name="name_client"
+              value={editedOrder.name_client}
+              onChange={handleChange}
+              className="schedule-edit-order-input"
+            />
+          </label>
+          <label className="schedule-edit-order-label">
+            Номер телефона клиента:
+            <input
+              type="text"
+              name="phone_number_client"
+              value={editedOrder.phone_number_client}
+              onChange={handleChange}
+              className="schedule-edit-order-input"
+            />
+          </label>
+          <label className="schedule-edit-order-label">
+            Описание:
             <textarea
               name="description"
               value={editedOrder.description}

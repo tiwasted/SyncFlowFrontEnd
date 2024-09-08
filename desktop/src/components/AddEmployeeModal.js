@@ -182,21 +182,21 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
         </div>
         <div className="add-employee-form-group">
           <input
-            type="password"
-            name="password"
-            className="add-employee-form-input"
-            placeholder="Пароль"
-            value={formData.password}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="add-employee-form-group">
-          <input
             type="text"
             name="phoneNumber"
             className="add-employee-form-input"
             placeholder="Номер телефона"
             value={formData.phoneNumber}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="add-employee-form-group">
+          <input
+            type="password"
+            name="password"
+            className="add-employee-form-input"
+            placeholder="Пароль"
+            value={formData.password}
             onChange={handleInputChange}
           />
         </div>

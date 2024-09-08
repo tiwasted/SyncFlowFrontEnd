@@ -1,4 +1,4 @@
-.create-order-btn-container{
+.create-order-btn-container {
   padding-left: 10px;
 }
 
@@ -18,7 +18,7 @@
   transform: translateY(-2px);
 }
 
-.h2-title-dashboard{
+.h2-title-dashboard {
   text-align: center;
   padding: 10px;
 }
@@ -29,7 +29,6 @@
   gap: 20px;
   justify-content: space-between;
   border-radius: 8px; /* Закругляет углы контейнера */
-
 }
 .dashboard-order-list-container {
   width: 100%;
@@ -37,7 +36,7 @@
 }
 .dashboard-order-list {
   flex: 1;
-  
+
   width: 100%;
   box-sizing: border-box;
   background-color: #ffffff; /* Белый фон для каждого контейнера */
@@ -101,16 +100,6 @@
   outline: none;
 }
 
-
-
-
-
-
-
-
-
-
-
 /* styles.css */
 .edit-dashboard-modal {
   position: fixed;
@@ -171,6 +160,7 @@
 
 .edit-dashboard-textarea {
   resize: vertical;
+  height: 70px;
 }
 
 .edit-dashboard-button {
@@ -188,22 +178,16 @@
   background-color: #0056b3;
 }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
-
-
-
-
-
-
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
 .city-selection-container {
   display: flex;

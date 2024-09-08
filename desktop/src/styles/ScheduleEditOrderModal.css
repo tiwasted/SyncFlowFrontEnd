@@ -55,6 +55,7 @@
 
 .schedule-edit-order-textarea {
   resize: vertical;
+  height: 70px;
 }
 
 .schedule-edit-order-button {
