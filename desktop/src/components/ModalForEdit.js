@@ -73,26 +73,6 @@ const ModalForEditDashboard = ({
             />
           </div>
           <div className="edit-dashboard-form-group">
-            <label className="edit-dashboard-label">Имя клиента:</label>
-            <input
-              type="text"
-              name="name_client"
-              className="edit-dashboard-input"
-              value={editedOrder.name_client || ""}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="edit-dashboard-form-group">
-            <label className="edit-dashboard-label">Телефон клиента:</label>
-            <input
-              type="text"
-              name="phone_number_client"
-              className="edit-dashboard-input"
-              value={editedOrder.phone_number_client || ""}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="edit-dashboard-form-group">
             <label className="edit-dashboard-label">Дата:</label>
             <input
               type="date"
@@ -119,6 +99,28 @@ const ModalForEditDashboard = ({
               name="address"
               className="edit-dashboard-input"
               value={editedOrder.address || ""}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="edit-dashboard-form-group">
+            <label className="edit-dashboard-label">Имя клиента:</label>
+            <input
+              type="text"
+              name="name_client"
+              className="edit-dashboard-input"
+              value={editedOrder.name_client || ""}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="edit-dashboard-form-group">
+            <label className="edit-dashboard-label">
+              Номер телефона клиента:
+            </label>
+            <input
+              type="text"
+              name="phone_number_client"
+              className="edit-dashboard-input"
+              value={editedOrder.phone_number_client || ""}
               onChange={handleInputChange}
             />
           </div>

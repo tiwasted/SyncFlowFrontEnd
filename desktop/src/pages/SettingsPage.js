@@ -50,14 +50,15 @@ const SettingsPage = () => {
 
   const handleAddCountryAndCities = async () => {
     try {
-      const addCountryPromise = api.post("/employers/add-countries/", {
+      // Сначала добавляем страну
+      await api.post("/employers/add-countries/", {
         country_ids: [selectedCountry],
       });
-      const addCitiesPromise = api.post("/employers/add-cities/", {
+
+      // Затем добавляем города
+      await api.post("/employers/add-cities/", {
         city_ids: selectedCities,
       });
-
-      await Promise.all([addCountryPromise, addCitiesPromise]);
 
       setMessage("Страна и города успешно добавлены!");
       handleCloseAddLocationModal();

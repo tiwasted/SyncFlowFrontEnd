@@ -156,7 +156,9 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
             />
           </div>
           <div className="edit-dashboard-form-group">
-            <label className="edit-dashboard-label">Номер телефона:</label>
+            <label className="edit-dashboard-label">
+              Номер телефона клиента:
+            </label>
             <input
               type="text"
               className="edit-dashboard-input"
