@@ -5,6 +5,7 @@ import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+    // Изменения на /mweb
     <BrowserRouter basename="/mweb">
         <App />
     </BrowserRouter>
