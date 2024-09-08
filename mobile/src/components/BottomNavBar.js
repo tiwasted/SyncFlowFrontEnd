@@ -7,13 +7,13 @@ const Navbar = () => {
     <footer className="bottom-nav">
       <ul className="nav-list">
         <li className="nav-item">
-          <a href="/schedule" className="nav-link">
+          <a href="/mweb/schedule" className="nav-link">
             <CalendarOutlined style={{ fontSize: 30, color: "#4285f4" }} />
             <span>Расписание</span>
           </a>
         </li>
         <li className="nav-item">
-          <a href="/profile" className="nav-link">
+          <a href="/mweb/profile" className="nav-link">
             <UserOutlined style={{ fontSize: 30, color: "#4285f4" }} />
             <span>Профиль</span>
           </a>
