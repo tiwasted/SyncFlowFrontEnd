@@ -241,6 +241,17 @@ const STATUS_TRANSLATION = {
   cancelled: "Отменен",
 };
 
+const formatDate = (dateString) => {
+  const [year, month, day] = dateString.split("-");
+  return `${day}-${month}-${year}`;
+};
+
+const formatTime = (timeString) => {
+  if (!timeString) return "";
+  const [hours, minutes] = timeString.split(":");
+  return `${hours}:${minutes}`;
+};
+
 const HistoryOfOrders = () => {
   const { orderType } = useParams();
   const [orders, setOrders] = useState([]);
@@ -346,7 +357,7 @@ const HistoryOfOrders = () => {
                         Дата заказа:
                       </span>
                       <span className="history-of-orders__item-detail-value">
-                        {order.order_date}
+                        {formatDate(order.order_date)}
                       </span>
                     </div>
 
@@ -364,7 +375,7 @@ const HistoryOfOrders = () => {
                         Время заказа:
                       </span>
                       <span className="history-of-orders__item-detail-value">
-                        {order.order_time}
+                        {formatTime(order.order_time)}
                       </span>
                     </div>
 
