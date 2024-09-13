@@ -432,6 +432,15 @@ const HistoryOfOrders = () => {
                         {order.price}
                       </span>
                     </div>
+
+                    <div className="history-of-orders__item-detail">
+                      <span className="history-of-orders__item-detail-label">
+                        Способ оплаты:
+                      </span>
+                      <span className="history-of-orders__item-detail-value">
+                        {order.payment_method}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </li>
