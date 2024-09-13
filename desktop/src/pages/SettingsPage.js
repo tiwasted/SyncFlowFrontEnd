@@ -4,6 +4,7 @@ import AddLocationModal from "../components/AddLocationModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import Notification from "../components/Notification";
 import ProfileSection from "../components/ProfileSection";
+import PaymentMethodsModal from "../components/PaymentMethodsModal";
 
 const SettingsPage = () => {
   const [countries, setCountries] = useState([]);
@@ -16,7 +17,10 @@ const SettingsPage = () => {
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [showAddLocationModal, setShowAddLocationModal] = useState(false);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
+  const [showPaymentMethodsModal, setShowPaymentMethodsModal] = useState(false);
   const [notification, setNotification] = useState({ message: "", type: "" });
+  const [paymentMethods, setPaymentMethods] = useState([]);
+  const [selectedPaymentMethods, setSelectedPaymentMethods] = useState([]);
 
   const fetchCountries = async () => {
     try {
@@ -24,7 +28,6 @@ const SettingsPage = () => {
       setCountries(response.data || []);
     } catch (error) {
       setMessage("Ошибка при загрузке стран");
-      // console.error("Ошибка при загрузке стран:", error);
     }
   };
 
@@ -40,7 +43,37 @@ const SettingsPage = () => {
       }
     } catch (error) {
       setMessage("Ошибка при загрузке городов");
-      // console.error("Ошибка при загрузке городов:", error);
+    }
+  };
+
+  const fetchPaymentMethods = async () => {
+    try {
+      const response = await api.get("/orders/payment-methods/");
+      setPaymentMethods(response.data || []);
+    } catch (error) {
+      setMessage("Ошибка при загрузке способов оплаты");
+    }
+  };
+
+  const fetchSelectedPaymentMethods = async () => {
+    try {
+      const response = await api.get("/employers/available-payment-methods/");
+      setSelectedPaymentMethods(response.data.payment_methods || []);
+    } catch (error) {
+      setMessage("Ошибка при загрузке выбранных способов оплаты");
+    }
+  };
+
+  const handleSavePaymentMethods = async (selectedMethods) => {
+    try {
+      await api.post("/employers/add-payment-method/", {
+        payment_method_ids: selectedMethods,
+      });
+      setMessage("Способы оплаты успешно сохранены!");
+      handleClosePaymentMethodsModal();
+      fetchSelectedPaymentMethods();
+    } catch (error) {
+      setMessage("Ошибка при сохранении способов оплаты");
     }
   };
 
@@ -48,14 +81,16 @@ const SettingsPage = () => {
     fetchCities(selectedCountry);
   }, [selectedCountry]);
 
+  useEffect(() => {
+    fetchSelectedPaymentMethods();
+  }, []);
+
   const handleAddCountryAndCities = async () => {
     try {
-      // Сначала добавляем страну
       await api.post("/employers/add-countries/", {
         country_ids: [selectedCountry],
       });
 
-      // Затем добавляем города
       await api.post("/employers/add-cities/", {
         city_ids: selectedCities,
       });
@@ -68,7 +103,6 @@ const SettingsPage = () => {
       } else {
         setMessage("Ошибка при добавлении данных");
       }
-      // console.error("Ошибка при добавлении страны и городов:", error);
     }
   };
 
@@ -101,7 +135,6 @@ const SettingsPage = () => {
       } else {
         setMessage("Ошибка при изменении пароля");
       }
-      // console.error("Ошибка при изменении пароля:", error);
     }
   };
 
@@ -128,6 +161,17 @@ const SettingsPage = () => {
     setOldPassword("");
     setNewPassword("");
     setConfirmNewPassword("");
+    setMessage("");
+  };
+
+  const handleOpenPaymentMethodsModal = async () => {
+    setShowPaymentMethodsModal(true);
+    setMessage("");
+    await fetchPaymentMethods();
+  };
+
+  const handleClosePaymentMethodsModal = () => {
+    setShowPaymentMethodsModal(false);
     setMessage("");
   };
 
@@ -167,6 +211,13 @@ const SettingsPage = () => {
         >
           Изменить пароль
         </button>
+
+        <button
+          className="choose-payment-methods-btn"
+          onClick={handleOpenPaymentMethodsModal}
+        >
+          Выбрать способы оплаты
+        </button>
       </div>
       <ProfileSection />
       {message && <div className="settings-message">{message}</div>}
@@ -197,6 +248,16 @@ const SettingsPage = () => {
         />
       )}
 
+      {showPaymentMethodsModal && (
+        <PaymentMethodsModal
+          paymentMethods={paymentMethods}
+          selectedPaymentMethods={selectedPaymentMethods}
+          setSelectedPaymentMethods={setSelectedPaymentMethods}
+          handleSavePaymentMethods={handleSavePaymentMethods}
+          handleClosePaymentMethodsModal={handleClosePaymentMethodsModal}
+        />
+      )}
+
       {notification.message && (
         <Notification
           message={notification.message}
@@ -204,6 +265,15 @@ const SettingsPage = () => {
           onClose={handleCloseNotification}
         />
       )}
+
+      <div className="selected-payment-methods">
+        <h2>Выбранные способы оплаты:</h2>
+        <ul>
+          {selectedPaymentMethods.map((method) => (
+            <div key={method.id}>{method.name}</div>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
