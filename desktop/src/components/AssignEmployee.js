@@ -34,7 +34,7 @@ const AssignEmployee = ({ orderId, onEmployeeAssigned, show, onClose }) => {
 
     try {
       const response = await api.post(
-        `/orders/b2c-orders/${orderId}/assign_employee/`,
+        `/orders/order-assignment/${orderId}/assign_employee/`,
         { employee_ids: employeeIds }
       );
 

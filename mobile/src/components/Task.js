@@ -15,7 +15,7 @@ const Task = ({ task, onUpdate, fetchTasks }) => {
 
   const getOrderUrl = (action) => {
     const baseUrl =
-      task.order_type === "B2B" ? "/orders/b2b-orders" : "/orders/b2c-orders";
+      task.order_type === "B2B" ? "/orders/order-status" : "/orders/order-status";
     return `${baseUrl}/${task.id}/${action}/`;
   };
 
