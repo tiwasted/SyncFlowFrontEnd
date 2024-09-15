@@ -7,11 +7,13 @@ const formatDate = (dateString) => {
 };
 
 const formatTime = (timeString) => {
+  if (!timeString) return "";
   const [hours, minutes] = timeString.split(":");
   return `${hours}:${minutes}`;
 }
 
 const formatPrice = (priceString) => {
+  if (priceString == null) return "";
   return parseInt(priceString, 10);
 };
 

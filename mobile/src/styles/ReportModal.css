@@ -4,7 +4,6 @@
   width: 100%;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   margin: auto;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -187,4 +186,34 @@ textarea {
     font-size: 14px;
     padding: 10px;
   }
+}
+
+.payment-method-select {
+  margin-bottom: 20px;
+}
+
+.payment-method-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1em;
+  color: #333;
+}
+
+.payment-method-dropdown {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.payment-method-dropdown:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }

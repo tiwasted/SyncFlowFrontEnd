@@ -23,7 +23,6 @@ import "./styles/CommonStyles/ButtonStyles.css";
 
 import "./styles/Schedule.css";
 import "./styles/Dashboard.css";
-import "./styles/SettingsPage.css";
 
 import "./styles/OrderStyles/OrderList.css";
 import "./styles/OrderStyles/AddOrder.css";
