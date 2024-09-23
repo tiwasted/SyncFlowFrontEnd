@@ -39,7 +39,7 @@ const Schedule = () => {
 
   const handleComplete = async (task) => {
     try {
-      const endpoint = task.order_type === "B2B" ? "b2b-orders" : "b2c-orders";
+      const endpoint = task.order_type === "B2B" ? "order-status" : "order-status";
       await api.post(`/orders/${endpoint}/${task.id}/complete_order/`);
       fetchTasks(); // Обновляем список задач после завершения
     } catch (error) {

@@ -5,6 +5,7 @@ import ChangePasswordModal from "../components/ChangePasswordModal";
 import Notification from "../components/Notification";
 import ProfileSection from "../components/ProfileSection";
 import PaymentMethodsModal from "../components/PaymentMethodsModal";
+import "../styles/SettingsPage.css";
 
 const SettingsPage = () => {
   const [countries, setCountries] = useState([]);
@@ -67,7 +68,7 @@ const SettingsPage = () => {
   const handleSavePaymentMethods = async (selectedMethods) => {
     try {
       await api.post("/employers/add-payment-method/", {
-        payment_method_ids: selectedMethods,
+        payment_method_ids: selectedMethods.map((method) => method.id),
       });
       setMessage("Способы оплаты успешно сохранены!");
       handleClosePaymentMethodsModal();
@@ -118,7 +119,7 @@ const SettingsPage = () => {
     }
 
     try {
-      await api.put("/employers/change-password/", {
+      await api.put("/users/change-password/", {
         old_password: oldPassword,
         new_password: newPassword,
         confirm_password: confirmNewPassword,
@@ -267,10 +268,14 @@ const SettingsPage = () => {
       )}
 
       <div className="selected-payment-methods">
-        <h2>Выбранные способы оплаты:</h2>
-        <ul>
+        <h2 className="selected-payment-methods-title">
+          Выбранные способы оплаты:
+        </h2>
+        <ul className="selected-payment-methods-list">
           {selectedPaymentMethods.map((method) => (
-            <div key={method.id}>{method.name}</div>
+            <li key={method.id} className="selected-payment-methods-item">
+              {method.name}
+            </li>
           ))}
         </ul>
       </div>
