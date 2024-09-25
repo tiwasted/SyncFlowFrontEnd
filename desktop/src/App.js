@@ -14,7 +14,7 @@ import HistoryOfOrders from "./pages/HistoryOfOrders";
 import SettingsPage from "./pages/SettingsPage";
 
 import Login from "./components/Login";
-import AddOrderB2B from "./components/AddOrderB2B";
+// import AddOrderB2B from "./components/AddOrderB2B";
 
 import "./styles/App.css";
 import "./styles/AppLayout.css";
@@ -43,7 +43,7 @@ const AppContent = () => {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/schedule" element={<Schedule />} />
                 <Route path="/employees" element={<Employees />} />
-                <Route path="/add-order-b2b" element={<AddOrderB2B />} />
+                {/* <Route path="/add-order-b2b" element={<AddOrderB2B />} /> */}
                 <Route
                   path="/history-of-orders"
                   element={<HistoryOfOrders />}

@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/PaymentMethodsModal.css";
 
 const PaymentMethodsModal = ({
   paymentMethods,
-  selectedPaymentMethods,
-  setSelectedPaymentMethods,
+  selectedPaymentMethods: initialSelectedPaymentMethods,
   handleSavePaymentMethods,
   handleClosePaymentMethodsModal,
 }) => {
+  const [selectedPaymentMethods, setSelectedPaymentMethods] = useState([]);
+
+  useEffect(() => {
+    setSelectedPaymentMethods(initialSelectedPaymentMethods);
+  }, [initialSelectedPaymentMethods]);
+
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
+    const selectedMethod = paymentMethods.find((method) => method.id === Number(value));
+    
     setSelectedPaymentMethods((prevMethods) =>
       checked
-        ? [...prevMethods, Number(value)]
-        : prevMethods.filter((methodId) => methodId !== Number(value))
+        ? [...prevMethods, selectedMethod]
+        : prevMethods.filter((method) => method.id !== Number(value))
     );
+  };
+
+  const handleSave = () => {
+    handleSavePaymentMethods(selectedPaymentMethods);
   };
 
   return (
@@ -28,7 +39,7 @@ const PaymentMethodsModal = ({
                 <input
                   type="checkbox"
                   value={method.id}
-                  checked={selectedPaymentMethods.includes(method.id)}
+                  checked={selectedPaymentMethods.some((selectedMethod) => selectedMethod.id === method.id)}
                   onChange={handleCheckboxChange}
                   className="payment-method-modal-checkbox"
                 />
@@ -38,7 +49,7 @@ const PaymentMethodsModal = ({
           ))}
         </ul>
         <button
-          onClick={() => handleSavePaymentMethods(selectedPaymentMethods)}
+          onClick={handleSave}
           className="payment-method-modal-save-button"
         >
           Сохранить

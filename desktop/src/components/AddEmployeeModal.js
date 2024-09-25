@@ -21,7 +21,6 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
   useEffect(() => {
     if (isOpen) {
       fetchRoles();
-      fetchAvailableCities();
     }
   }, [isOpen]);
 
@@ -80,7 +79,19 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
       onEmployeeAdded(response.data);
       onClose();
     } catch (error) {
-      if (error.response && error.response.status === 403) {
+      if (
+        error.response &&
+        error.response.status === 400 &&
+        error.response.data.phone &&
+        error.response.data.phone.includes(
+          "Пользователь с таким phone уже существует"
+        )
+      ) {
+        setNotification({
+          message: "Пользователь с таким номером уже существует",
+          type: "error",
+        });
+      } else if (error.response && error.response.status === 403) {
         setNotification({ message: error.response.data.detail, type: "error" });
       } else {
         const errorMessage =
@@ -108,7 +119,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
     }));
   };
 
-  const handleRoleChange = (e) => {
+  const handleRoleChange = async (e) => {
     const { value } = e.target;
     setFormData({
       firstName: "",
@@ -118,6 +129,10 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
       role: value,
       selectedCities: [],
     });
+
+    if (value === "manager") {
+      await fetchAvailableCities();
+    }
   };
 
   const resetForm = () => {
@@ -200,7 +215,7 @@ const AddEmployeeModal = ({ isOpen, onClose, onEmployeeAdded }) => {
             onChange={handleInputChange}
           />
         </div>
-        {formData.role !== "employee" && (
+        {formData.role === "manager" && (
           <div className="add-employee-form-group">
             <label>Выберите города:</label>
             <div className="add-employee-form-checkbox-group">

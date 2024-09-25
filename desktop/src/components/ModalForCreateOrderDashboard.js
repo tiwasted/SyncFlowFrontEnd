@@ -33,6 +33,7 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
     setDescription("");
     setError("");
     setOrderSaved(false);
+
   };
 
   const handleSaveOrder = async () => {
@@ -70,6 +71,7 @@ const ModalForCreateOrderDashboard = ({ show, onClose, fetchOrders }) => {
         resetForm();
         onClose();
       }, 1500);
+      
     } catch (error) {
       if (error.response && error.response.data) {
         setError(error.response.data.message || "Ошибка при создании заказа");

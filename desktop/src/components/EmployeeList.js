@@ -53,7 +53,7 @@ const EmployeeList = ({ employees, setEmployees, onDelete, fetchData }) => {
       <div className="employee-grid-header">
         <div className="employee-grid-header-item">Фамилия Имя</div>
         <div className="employee-grid-header-item">Телефон</div>
-        <div className="employee-grid-header-item">Город (-а) Сотрудника</div>
+        <div className="employee-grid-header-item"></div>
         <div className="employee-grid-header-item">Действия</div>
       </div>
       {employees.map((employee) => (

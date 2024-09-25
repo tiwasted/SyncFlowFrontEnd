@@ -74,7 +74,21 @@ const SettingsPage = () => {
       handleClosePaymentMethodsModal();
       fetchSelectedPaymentMethods();
     } catch (error) {
-      setMessage("Ошибка при сохранении способов оплаты");
+      if (
+        error.response &&
+        error.response.status === 400 &&
+        error.response.data.error.includes("уже добавлен")
+      ) {
+        setNotification({
+          message: "Способ оплаты ранее был добавлен",
+          type: "error",
+        });
+      } else {
+        setNotification({
+          message: "Ошибка при сохранении способов оплаты",
+          type: "error",
+        });
+      }
     }
   };
 
@@ -99,7 +113,14 @@ const SettingsPage = () => {
       setMessage("Страна и города успешно добавлены!");
       handleCloseAddLocationModal();
     } catch (error) {
-      if (error.response && error.response.status === 403) {
+      if (
+        error.response &&
+        error.response.status === 400 &&
+        error.response.data.status &&
+        error.response.data.status.includes("уже добавлены")
+      ) {
+        setNotification({ message: "Город ранее был добавлен", type: "error" });
+      } else if (error.response && error.response.status === 403) {
         setNotification({ message: error.response.data.detail, type: "error" });
       } else {
         setMessage("Ошибка при добавлении данных");
@@ -252,8 +273,7 @@ const SettingsPage = () => {
       {showPaymentMethodsModal && (
         <PaymentMethodsModal
           paymentMethods={paymentMethods}
-          selectedPaymentMethods={selectedPaymentMethods}
-          setSelectedPaymentMethods={setSelectedPaymentMethods}
+          selectedPaymentMethods={[]}
           handleSavePaymentMethods={handleSavePaymentMethods}
           handleClosePaymentMethodsModal={handleClosePaymentMethodsModal}
         />

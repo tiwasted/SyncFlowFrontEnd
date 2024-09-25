@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { fetchCities } from "../services/OrderService";
 import "../styles/OrderFilterForm.css";
 
@@ -12,17 +12,14 @@ const OrderFilterForm = ({ onSubmit }) => {
   });
   const [cities, setCities] = useState([]);
 
-  useEffect(() => {
-    const loadCities = async () => {
-      try {
-        const fetchedCities = await fetchCities();
-        setCities(fetchedCities || []);
-      } catch (error) {
-        console.error("Ошибка загрузки городов:", error);
-      }
-    };
-    loadCities();
-  }, []);
+  const loadCities = async () => {
+    try {
+      const fetchedCities = await fetchCities();
+      setCities(fetchedCities || []);
+    } catch (error) {
+      console.error("Ошибка загрузки городов:", error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -114,6 +111,7 @@ const OrderFilterForm = ({ onSubmit }) => {
           name="city"
           value={filters.city.id}
           onChange={handleChange}
+          onFocus={loadCities}
           className="order-filter-form__input"
         >
           <option value="">Все</option>
