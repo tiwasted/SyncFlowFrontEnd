@@ -85,14 +85,14 @@ const Employees = () => {
         >
           Добавить сотрудника по роли
         </button>
-        <EmployeeList
-          employees={employees}
-          onDelete={deleteEmployee}
-          fetchData={fetchData}
-        />
         <ManagerList
           managers={managers}
           onDelete={deleteManager}
+          fetchData={fetchData}
+        />
+        <EmployeeList
+          employees={employees}
+          onDelete={deleteEmployee}
           fetchData={fetchData}
         />
         <AddEmployeeModal

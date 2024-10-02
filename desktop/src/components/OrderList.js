@@ -157,7 +157,7 @@ const OrderList = ({ orders, updateOrders }) => {
         onClose={closeEditModal}
         order={orderToEdit}
         onSave={handleEditSave}
-        fetchOrders={updateOrders}
+        fetchAllOrders={updateOrders}
       />
       {orderToAssign && (
         <AssignEmployee

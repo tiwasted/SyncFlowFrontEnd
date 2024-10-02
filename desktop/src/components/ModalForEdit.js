@@ -5,7 +5,7 @@ const ModalForEditDashboard = ({
   onClose,
   order,
   onSave,
-  fetchOrders,
+  fetchAllOrders,
 }) => {
   const [editedOrder, setEditedOrder] = useState(order || {});
 
@@ -36,7 +36,6 @@ const ModalForEditDashboard = ({
         : null,
     };
     await onSave(updatedOrder);
-    fetchOrders();
     onClose();
   };
 
